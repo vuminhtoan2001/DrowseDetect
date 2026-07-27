@@ -22,5 +22,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Camera Studio Photo Editor"
 include(":app")
-// base-application chưa gắn ở giai đoạn build core feature (xem M0 trong kế hoạch) — gắn lại ở M8.
-// include(":base-application")
+include(":base-application")

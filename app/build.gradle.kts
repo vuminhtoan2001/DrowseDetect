@@ -4,9 +4,8 @@ plugins {
     alias(libs.plugins.dagger.hilt.android)
     alias(libs.plugins.ksp) // cần cho Room và Hilt
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.20"
-    // Tạm tắt ở M0-M7 (chưa có Firebase project + google-services.json thật cho vga52a) — bật lại ở M8.
-    // id("com.google.gms.google-services")
-    // id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.crashlytics")
 }
 
 android {
@@ -32,8 +31,11 @@ android {
 
     buildTypes {
         debug {
+            // Lib đọc meta-data firebase_crashlytics_collection_enabled=${crashlyticsCollectionEnabled}
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         release {
+            manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             isMinifyEnabled = true          // BẮT BUỘC theo guide tích hợp
             isShrinkResources = true        // BẮT BUỘC (đi cặp với minifyEnabled)
             proguardFiles(
@@ -67,8 +69,7 @@ android {
 
 dependencies {
     // Base-application AAR (ads / IAP / splash / language / notification shell)
-    // Tạm tắt ở M0-M7 để tránh vướng Splash/Ads khi test core feature — gắn lại đúng playbook ở M8.
-    // api(project(":base-application"))
+    api(project(":base-application"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
@@ -119,15 +120,15 @@ dependencies {
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 
-    // Firebase / Billing / InstallReferrer — tạm tắt ở M0-M7 (đi cùng base-application AAR ở M8),
-    // chưa có google-services.json thật cho vga52a.
-    // implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
-    // implementation("com.google.firebase:firebase-analytics")
-    // implementation("com.google.firebase:firebase-crashlytics")
-    // implementation("com.google.firebase:firebase-config")
-    // implementation("com.google.firebase:firebase-messaging")
-    // implementation("com.android.billingclient:billing-ktx:7.1.1")
-    // implementation("com.android.installreferrer:installreferrer:2.2")
+    // Firebase / Billing / InstallReferrer — google-services.json hiện là MOCK (chưa có Firebase
+    // project thật cho vga52a), khớp applicationId để plugin google-services không lỗi build.
+    implementation(platform("com.google.firebase:firebase-bom:34.1.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-config")
+    implementation("com.google.firebase:firebase-messaging")
+    implementation("com.android.billingclient:billing-ktx:7.1.1")
+    implementation("com.android.installreferrer:installreferrer:2.2")
 
     // Gson (dùng cho catalog asset JSON của Sticker/Frame/Template picker)
     implementation("com.google.code.gson:gson:2.10.1")
