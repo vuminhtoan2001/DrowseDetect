@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Camera Studio</string>
+
+    <!-- ===== Ads/IAP/Notification/Maps keys: THÊM Ở M8 (cùng lúc gắn base-application AAR) =====
+         Đã xoá toàn bộ key/secret thật của vga34b (admob_app_id, google_maps_key, app_flyer_id,
+         facebook_app_id/client_token, public_license_key, notification_*) vì KHÔNG dùng được cho
+         vga52a (khác project/app) và không nên mang bí mật của app khác sang repo mới. -->
+
+    <!-- ===== Home ===== -->
+    <string name="home_take_photo">Take Photo</string>
+    <string name="home_take_photo_subtitle">Capture high-resolution professional shots</string>
+    <string name="home_creative_studio">CREATIVE STUDIO</string>
+    <string name="home_edit_photo">Edit Photo</string>
+    <string name="home_collage_maker">Collage Maker</string>
+    <string name="home_wallpaper">Wallpaper</string>
+    <string name="home_my_gallery">My Gallery</string>
+    <string name="home_settings">Settings</string>
+</resources>
