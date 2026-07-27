@@ -1,10 +1,62 @@
 <resources>
     <string name="app_name">Camera Studio</string>
 
-    <!-- ===== Ads/IAP/Notification/Maps keys: THÊM Ở M8 (cùng lúc gắn base-application AAR) =====
-         Đã xoá toàn bộ key/secret thật của vga34b (admob_app_id, google_maps_key, app_flyer_id,
-         facebook_app_id/client_token, public_license_key, notification_*) vì KHÔNG dùng được cho
-         vga52a (khác project/app) và không nên mang bí mật của app khác sang repo mới. -->
+    <!-- ===== Ads/IAP/Notification keys — M8 ===== -->
+    <!-- Google AdMob sample App ID chính thức (KHÔNG phải app id thật của vga52a) — dùng tạm cho
+         tới khi có Firebase/AdMob project thật, thay ở checklist "TRƯỚC PHÁT HÀNH". -->
+    <string name="admob_app_id">ca-app-pub-3940256099942544~3347511713</string>
+    <!-- Mock — MyApplication.initAppFlyerId() tự bỏ qua init khi giá trị bắt đầu bằng "mock_". -->
+    <string name="app_flyer_id">mock_app_flyer_id</string>
+    <string name="facebook_app_id">000000000000000</string>
+    <string name="facebook_client_token">mock_facebook_client_token</string>
+    <string name="public_license_key">MOCK_PUBLIC_LICENSE_KEY</string>
+
+    <!-- ===== Notification của lib — nội dung hợp chủ đề Camera Studio Photo Editor ===== -->
+    <string name="baseapp_new_file_content">Your new photo is ready</string>
+    <string name="baseapp_screenshot_title">Screenshot captured — open Camera Studio</string>
+    <string name="baseapp_recent_title">Recently created photos</string>
+    <string name="baseapp_open">Open</string>
+    <string name="baseapp_scan">Capture</string>
+    <string name="baseapp_daily_open_content">Create something new with Camera Studio today</string>
+    <string name="baseapp_check_now">Open camera</string>
+    <string name="baseapp_fullscreen_1">Capture your moment</string>
+    <string name="baseapp_fullscreen_2">Tap to open Camera Studio now</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Don\'t forget to edit your photos today — tap to open</string>
+
+    <!-- Dialog xin quyền thông báo -->
+    <string name="baseapp_noti_title">Enable notifications</string>
+    <string name="baseapp_noti_content">Get reminders and tips for editing your photos</string>
+
+    <!-- Bộ thông báo (ghép theo index, đúng 5 phần tử) -->
+    <string-array name="notification_title2">
+        <item>Capture your moment</item>
+        <item>New filter ready to try</item>
+        <item>Your gallery misses you</item>
+        <item>Create a collage today</item>
+        <item>New wallpaper templates</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Take a photo now</item>
+        <item>Try a new filter or frame</item>
+        <item>Check your saved photos</item>
+        <item>Mix your best shots into a collage</item>
+        <item>Turn your photos into wallpapers</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Capture</item>
+        <item>View</item>
+        <item>Open</item>
+        <item>Create</item>
+        <item>Explore</item>
+    </string-array>
+
+    <!-- Tính năng màn IAP (icon + text đi cặp, xem MyApplication.getFeature1..5) -->
+    <string name="premium_feature1">Ad-free experience</string>
+    <string name="premium_feature2">Unlock all filters &amp; effects</string>
+    <string name="premium_feature3">Unlock all frames &amp; stickers</string>
+    <string name="premium_feature4">HD export, no watermark</string>
+    <string name="premium_feature5">Priority support</string>
 
     <!-- ===== Home ===== -->
     <string name="home_take_photo">Take Photo</string>

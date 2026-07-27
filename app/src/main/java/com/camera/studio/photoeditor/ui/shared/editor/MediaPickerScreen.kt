@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.camera.studio.photoeditor.data.repo.MediaRepository
 import com.camera.studio.photoeditor.ui.components.AppHeader
+import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 import com.camera.studio.photoeditor.ui.gallery.DeviceMediaQuery
 import com.camera.studio.photoeditor.ui.gallery.GalleryViewModel
 import com.camera.studio.photoeditor.ui.shared.media.DeviceMediaKind
@@ -180,6 +181,12 @@ fun MediaPickerScreen(
                         }
                     }
                 }
+            }
+
+            // Native ad cuối màn chọn ảnh (Edit Photo/Collage Maker/Wallpaper add-photo dùng chung
+            // màn này) — key ổn định để tránh recompose reload khi list ảnh thay đổi.
+            item(span = { GridItemSpan(maxLineSpan) }, key = "ad_native_media_picker") {
+                NativeAdPlaceholder("native_media_picker", Modifier.padding(top = 8.dp))
             }
         }
         if (multiSelect) {

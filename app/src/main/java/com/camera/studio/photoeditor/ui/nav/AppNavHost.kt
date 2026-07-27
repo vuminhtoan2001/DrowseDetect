@@ -1,13 +1,16 @@
 package com.camera.studio.photoeditor.ui.nav
 
+import android.app.Activity
 import android.net.Uri
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.camera.studio.photoeditor.advertisement.AdManager
 import com.camera.studio.photoeditor.ui.camera.CameraScreen
 import com.camera.studio.photoeditor.ui.collage.CollageMakerScreen
 import com.camera.studio.photoeditor.ui.editphoto.EditPhotoScreen
@@ -28,9 +31,16 @@ fun AppNavHost(
     startRoute: String,
     navController: NavHostController = rememberNavController(),
 ) {
+    val context = LocalContext.current
     fun goBack() { navController.popBackStack() }
     fun toHome() {
         navController.navigate(Screen.Home.route) { popUpTo(0) { inclusive = true } }
+    }
+    /** Tap tile Home → inter_home → (native-inter fallback) → điều hướng thật (đúng 1 lần). */
+    fun withInterHome(navigate: () -> Unit) {
+        val activity = context as? Activity
+        if (activity == null) { navigate(); return }
+        AdManager.showInter(activity, "inter_home") { navigate() }
     }
 
     NavHost(navController = navController, startDestination = startRoute) {
@@ -42,13 +52,13 @@ fun AppNavHost(
         // ---------- Hub ----------
         composable(Screen.Home.route) {
             HomeScreen(
-                onOpenCamera = { navController.navigate(Screen.Camera.route) },
+                onOpenCamera = { withInterHome { navController.navigate(Screen.Camera.route) } },
                 onOpenSettings = { navController.navigate(Screen.Setting.route) },
-                onOpenGallery = { navController.navigate(Screen.Gallery.route) },
+                onOpenGallery = { withInterHome { navController.navigate(Screen.Gallery.route) } },
                 onOpenItem = { path, isVideo -> navController.navigate(Screen.importPhotoResult(path, isVideo)) },
-                onOpenEditPhoto = { navController.navigate(Screen.EditPhotoPicker.route) },
-                onOpenCollageMaker = { navController.navigate(Screen.CollagePicker.route) },
-                onOpenWallpaper = { navController.navigate(Screen.WallpaperHome.route) },
+                onOpenEditPhoto = { withInterHome { navController.navigate(Screen.EditPhotoPicker.route) } },
+                onOpenCollageMaker = { withInterHome { navController.navigate(Screen.CollagePicker.route) } },
+                onOpenWallpaper = { withInterHome { navController.navigate(Screen.WallpaperHome.route) } },
             )
         }
 

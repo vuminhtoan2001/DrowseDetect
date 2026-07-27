@@ -45,7 +45,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import coil.compose.AsyncImage
+import androidx.compose.ui.platform.LocalContext
 import com.camera.studio.photoeditor.R
+import com.camera.studio.photoeditor.platform.IapLauncher
+import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 import com.camera.studio.photoeditor.ui.shared.asset.AssetCatalog
 
 private val AccentYellow = Color(0xFFF5C518)
@@ -67,6 +70,7 @@ fun HomeScreen(
     onOpenWallpaper: () -> Unit = {},
     viewModel: HomeViewModel = hiltViewModel(),
 ) {
+    val context = LocalContext.current
     Column(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background).statusBarsPadding().navigationBarsPadding()) {
         Row(
             Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 16.dp),
@@ -79,7 +83,10 @@ fun HomeScreen(
                 fontWeight = FontWeight.Bold,
             )
             Row(horizontalArrangement = Arrangement.spacedBy(16.dp), verticalAlignment = Alignment.CenterVertically) {
-                Icon(Icons.Default.WorkspacePremium, contentDescription = null, tint = AccentYellow)
+                Icon(
+                    Icons.Default.WorkspacePremium, contentDescription = null, tint = AccentYellow,
+                    modifier = Modifier.clickable { IapLauncher.open(context) },
+                )
                 Icon(
                     Icons.Default.Settings, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     modifier = Modifier.clickable(onClick = onOpenSettings),
@@ -159,6 +166,8 @@ fun HomeScreen(
                 })
             }
         }
+
+        NativeAdPlaceholder("native_home", Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
     }
 }
 

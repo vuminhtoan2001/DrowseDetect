@@ -4,60 +4,48 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import androidx.lifecycle.lifecycleScope
+import com.camera.studio.photoeditor.advertisement.NativeInterHost
+import com.camera.studio.photoeditor.firebase.Remote
 import com.camera.studio.photoeditor.ui.nav.AppNavHost
 import com.camera.studio.photoeditor.ui.nav.Screen
 import com.camera.studio.photoeditor.ui.theme.AppTheme
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 /**
- * Activity + launcher DUY NHẤT ở giai đoạn M0-M7 (chưa gắn base-application AAR — xem M8).
- * Ở M8: bỏ MAIN/LAUNCHER khỏi Manifest, lib mở Activity này qua `getHomeActivity()` sau luồng
- * Splash(lib)→check Intro→check Permission→Home; `resolveStartRoute()` bên dưới đã tách sẵn phần
- * app tự quyết định (Intro/Permission/Home) để ghép vào luồng đó mà không cần viết lại.
+ * Home Activity — lib base-application mở qua `getHomeActivity()` sau luồng Splash→Inter→
+ * Language→IAP. KHÔNG khai MAIN/LAUNCHER (xem AndroidManifest).
+ *
+ * Quyết định start destination (port logic gate Intro theo số lần mở + nguồn cài, giống
+ * vga31b/vga34b-kotlin):
+ *  - Gate Intro theo số lần mở (goToHomeNumber) + nguồn cài (isAdsCampaign):
+ *      • Ad campaign:  Intro khi goToHomeNumber < count_app_open.
+ *      • Organic:      Intro khi count_app_open ≤ goToHomeNumber < count_app_open + organic_number_not_guide.
+ *    (Language do lib quản; đây chỉ chi phối màn Intro của app.)
+ *  - Dù goToHomeStatus bỏ qua Intro (user cũ/organic), vẫn phải xin đủ quyền Camera/Micro trước khi
+ *    vào Home, nếu không Camera sẽ đứng hình (preview đen) không có lối yêu cầu lại.
  */
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-
-    @Inject lateinit var userSettingsStore: UserSettingsStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         AppStorage.language(this)?.let { LocaleHelper.updateLocale(this, it) }
 
-        // Edge-to-edge: status/nav bar hệ thống VẪN HIỆN (giờ/sóng/wifi, home/back) nhưng TRONG SUỐT
-        // — nền app/camera preview vẽ xuyên qua phía sau, icon hệ thống màu sáng cho hợp nền tối
-        // (đã thử ẩn hẳn ở bản trước nhưng không ổn định trên máy thật → quay lại transparent).
-        WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = android.graphics.Color.TRANSPARENT
-        window.navigationBarColor = android.graphics.Color.TRANSPARENT
-        WindowInsetsControllerCompat(window, window.decorView).apply {
-            isAppearanceLightStatusBars = false
-            isAppearanceLightNavigationBars = false
-        }
+        enableImmersiveFullScreen()
+
+        val startRoute = resolveStartRoute()
 
         setContent {
-            var startRoute by remember { mutableStateOf<String?>(null) }
-            LaunchedEffect(Unit) {
-                startRoute = resolveStartRoute()
-            }
-            startRoute?.let { route ->
-                AppTheme {
-                    androidx.compose.material3.Surface(color = androidx.compose.material3.MaterialTheme.colorScheme.background) {
-                        AppNavHost(startRoute = route)
-                    }
+            AppTheme {
+                androidx.compose.material3.Surface(color = androidx.compose.material3.MaterialTheme.colorScheme.background) {
+                    AppNavHost(startRoute = startRoute)
                 }
+                // Overlay hiển thị native-interstitial (fallback sau inter) khi AdManager yêu cầu.
+                NativeInterHost()
             }
         }
     }
@@ -67,24 +55,48 @@ class MainActivity : AppCompatActivity() {
         setIntent(intent)
     }
 
-    /**
-     * Quyết định start destination: chưa xem Intro → Intro; đã xem nhưng thiếu quyền cần thiết →
-     * Permission; ngược lại → Home thẳng. Đơn giản hoá so với logic đếm-lần-mở-theo-nguồn-cài của
-     * bản GPS gốc (ads-campaign/organic) — logic đó gắn liền Remote Config/InstallReferrer của
-     * base-application, sẽ khôi phục đúng playbook khi gắn AAR ở M8 nếu cần.
-     */
-    private suspend fun resolveStartRoute(): String {
-        val hasSeenIntro = userSettingsStore.settings.first().hasSeenIntro
-        if (!hasSeenIntro) {
-            lifecycleScope.launch { userSettingsStore.setHasSeenIntro(true) }
-            return Screen.Intro.route
+    private fun resolveStartRoute(): String {
+        val remote = Remote.instance
+        val n = AppStorage.goToHomeNumber(this)              // lần mở hiện tại (≥1)
+        AppStorage.setGoToHomeNumber(this, n + 1)            // +1 cho lần sau
+
+        val countAppOpen = remote.getInt("count_app_open").let { if (it <= 0) 3 else it }
+        val organic = remote.getInt("organic_number_not_guide").let { if (it < 0) 0 else it }
+        val isAdsCampaign = InstallReferrerHelper.isAdsCampaign(this)  // cache in-memory, không block
+
+        val goToHomeStatus = if (isAdsCampaign) {
+            n >= countAppOpen
+        } else {
+            n < organic || n >= countAppOpen + organic
         }
-        return if (hasAllRuntimePermissions()) Screen.Home.route else Screen.Permission.route
+
+        if (goToHomeStatus) {
+            return if (hasAllRuntimePermissions()) Screen.Home.route else Screen.Permission.route
+        }
+        return Screen.Intro.route
     }
 
     private fun hasAllRuntimePermissions(): Boolean {
         fun granted(p: String) = androidx.core.content.ContextCompat.checkSelfPermission(this, p) ==
             android.content.pm.PackageManager.PERMISSION_GRANTED
         return granted(android.Manifest.permission.CAMERA) && granted(android.Manifest.permission.RECORD_AUDIO)
+    }
+
+    /**
+     * Full-screen: ẩn status bar + navigation bar hệ thống (vuốt để hiện tạm), áp dụng cho MỌI
+     * route trong app (single-Activity — Camera/Take Photo/Gallery/Editor... đều dùng chung window
+     * này). Gọi lại ở [onWindowFocusChanged] vì hệ thống có thể tự hiện lại bar sau khi mất focus
+     * (mở dialog, bàn phím, chuyển app rồi quay lại...).
+     */
+    private fun enableImmersiveFullScreen() {
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        val controller = WindowInsetsControllerCompat(window, window.decorView)
+        controller.hide(WindowInsetsCompat.Type.systemBars())
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+    }
+
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) enableImmersiveFullScreen()
     }
 }

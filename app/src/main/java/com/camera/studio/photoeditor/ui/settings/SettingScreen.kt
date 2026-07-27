@@ -39,6 +39,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.camera.studio.photoeditor.R
+import com.camera.studio.photoeditor.platform.IapLauncher
 import com.camera.studio.photoeditor.ui.components.AppHeader
 import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 
@@ -46,8 +47,8 @@ private val SettingsAccent = Color(0xFFF5C518)
 
 /**
  * Settings — Language/Share/Rate/Premium. Ở M0-M7, Language mở màn hệ thống chọn ngôn ngữ Android
- * (`Settings.ACTION_APP_LOCALE_SETTINGS`) thay cho `LanguageActivity` của lib; Premium tạm no-op
- * (TODO) — nối `IapLauncher`/base-application thật ở M8.
+ * (`Settings.ACTION_APP_LOCALE_SETTINGS`) thay cho `LanguageActivity` của lib; Premium (M8) mở
+ * paywall thật của base-application qua [IapLauncher].
  */
 @Composable
 fun SettingScreen(
@@ -91,7 +92,7 @@ fun SettingScreen(
             }
             SettingRow(Icons.Default.Star, stringResource(R.string.rate_app)) { showRateDialog = true }
             SettingRow(Icons.Default.WorkspacePremium, stringResource(R.string.premium_package)) {
-                // TODO(M8): mở IAP/Premium thật qua base-application AAR.
+                IapLauncher.open(context)
             }
 
             NativeAdPlaceholder("native_settings")

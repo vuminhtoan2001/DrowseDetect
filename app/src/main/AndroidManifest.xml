@@ -2,11 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ===== Quyền lib base-application sẽ cần — TẠM CHƯA khai (chưa gắn AAR, xem M8) ===== -->
-    <!-- <uses-permission android:name="android.permission.POST_NOTIFICATIONS" /> -->
-    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> -->
-    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" /> -->
-    <!-- <uses-permission android:name="com.google.android.gms.permission.AD_ID" /> -->
+    <!-- ===== Quyền lib base-application yêu cầu (spec tích hợp §4.2) ===== -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -33,23 +33,26 @@
         tools:replace="android:allowBackup,android:dataExtractionRules,android:fullBackupContent"
         tools:targetApi="31">
 
-        <!-- Ads/Maps/Facebook meta-data: gắn lại ở M8 cùng lúc tích hợp base-application AAR. -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/admob_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
 
-        <!-- TẠM THỜI: MainActivity tự làm launcher (M0-M7, chưa gắn base-application Splash).
-             Ở M8 sẽ bỏ MAIN/LAUNCHER này, để lib mở qua getHomeActivity(). -->
+        <!-- Launcher do thư viện base-application cung cấp (SplashActivity). MainActivity KHÔNG còn
+             MAIN/LAUNCHER; lib mở nó qua getHomeActivity() sau luồng Splash→Inter→Language→IAP. -->
         <activity
             android:name=".core.MainActivity"
             android:configChanges="locale|layoutDirection"
-            android:exported="true"
+            android:exported="false"
             android:launchMode="singleTask"
             android:label="@string/app_name"
             android:theme="@style/Theme.App"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:windowSoftInputMode="adjustResize" />
 
         <!-- FileProvider (chia sẻ app / file) -->
         <provider

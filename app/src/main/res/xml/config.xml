@@ -14,6 +14,7 @@
     <entry><key>native_intro4_enable</key><value>true</value></entry>
     <entry><key>native_permission_enable</key><value>true</value></entry>
     <entry><key>native_home_enable</key><value>true</value></entry>
+    <entry><key>native_media_picker_enable</key><value>true</value></entry>
     <entry><key>native_template_enable</key><value>true</value></entry>
     <entry><key>native_gallery_enable</key><value>true</value></entry>
     <entry><key>native_settings_enable</key><value>true</value></entry>
