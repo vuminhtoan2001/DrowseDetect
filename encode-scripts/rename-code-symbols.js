@@ -188,11 +188,36 @@ function hashName(name, type) {
   return result;
 }
 
-// Regex khai báo class/object/fun. Dùng non-capturing group cho receiver-type có dấu chấm của
-// Kotlin extension function (vd `fun androidx.compose.ui.graphics.drawscope.DrawScope.drawX(...)`)
-// để CHỈ capture đoạn cuối (tên hàm thật) — KHÔNG bắt nhầm segment đầu ("androidx") làm tên symbol
-// (bug đã gặp: "androidx" bị đưa vào mapping rồi replace toàn văn bản → phá mọi import androidx.*).
-const DECL_PATTERN = "\\b(class|object|fun)\\s+(?:[A-Za-z_][A-Za-z0-9_]*\\.)*([A-Za-z_][A-Za-z0-9_]*)";
+// Tìm khai báo class/object/fun trong 1 đoạn text (dùng chung cho buildFileNameBlacklist/
+// processFile/updateReferences). class/object luôn đơn giản (Kotlin không có "extension class").
+// fun thì PHỨC TẠP hơn vì Kotlin extension function có receiver-type đứng trước tên hàm thật:
+//   - receiver dạng FQN có dấu chấm: `fun androidx.compose.ui.graphics.drawscope.DrawScope.drawX(`
+//   - receiver dạng generic:        `fun List<Offset>.containsPoint(`
+//   - function-level generic:       `fun <T> Foo.bar(`
+// → chỉ lấy đoạn text giữa "fun " và dấu "(" đầu tiên, rồi tách theo dấu "." cuối cùng để lấy ĐÚNG
+// tên hàm thật. Bug đã gặp (2 lần, xem git log): bắt nhầm "androidx"/"List" (segment ĐẦU của
+// receiver) làm tên hàm rồi replace toàn văn bản → phá import androidx.* / kiểu List<> cả project.
+function extractFunName(rawChunk) {
+  const lastDotIdx = rawChunk.lastIndexOf(".");
+  const tail = lastDotIdx >= 0 ? rawChunk.slice(lastDotIdx + 1) : rawChunk;
+  const m = tail.match(/([A-Za-z_][A-Za-z0-9_]*)\s*$/);
+  return m ? m[1] : null;
+}
+
+function findDeclarations(content) {
+  const results = [];
+  const regex = /\b(?:(class|object)\s+([A-Za-z_][A-Za-z0-9_]*)|(fun)\s+([^(\n]+?)\s*\()/g;
+  let match;
+  while ((match = regex.exec(content)) !== null) {
+    if (match[1]) {
+      results.push({ type: match[1], name: match[2], index: match.index });
+    } else {
+      const name = extractFunName(match[4]);
+      if (name) results.push({ type: "fun", name, index: match.index });
+    }
+  }
+  return results;
+}
 
 function getAllCodeFiles(dir) {
   const result = [];
@@ -229,16 +254,9 @@ function buildFileNameBlacklist() {
     const fileBase = path.basename(file, ext);
 
     // Tìm tất cả class/object/fun trong file
-    const regex = new RegExp(DECL_PATTERN, "g");
-    let match;
-
     console.log("fileBase", fileBase);
-    while ((match = regex.exec(content)) !== null) {
-      const type = match[1];
-      const name = match[2];
-
-      // ✅ Nếu
-      // tên trùng với tên file -> thêm vào blacklist
+    for (const { type, name } of findDeclarations(content)) {
+      // ✅ Nếu tên trùng với tên file -> thêm vào blacklist
       if (name === fileBase) {
         fileNameBlacklist.add(name);
         console.log(
@@ -257,18 +275,12 @@ function processFile(filePath) {
   const fileBase = path.basename(filePath, ext);
 
   // 🧩 Tìm các class|object|fun
-  const regex = new RegExp(DECL_PATTERN, "g");
-  let match;
-
-  while ((match = regex.exec(content)) !== null) {
-    const type = match[1];
-    const oldName = match[2];
-
+  for (const { type, name: oldName, index } of findDeclarations(content)) {
     // ✅ Bỏ qua override fun — method override từ AAR library (BaseApplication, NativeCallback,
     //    AdCallback...) KHÔNG được rename (sẽ "overrides nothing" vì hàm gốc trong lib giữ tên thật).
     if (type === "fun") {
-      const ls = content.lastIndexOf("\n", match.index) + 1;
-      const le = content.indexOf("\n", match.index);
+      const ls = content.lastIndexOf("\n", index) + 1;
+      const le = content.indexOf("\n", index);
       const line = content.substring(ls, le < 0 ? content.length : le);
       if (/\boverride\b/.test(line)) {
         continue;
@@ -314,8 +326,8 @@ function updateReferences() {
         // Chỉ replace nơi không phải declaration của type khác
         const lines = content.split("\n");
         const newLines = lines.map((line) => {
-          const declMatch = line.match(new RegExp(DECL_PATTERN));
-          if (declMatch && declMatch[2] === oldName && declMatch[1] !== type) {
+          const declOnLine = findDeclarations(line).find((d) => d.name === oldName);
+          if (declOnLine && declOnLine.type !== type) {
             return line; // Giữ nguyên declaration của type khác
           }
 
