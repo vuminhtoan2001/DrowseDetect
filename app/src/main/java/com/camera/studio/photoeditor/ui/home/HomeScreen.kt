@@ -167,7 +167,7 @@ fun HomeScreen(
             }
         }
 
-        NativeAdPlaceholder("native_home", Modifier.padding(horizontal = 16.dp, vertical = 8.dp))
+        NativeAdPlaceholder("native_home", Modifier.padding(horizontal = 16.dp, vertical = 8.dp), isSmall = true)
     }
 }
 

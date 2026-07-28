@@ -105,15 +105,21 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Full-screen: ẩn status bar + navigation bar hệ thống (vuốt để hiện tạm), áp dụng cho MỌI
-     * route trong app (single-Activity — Camera/Take Photo/Gallery/Editor... đều dùng chung window
-     * này). Gọi lại ở [onWindowFocusChanged] vì hệ thống có thể tự hiện lại bar sau khi mất focus
-     * (mở dialog, bàn phím, chuyển app rồi quay lại...).
+     * Edge-to-edge: status bar + navigation bar hệ thống LUÔN hiển thị nhưng trong suốt, để nội
+     * dung app (Column `.statusBarsPadding()`/`.navigationBarsPadding()` ở từng Screen, xem
+     * HomeScreen/CameraScreen/Common.kt) tự chừa khoảng rồi vẽ nền xuyên lên vùng đó — áp dụng cho
+     * MỌI route (single-Activity). Gọi lại ở [onWindowFocusChanged] vì 1 số OEM/dialog tự reset màu
+     * bar khi mất-rồi-lấy-lại focus.
      *
-     * `isStatusBarContrastEnforced`/`isNavigationBarContrastEnforced` (API 29+): mặc định Android vẽ
-     * 1 lớp scrim đen mờ phía sau status/navigation bar để icon hệ thống luôn tương phản — đây là lý
-     * do phần header nhìn như 1 khối đen tách biệt dù đã set màu trong suốt. Tắt hẳn để app thực sự
-     * vẽ xuyên/đè lên vùng đó.
+     * KHÔNG dùng `controller.hide(systemBars())`: trước đây app ẩn hẳn bar rồi cho vuốt hiện tạm
+     * (transient), nhưng Android LUÔN vẽ 1 lớp scrim đen mờ CƯỠNG BỨC phía sau bar khi nó đang ở
+     * trạng thái "transient reveal" — cờ `isStatusBarContrastEnforced=false`/màu TRANSPARENT hoàn
+     * toàn KHÔNG có tác dụng trong trường hợp này (chỉ có tác dụng khi bar hiển thị THƯỜNG TRỰC,
+     * không phải bị ẩn rồi hiện tạm). Camera privacy-indicator (chấm xanh khi dùng Camera, Android
+     * 12+) và các dialog hệ thống (vd AdMob native-ad validator) đều tự ép bar hiện tạm — nên trước
+     * đây phần header ở màn Take Photo hay bị 1 khối đen tách biệt dù đã set trong suốt. Để bar hiển
+     * thị thường trực (không hide) thì cờ trong suốt mới thực sự ăn, nền app mới lộ ra đúng như mong
+     * muốn.
      */
     private fun enableImmersiveFullScreen() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -124,8 +130,9 @@ class MainActivity : AppCompatActivity() {
             window.isNavigationBarContrastEnforced = false
         }
         val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.hide(WindowInsetsCompat.Type.systemBars())
-        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        controller.show(WindowInsetsCompat.Type.systemBars())
+        controller.isAppearanceLightStatusBars = false
+        controller.isAppearanceLightNavigationBars = false
     }
 
     override fun onWindowFocusChanged(hasFocus: Boolean) {

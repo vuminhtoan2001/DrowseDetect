@@ -35,6 +35,9 @@ android {
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "false"
         }
         release {
+            // TẠM dùng debug keystore để cài máy test bản R8 (chưa có keystore VGA52A thật) — XOÁ
+            // dòng này và gắn signingConfig thật (keystore/VGA52A/keystore.jks) trước khi phát hành.
+            signingConfig = signingConfigs.getByName("debug")
             manifestPlaceholders["crashlyticsCollectionEnabled"] = "true"
             isMinifyEnabled = true          // BẮT BUỘC theo guide tích hợp
             isShrinkResources = true        // BẮT BUỘC (đi cặp với minifyEnabled)
