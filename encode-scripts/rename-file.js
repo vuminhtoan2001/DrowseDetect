@@ -391,6 +391,8 @@ function updatePackageDeclarations(dir) {
 }
 
 // ✅ BƯỚC 7: Update imports và usage (simplified aggressive approach)
+// (Trước đây file này có 2 định nghĩa `updateImports` trùng tên — bản đầu bị bản thứ 2 "đè" theo
+// hoisting của JS nên KHÔNG BAO GIỜ chạy, dọn bỏ bản chết đó, chỉ giữ bản dưới đây.)
 function updateImports(dir) {
   if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
     return;
@@ -445,100 +447,27 @@ function updateImports(dir) {
         );
       }
 
-      // PASS 2: Update class names trong imports
-      for (const [oldFileName, newFileName] of fileMappings) {
-        const classImportRegex = new RegExp(
-          `^(import\\s+[\\w.]+\\.)${oldFileName}$`,
-          "gm"
-        );
-
-        if (classImportRegex.test(content)) {
-          content = content.replace(classImportRegex, `$1${newFileName}`);
-          modified = true;
-        }
-      }
-
-      // PASS 3: Replace TẤT CẢ class names trong code
-      // (bao gồm cả những class trong cùng package không cần import)
-      for (const [oldFileName, newFileName] of fileMappings) {
-        // Chỉ replace nếu class này thực sự được dùng trong file
-        const usageRegex = new RegExp(`\\b${oldFileName}\\b`, "g");
-
-        if (usageRegex.test(content)) {
-          const beforeReplace = content;
-          content = content.replace(usageRegex, (newName) => {
-            // Không replace nếu nằm trong string literal
-            // (kiểm tra đơn giản)
-            return newFileName;
-          });
-
-          if (beforeReplace !== content) {
-            modified = true;
-            console.log(`    ↳ ${oldFileName} -> ${newFileName}`);
-          }
-        }
-      }
-
-      if (modified) {
-        fs.writeFileSync(fullPath, content, "utf8");
-        console.log(`  📥 ${item}: updated`);
-      }
-    }
-  }
-}
-
-function updateImports(dir) {
-  if (!fs.existsSync(dir) || !fs.statSync(dir).isDirectory()) {
-    return;
-  }
-
-  const items = fs.readdirSync(dir);
-
-  for (const item of items) {
-    const fullPath = path.join(dir, item);
-    const stat = fs.statSync(fullPath);
-
-    if (stat.isDirectory()) {
-      updateImports(fullPath);
-    } else if (/\.(kt|java)$/i.test(item)) {
-      let content = fs.readFileSync(fullPath, "utf8");
-      let modified = false;
-
-      // ✅ Bảo vệ `import <BASE_NAMESPACE>.R` — R là class tài nguyên do AGP sinh ra dưới
-      // `namespace` khai báo trong build.gradle.kts (KHÔNG đổi khi rename source), nếu PASS 1 dưới
-      // đây blanket-replace theo package source đã đổi thì import sẽ trỏ tới package không tồn
-      // tại → "Unresolved reference 'R'" toàn bộ file dùng R.string/R.drawable.
-      const rImportRegex = new RegExp(
-        `^import\\s+${PROTECTED_PACKAGE_ROOT.replace(/\./g, "\\.")}\\.R\\s*$`,
-        "gm"
+      // PASS 1b: Update tham chiếu full-path GIỮA DÒNG CODE (không phải "import ..." ở đầu dòng).
+      // Bug đã gặp: code gọi thẳng bằng đường dẫn đủ thay vì import, vd
+      // `com.camera.studio.photoeditor.ui.shared.editor.someFunction(...)` — PASS 1 ở trên CHỈ khớp
+      // dòng bắt đầu bằng "import", nên các package con (shared/editor) đã bị đổi tên folder trên đĩa
+      // nhưng đoạn full-path literal này không được cập nhật theo → "Unresolved reference". Sắp xếp
+      // packageMappings theo độ dài GIẢM DẦN trước khi thay để tránh 1 package cha ngắn hơn thay
+      // nhầm/thay thiếu vào giữa 1 package con dài hơn còn chưa được xử lý.
+      const sortedPackageMappings = [...packageMappings].sort(
+        (a, b) => b[0].length - a[0].length
       );
-      const rImportMatches = content.match(rImportRegex) || [];
-      const R_IMPORT_PLACEHOLDER = "//__PROTECTED_R_IMPORT_PLACEHOLDER__//";
-      if (rImportMatches.length) {
-        content = content.replace(rImportRegex, R_IMPORT_PLACEHOLDER);
-      }
-
-      // PASS 1: Update package paths trong imports
-      for (const [oldPkg, newPkg] of packageMappings) {
-        const importRegex = new RegExp(
-          `^(import\\s+)${oldPkg.replace(/\./g, "\\.")}(\\.|$)`,
-          "gm"
+      for (const [oldPkg, newPkg] of sortedPackageMappings) {
+        // Lookahead "(?=\\.[A-Za-z_])" đảm bảo chỉ khớp khi oldPkg là TIỀN TỐ của 1 tham chiếu dài hơn
+        // (vd "oldPkg.SomeClass"), không khớp nhầm khi oldPkg đứng 1 mình hoặc là hậu tố của từ khác.
+        const inlineRegex = new RegExp(
+          `\\b${oldPkg.replace(/\./g, "\\.")}(?=\\.[A-Za-z_])`,
+          "g"
         );
-
-        if (importRegex.test(content)) {
-          content = content.replace(
-            new RegExp(`^(import\\s+)${oldPkg.replace(/\./g, "\\.")}`, "gm"),
-            `$1${newPkg}`
-          );
+        if (inlineRegex.test(content)) {
+          content = content.replace(inlineRegex, newPkg);
           modified = true;
         }
-      }
-
-      if (rImportMatches.length) {
-        content = content.replace(
-          new RegExp(R_IMPORT_PLACEHOLDER, "g"),
-          rImportMatches[0]
-        );
       }
 
       // PASS 2: Update class names trong imports
