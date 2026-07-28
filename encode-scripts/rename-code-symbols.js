@@ -143,7 +143,16 @@ const SAFE_SKIP_NAMES = new Set([
   "unregister",
   "logAdRevenue",
   "MainActivity",
-  "AdActivity"
+  "AdActivity",
+  // Trùng tên thật với hàm/class của thư viện ngoài — rename bừa bãi sẽ phá luôn chỗ gọi thư viện
+  // (phát hiện qua test build R8 thật, không đoán trước được hết bằng regex/blacklist tĩnh):
+  "insert",       // app tự khai fun insert() trong DAO — TRÙNG android.content.ContentResolver.insert()/
+                  // SQLite insert() dùng ở nơi khác trong app (MediaStore lưu ảnh vào gallery)
+  "save",         // app tự khai fun save() trong 3 ViewModel — TRÙNG các API "save" khác trong code
+  "decode",       // app tự khai fun decode() trong CollageViewModel — TRÙNG java.net.URLDecoder
+                  // .decode()/android.net.Uri.decode() dùng ở InstallReferrerHelper/AppNavHost
+  "SolidColor",   // data class SolidColor(...) của app TRÙNG tên androidx.compose.ui.graphics.SolidColor
+                  // (Brush constructor) — rename phá luôn moi noi dung Compose SolidColor(...) that
 ]);
 
 function shouldSkipRename(name) {
