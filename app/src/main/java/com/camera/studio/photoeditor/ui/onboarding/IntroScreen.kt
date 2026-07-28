@@ -106,7 +106,7 @@ fun IntroScreen(onFinish: () -> Unit) {
                     Text(slide.subtitle, fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.padding(top = 6.dp))
                 }
                 if (p == page && hasInline) {
-                    NativeAdSlot(slide.adPlacement, isSmall = true, onResolved = { ready[page] = true })
+                    NativeAdSlot(slide.adPlacement, Modifier.padding(top = 8.dp), onResolved = { ready[page] = true })
                 }
             }
         }
