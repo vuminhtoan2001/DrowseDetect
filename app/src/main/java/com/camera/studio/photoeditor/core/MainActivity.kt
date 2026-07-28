@@ -1,6 +1,7 @@
 package com.camera.studio.photoeditor.core
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
@@ -87,9 +88,20 @@ class MainActivity : AppCompatActivity() {
      * route trong app (single-Activity — Camera/Take Photo/Gallery/Editor... đều dùng chung window
      * này). Gọi lại ở [onWindowFocusChanged] vì hệ thống có thể tự hiện lại bar sau khi mất focus
      * (mở dialog, bàn phím, chuyển app rồi quay lại...).
+     *
+     * `isStatusBarContrastEnforced`/`isNavigationBarContrastEnforced` (API 29+): mặc định Android vẽ
+     * 1 lớp scrim đen mờ phía sau status/navigation bar để icon hệ thống luôn tương phản — đây là lý
+     * do phần header nhìn như 1 khối đen tách biệt dù đã set màu trong suốt. Tắt hẳn để app thực sự
+     * vẽ xuyên/đè lên vùng đó.
      */
     private fun enableImmersiveFullScreen() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = android.graphics.Color.TRANSPARENT
+        window.navigationBarColor = android.graphics.Color.TRANSPARENT
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            window.isStatusBarContrastEnforced = false
+            window.isNavigationBarContrastEnforced = false
+        }
         val controller = WindowInsetsControllerCompat(window, window.decorView)
         controller.hide(WindowInsetsCompat.Type.systemBars())
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE

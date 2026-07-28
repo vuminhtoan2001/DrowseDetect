@@ -38,7 +38,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.fragment.app.FragmentActivity
+import com.brian.base_application.language.LanguageActivity
 import com.camera.studio.photoeditor.R
+import com.camera.studio.photoeditor.core.MainActivity
 import com.camera.studio.photoeditor.platform.IapLauncher
 import com.camera.studio.photoeditor.ui.components.AppHeader
 import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
@@ -46,9 +49,10 @@ import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 private val SettingsAccent = Color(0xFFF5C518)
 
 /**
- * Settings — Language/Share/Rate/Premium. Ở M0-M7, Language mở màn hệ thống chọn ngôn ngữ Android
- * (`Settings.ACTION_APP_LOCALE_SETTINGS`) thay cho `LanguageActivity` của lib; Premium (M8) mở
- * paywall thật của base-application qua [IapLauncher].
+ * Settings — Language/Share/Rate/Premium. Language (M8) mở đúng màn `LanguageActivity` của
+ * base-application (KHÔNG dùng màn Settings hệ thống Android nữa) — cùng 1 màn với lúc chọn ngôn
+ * ngữ lần đầu (Splash→Language), đổi xong tự áp cho MainActivity qua `notifyLanguageSaved`. Premium
+ * mở paywall thật qua [IapLauncher].
  */
 @Composable
 fun SettingScreen(
@@ -76,13 +80,7 @@ fun SettingScreen(
             verticalArrangement = Arrangement.spacedBy(12.dp),
         ) {
             SettingRow(Icons.Default.Language, stringResource(R.string.language)) {
-                runCatching {
-                    context.startActivity(
-                        Intent(android.provider.Settings.ACTION_APP_LOCALE_SETTINGS).apply {
-                            data = android.net.Uri.fromParts("package", context.packageName, null)
-                        },
-                    )
-                }
+                (context as? FragmentActivity)?.let { LanguageActivity.start(it, MainActivity::class.java) }
             }
             SettingRow(Icons.Default.Share, stringResource(R.string.share_app)) {
                 val text = "$appName\nhttps://play.google.com/store/apps/details?id=${context.packageName}"

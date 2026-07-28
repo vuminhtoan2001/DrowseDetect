@@ -32,10 +32,11 @@
     <entry><key>native_inter_home_ratio</key><value>2</value></entry>
     <entry><key>native_inter_home_max</key><value>20</value></entry>
 
-    <!-- Vị trí native trên 4 slide Intro — RN vga34b default rỗng (`positionIntrol = []`, khác
-         vga34d có sẵn A/B) → không hiện native ad nào trên Intro trừ khi Remote Config đặt giá trị
-         thật lúc phát hành. -->
-    <entry><key>positionIntrol</key><value>[]</value></entry>
+    <!-- Vị trí native trên 4 slide Intro: mảng các biến thể, mỗi phiên chọn ngẫu nhiên 1 biến thể
+         (N=native inline dưới slide N). IntroScreen.kt của app này CHỈ hỗ trợ inline (không có modal
+         toàn màn như vga31b) nên KHÔNG dùng số NN (11/22/33/44) — dùng modal thì phải sửa
+         IntroScreen.kt trước. Đổi lại "[]" nếu muốn tắt hẳn ads Intro (xem AdPositions.kt). -->
+    <entry><key>positionIntrol</key><value>[[1],[2],[3],[4]]</value></entry>
 
     <!-- Điều hướng onboarding (port navigationConfig RN): gate Intro theo count_app_open +
          organic_number_not_guide + isAdsCampaign (thực tế lấy từ InstallReferrerHelper). -->
