@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">आपकी नई फ़ोटो तैयार है</string>
+    <string name="baseapp_screenshot_title">स्क्रीनशॉट लिया गया — Camera Studio खोलें</string>
+    <string name="baseapp_recent_title">हाल ही में बनाई गई फ़ोटो</string>
+    <string name="baseapp_open">खोलें</string>
+    <string name="baseapp_scan">कैप्चर करें</string>
+    <string name="baseapp_daily_open_content">आज Camera Studio के साथ कुछ नया बनाएं</string>
+    <string name="baseapp_check_now">कैमरा खोलें</string>
+    <string name="baseapp_fullscreen_1">अपना पल कैद करें</string>
+    <string name="baseapp_fullscreen_2">अभी Camera Studio खोलने के लिए टैप करें</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">आज अपनी फ़ोटो एडिट करना न भूलें — खोलने के लिए टैप करें</string>
+
+    <string name="baseapp_noti_title">सूचनाएं चालू करें</string>
+    <string name="baseapp_noti_content">फ़ोटो एडिट करने के लिए रिमाइंडर और टिप्स पाएं</string>
+
+    <string-array name="notification_title2">
+        <item>अपना पल कैद करें</item>
+        <item>नया फ़िल्टर आज़माने के लिए तैयार</item>
+        <item>आपकी गैलरी आपको याद करती है</item>
+        <item>आज एक कोलाज बनाएं</item>
+        <item>नए वॉलपेपर टेम्पलेट</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>अभी एक फ़ोटो लें</item>
+        <item>नया फ़िल्टर या फ़्रेम आज़माएं</item>
+        <item>अपनी सेव की गई फ़ोटो देखें</item>
+        <item>अपनी सबसे अच्छी फ़ोटो को कोलाज में मिलाएं</item>
+        <item>अपनी फ़ोटो को वॉलपेपर में बदलें</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>कैप्चर करें</item>
+        <item>देखें</item>
+        <item>खोलें</item>
+        <item>बनाएं</item>
+        <item>एक्सप्लोर करें</item>
+    </string-array>
+
+    <string name="premium_feature1">बिना विज्ञापन अनुभव</string>
+    <string name="premium_feature2">सभी फ़िल्टर और इफ़ेक्ट अनलॉक करें</string>
+    <string name="premium_feature3">सभी फ़्रेम और स्टिकर अनलॉक करें</string>
+    <string name="premium_feature4">बिना वॉटरमार्क के HD एक्सपोर्ट</string>
+    <string name="premium_feature5">प्राथमिकता सहायता</string>
+</resources>

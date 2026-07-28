@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">រូបភាពថ្មីរបស់អ្នករួចរាល់ហើយ</string>
+    <string name="baseapp_screenshot_title">បានថតអេក្រង់ — បើក Camera Studio</string>
+    <string name="baseapp_recent_title">រូបភាពដែលបានបង្កើតថ្មីៗ</string>
+    <string name="baseapp_open">បើក</string>
+    <string name="baseapp_scan">ថត</string>
+    <string name="baseapp_daily_open_content">បង្កើតអ្វីថ្មីជាមួយ Camera Studio ថ្ងៃនេះ</string>
+    <string name="baseapp_check_now">បើកកាមេរ៉ា</string>
+    <string name="baseapp_fullscreen_1">ថតកត់ត្រាពេលវេលារបស់អ្នក</string>
+    <string name="baseapp_fullscreen_2">ចុចដើម្បីបើក Camera Studio ឥឡូវនេះ</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">កុំភ្លេចកែសម្រួលរូបភាពរបស់អ្នកថ្ងៃនេះ — ចុចដើម្បីបើក</string>
+
+    <string name="baseapp_noti_title">បើកការជូនដំណឹង</string>
+    <string name="baseapp_noti_content">ទទួលបានការរំលឹក និងគន្លឹះសម្រាប់ការកែសម្រួលរូបភាព</string>
+
+    <string-array name="notification_title2">
+        <item>ថតកត់ត្រាពេលវេលារបស់អ្នក</item>
+        <item>ហ្វីលទ័រថ្មីត្រៀមសាកល្បង</item>
+        <item>វិចិត្រសាលរបស់អ្នកនឹកអ្នក</item>
+        <item>បង្កើតកូឡាសថ្ងៃនេះ</item>
+        <item>គំរូផ្ទាំងខាងក្រោយថ្មី</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>ថតរូបភាពឥឡូវនេះ</item>
+        <item>សាកល្បងហ្វីលទ័រ ឬស៊ុមថ្មី</item>
+        <item>ពិនិត្យរូបភាពដែលបានរក្សាទុក</item>
+        <item>បញ្ចូលរូបភាពល្អបំផុតរបស់អ្នកទៅជាកូឡាស</item>
+        <item>ប្រែក្លាយរូបភាពរបស់អ្នកទៅជាផ្ទាំងខាងក្រោយ</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>ថត</item>
+        <item>មើល</item>
+        <item>បើក</item>
+        <item>បង្កើត</item>
+        <item>រុករក</item>
+    </string-array>
+
+    <string name="premium_feature1">បទពិសោធន៍ដោយគ្មានការផ្សាយពាណិជ្ជកម្ម</string>
+    <string name="premium_feature2">ដោះសោហ្វីលទ័រ និងបែបផែនទាំងអស់</string>
+    <string name="premium_feature3">ដោះសោស៊ុម និងស្ទីកគ័រទាំងអស់</string>
+    <string name="premium_feature4">នាំចេញ HD គ្មានស្លាកសញ្ញាទឹក</string>
+    <string name="premium_feature5">ការគាំទ្រអាទិភាព</string>
+</resources>

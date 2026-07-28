@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Ваше новое фото готово</string>
+    <string name="baseapp_screenshot_title">Скриншот сделан — открыть Camera Studio</string>
+    <string name="baseapp_recent_title">Недавно созданные фото</string>
+    <string name="baseapp_open">Открыть</string>
+    <string name="baseapp_scan">Снять</string>
+    <string name="baseapp_daily_open_content">Создайте что-то новое сегодня с Camera Studio</string>
+    <string name="baseapp_check_now">Открыть камеру</string>
+    <string name="baseapp_fullscreen_1">Запечатлейте свой момент</string>
+    <string name="baseapp_fullscreen_2">Нажмите, чтобы открыть Camera Studio сейчас</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Не забудьте отредактировать фото сегодня — нажмите, чтобы открыть</string>
+
+    <string name="baseapp_noti_title">Включить уведомления</string>
+    <string name="baseapp_noti_content">Получайте напоминания и советы по редактированию фото</string>
+
+    <string-array name="notification_title2">
+        <item>Запечатлейте свой момент</item>
+        <item>Новый фильтр — попробуйте</item>
+        <item>Ваша галерея скучает по вам</item>
+        <item>Создайте коллаж сегодня</item>
+        <item>Новые шаблоны обоев</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Сделайте фото прямо сейчас</item>
+        <item>Попробуйте новый фильтр или рамку</item>
+        <item>Просмотрите сохранённые фото</item>
+        <item>Соберите лучшие снимки в коллаж</item>
+        <item>Превратите фото в обои</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Снять</item>
+        <item>Просмотр</item>
+        <item>Открыть</item>
+        <item>Создать</item>
+        <item>Обзор</item>
+    </string-array>
+
+    <string name="premium_feature1">Без рекламы</string>
+    <string name="premium_feature2">Открыть все фильтры и эффекты</string>
+    <string name="premium_feature3">Открыть все рамки и стикеры</string>
+    <string name="premium_feature4">Экспорт в HD без водяного знака</string>
+    <string name="premium_feature5">Приоритетная поддержка</string>
+</resources>

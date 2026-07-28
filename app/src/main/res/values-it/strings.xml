@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">La tua nuova foto è pronta</string>
+    <string name="baseapp_screenshot_title">Screenshot catturato — apri Camera Studio</string>
+    <string name="baseapp_recent_title">Foto create di recente</string>
+    <string name="baseapp_open">Apri</string>
+    <string name="baseapp_scan">Scatta</string>
+    <string name="baseapp_daily_open_content">Crea qualcosa di nuovo oggi con Camera Studio</string>
+    <string name="baseapp_check_now">Apri fotocamera</string>
+    <string name="baseapp_fullscreen_1">Cattura il tuo momento</string>
+    <string name="baseapp_fullscreen_2">Tocca per aprire Camera Studio ora</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Non dimenticare di modificare le tue foto oggi — tocca per aprire</string>
+
+    <string name="baseapp_noti_title">Attiva le notifiche</string>
+    <string name="baseapp_noti_content">Ricevi promemoria e consigli per modificare le tue foto</string>
+
+    <string-array name="notification_title2">
+        <item>Cattura il tuo momento</item>
+        <item>Nuovo filtro da provare</item>
+        <item>La tua galleria sente la tua mancanza</item>
+        <item>Crea un collage oggi</item>
+        <item>Nuovi modelli di sfondo</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Scatta una foto ora</item>
+        <item>Prova un nuovo filtro o cornice</item>
+        <item>Controlla le tue foto salvate</item>
+        <item>Unisci i tuoi scatti migliori in un collage</item>
+        <item>Trasforma le tue foto in sfondi</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Scatta</item>
+        <item>Visualizza</item>
+        <item>Apri</item>
+        <item>Crea</item>
+        <item>Esplora</item>
+    </string-array>
+
+    <string name="premium_feature1">Esperienza senza pubblicità</string>
+    <string name="premium_feature2">Sblocca tutti i filtri ed effetti</string>
+    <string name="premium_feature3">Sblocca tutte le cornici e adesivi</string>
+    <string name="premium_feature4">Esportazione HD senza watermark</string>
+    <string name="premium_feature5">Supporto prioritario</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">صورتك الجديدة جاهزة</string>
+    <string name="baseapp_screenshot_title">تم التقاط لقطة شاشة — افتح Camera Studio</string>
+    <string name="baseapp_recent_title">الصور التي تم إنشاؤها مؤخرًا</string>
+    <string name="baseapp_open">فتح</string>
+    <string name="baseapp_scan">التقاط</string>
+    <string name="baseapp_daily_open_content">أنشئ شيئًا جديدًا مع Camera Studio اليوم</string>
+    <string name="baseapp_check_now">فتح الكاميرا</string>
+    <string name="baseapp_fullscreen_1">التقط لحظتك</string>
+    <string name="baseapp_fullscreen_2">اضغط لفتح Camera Studio الآن</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">لا تنس تعديل صورك اليوم — اضغط للفتح</string>
+
+    <string name="baseapp_noti_title">تفعيل الإشعارات</string>
+    <string name="baseapp_noti_content">احصل على تذكيرات ونصائح لتعديل صورك</string>
+
+    <string-array name="notification_title2">
+        <item>التقط لحظتك</item>
+        <item>فلتر جديد جاهز للتجربة</item>
+        <item>معرض صورك يفتقدك</item>
+        <item>أنشئ صورة مجمعة اليوم</item>
+        <item>قوالب خلفيات جديدة</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>التقط صورة الآن</item>
+        <item>جرّب فلترًا أو إطارًا جديدًا</item>
+        <item>تحقق من صورك المحفوظة</item>
+        <item>ادمج أفضل لقطاتك في صورة مجمعة</item>
+        <item>حوّل صورك إلى خلفيات</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>التقاط</item>
+        <item>عرض</item>
+        <item>فتح</item>
+        <item>إنشاء</item>
+        <item>استكشاف</item>
+    </string-array>
+
+    <string name="premium_feature1">تجربة بدون إعلانات</string>
+    <string name="premium_feature2">فتح جميع الفلاتر والتأثيرات</string>
+    <string name="premium_feature3">فتح جميع الإطارات والملصقات</string>
+    <string name="premium_feature4">تصدير بجودة HD بدون علامة مائية</string>
+    <string name="premium_feature5">دعم ذو أولوية</string>
+</resources>

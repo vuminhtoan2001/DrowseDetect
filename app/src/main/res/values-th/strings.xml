@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">รูปภาพใหม่ของคุณพร้อมแล้ว</string>
+    <string name="baseapp_screenshot_title">จับภาพหน้าจอแล้ว — เปิด Camera Studio</string>
+    <string name="baseapp_recent_title">รูปภาพที่สร้างล่าสุด</string>
+    <string name="baseapp_open">เปิด</string>
+    <string name="baseapp_scan">ถ่ายภาพ</string>
+    <string name="baseapp_daily_open_content">สร้างสิ่งใหม่ ๆ กับ Camera Studio วันนี้</string>
+    <string name="baseapp_check_now">เปิดกล้อง</string>
+    <string name="baseapp_fullscreen_1">บันทึกช่วงเวลาของคุณ</string>
+    <string name="baseapp_fullscreen_2">แตะเพื่อเปิด Camera Studio ตอนนี้</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">อย่าลืมแก้ไขรูปภาพของคุณวันนี้ — แตะเพื่อเปิด</string>
+
+    <string name="baseapp_noti_title">เปิดการแจ้งเตือน</string>
+    <string name="baseapp_noti_content">รับการแจ้งเตือนและเคล็ดลับสำหรับการแก้ไขรูปภาพ</string>
+
+    <string-array name="notification_title2">
+        <item>บันทึกช่วงเวลาของคุณ</item>
+        <item>ฟิลเตอร์ใหม่พร้อมให้ลอง</item>
+        <item>แกลเลอรีของคุณคิดถึงคุณ</item>
+        <item>สร้างคอลลาจวันนี้</item>
+        <item>เทมเพลตวอลเปเปอร์ใหม่</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>ถ่ายภาพตอนนี้</item>
+        <item>ลองฟิลเตอร์หรือเฟรมใหม่</item>
+        <item>ดูรูปภาพที่บันทึกไว้ของคุณ</item>
+        <item>ผสมภาพที่ดีที่สุดของคุณเป็นคอลลาจ</item>
+        <item>เปลี่ยนรูปภาพของคุณเป็นวอลเปเปอร์</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>ถ่ายภาพ</item>
+        <item>ดู</item>
+        <item>เปิด</item>
+        <item>สร้าง</item>
+        <item>สำรวจ</item>
+    </string-array>
+
+    <string name="premium_feature1">ประสบการณ์ไร้โฆษณา</string>
+    <string name="premium_feature2">ปลดล็อกฟิลเตอร์และเอฟเฟกต์ทั้งหมด</string>
+    <string name="premium_feature3">ปลดล็อกเฟรมและสติกเกอร์ทั้งหมด</string>
+    <string name="premium_feature4">ส่งออก HD ไม่มีลายน้ำ</string>
+    <string name="premium_feature5">การสนับสนุนแบบพิเศษ</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Dein neues Foto ist bereit</string>
+    <string name="baseapp_screenshot_title">Screenshot aufgenommen — Camera Studio öffnen</string>
+    <string name="baseapp_recent_title">Zuletzt erstellte Fotos</string>
+    <string name="baseapp_open">Öffnen</string>
+    <string name="baseapp_scan">Aufnehmen</string>
+    <string name="baseapp_daily_open_content">Erstelle heute etwas Neues mit Camera Studio</string>
+    <string name="baseapp_check_now">Kamera öffnen</string>
+    <string name="baseapp_fullscreen_1">Halte deinen Moment fest</string>
+    <string name="baseapp_fullscreen_2">Tippen, um Camera Studio jetzt zu öffnen</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Vergiss nicht, heute deine Fotos zu bearbeiten — zum Öffnen tippen</string>
+
+    <string name="baseapp_noti_title">Benachrichtigungen aktivieren</string>
+    <string name="baseapp_noti_content">Erhalte Erinnerungen und Tipps zur Fotobearbeitung</string>
+
+    <string-array name="notification_title2">
+        <item>Halte deinen Moment fest</item>
+        <item>Neuer Filter zum Ausprobieren</item>
+        <item>Deine Galerie vermisst dich</item>
+        <item>Erstelle heute eine Collage</item>
+        <item>Neue Hintergrundbild-Vorlagen</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Jetzt ein Foto aufnehmen</item>
+        <item>Neuen Filter oder Rahmen ausprobieren</item>
+        <item>Sieh dir deine gespeicherten Fotos an</item>
+        <item>Kombiniere deine besten Aufnahmen zu einer Collage</item>
+        <item>Verwandle deine Fotos in Hintergrundbilder</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Aufnehmen</item>
+        <item>Ansehen</item>
+        <item>Öffnen</item>
+        <item>Erstellen</item>
+        <item>Entdecken</item>
+    </string-array>
+
+    <string name="premium_feature1">Werbefreies Erlebnis</string>
+    <string name="premium_feature2">Alle Filter &amp; Effekte freischalten</string>
+    <string name="premium_feature3">Alle Rahmen &amp; Sticker freischalten</string>
+    <string name="premium_feature4">HD-Export ohne Wasserzeichen</string>
+    <string name="premium_feature5">Bevorzugter Support</string>
+</resources>

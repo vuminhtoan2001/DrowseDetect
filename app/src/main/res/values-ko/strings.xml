@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">새 사진이 준비되었습니다</string>
+    <string name="baseapp_screenshot_title">스크린샷 촬영됨 — Camera Studio 열기</string>
+    <string name="baseapp_recent_title">최근 만든 사진</string>
+    <string name="baseapp_open">열기</string>
+    <string name="baseapp_scan">촬영</string>
+    <string name="baseapp_daily_open_content">오늘도 Camera Studio로 새로운 것을 만들어보세요</string>
+    <string name="baseapp_check_now">카메라 열기</string>
+    <string name="baseapp_fullscreen_1">당신의 순간을 담아보세요</string>
+    <string name="baseapp_fullscreen_2">지금 바로 Camera Studio를 열려면 탭하세요</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">오늘도 사진 편집을 잊지 마세요 — 탭하여 열기</string>
+
+    <string name="baseapp_noti_title">알림 사용</string>
+    <string name="baseapp_noti_content">사진 편집을 위한 알림과 팁을 받아보세요</string>
+
+    <string-array name="notification_title2">
+        <item>당신의 순간을 담아보세요</item>
+        <item>새로운 필터를 사용해보세요</item>
+        <item>갤러리가 당신을 기다려요</item>
+        <item>오늘 콜라주를 만들어보세요</item>
+        <item>새로운 배경화면 템플릿</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>지금 사진을 찍어보세요</item>
+        <item>새로운 필터나 프레임을 사용해보세요</item>
+        <item>저장된 사진을 확인해보세요</item>
+        <item>가장 멋진 사진을 콜라주로 만들어보세요</item>
+        <item>사진을 배경화면으로 만들어보세요</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>촬영</item>
+        <item>보기</item>
+        <item>열기</item>
+        <item>만들기</item>
+        <item>둘러보기</item>
+    </string-array>
+
+    <string name="premium_feature1">광고 없는 경험</string>
+    <string name="premium_feature2">모든 필터 및 효과 잠금 해제</string>
+    <string name="premium_feature3">모든 프레임 및 스티커 잠금 해제</string>
+    <string name="premium_feature4">워터마크 없는 HD 내보내기</string>
+    <string name="premium_feature5">우선 지원</string>
+</resources>

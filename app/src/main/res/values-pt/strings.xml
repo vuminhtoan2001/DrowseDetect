@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Sua nova foto está pronta</string>
+    <string name="baseapp_screenshot_title">Captura de tela feita — abrir Camera Studio</string>
+    <string name="baseapp_recent_title">Fotos criadas recentemente</string>
+    <string name="baseapp_open">Abrir</string>
+    <string name="baseapp_scan">Capturar</string>
+    <string name="baseapp_daily_open_content">Crie algo novo hoje com o Camera Studio</string>
+    <string name="baseapp_check_now">Abrir câmera</string>
+    <string name="baseapp_fullscreen_1">Capture o seu momento</string>
+    <string name="baseapp_fullscreen_2">Toque para abrir o Camera Studio agora</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Não se esqueça de editar suas fotos hoje — toque para abrir</string>
+
+    <string name="baseapp_noti_title">Ativar notificações</string>
+    <string name="baseapp_noti_content">Receba lembretes e dicas para editar suas fotos</string>
+
+    <string-array name="notification_title2">
+        <item>Capture o seu momento</item>
+        <item>Novo filtro para experimentar</item>
+        <item>Sua galeria sente sua falta</item>
+        <item>Crie uma colagem hoje</item>
+        <item>Novos modelos de papel de parede</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Tire uma foto agora</item>
+        <item>Experimente um novo filtro ou moldura</item>
+        <item>Confira suas fotos salvas</item>
+        <item>Combine suas melhores fotos em uma colagem</item>
+        <item>Transforme suas fotos em papéis de parede</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Capturar</item>
+        <item>Ver</item>
+        <item>Abrir</item>
+        <item>Criar</item>
+        <item>Explorar</item>
+    </string-array>
+
+    <string name="premium_feature1">Experiência sem anúncios</string>
+    <string name="premium_feature2">Desbloqueie todos os filtros e efeitos</string>
+    <string name="premium_feature3">Desbloqueie todas as molduras e adesivos</string>
+    <string name="premium_feature4">Exportação em HD sem marca d\'água</string>
+    <string name="premium_feature5">Suporte prioritário</string>
+</resources>

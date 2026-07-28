@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Votre nouvelle photo est prête</string>
+    <string name="baseapp_screenshot_title">Capture d\'écran effectuée — ouvrir Camera Studio</string>
+    <string name="baseapp_recent_title">Photos créées récemment</string>
+    <string name="baseapp_open">Ouvrir</string>
+    <string name="baseapp_scan">Capturer</string>
+    <string name="baseapp_daily_open_content">Créez quelque chose de nouveau aujourd\'hui avec Camera Studio</string>
+    <string name="baseapp_check_now">Ouvrir l\'appareil photo</string>
+    <string name="baseapp_fullscreen_1">Capturez votre instant</string>
+    <string name="baseapp_fullscreen_2">Appuyez pour ouvrir Camera Studio maintenant</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">N\'oubliez pas de modifier vos photos aujourd\'hui — appuyez pour ouvrir</string>
+
+    <string name="baseapp_noti_title">Activer les notifications</string>
+    <string name="baseapp_noti_content">Recevez des rappels et des astuces pour modifier vos photos</string>
+
+    <string-array name="notification_title2">
+        <item>Capturez votre instant</item>
+        <item>Nouveau filtre à essayer</item>
+        <item>Votre galerie s\'ennuie de vous</item>
+        <item>Créez un collage aujourd\'hui</item>
+        <item>Nouveaux modèles de fond d\'écran</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Prenez une photo maintenant</item>
+        <item>Essayez un nouveau filtre ou cadre</item>
+        <item>Consultez vos photos enregistrées</item>
+        <item>Combinez vos meilleures photos en un collage</item>
+        <item>Transformez vos photos en fonds d\'écran</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Capturer</item>
+        <item>Voir</item>
+        <item>Ouvrir</item>
+        <item>Créer</item>
+        <item>Explorer</item>
+    </string-array>
+
+    <string name="premium_feature1">Expérience sans publicité</string>
+    <string name="premium_feature2">Débloquer tous les filtres et effets</string>
+    <string name="premium_feature3">Débloquer tous les cadres et autocollants</string>
+    <string name="premium_feature4">Export HD sans filigrane</string>
+    <string name="premium_feature5">Support prioritaire</string>
+</resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Foto baru Anda sudah siap</string>
+    <string name="baseapp_screenshot_title">Screenshot berhasil diambil — buka Camera Studio</string>
+    <string name="baseapp_recent_title">Foto yang baru dibuat</string>
+    <string name="baseapp_open">Buka</string>
+    <string name="baseapp_scan">Ambil Foto</string>
+    <string name="baseapp_daily_open_content">Buat sesuatu yang baru hari ini dengan Camera Studio</string>
+    <string name="baseapp_check_now">Buka kamera</string>
+    <string name="baseapp_fullscreen_1">Abadikan momenmu</string>
+    <string name="baseapp_fullscreen_2">Ketuk untuk membuka Camera Studio sekarang</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Jangan lupa edit fotomu hari ini — ketuk untuk membuka</string>
+
+    <string name="baseapp_noti_title">Aktifkan notifikasi</string>
+    <string name="baseapp_noti_content">Dapatkan pengingat dan tips untuk mengedit foto Anda</string>
+
+    <string-array name="notification_title2">
+        <item>Abadikan momenmu</item>
+        <item>Filter baru siap dicoba</item>
+        <item>Galerimu merindukanmu</item>
+        <item>Buat kolase hari ini</item>
+        <item>Template wallpaper baru</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Ambil foto sekarang</item>
+        <item>Coba filter atau bingkai baru</item>
+        <item>Lihat foto tersimpanmu</item>
+        <item>Gabungkan foto terbaikmu jadi kolase</item>
+        <item>Ubah fotomu jadi wallpaper</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Ambil Foto</item>
+        <item>Lihat</item>
+        <item>Buka</item>
+        <item>Buat</item>
+        <item>Jelajahi</item>
+    </string-array>
+
+    <string name="premium_feature1">Pengalaman bebas iklan</string>
+    <string name="premium_feature2">Buka semua filter &amp; efek</string>
+    <string name="premium_feature3">Buka semua bingkai &amp; stiker</string>
+    <string name="premium_feature4">Ekspor HD tanpa watermark</string>
+    <string name="premium_feature5">Dukungan prioritas</string>
+</resources>

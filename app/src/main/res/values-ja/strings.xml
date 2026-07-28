@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">新しい写真の準備ができました</string>
+    <string name="baseapp_screenshot_title">スクリーンショットを撮影しました — Camera Studioを開く</string>
+    <string name="baseapp_recent_title">最近作成した写真</string>
+    <string name="baseapp_open">開く</string>
+    <string name="baseapp_scan">撮影</string>
+    <string name="baseapp_daily_open_content">今日もCamera Studioで新しいものを作りましょう</string>
+    <string name="baseapp_check_now">カメラを開く</string>
+    <string name="baseapp_fullscreen_1">瞬間を残そう</string>
+    <string name="baseapp_fullscreen_2">タップして今すぐCamera Studioを開く</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">今日も写真を編集するのを忘れずに — タップして開く</string>
+
+    <string name="baseapp_noti_title">通知を有効にする</string>
+    <string name="baseapp_noti_content">写真編集のリマインダーとヒントを受け取る</string>
+
+    <string-array name="notification_title2">
+        <item>瞬間を残そう</item>
+        <item>新しいフィルターを試してみよう</item>
+        <item>ギャラリーがあなたを待っています</item>
+        <item>今日はコラージュを作ろう</item>
+        <item>新しい壁紙テンプレート</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>今すぐ写真を撮る</item>
+        <item>新しいフィルターやフレームを試す</item>
+        <item>保存した写真を確認する</item>
+        <item>お気に入りの写真をコラージュにまとめる</item>
+        <item>写真を壁紙に変える</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>撮影</item>
+        <item>表示</item>
+        <item>開く</item>
+        <item>作成</item>
+        <item>探す</item>
+    </string-array>
+
+    <string name="premium_feature1">広告なしの体験</string>
+    <string name="premium_feature2">すべてのフィルター＆エフェクトを解除</string>
+    <string name="premium_feature3">すべてのフレーム＆ステッカーを解除</string>
+    <string name="premium_feature4">透かしなしのHDエクスポート</string>
+    <string name="premium_feature5">優先サポート</string>
+</resources>

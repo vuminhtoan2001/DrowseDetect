@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="baseapp_new_file_content">Ảnh mới của bạn đã sẵn sàng</string>
+    <string name="baseapp_screenshot_title">Đã chụp màn hình — mở Camera Studio</string>
+    <string name="baseapp_recent_title">Ảnh vừa tạo gần đây</string>
+    <string name="baseapp_open">Mở</string>
+    <string name="baseapp_scan">Chụp</string>
+    <string name="baseapp_daily_open_content">Tạo điều gì đó mới với Camera Studio hôm nay</string>
+    <string name="baseapp_check_now">Mở camera</string>
+    <string name="baseapp_fullscreen_1">Ghi lại khoảnh khắc của bạn</string>
+    <string name="baseapp_fullscreen_2">Chạm để mở Camera Studio ngay</string>
+    <string name="baseapp_outapp_title">Camera Studio</string>
+    <string name="baseapp_outapp_content">Đừng quên chỉnh sửa ảnh hôm nay — chạm để mở</string>
+
+    <string name="baseapp_noti_title">Bật thông báo</string>
+    <string name="baseapp_noti_content">Nhận nhắc nhở và mẹo chỉnh sửa ảnh</string>
+
+    <string-array name="notification_title2">
+        <item>Ghi lại khoảnh khắc của bạn</item>
+        <item>Bộ lọc mới đã sẵn sàng</item>
+        <item>Thư viện đang nhớ bạn</item>
+        <item>Tạo ảnh ghép hôm nay</item>
+        <item>Mẫu hình nền mới</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Chụp ảnh ngay</item>
+        <item>Thử bộ lọc hoặc khung ảnh mới</item>
+        <item>Xem lại ảnh đã lưu</item>
+        <item>Ghép những bức ảnh đẹp nhất thành ảnh ghép</item>
+        <item>Biến ảnh của bạn thành hình nền</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Chụp</item>
+        <item>Xem</item>
+        <item>Mở</item>
+        <item>Tạo</item>
+        <item>Khám phá</item>
+    </string-array>
+
+    <string name="premium_feature1">Trải nghiệm không quảng cáo</string>
+    <string name="premium_feature2">Mở khoá tất cả bộ lọc &amp; hiệu ứng</string>
+    <string name="premium_feature3">Mở khoá tất cả khung &amp; nhãn dán</string>
+    <string name="premium_feature4">Xuất ảnh HD, không watermark</string>
+    <string name="premium_feature5">Hỗ trợ ưu tiên</string>
+</resources>
