@@ -132,6 +132,9 @@ private val com.camera.studio.photoeditor.ui.shared.editor.RatioOption.portraitA
 @Composable
 fun CameraScreen(
     initialIsVideo: Boolean = false,
+    /** True khi mở từ 1 picker chọn ảnh (Edit Photo/Collage Maker/Wallpaper add-image) — chụp xong
+     * 1 tấm là tự gọi [onPhotoSaved] để quay lại ngay, không ở lại chụp liên tục như flow Home. */
+    returnAfterCapture: Boolean = false,
     onBack: () -> Unit,
     onPhotoSaved: () -> Unit,
     onVideoRecorded: (videoUri: String, previewWidthDp: Float) -> Unit,
@@ -339,8 +342,12 @@ fun CameraScreen(
                 val ratio = selectedRatio
                 val cropped = if (ratio != null) BitmapUtils.centerCropToAspect(bitmap, ratio.portraitAspect, 1f) else bitmap
                 // KHÔNG điều hướng đi đâu — ở lại Camera để chụp liên tục, thumbnail cập nhật qua
-                // `latestPhoto` (StateFlow từ Room, tự refresh sau khi lưu).
-                scope.launch { viewModel.savePhotoBitmap(cropped) }
+                // `latestPhoto` (StateFlow từ Room, tự refresh sau khi lưu). Trừ khi đang ở
+                // `returnAfterCapture` (mở từ picker chọn ảnh) — chụp xong là xong việc, tự back.
+                scope.launch {
+                    viewModel.savePhotoBitmap(cropped)
+                    if (returnAfterCapture) onPhotoSaved()
+                }
             }
         } else {
             val video = videoCapture ?: return
@@ -352,7 +359,7 @@ fun CameraScreen(
                         if (event is VideoRecordEvent.Finalize) {
                             isRecording = false
                             // Tương tự ảnh — ở lại Camera để quay liên tục thay vì nhảy sang màn xem lại.
-                            scope.launch { viewModel.registerSavedVideo(videoFile.absolutePath) }
+                            scope.launch { viewModel.registerSavedVideo(videoFile) }
                         }
                     }
                 isRecording = true

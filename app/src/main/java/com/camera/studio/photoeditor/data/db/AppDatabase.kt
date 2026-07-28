@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 
 @Database(
     entities = [SavedMedia::class],
-    version = 2, // +is_favorite (M7) — fallbackToDestructiveMigration() ở AppModule tự tạo lại DB.
+    version = 3, // +content_uri (M9, save-to-gallery) — fallbackToDestructiveMigration() ở AppModule tự tạo lại DB.
     exportSchema = false,
 )
 abstract class AppDatabase : RoomDatabase() {

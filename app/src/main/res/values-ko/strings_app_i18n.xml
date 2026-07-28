@@ -82,4 +82,10 @@
     <string name="video_processing_failed">동영상 처리에 실패했습니다</string>
     <string name="overlay_creation_failed">오버레이를 만들 수 없습니다</string>
     <string name="cannot_open_image">이 이미지를 열 수 없습니다. 다른 이미지를 선택해 주세요.</string>
+    <string name="set_wallpaper_title">배경화면으로 설정할까요?</string>
+    <string name="set_wallpaper_desc">배경화면이 저장되었습니다. 화면 배경으로 설정하시겠습니까?</string>
+    <string name="wallpaper_target_home">홈 화면</string>
+    <string name="wallpaper_target_lock">잠금 화면</string>
+    <string name="wallpaper_target_both">둘 다</string>
+    <string name="saved_to_gallery">갤러리에 저장됨</string>
 </resources>

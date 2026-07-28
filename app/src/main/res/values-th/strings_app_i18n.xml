@@ -82,4 +82,10 @@
     <string name="video_processing_failed">การประมวลผลวิดีโอล้มเหลว</string>
     <string name="overlay_creation_failed">ไม่สามารถสร้างโอเวอร์เลย์ได้</string>
     <string name="cannot_open_image">ไม่สามารถเปิดรูปภาพนี้ได้ กรุณาเลือกรูปอื่น</string>
+    <string name="set_wallpaper_title">ตั้งเป็นวอลเปเปอร์?</string>
+    <string name="set_wallpaper_desc">บันทึกวอลเปเปอร์ของคุณแล้ว ต้องการตั้งเป็นพื้นหลังหน้าจอหรือไม่?</string>
+    <string name="wallpaper_target_home">หน้าจอหลัก</string>
+    <string name="wallpaper_target_lock">หน้าจอล็อก</string>
+    <string name="wallpaper_target_both">ทั้งสองอย่าง</string>
+    <string name="saved_to_gallery">บันทึกลงแกลเลอรีแล้ว</string>
 </resources>

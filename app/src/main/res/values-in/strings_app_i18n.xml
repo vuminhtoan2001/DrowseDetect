@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Pemrosesan video gagal</string>
     <string name="overlay_creation_failed">Tidak dapat membuat overlay</string>
     <string name="cannot_open_image">Tidak dapat membuka gambar ini. Silakan pilih gambar lain.</string>
+    <string name="set_wallpaper_title">Jadikan sebagai wallpaper?</string>
+    <string name="set_wallpaper_desc">Wallpaper Anda telah disimpan. Ingin menjadikannya sebagai latar belakang layar?</string>
+    <string name="wallpaper_target_home">Layar utama</string>
+    <string name="wallpaper_target_lock">Layar kunci</string>
+    <string name="wallpaper_target_both">Keduanya</string>
+    <string name="saved_to_gallery">Disimpan ke Galeri</string>
 </resources>

@@ -16,7 +16,6 @@ import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.PlayCircle
@@ -53,6 +52,7 @@ import com.camera.studio.photoeditor.ui.components.AppHeader
 import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 import com.camera.studio.photoeditor.ui.components.PillTabs
 import com.camera.studio.photoeditor.ui.shared.media.DeviceMediaKind
+import com.camera.studio.photoeditor.ui.shared.media.RequestMoreAccessButton
 import com.camera.studio.photoeditor.ui.shared.media.rememberMediaAccessState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -150,11 +150,10 @@ fun GalleryScreen(
                 Text("Xem tất cả ${if (tab == GalleryTab.VIDEO) "video" else "ảnh"} trong máy", fontSize = 12.sp, color = Color.Gray)
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     if (userSettings.viewAllDeviceMedia && showAddMoreButton) {
-                        Icon(
-                            Icons.Default.AddCircle,
+                        RequestMoreAccessButton(
+                            mediaAccess,
                             contentDescription = "Cho phép truy cập thêm ảnh/video",
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.padding(end = 12.dp).clickable(onClick = mediaAccess.requestAccess),
+                            modifier = Modifier.padding(end = 12.dp),
                         )
                     }
                     Switch(checked = userSettings.viewAllDeviceMedia, onCheckedChange = { viewModel.setViewAllDeviceMedia(it) })

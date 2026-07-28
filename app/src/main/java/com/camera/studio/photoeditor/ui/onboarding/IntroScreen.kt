@@ -49,7 +49,7 @@ private data class IntroSlide(val image: Int, val headline: String, val subtitle
 /**
  * 4 slide onboarding theo `vga52a/screenshot/intro1-4.jpg` (headline: Smart Camera Tools / Edit
  * Made Simple / Collage Maker / [slide 4 nội dung ASSUMPTION — xem docs/09_OPEN_ASSUMPTIONS.md #2]).
- * Ảnh minh hoạ (`R.drawable.intro_1..4`) TẠM dùng ảnh vga34b — thay ảnh thật ở M1.
+ * Ảnh minh hoạ (`R.drawable.intro_1..4`) lấy từ asset gốc app (`vga52a/old_assets/.../onboarding/intro1..4.webp`).
  *
  * Native ad INLINE theo vị trí (`positionIntrol`, N=native INLINE dưới slide N — xem AdPositions).
  * Mặc định `positionIntrol=[]` (res/xml/config.xml) → KHÔNG hiện ad nào cho tới khi Remote Config

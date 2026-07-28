@@ -127,7 +127,6 @@ fun AppNavHost(
                 title = "Edit Photo",
                 multiSelect = false,
                 onBack = ::goBack,
-                onOpenCamera = { navController.navigate(Screen.Camera.route) },
                 onConfirm = { picked -> navController.navigate(Screen.editPhotoEditor(picked.first())) { popUpTo(Screen.EditPhotoPicker.route) { inclusive = true } } },
             )
         }
@@ -149,7 +148,6 @@ fun AppNavHost(
                 title = "Collage Maker",
                 multiSelect = true,
                 onBack = ::goBack,
-                onOpenCamera = { navController.navigate(Screen.Camera.route) },
                 onConfirm = { picked -> navController.navigate(Screen.collageEditor(picked)) { popUpTo(Screen.CollagePicker.route) { inclusive = true } } },
             )
         }
@@ -161,7 +159,6 @@ fun AppNavHost(
             CollageMakerScreen(
                 initialPaths = paths,
                 onBack = ::goBack,
-                onOpenCamera = { navController.navigate(Screen.Camera.route) },
                 onSaved = { navController.navigate(Screen.Home.route) { popUpTo(Screen.Home.route) { inclusive = true } } },
             )
         }
@@ -181,7 +178,6 @@ fun AppNavHost(
             WallpaperEditorScreen(
                 templateId = templateId,
                 onBack = ::goBack,
-                onOpenCamera = { navController.navigate(Screen.Camera.route) },
                 onSaved = { },
             )
         }

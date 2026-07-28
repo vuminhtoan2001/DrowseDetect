@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Videoverarbeitung fehlgeschlagen</string>
     <string name="overlay_creation_failed">Overlay konnte nicht erstellt werden</string>
     <string name="cannot_open_image">Dieses Bild kann nicht geöffnet werden. Bitte wähle ein anderes aus.</string>
+    <string name="set_wallpaper_title">Als Hintergrundbild festlegen?</string>
+    <string name="set_wallpaper_desc">Dein Hintergrundbild wurde gespeichert. Möchtest du es als Bildschirmhintergrund festlegen?</string>
+    <string name="wallpaper_target_home">Startbildschirm</string>
+    <string name="wallpaper_target_lock">Sperrbildschirm</string>
+    <string name="wallpaper_target_both">Beide</string>
+    <string name="saved_to_gallery">In der Galerie gespeichert</string>
 </resources>

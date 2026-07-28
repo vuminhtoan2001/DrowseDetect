@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.ViewModel
+import com.camera.studio.photoeditor.data.media.MediaStoreSaver
 import com.camera.studio.photoeditor.data.repo.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -29,10 +30,12 @@ class CollageViewModel @Inject constructor(
     }.getOrNull()
 
     suspend fun save(bitmap: Bitmap): String {
-        val file = File(appContext.filesDir, "collage_${System.currentTimeMillis()}.jpg")
+        val fileName = "collage_${System.currentTimeMillis()}.jpg"
+        val file = File(appContext.filesDir, fileName)
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 92, it) }
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_COLLAGE)
+        val contentUri = MediaStoreSaver.saveImageToGallery(appContext, bitmap, fileName.removeSuffix(".jpg"))
+        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_COLLAGE, contentUri?.toString())
         return file.absolutePath
     }
 }

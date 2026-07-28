@@ -111,7 +111,7 @@ fun ImportPhotoResultScreen(
             ActionButton(Icons.Default.Info, "Info") { showInfoDialog = true }
             if (!isVideo) ActionButton(Icons.Default.Edit, "Edit") { onEdit(path) }
             ActionButton(Icons.Default.Download, "Download") {
-                viewModel.downloadToPublicStorage(path, isVideo)
+                scope.launch { viewModel.downloadToPublicStorage(path, isVideo) }
             }
         }
     }
@@ -124,8 +124,7 @@ fun ImportPhotoResultScreen(
             confirmButton = {
                 TextButton(onClick = {
                     scope.launch {
-                        viewModel.deleteByPath(path)
-                        runCatching { File(path).delete() }
+                        viewModel.deleteMedia(path)
                         showDeleteDialog = false
                         onDeleted()
                     }

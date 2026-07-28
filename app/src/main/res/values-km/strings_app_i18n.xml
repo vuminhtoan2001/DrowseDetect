@@ -82,4 +82,10 @@
     <string name="video_processing_failed">ដំណើរការវីដេអូបានបរាជ័យ</string>
     <string name="overlay_creation_failed">មិនអាចបង្កើតស្រទាប់ត្រួតគ្នាបានទេ</string>
     <string name="cannot_open_image">មិនអាចបើករូបភាពនេះបានទេ។ សូមជ្រើសរើសរូបភាពផ្សេង។</string>
+    <string name="set_wallpaper_title">កំណត់ជារូបភាពផ្ទាំងខាងក្រោយ?</string>
+    <string name="set_wallpaper_desc">ផ្ទាំងខាងក្រោយរបស់អ្នកត្រូវបានរក្សាទុក។ តើអ្នកចង់កំណត់វាជាផ្ទាំងខាងក្រោយអេក្រង់ដែរឬទេ?</string>
+    <string name="wallpaper_target_home">អេក្រង់ដើម</string>
+    <string name="wallpaper_target_lock">អេក្រង់ចាក់សោ</string>
+    <string name="wallpaper_target_both">ទាំងពីរ</string>
+    <string name="saved_to_gallery">បានរក្សាទុកទៅកាន់វិចិត្រសាល</string>
 </resources>

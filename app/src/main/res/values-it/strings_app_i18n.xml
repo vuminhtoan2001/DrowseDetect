@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Elaborazione video non riuscita</string>
     <string name="overlay_creation_failed">Impossibile creare la sovrapposizione</string>
     <string name="cannot_open_image">Impossibile aprire questa immagine. Selezionane un\'altra.</string>
+    <string name="set_wallpaper_title">Impostare come sfondo?</string>
+    <string name="set_wallpaper_desc">Il tuo sfondo è stato salvato. Vuoi impostarlo come sfondo dello schermo?</string>
+    <string name="wallpaper_target_home">Schermata principale</string>
+    <string name="wallpaper_target_lock">Schermata di blocco</string>
+    <string name="wallpaper_target_both">Entrambe</string>
+    <string name="saved_to_gallery">Salvato nella galleria</string>
 </resources>

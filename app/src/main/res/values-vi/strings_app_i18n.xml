@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Xử lý video thất bại</string>
     <string name="overlay_creation_failed">Không thể tạo overlay</string>
     <string name="cannot_open_image">Không thể mở ảnh này. Vui lòng chọn ảnh khác.</string>
+    <string name="set_wallpaper_title">Đặt làm hình nền?</string>
+    <string name="set_wallpaper_desc">Hình nền của bạn đã được lưu. Bạn có muốn đặt làm hình nền màn hình không?</string>
+    <string name="wallpaper_target_home">Màn hình chính</string>
+    <string name="wallpaper_target_lock">Màn hình khoá</string>
+    <string name="wallpaper_target_both">Cả hai</string>
+    <string name="saved_to_gallery">Đã lưu vào Thư viện</string>
 </resources>

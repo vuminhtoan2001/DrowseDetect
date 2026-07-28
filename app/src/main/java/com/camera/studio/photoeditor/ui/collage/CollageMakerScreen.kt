@@ -99,7 +99,6 @@ private fun defaultLayoutFor(count: Int): CollageLayout = when (count) {
 fun CollageMakerScreen(
     initialPaths: List<String>,
     onBack: () -> Unit,
-    onOpenCamera: () -> Unit,
     onSaved: (path: String) -> Unit,
     viewModel: CollageViewModel = hiltViewModel(),
 ) {
@@ -164,7 +163,6 @@ fun CollageMakerScreen(
             title = "Add photo",
             multiSelect = false,
             onBack = { addSlotIndex = null },
-            onOpenCamera = onOpenCamera,
             onConfirm = { picked ->
                 val slot = addSlotIndex!!
                 val p = picked.first()

@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.camera.studio.photoeditor.data.db.SavedMedia
+import com.camera.studio.photoeditor.data.media.MediaStoreSaver
 import com.camera.studio.photoeditor.data.repo.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -38,13 +39,14 @@ class CameraViewModel @Inject constructor(
         .map { it.firstOrNull() }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), null)
 
-    /** Lưu ảnh vào file riêng của app + Room. Trả về path đã lưu. */
+    /** Lưu ảnh vào file riêng của app + Room + bản công khai MediaStore. Trả về path đã lưu. */
     suspend fun savePhotoBitmap(bitmap: Bitmap): String {
         val fileName = "camera_${System.currentTimeMillis()}.jpg"
         val file = File(appContext.filesDir, fileName)
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 95, it) }
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE)
+        val contentUri = MediaStoreSaver.saveImageToGallery(appContext, bitmap, fileName.removeSuffix(".jpg"))
+        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE, contentUri?.toString())
         return file.absolutePath
     }
 
@@ -59,13 +61,16 @@ class CameraViewModel @Inject constructor(
         val file = File(appContext.filesDir, fileName)
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 95, it) }
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE)
+        val contentUri = MediaStoreSaver.saveImageToGallery(appContext, bitmap, fileName.removeSuffix(".jpg"))
+        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE, contentUri?.toString())
         return file.absolutePath
     }
 
-    suspend fun registerSavedVideo(path: String) {
+    /** [videoFile] là file .mp4 CameraX vừa ghi xong (cacheDir) — sao vào MediaStore rồi đăng ký Room. */
+    suspend fun registerSavedVideo(videoFile: File) {
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(path, date, MediaRepository.TYPE_VIDEO)
+        val contentUri = MediaStoreSaver.saveVideoToGallery(appContext, videoFile, videoFile.nameWithoutExtension)
+        mediaRepository.addMedia(videoFile.absolutePath, date, MediaRepository.TYPE_VIDEO, contentUri?.toString())
     }
 
     fun decodeBitmap(path: String): Bitmap? = runCatching { BitmapFactory.decodeFile(path) }.getOrNull()

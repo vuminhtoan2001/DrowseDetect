@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Error al procesar el vídeo</string>
     <string name="overlay_creation_failed">No se pudo crear la superposición</string>
     <string name="cannot_open_image">No se puede abrir esta imagen. Elige otra.</string>
+    <string name="set_wallpaper_title">¿Establecer como fondo de pantalla?</string>
+    <string name="set_wallpaper_desc">Tu fondo de pantalla se ha guardado. ¿Quieres establecerlo como fondo de tu pantalla?</string>
+    <string name="wallpaper_target_home">Pantalla de inicio</string>
+    <string name="wallpaper_target_lock">Pantalla de bloqueo</string>
+    <string name="wallpaper_target_both">Ambas</string>
+    <string name="saved_to_gallery">Guardado en la galería</string>
 </resources>

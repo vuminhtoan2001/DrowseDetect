@@ -5,11 +5,17 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.clickable
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 
@@ -68,4 +74,19 @@ fun rememberMediaAccessState(kind: DeviceMediaKind = DeviceMediaKind.IMAGE): Med
     }
 
     return MediaAccessState(hasFullAccess, hasPartialAccess, refreshKey, ::requestAccess)
+}
+
+/**
+ * Nút "+" mời cấp thêm quyền ảnh/video khi đang ở access MỘT PHẦN — gọi lại requestPermissions() là
+ * đủ, hệ thống tự hiện lại dialog gốc "Cho phép tất cả/Cho phép quyền truy cập bị hạn chế/Không chọn
+ * thêm" (đã xác nhận thật trên máy), không cần dialog tự tạo của app.
+ */
+@Composable
+fun RequestMoreAccessButton(access: MediaAccessState, contentDescription: String, modifier: Modifier = Modifier) {
+    Icon(
+        Icons.Default.AddCircle,
+        contentDescription = contentDescription,
+        tint = MaterialTheme.colorScheme.primary,
+        modifier = modifier.clickable(onClick = access.requestAccess),
+    )
 }

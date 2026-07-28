@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import androidx.lifecycle.ViewModel
 import com.camera.studio.photoeditor.core.BitmapUtils
+import com.camera.studio.photoeditor.data.media.MediaStoreSaver
 import com.camera.studio.photoeditor.data.removebg.BackgroundRemovalService
 import com.camera.studio.photoeditor.data.repo.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -37,10 +38,12 @@ class EditPhotoViewModel @Inject constructor(
     suspend fun removeBackground(bitmap: Bitmap): Result<Bitmap> = backgroundRemovalService.removeBackground(bitmap)
 
     suspend fun save(bitmap: Bitmap): String {
-        val file = File(appContext.filesDir, "edit_${System.currentTimeMillis()}.jpg")
+        val fileName = "edit_${System.currentTimeMillis()}.jpg"
+        val file = File(appContext.filesDir, fileName)
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 95, it) }
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE)
+        val contentUri = MediaStoreSaver.saveImageToGallery(appContext, bitmap, fileName.removeSuffix(".jpg"))
+        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_IMAGE, contentUri?.toString())
         return file.absolutePath
     }
 }

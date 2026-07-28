@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Échec du traitement de la vidéo</string>
     <string name="overlay_creation_failed">Impossible de créer l\'incrustation</string>
     <string name="cannot_open_image">Impossible d\'ouvrir cette image. Veuillez en choisir une autre.</string>
+    <string name="set_wallpaper_title">Définir comme fond d\'écran ?</string>
+    <string name="set_wallpaper_desc">Votre fond d\'écran a été enregistré. Voulez-vous le définir comme fond d\'écran ?</string>
+    <string name="wallpaper_target_home">Écran d\'accueil</string>
+    <string name="wallpaper_target_lock">Écran de verrouillage</string>
+    <string name="wallpaper_target_both">Les deux</string>
+    <string name="saved_to_gallery">Enregistré dans la galerie</string>
 </resources>

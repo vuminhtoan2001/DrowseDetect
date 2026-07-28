@@ -94,7 +94,6 @@ private enum class WallpaperTool { NONE, ADD, TEXT, BACKGROUND, STICKER, DRAW }
 fun WallpaperEditorScreen(
     templateId: Int,
     onBack: () -> Unit,
-    onOpenCamera: () -> Unit,
     onSaved: (path: String) -> Unit,
     viewModel: WallpaperViewModel = hiltViewModel(),
 ) {
@@ -171,7 +170,6 @@ fun WallpaperEditorScreen(
             title = "Add photo",
             multiSelect = false,
             onBack = { showAddPicker = false },
-            onOpenCamera = onOpenCamera,
             onConfirm = { picked ->
                 layers.add(EditorLayer.StickerLayer(id = nextId++, assetPath = picked.first(), transform = com.camera.studio.photoeditor.ui.shared.editor.centerTransform(canvasSizePx)))
                 showAddPicker = false
@@ -185,7 +183,6 @@ fun WallpaperEditorScreen(
             title = "Add photo",
             multiSelect = false,
             onBack = { pendingFrameId = null },
-            onOpenCamera = onOpenCamera,
             onConfirm = { picked ->
                 framePhotos[pendingFrameId!!] = picked.first()
                 pendingFrameId = null

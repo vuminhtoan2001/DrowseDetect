@@ -1,6 +1,8 @@
 package com.camera.studio.photoeditor
 
 import android.app.Activity
+import coil.ImageLoader
+import coil.ImageLoaderFactory
 import com.brian.base_application.BaseApplication
 import com.brian.base_iap.utils.FirebaseRemoteConfigUtil
 import com.brian.base_iap.utils.IAPUtils
@@ -29,7 +31,7 @@ import dagger.hilt.android.HiltAndroidApp
  *  - assets/default_ads_config.json: đổi toàn bộ unit test sang unit thật sau khi có AdMob app.
  */
 @HiltAndroidApp
-class MyApplication : BaseApplication() {
+class MyApplication : BaseApplication(), ImageLoaderFactory {
 
     override fun onCreate() {
         super.onCreate()   // lib init ads/consent/IAP/notification + set default `ads_config` + tự fetch RC
@@ -44,6 +46,14 @@ class MyApplication : BaseApplication() {
         // → MainActivity.resolveStartRoute gate màn Intro theo ads/organic.
         InstallReferrerHelper.resolve(this)
     }
+
+    // Tắt Bitmap.Config.HARDWARE cho ImageLoader mặc định của toàn app: ComposableBitmapRenderer
+    // vẽ AsyncImage lên Canvas phần mềm khi Save (wallpaper/collage/edit-photo) — bitmap hardware
+    // sẽ throw "Software rendering doesn't support hardware bitmaps" ở đó.
+    override fun newImageLoader(): ImageLoader =
+        ImageLoader.Builder(this)
+            .allowHardware(false)
+            .build()
 
     // ===================== Thương hiệu & Splash =====================
     override fun getAppNameRes(): Int = R.string.app_name

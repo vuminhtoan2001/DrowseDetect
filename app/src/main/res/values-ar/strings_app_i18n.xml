@@ -82,4 +82,10 @@
     <string name="video_processing_failed">فشلت معالجة الفيديو</string>
     <string name="overlay_creation_failed">تعذر إنشاء الطبقة التراكبية</string>
     <string name="cannot_open_image">تعذّر فتح هذه الصورة. يرجى اختيار صورة أخرى.</string>
+    <string name="set_wallpaper_title">تعيين كخلفية؟</string>
+    <string name="set_wallpaper_desc">تم حفظ الخلفية الخاصة بك. هل تريد تعيينها كخلفية للشاشة؟</string>
+    <string name="wallpaper_target_home">الشاشة الرئيسية</string>
+    <string name="wallpaper_target_lock">شاشة القفل</string>
+    <string name="wallpaper_target_both">كلاهما</string>
+    <string name="saved_to_gallery">تم الحفظ في المعرض</string>
 </resources>

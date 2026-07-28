@@ -82,4 +82,10 @@
     <string name="video_processing_failed">動画の処理に失敗しました</string>
     <string name="overlay_creation_failed">オーバーレイを作成できませんでした</string>
     <string name="cannot_open_image">この画像を開けません。別の画像を選んでください。</string>
+    <string name="set_wallpaper_title">壁紙に設定しますか?</string>
+    <string name="set_wallpaper_desc">壁紙が保存されました。画面の背景として設定しますか?</string>
+    <string name="wallpaper_target_home">ホーム画面</string>
+    <string name="wallpaper_target_lock">ロック画面</string>
+    <string name="wallpaper_target_both">両方</string>
+    <string name="saved_to_gallery">ギャラリーに保存しました</string>
 </resources>

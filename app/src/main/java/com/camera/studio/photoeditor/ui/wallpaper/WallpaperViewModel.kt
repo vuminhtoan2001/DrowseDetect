@@ -4,6 +4,7 @@ import android.app.WallpaperManager
 import android.content.Context
 import android.graphics.Bitmap
 import androidx.lifecycle.ViewModel
+import com.camera.studio.photoeditor.data.media.MediaStoreSaver
 import com.camera.studio.photoeditor.data.repo.MediaRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -23,10 +24,12 @@ class WallpaperViewModel @Inject constructor(
 ) : ViewModel() {
 
     suspend fun save(bitmap: Bitmap): String {
-        val file = File(appContext.filesDir, "wallpaper_${System.currentTimeMillis()}.jpg")
+        val fileName = "wallpaper_${System.currentTimeMillis()}.jpg"
+        val file = File(appContext.filesDir, fileName)
         FileOutputStream(file).use { bitmap.compress(Bitmap.CompressFormat.JPEG, 95, it) }
         val date = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US).format(Date())
-        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_WALLPAPER)
+        val contentUri = MediaStoreSaver.saveImageToGallery(appContext, bitmap, fileName.removeSuffix(".jpg"))
+        mediaRepository.addMedia(file.absolutePath, date, MediaRepository.TYPE_WALLPAPER, contentUri?.toString())
         return file.absolutePath
     }
 

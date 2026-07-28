@@ -30,6 +30,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -44,27 +45,29 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.camera.studio.photoeditor.data.repo.MediaRepository
+import com.camera.studio.photoeditor.ui.camera.CameraScreen
 import com.camera.studio.photoeditor.ui.components.AppHeader
 import com.camera.studio.photoeditor.ui.components.NativeAdPlaceholder
 import com.camera.studio.photoeditor.ui.gallery.DeviceMediaQuery
 import com.camera.studio.photoeditor.ui.gallery.GalleryViewModel
 import com.camera.studio.photoeditor.ui.shared.media.DeviceMediaKind
+import com.camera.studio.photoeditor.ui.shared.media.RequestMoreAccessButton
 import com.camera.studio.photoeditor.ui.shared.media.rememberMediaAccessState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 /**
  * Chọn ảnh dùng chung Edit Photo (single-select)/Collage Maker (multi-select)/Wallpaper — 2 mục:
- * "Ảnh từ app" (có nút "+" ở header dẫn thẳng tới Camera để chụp ảnh mới) và "Ảnh trong máy" (xin
- * quyền tại chỗ nếu chưa có; có nút "+" xin cấp thêm khi mới đang partial access). Không còn
- * "Sample photo" theo góp ý thực tế.
+ * "Ảnh từ ứng dụng" (nút "+" ở header MỞ CAMERA NGAY TRONG MÀN NÀY — không đẩy nav route riêng —
+ * để chụp xong tự quay lại đúng màn picker này, không mất state của màn cha như Wallpaper/Collage)
+ * và "Ảnh trong máy" (xin quyền tại chỗ nếu chưa có; có nút "+" xin cấp thêm khi mới đang partial
+ * access). Không còn "Sample photo" theo góp ý thực tế.
  */
 @Composable
 fun MediaPickerScreen(
     title: String,
     multiSelect: Boolean,
     onBack: () -> Unit,
-    onOpenCamera: () -> Unit,
     onConfirm: (List<String>) -> Unit,
     viewModel: GalleryViewModel = hiltViewModel(),
 ) {
@@ -72,6 +75,18 @@ fun MediaPickerScreen(
     val allMedia by viewModel.allMedia.collectAsState()
     val myPhotos = allMedia.filter { it.type == MediaRepository.TYPE_IMAGE }
     val selected = remember { mutableStateOf(setOf<String>()) }
+    var showCamera by remember { mutableStateOf(false) }
+
+    if (showCamera) {
+        CameraScreen(
+            returnAfterCapture = true,
+            onBack = { showCamera = false },
+            onPhotoSaved = { showCamera = false },
+            onVideoRecorded = { _, _ -> showCamera = false },
+            onOpenLatest = { _, _ -> showCamera = false },
+        )
+        return
+    }
 
     val mediaAccess = rememberMediaAccessState(DeviceMediaKind.IMAGE)
     val devicePhotos by produceState(initialValue = emptyList<String>(), mediaAccess.hasAnyAccess, mediaAccess.refreshKey) {
@@ -117,17 +132,17 @@ fun MediaPickerScreen(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
-                    SectionHeader("ẢNH TỪ APP")
+                    SectionHeader("ẢNH TỪ ỨNG DỤNG")
                     Icon(
                         Icons.Default.AddCircle,
                         contentDescription = "Chụp ảnh mới",
                         tint = MaterialTheme.colorScheme.primary,
-                        modifier = Modifier.clickable(onClick = onOpenCamera),
+                        modifier = Modifier.clickable { showCamera = true },
                     )
                 }
             }
             if (myPhotos.isEmpty()) {
-                item(span = { GridItemSpan(maxLineSpan) }) { EmptySectionHint("Chưa có ảnh nào do app tạo") }
+                item(span = { GridItemSpan(maxLineSpan) }) { EmptySectionHint("Chưa có ảnh nào do ứng dụng tạo") }
             } else {
                 items(myPhotos, key = { "app_${it.id}" }) { media ->
                     PickerTile(isSelected = media.path in selected.value, onClick = { toggle(media.path) }) {
@@ -147,12 +162,7 @@ fun MediaPickerScreen(
                     // Chỉ cần khi đang partial access (đã chọn 1 số ảnh) — full access thì hết cần thêm,
                     // chưa cấp quyền gì thì đã có ô "Cho phép truy cập" riêng bên dưới rồi.
                     if (mediaAccess.canRequestMore) {
-                        Icon(
-                            Icons.Default.AddCircle,
-                            contentDescription = "Cho phép truy cập thêm ảnh",
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.clickable(onClick = mediaAccess.requestAccess),
-                        )
+                        RequestMoreAccessButton(mediaAccess, contentDescription = "Cho phép truy cập thêm ảnh")
                     }
                 }
             }

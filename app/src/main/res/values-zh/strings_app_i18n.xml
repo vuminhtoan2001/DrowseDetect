@@ -82,4 +82,10 @@
     <string name="video_processing_failed">视频处理失败</string>
     <string name="overlay_creation_failed">无法创建叠加层</string>
     <string name="cannot_open_image">无法打开此图片,请选择其他图片。</string>
+    <string name="set_wallpaper_title">设为壁纸?</string>
+    <string name="set_wallpaper_desc">壁纸已保存。要将其设为屏幕背景吗?</string>
+    <string name="wallpaper_target_home">主屏幕</string>
+    <string name="wallpaper_target_lock">锁屏</string>
+    <string name="wallpaper_target_both">两者</string>
+    <string name="saved_to_gallery">已保存到相册</string>
 </resources>

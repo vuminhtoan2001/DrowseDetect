@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Video processing failed</string>
     <string name="overlay_creation_failed">Could not create overlay</string>
     <string name="cannot_open_image">Cannot open this image. Please choose another.</string>
+    <string name="set_wallpaper_title">Set as Wallpaper?</string>
+    <string name="set_wallpaper_desc">Your wallpaper has been saved. Set it as your screen background?</string>
+    <string name="wallpaper_target_home">Home screen</string>
+    <string name="wallpaper_target_lock">Lock screen</string>
+    <string name="wallpaper_target_both">Both</string>
+    <string name="saved_to_gallery">Saved to Gallery</string>
 </resources>

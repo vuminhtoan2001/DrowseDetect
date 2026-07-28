@@ -82,4 +82,10 @@
     <string name="video_processing_failed">वीडियो प्रोसेसिंग विफल रही</string>
     <string name="overlay_creation_failed">ओवरले नहीं बन सका</string>
     <string name="cannot_open_image">यह छवि नहीं खोली जा सकी। कृपया कोई दूसरी चुनें।</string>
+    <string name="set_wallpaper_title">वॉलपेपर के रूप में सेट करें?</string>
+    <string name="set_wallpaper_desc">आपका वॉलपेपर सहेज लिया गया है। क्या आप इसे अपनी स्क्रीन की पृष्ठभूमि के रूप में सेट करना चाहते हैं?</string>
+    <string name="wallpaper_target_home">होम स्क्रीन</string>
+    <string name="wallpaper_target_lock">लॉक स्क्रीन</string>
+    <string name="wallpaper_target_both">दोनों</string>
+    <string name="saved_to_gallery">गैलरी में सहेजा गया</string>
 </resources>

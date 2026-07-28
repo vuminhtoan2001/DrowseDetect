@@ -82,4 +82,10 @@
     <string name="video_processing_failed">Не удалось обработать видео</string>
     <string name="overlay_creation_failed">Не удалось создать наложение</string>
     <string name="cannot_open_image">Не удалось открыть это изображение. Выберите другое.</string>
+    <string name="set_wallpaper_title">Установить как обои?</string>
+    <string name="set_wallpaper_desc">Обои сохранены. Установить их в качестве фона экрана?</string>
+    <string name="wallpaper_target_home">Главный экран</string>
+    <string name="wallpaper_target_lock">Экран блокировки</string>
+    <string name="wallpaper_target_both">Оба</string>
+    <string name="saved_to_gallery">Сохранено в галерею</string>
 </resources>
