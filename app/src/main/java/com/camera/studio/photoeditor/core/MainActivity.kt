@@ -105,21 +105,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Edge-to-edge: status bar + navigation bar hệ thống LUÔN hiển thị nhưng trong suốt, để nội
-     * dung app (Column `.statusBarsPadding()`/`.navigationBarsPadding()` ở từng Screen, xem
-     * HomeScreen/CameraScreen/Common.kt) tự chừa khoảng rồi vẽ nền xuyên lên vùng đó — áp dụng cho
-     * MỌI route (single-Activity). Gọi lại ở [onWindowFocusChanged] vì 1 số OEM/dialog tự reset màu
-     * bar khi mất-rồi-lấy-lại focus.
+     * Edge-to-edge KHÔNG ĐỐI XỨNG giữa 2 bar — đây là điểm mấu chốt để vừa hết đen ở header vừa
+     * ẩn được bar dưới (2 yêu cầu tưởng như xung khắc):
      *
-     * KHÔNG dùng `controller.hide(systemBars())`: trước đây app ẩn hẳn bar rồi cho vuốt hiện tạm
-     * (transient), nhưng Android LUÔN vẽ 1 lớp scrim đen mờ CƯỠNG BỨC phía sau bar khi nó đang ở
-     * trạng thái "transient reveal" — cờ `isStatusBarContrastEnforced=false`/màu TRANSPARENT hoàn
-     * toàn KHÔNG có tác dụng trong trường hợp này (chỉ có tác dụng khi bar hiển thị THƯỜNG TRỰC,
-     * không phải bị ẩn rồi hiện tạm). Camera privacy-indicator (chấm xanh khi dùng Camera, Android
-     * 12+) và các dialog hệ thống (vd AdMob native-ad validator) đều tự ép bar hiện tạm — nên trước
-     * đây phần header ở màn Take Photo hay bị 1 khối đen tách biệt dù đã set trong suốt. Để bar hiển
-     * thị thường trực (không hide) thì cờ trong suốt mới thực sự ăn, nền app mới lộ ra đúng như mong
-     * muốn.
+     * - Status bar (top): SHOW thường trực + trong suốt, KHÔNG BAO GIỜ hide. Lớp scrim đen cưỡng
+     *   bức (xem giải thích cũ bên dưới) chỉ xảy ra khi bar đang ở trạng thái "ẩn rồi hiện tạm"
+     *   (transient reveal) — do camera privacy-indicator (Android 12+)/dialog hệ thống tự kích hoạt.
+     *   Show thường trực thì KHÔNG BAO GIỜ rơi vào trạng thái đó → luôn trong suốt, app vẽ xuyên lên
+     *   được đúng như mong muốn.
+     * - Navigation bar (bottom): HIDE hẳn (vuốt để hiện tạm) — bar này không có nguồn nào tự ép hiện
+     *   tạm như status bar, nên hide bình thường không bị lỗi scrim. Ẩn hẳn để nút "Install"/"Cài
+     *   đặt" của native ad ở đáy màn không bị system nav bar đè lên (bug đã gặp khi show cả 2 bar).
+     *
+     * Gọi lại ở [onWindowFocusChanged] vì 1 số OEM/dialog tự reset lại sau khi mất-rồi-lấy-lại focus.
      */
     private fun enableImmersiveFullScreen() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -130,7 +128,9 @@ class MainActivity : AppCompatActivity() {
             window.isNavigationBarContrastEnforced = false
         }
         val controller = WindowInsetsControllerCompat(window, window.decorView)
-        controller.show(WindowInsetsCompat.Type.systemBars())
+        controller.show(WindowInsetsCompat.Type.statusBars())
+        controller.hide(WindowInsetsCompat.Type.navigationBars())
+        controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         controller.isAppearanceLightStatusBars = false
         controller.isAppearanceLightNavigationBars = false
     }
