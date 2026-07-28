@@ -38,7 +38,20 @@ const IGNORE_NAMES = new Set([
   "ads",
   "callback",
   "nativead",
+  // Phòng vệ thêm: segment gốc của package thư viện ngoài (androidx.*/java.*/kotlin.*/kotlinx.*
+  // /com.*/google.*) — nếu một extension-function bị parse sai receiver (xem regex EXT_FUN_RE)
+  // hoặc lọt qua fix, các tên này KHÔNG BAO GIỜ được rename vì sẽ phá import trên toàn project.
+  "androidx",
+  "java",
+  "kotlin",
+  "kotlinx",
 ]);
+
+// Ngưỡng độ dài tối thiểu để 1 symbol được rename. Symbol quá ngắn (1-2 ký tự, vd hàm `m()`,
+// `fun a()`) rất dễ TRÙNG với 1 từ/âm tiết bất kỳ trong comment/doc tiếng Việt hoặc tiếng Anh khi
+// updateReferences() replace theo `\bOLD\b` toàn văn bản — gây hỏng comment (vd "thêm" → "thêm"
+// với "m" bị thay bằng hash, ra "thêfcebc90"). An toàn hơn là bỏ qua rename cho các tên quá ngắn.
+const MIN_RENAMABLE_NAME_LENGTH = 3;
 
 const SAFE_SKIP_NAMES = new Set([
   "loadAd",
@@ -135,6 +148,7 @@ const SAFE_SKIP_NAMES = new Set([
 
 function shouldSkipRename(name) {
   if (SAFE_SKIP_NAMES.has(name)) return true;
+  if (name.length < MIN_RENAMABLE_NAME_LENGTH) return true;
   if (/^[A-Z][a-zA-Z0-9]+ViewModel$/.test(name)) return true;
   if (/^provide[A-Z]/.test(name)) return true;
   if (/^on[A-Z]/.test(name)) return true;
@@ -174,6 +188,12 @@ function hashName(name, type) {
   return result;
 }
 
+// Regex khai báo class/object/fun. Dùng non-capturing group cho receiver-type có dấu chấm của
+// Kotlin extension function (vd `fun androidx.compose.ui.graphics.drawscope.DrawScope.drawX(...)`)
+// để CHỈ capture đoạn cuối (tên hàm thật) — KHÔNG bắt nhầm segment đầu ("androidx") làm tên symbol
+// (bug đã gặp: "androidx" bị đưa vào mapping rồi replace toàn văn bản → phá mọi import androidx.*).
+const DECL_PATTERN = "\\b(class|object|fun)\\s+(?:[A-Za-z_][A-Za-z0-9_]*\\.)*([A-Za-z_][A-Za-z0-9_]*)";
+
 function getAllCodeFiles(dir) {
   const result = [];
   for (const item of fs.readdirSync(dir)) {
@@ -209,7 +229,7 @@ function buildFileNameBlacklist() {
     const fileBase = path.basename(file, ext);
 
     // Tìm tất cả class/object/fun trong file
-    const regex = /\b(class|object|fun)\s+([A-Za-z_][A-Za-z0-9_]*)/g;
+    const regex = new RegExp(DECL_PATTERN, "g");
     let match;
 
     console.log("fileBase", fileBase);
@@ -237,7 +257,7 @@ function processFile(filePath) {
   const fileBase = path.basename(filePath, ext);
 
   // 🧩 Tìm các class|object|fun
-  const regex = /\b(class|object|fun)\s+([A-Za-z_][A-Za-z0-9_]*)/g;
+  const regex = new RegExp(DECL_PATTERN, "g");
   let match;
 
   while ((match = regex.exec(content)) !== null) {
@@ -294,9 +314,7 @@ function updateReferences() {
         // Chỉ replace nơi không phải declaration của type khác
         const lines = content.split("\n");
         const newLines = lines.map((line) => {
-          const declMatch = line.match(
-            /\b(class|object|fun)\s+([A-Za-z_][A-Za-z0-9_]*)/
-          );
+          const declMatch = line.match(new RegExp(DECL_PATTERN));
           if (declMatch && declMatch[2] === oldName && declMatch[1] !== type) {
             return line; // Giữ nguyên declaration của type khác
           }
