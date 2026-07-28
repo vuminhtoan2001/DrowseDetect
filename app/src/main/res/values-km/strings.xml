@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">បទពិសោធន៍ដោយគ្មានការផ្សាយពាណិជ្ជកម្ម</string>
-    <string name="premium_feature2">ដោះសោហ្វីលទ័រ និងបែបផែនទាំងអស់</string>
-    <string name="premium_feature3">ដោះសោស៊ុម និងស្ទីកគ័រទាំងអស់</string>
-    <string name="premium_feature4">នាំចេញ HD គ្មានស្លាកសញ្ញាទឹក</string>
+    <string name="premium_feature2">ដោះសោហ្វីលទ័រទាំងអស់</string>
+    <string name="premium_feature3">ដោះសោស៊ុមទាំងអស់</string>
+    <string name="premium_feature4">នាំចេញ HD</string>
     <string name="premium_feature5">ការគាំទ្រអាទិភាព</string>
 </resources>

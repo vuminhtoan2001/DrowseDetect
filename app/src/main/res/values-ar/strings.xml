@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">تجربة بدون إعلانات</string>
-    <string name="premium_feature2">فتح جميع الفلاتر والتأثيرات</string>
-    <string name="premium_feature3">فتح جميع الإطارات والملصقات</string>
-    <string name="premium_feature4">تصدير بجودة HD بدون علامة مائية</string>
+    <string name="premium_feature2">فتح جميع الفلاتر</string>
+    <string name="premium_feature3">فتح جميع الإطارات</string>
+    <string name="premium_feature4">تصدير بجودة HD</string>
     <string name="premium_feature5">دعم ذو أولوية</string>
 </resources>

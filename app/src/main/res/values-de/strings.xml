@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Werbefreies Erlebnis</string>
-    <string name="premium_feature2">Alle Filter &amp; Effekte freischalten</string>
-    <string name="premium_feature3">Alle Rahmen &amp; Sticker freischalten</string>
-    <string name="premium_feature4">HD-Export ohne Wasserzeichen</string>
+    <string name="premium_feature2">Alle Filter freischalten</string>
+    <string name="premium_feature3">Alle Rahmen freischalten</string>
+    <string name="premium_feature4">HD-Export</string>
     <string name="premium_feature5">Bevorzugter Support</string>
 </resources>

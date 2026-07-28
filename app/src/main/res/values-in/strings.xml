@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Pengalaman bebas iklan</string>
-    <string name="premium_feature2">Buka semua filter &amp; efek</string>
-    <string name="premium_feature3">Buka semua bingkai &amp; stiker</string>
-    <string name="premium_feature4">Ekspor HD tanpa watermark</string>
+    <string name="premium_feature2">Buka semua filter</string>
+    <string name="premium_feature3">Buka semua bingkai</string>
+    <string name="premium_feature4">Ekspor HD</string>
     <string name="premium_feature5">Dukungan prioritas</string>
 </resources>

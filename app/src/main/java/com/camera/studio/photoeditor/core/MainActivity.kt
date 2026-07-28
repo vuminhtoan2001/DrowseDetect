@@ -31,10 +31,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
+    private var appliedLanguageCode: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        AppStorage.language(this)?.let { LocaleHelper.updateLocale(this, it) }
+        appliedLanguageCode = AppStorage.language(this)
+        appliedLanguageCode?.let { LocaleHelper.updateLocale(this, it) }
 
         enableImmersiveFullScreen()
 
@@ -54,6 +57,24 @@ class MainActivity : AppCompatActivity() {
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)
+    }
+
+    /**
+     * MainActivity khai `configChanges="locale|layoutDirection"` (Manifest) để lib đổi ngôn ngữ
+     * KHÔNG làm app restart từ Splash. Nhưng vì vậy hệ thống sẽ KHÔNG tự recreate Activity khi ngôn
+     * ngữ đổi — trên Android 13+ (`LocaleManager.applicationLocales`, xem LocaleHelper) hệ thống chỉ
+     * gọi onConfigurationChanged() (không override) nên Compose vẫn hiển thị chuỗi theo locale CŨ.
+     * Tự phát hiện khi quay lại từ màn Language của lib và ép recreate() thủ công (recreate() luôn
+     * destroy+tạo lại Activity, không bị chặn bởi configChanges) để đọc lại string resource đúng
+     * locale mới.
+     */
+    override fun onResume() {
+        super.onResume()
+        val currentLanguageCode = AppStorage.language(this)
+        if (currentLanguageCode != appliedLanguageCode) {
+            appliedLanguageCode = currentLanguageCode
+            recreate()
+        }
     }
 
     private fun resolveStartRoute(): String {

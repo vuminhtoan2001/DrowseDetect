@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Без рекламы</string>
-    <string name="premium_feature2">Открыть все фильтры и эффекты</string>
-    <string name="premium_feature3">Открыть все рамки и стикеры</string>
-    <string name="premium_feature4">Экспорт в HD без водяного знака</string>
+    <string name="premium_feature2">Открыть все фильтры</string>
+    <string name="premium_feature3">Открыть все рамки</string>
+    <string name="premium_feature4">Экспорт в HD</string>
     <string name="premium_feature5">Приоритетная поддержка</string>
 </resources>

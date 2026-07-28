@@ -125,7 +125,7 @@ fun PermissionScreen(onDone: () -> Unit) {
             )
         }
 
-        NativeAdPlaceholder("native_permission", isSmall = true)
+        NativeAdPlaceholder("native_permission", Modifier.padding(top = 8.dp))
     }
 }
 

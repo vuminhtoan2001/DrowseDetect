@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Expérience sans publicité</string>
-    <string name="premium_feature2">Débloquer tous les filtres et effets</string>
-    <string name="premium_feature3">Débloquer tous les cadres et autocollants</string>
-    <string name="premium_feature4">Export HD sans filigrane</string>
+    <string name="premium_feature2">Débloquer tous les filtres</string>
+    <string name="premium_feature3">Débloquer tous les cadres</string>
+    <string name="premium_feature4">Export HD</string>
     <string name="premium_feature5">Support prioritaire</string>
 </resources>

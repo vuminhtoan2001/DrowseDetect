@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">광고 없는 경험</string>
-    <string name="premium_feature2">모든 필터 및 효과 잠금 해제</string>
-    <string name="premium_feature3">모든 프레임 및 스티커 잠금 해제</string>
-    <string name="premium_feature4">워터마크 없는 HD 내보내기</string>
+    <string name="premium_feature2">모든 필터 잠금 해제</string>
+    <string name="premium_feature3">모든 프레임 잠금 해제</string>
+    <string name="premium_feature4">HD 내보내기</string>
     <string name="premium_feature5">우선 지원</string>
 </resources>

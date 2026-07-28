@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">बिना विज्ञापन अनुभव</string>
-    <string name="premium_feature2">सभी फ़िल्टर और इफ़ेक्ट अनलॉक करें</string>
-    <string name="premium_feature3">सभी फ़्रेम और स्टिकर अनलॉक करें</string>
-    <string name="premium_feature4">बिना वॉटरमार्क के HD एक्सपोर्ट</string>
+    <string name="premium_feature2">सभी फ़िल्टर अनलॉक करें</string>
+    <string name="premium_feature3">सभी फ़्रेम अनलॉक करें</string>
+    <string name="premium_feature4">HD एक्सपोर्ट</string>
     <string name="premium_feature5">प्राथमिकता सहायता</string>
 </resources>

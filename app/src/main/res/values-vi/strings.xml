@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Trải nghiệm không quảng cáo</string>
-    <string name="premium_feature2">Mở khoá tất cả bộ lọc &amp; hiệu ứng</string>
-    <string name="premium_feature3">Mở khoá tất cả khung &amp; nhãn dán</string>
-    <string name="premium_feature4">Xuất ảnh HD, không watermark</string>
+    <string name="premium_feature2">Mở khóa tất cả bộ lọc</string>
+    <string name="premium_feature3">Mở khóa tất cả khung hình</string>
+    <string name="premium_feature4">Xuất ảnh HD</string>
     <string name="premium_feature5">Hỗ trợ ưu tiên</string>
 </resources>

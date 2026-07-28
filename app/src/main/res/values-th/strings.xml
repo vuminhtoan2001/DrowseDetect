@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">ประสบการณ์ไร้โฆษณา</string>
-    <string name="premium_feature2">ปลดล็อกฟิลเตอร์และเอฟเฟกต์ทั้งหมด</string>
-    <string name="premium_feature3">ปลดล็อกเฟรมและสติกเกอร์ทั้งหมด</string>
-    <string name="premium_feature4">ส่งออก HD ไม่มีลายน้ำ</string>
+    <string name="premium_feature2">ปลดล็อกฟิลเตอร์ทั้งหมด</string>
+    <string name="premium_feature3">ปลดล็อกเฟรมทั้งหมด</string>
+    <string name="premium_feature4">ส่งออก HD</string>
     <string name="premium_feature5">การสนับสนุนแบบพิเศษ</string>
 </resources>

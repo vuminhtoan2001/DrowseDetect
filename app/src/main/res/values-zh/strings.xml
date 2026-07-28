@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">无广告体验</string>
-    <string name="premium_feature2">解锁全部滤镜和特效</string>
-    <string name="premium_feature3">解锁全部相框和贴纸</string>
-    <string name="premium_feature4">无水印高清导出</string>
+    <string name="premium_feature2">解锁全部滤镜</string>
+    <string name="premium_feature3">解锁全部相框</string>
+    <string name="premium_feature4">高清导出</string>
     <string name="premium_feature5">优先支持</string>
 </resources>

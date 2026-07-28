@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Experiência sem anúncios</string>
-    <string name="premium_feature2">Desbloqueie todos os filtros e efeitos</string>
-    <string name="premium_feature3">Desbloqueie todas as molduras e adesivos</string>
-    <string name="premium_feature4">Exportação em HD sem marca d\'água</string>
+    <string name="premium_feature2">Desbloqueie todos os filtros</string>
+    <string name="premium_feature3">Desbloqueie todas as molduras</string>
+    <string name="premium_feature4">Exportação em HD</string>
     <string name="premium_feature5">Suporte prioritário</string>
 </resources>

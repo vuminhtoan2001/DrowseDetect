@@ -53,9 +53,9 @@
 
     <!-- Tính năng màn IAP (icon + text đi cặp, xem MyApplication.getFeature1..5) -->
     <string name="premium_feature1">Ad-free experience</string>
-    <string name="premium_feature2">Unlock all filters &amp; effects</string>
-    <string name="premium_feature3">Unlock all frames &amp; stickers</string>
-    <string name="premium_feature4">HD export, no watermark</string>
+    <string name="premium_feature2">Unlock all filters</string>
+    <string name="premium_feature3">Unlock all frames</string>
+    <string name="premium_feature4">HD export</string>
     <string name="premium_feature5">Priority support</string>
 
     <!-- ===== Home ===== -->

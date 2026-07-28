@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">広告なしの体験</string>
-    <string name="premium_feature2">すべてのフィルター＆エフェクトを解除</string>
-    <string name="premium_feature3">すべてのフレーム＆ステッカーを解除</string>
-    <string name="premium_feature4">透かしなしのHDエクスポート</string>
+    <string name="premium_feature2">すべてのフィルターを解除</string>
+    <string name="premium_feature3">すべてのフレームを解除</string>
+    <string name="premium_feature4">HDエクスポート</string>
     <string name="premium_feature5">優先サポート</string>
 </resources>

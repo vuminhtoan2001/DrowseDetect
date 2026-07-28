@@ -38,8 +38,8 @@
     </string-array>
 
     <string name="premium_feature1">Esperienza senza pubblicità</string>
-    <string name="premium_feature2">Sblocca tutti i filtri ed effetti</string>
-    <string name="premium_feature3">Sblocca tutte le cornici e adesivi</string>
-    <string name="premium_feature4">Esportazione HD senza watermark</string>
+    <string name="premium_feature2">Sblocca tutti i filtri</string>
+    <string name="premium_feature3">Sblocca tutte le cornici</string>
+    <string name="premium_feature4">Esportazione HD</string>
     <string name="premium_feature5">Supporto prioritario</string>
 </resources>
