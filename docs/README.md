@@ -1,58 +1,30 @@
-# vga52a-kotlin — Mục lục tài liệu
+# docs/ — Tài liệu cho AI đọc để dựng app
 
-> Thư mục này gồm 3 loại tài liệu hoàn toàn khác nhau về mục đích — đọc đúng nhóm cho đúng việc đang
-> làm, đừng đọc lẫn:
->
-> 1. **Quy trình đặc tả app** (mục A) — dùng khi bắt đầu 1 app MỚI, TRƯỚC khi chọn công nghệ/code.
-> 2. **Kỹ thuật tích hợp lib** (mục B) — dùng khi ĐÃ có đặc tả và đang code, cần tích hợp
->    `base-application` AAR (splash/ads/IAP/language/notification) — playbook này **tái dùng cho mọi
->    app** trong dự án, không riêng vga52a-kotlin.
-> 3. **Kỹ thuật dựng UI bám sát screenshot** (mục B2) — dùng khi ĐÃ có đặc tả và đang viết Compose UI,
->    cần vòng lặp nhanh để kiểm tra giao diện có khớp screenshot gốc không, không cần build cả
->    app/emulator mỗi lần sửa — cũng **tái dùng cho mọi app**.
+Có 2 giai đoạn, đọc theo thứ tự:
 
-## A. Tổng quát — đọc đầu tiên khi bắt đầu 1 app mới
+## A. Thiết kế (khuôn trắng — điền cho app mới)
 
-| Tài liệu | Khi nào đọc |
+Copy các file dưới khi bắt đầu đặc tả 1 app mới. Cách điền từng mục: xem
+[`../forDev/APP_SPEC_PROCESS.md`](../forDev/APP_SPEC_PROCESS.md). Bản đã điền đầy đủ, cùng cấu trúc,
+làm mẫu tham khảo: [`../docs-sample/`](../docs-sample/).
+
+| File | Nội dung |
 |---|---|
-| **[`APP_SPEC_PROCESS.md`](APP_SPEC_PROCESS.md)** | Trước khi viết bất kỳ dòng code nào của app mới — định nghĩa 4 tài liệu đặc tả bắt buộc (screenshot/mô tả chức năng/luồng màn hình/style) + quy trình từng bước để tạo ra chúng. |
-| **[`example/`](example/)** | Bộ ví dụ ĐẦY ĐỦ — 4 tài liệu đặc tả + 1 tài liệu đối chiếu chéo màn hình↔screenshot, đã viết sẵn cho chính app vga52a-kotlin (viết lại từ code thật sau khi app đã build xong), dùng làm khuôn mẫu về độ chi tiết/cách trình bày. Đọc [`example/README.md`](example/README.md) trước. |
-| **[`template/`](template/)** | Bản **trắng** để điền khi bắt đầu đặc tả 1 app khác — copy thư mục này, mỗi file có comment trỏ đúng file ví dụ tương ứng trong `example/`. Bao gồm cả quy tắc đặt tên screenshot + bảng đối chiếu chéo (`04_SCREENSHOT_MAPPING.md`). |
-| **`HANDOFF_NEXT_APP.md`** (ở `vga49a/` — thư mục cha) | Sau khi đã có đủ đặc tả: chọn app mẫu gần giống nhất trong dự án để clone làm khung. |
+| [`screenshot/`](screenshot/) | Ảnh chụp màn hình |
+| [`01_MO_TA_CHUC_NANG_MAN_HINH.md`](01_MO_TA_CHUC_NANG_MAN_HINH.md) | Mô tả chức năng từng màn hình |
+| [`02_LUONG_DI_CHUYEN_MAN_HINH.md`](02_LUONG_DI_CHUYEN_MAN_HINH.md) | Luồng di chuyển màn hình |
+| [`03_STYLE_APP.md`](03_STYLE_APP.md) | Style guide / design system |
+| [`04_SCREENSHOT_MAPPING.md`](04_SCREENSHOT_MAPPING.md) | Đối chiếu màn hình ↔ screenshot |
 
-## B. Đọc theo từng bước — khi tích hợp lib `base-application` (ads/IAP/splash/language)
+## B. Dựng app (sau khi đã có đủ 4 tài liệu ở mục A)
 
-Toàn bộ nhóm này nằm trong [`integration/`](integration/) — xem
-**[`integration/README.md`](integration/README.md)** để có thứ tự đọc đầy đủ (11 file, từ playbook
-tổng quát → catalog lỗi → từng chủ đề con: ads/firebase/intro-check/UI-giống-RN/bài học vận hành/
-**chuẩn encode+R8**). Đây là bộ tài liệu **dùng chung cho mọi app** trong dự án (copy nguyên cả thư
-mục khi làm app mới), KHÔNG mô tả riêng tính năng Camera/Edit Photo/Collage/Wallpaper của app này.
-Đặc biệt: **[`integration/16_ENCODE_R8_STANDARD.md`](integration/16_ENCODE_R8_STANDARD.md)** — bắt
-buộc đọc trước khi chạy `push.sh build_tool` lần đầu, mô hình chuẩn "2-3 file cần sửa khi clone app
-mới" cho `encode-scripts/`+`proguard-rules.pro` + catalog bug thật đã gặp qua khảo sát 16 app.
+Đây là tài liệu **dùng chung cho mọi app** trong dự án (copy nguyên khi làm app mới), không mô tả
+riêng tính năng của app hiện tại.
 
-## B2. Kỹ thuật dựng UI bám sát screenshot (khi viết Compose UI)
-
-**[`UI_FIDELITY_WORKFLOW.md`](UI_FIDELITY_WORKFLOW.md)** — dùng **Roborazzi** để render 1 Composable
-ra file PNG trên JVM trong vài giây (không cần emulator/thiết bị thật), so trực tiếp với screenshot
-gốc trong `example/screenshot/`, sửa code, lặp lại tới khi khớp. Giải quyết đúng vấn đề "AI dựng UI
-xong bị lệch so với ảnh gốc, mà build lại cả app để kiểm tra thì quá chậm". Tài liệu có kèm 3 lỗi thực
-tế đã gặp khi cài đặt (bắt buộc đọc trước khi thêm test Roborazzi mới) + ví dụ thật đã chạy
-(`FilterPickerScreenshotTest.kt`) + giới hạn thực tế (màn hình dùng `hiltViewModel()`/ads/Firebase
-không render trực tiếp được).
-
-## C. Tài liệu chuyên biệt của app vga52a-kotlin
-
-Mô tả chức năng/luồng/style **thật** của chính app này (Camera Studio: chụp ảnh + video, chỉnh sửa
-ảnh, ghép collage, tạo wallpaper, thư viện) nằm trong **[`example/`](example/)** — vì file
-`01_MO_TA_CHUC_NANG_MAN_HINH.md`/`02_LUONG_DI_CHUYEN_MAN_HINH.md`/`03_STYLE_APP.md` ở đó được viết
-bằng cách đọc trực tiếp code của chính app này (không phải app giả định), nên đồng thời đóng 2 vai
-trò: vừa là **ví dụ mẫu** cho quy trình ở mục A, vừa là **tài liệu tham chiếu thật** khi cần tra lại
-"màn X hoạt động đúng như thế nào" mà không muốn đọc lại toàn bộ source Kotlin.
-
-## Nguyên tắc khi thêm tài liệu mới vào `docs/`
-
-Trước khi thêm 1 file `.md` vào đây, xác nhận nó thuộc đúng 1 trong 3 nhóm A/B/C ở trên (hoặc chuyên
-biệt của app này). Nếu 1 file nói về app/tính năng KHÁC vga52a-kotlin (copy nhầm từ project khác lúc
-clone) hoặc chỉ là ghi chú tiến độ tạm thời của 1 phiên làm việc (không phải tài liệu tham chiếu lâu
-dài) — không thêm vào đây, hoặc xoá nếu phát hiện đã lỡ thêm.
+- **[`integration/`](integration/)** — tích hợp lib `base-application` (ads/IAP/splash/language/
+  notification). Xem [`integration/README.md`](integration/README.md) để có thứ tự đọc đầy đủ (playbook
+  tổng quát → catalog lỗi → từng chủ đề con: ads/firebase/intro-check/UI-giống-RN/bài học vận hành/
+  **chuẩn encode+R8**).
+- **[`UI_FIDELITY_WORKFLOW.md`](UI_FIDELITY_WORKFLOW.md)** — dùng Roborazzi để render 1 Composable ra
+  PNG trên JVM (không cần emulator), so trực tiếp với screenshot gốc ở `docs-sample/screenshot/`, lặp
+  tới khi khớp.

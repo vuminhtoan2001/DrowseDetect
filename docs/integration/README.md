@@ -1,10 +1,11 @@
 # Tích hợp `base-application` AAR (ads/IAP/splash/language/notification)
 
-> **Nhóm tài liệu "đọc theo từng bước"** — dùng khi ĐÃ có đủ 4 tài liệu đặc tả (xem
-> [`../APP_SPEC_PROCESS.md`](../APP_SPEC_PROCESS.md)) và bắt đầu tích hợp lib `base-application` +
-> quảng cáo/IAP vào app. Đây là bộ playbook **tái dùng cho mọi app** trong dự án — không phải tài
-> liệu riêng của vga52a-kotlin (không nói về Camera/Edit Photo/Collage/Wallpaper), nên khi copy app
-> mới chỉ cần copy nguyên cả thư mục `integration/` này.
+> **Nhóm tài liệu "đọc theo từng bước"** — dùng khi ĐÃ có đủ 4 tài liệu thiết kế màn hình/chức năng
+> (`../01_MO_TA_CHUC_NANG_MAN_HINH.md` ... `../04_SCREENSHOT_MAPPING.md`, xem quy trình viết ở
+> [`../../forDev/APP_SPEC_PROCESS.md`](../../forDev/APP_SPEC_PROCESS.md)) và bắt đầu **dựng app thật**
+> — tích hợp lib `base-application` + quảng cáo/IAP. Đây là bộ playbook **tái dùng cho mọi app** trong
+> dự án — không phải tài liệu riêng của vga52a-kotlin (không nói về Camera/Edit Photo/Collage/
+> Wallpaper), nên khi copy app mới chỉ cần copy nguyên cả thư mục `integration/` này.
 
 ## Thứ tự đọc
 

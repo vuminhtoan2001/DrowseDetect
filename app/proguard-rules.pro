@@ -1,6 +1,5 @@
 # ============================================================================
-# proguard-rules.pro — Rule RIÊNG của vga52a-kotlin (Camera Studio: chụp ảnh/video, chỉnh sửa ảnh,
-# collage, wallpaper, thư viện).
+# proguard-rules.pro — Rule RIÊNG của vga52a-kotlin.
 #
 # Rule dùng chung cho mọi app (base-application AAR, Billing, AdMob mediation, Gson, Crashlytics)
 # đã tách sang `proguard-rules-base.pro` (xem `proguardFiles(...)` trong app/build.gradle.kts) —
@@ -8,18 +7,7 @@
 #
 # Khi clone sang app mới: xoá hết nội dung dưới đây, chỉ giữ 3 dòng comment trên + thêm rule cho SDK
 # riêng của app mới (xem "công thức" cho SDK phổ biến ở docs/integration/16_ENCODE_R8_STANDARD.md).
+#
+# App này hiện chỉ gồm Intro/Permission/Home/Setting + ads/IAP (core), chưa có SDK riêng nào cần
+# keep-rule bổ sung — thêm rule vào đây khi bắt đầu 1 tính năng thật (CameraX/Media3/Room/...).
 # ============================================================================
-
-# --- Model / data của app (Room entities + DTO Gson) ---
--keep class com.camera.studio.photoeditor.data.** { *; }
-
-# --- CameraX / Media3 / Room (chụp ảnh-video + burn overlay + lưu lịch sử) ---
--keep class androidx.camera.** { *; }
--dontwarn androidx.camera.**
-
--keep class androidx.media3.** { *; }
--dontwarn androidx.media3.**
-
--keep class androidx.room.** { *; }
--keep @androidx.room.Entity class * { *; }
--dontwarn androidx.room.**

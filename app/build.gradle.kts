@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.dagger.hilt.android)
-    alias(libs.plugins.ksp) // cần cho Room và Hilt
+    alias(libs.plugins.ksp) // cần cho Hilt
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.20"
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
@@ -118,19 +118,8 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    // Room (history quét)
-    implementation("androidx.room:room-runtime:2.6.1")
-    ksp("androidx.room:room-compiler:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-
-    // Coil — load icon app (thay base64 của RN)
+    // Coil — load ảnh (hero Home, icon app)
     implementation("io.coil-kt:coil-compose:2.0.0")
-    // Coil video-frame decoder — dùng cho thumbnail video trong Gallery (thay MediaMetadataRetriever thủ
-    // công không cache/không downsample từng gây giật khi vào màn/chuyển tab).
-    implementation("io.coil-kt:coil-video:2.0.0")
-
-    // Pager cho màn Intro dùng androidx.compose.foundation.pager (đã có trong Compose BoM).
-    implementation("com.google.accompanist:accompanist-permissions:0.30.1")
 
     // Hilt
     implementation(libs.hilt.android)
@@ -151,31 +140,4 @@ dependencies {
     implementation("com.android.billingclient:billing-ktx:7.1.1")
     implementation("com.android.installreferrer:installreferrer:2.2")
 
-    // Gson (dùng cho catalog asset JSON của Sticker/Frame/Template picker)
-    implementation("com.google.code.gson:gson:2.10.1")
-
-    // CameraX (preview + chụp ảnh + quay video)
-    val cameraxVersion = "1.4.1"
-    implementation("androidx.camera:camera-core:$cameraxVersion")
-    implementation("androidx.camera:camera-camera2:$cameraxVersion")
-    implementation("androidx.camera:camera-lifecycle:$cameraxVersion")
-    implementation("androidx.camera:camera-video:$cameraxVersion")
-    implementation("androidx.camera:camera-view:$cameraxVersion")
-
-    // Media3 (burn overlay bitmap vào video sau khi quay + play lại kết quả)
-    val media3Version = "1.5.1"
-    implementation("androidx.media3:media3-transformer:$media3Version")
-    implementation("androidx.media3:media3-effect:$media3Version")
-    implementation("androidx.media3:media3-exoplayer:$media3Version")
-    implementation("androidx.media3:media3-ui:$media3Version")
-    implementation("androidx.media3:media3-common:$media3Version")
-
-    // DataStore (cấu hình location/template/time — thay Redux UserSession của RN)
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-
-    // Đọc EXIF orientation ảnh chụp (CameraX takePicture ghi EXIF, cần xoay đúng chiều trước khi bake overlay)
-    implementation("androidx.exifinterface:exifinterface:1.3.7")
-
-    // Photo Picker (chọn ảnh có sẵn cho "Edit photo") — activity result API có sẵn trong androidx.activity
-    implementation("androidx.activity:activity-compose:1.9.3")
 }
