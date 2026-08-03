@@ -843,6 +843,27 @@ fun onPremiumFeatureClick() {
 Luồng: bấm lần 1 (chưa mua) → hiện paywall → mua xong → paywall **tự đóng** → bấm lần 2 →
 đã premium → dùng tính năng, không bị chặn nữa.
 
+#### 8.3.1 Bố cục màn IAP + thứ tự 5 feature (đọc trước khi điền `getFeatureNIconRes/TextRes`)
+
+Màn IAP do lib **tự render toàn bộ** (app không tự dựng UI này) theo bố cục cố định:
+
+1. Header: tên app (`getAppNameRes()`) + dòng phụ đề.
+2. **Bảng so sánh Feature ↔ Pro ↔ Basic**: đúng **5 dòng**, theo thứ tự
+   `getFeature1IconRes()/TextRes()` → `getFeature5IconRes()/TextRes()` (dòng 1 trên cùng, dòng 5
+   dưới cùng). Cột Pro luôn ✓ đủ 5 dòng; cột Basic ✓/✗ tuỳ feature nào Basic KHÔNG có (quyết định
+   bởi cấu hình gói Basic trên Play Console, không phải bởi `getFeatureN*Res`).
+3. 3 nút chọn gói (Weekly/Monthly/Annually — gói Annually thường có badge giảm giá + "3-DAYS FREE
+   TRIAL").
+4. Nút CTA chính ("3-Days Free Trial!" hoặc tương đương).
+5. Footer: điều khoản huỷ + link Term of Use/Privacy Policy.
+
+**Quy ước thứ tự nội dung 5 dòng (áp dụng cho mọi app dùng lib này)**: xếp các tính năng **khác biệt
+hoá** (filter/frame/export chất lượng cao/hỗ trợ ưu tiên...) ở **feature1–feature4** vì đây là lý do
+thuyết phục user nâng cấp; **"Trải nghiệm không quảng cáo" (ad-free) LUÔN đặt ở `getFeature5IconRes`/
+`getFeature5TextRes`** (dòng cuối) — coi như lợi ích "mặc định đi kèm" khi mua gói, không phải điểm
+bán hàng chính. Xem `MyApplication.kt` (mục "Tính năng màn IAP") của app này làm mẫu áp dụng đúng
+quy ước — 4 tính năng khác biệt hoá ở feature1–4, ad-free ở feature5.
+
 ### 8.4 Dialog xin quyền FullScreenIntent
 
 Ở màn Home, hiển thị dialog mời người dùng cấp quyền "hiển thị trên màn hình khoá /

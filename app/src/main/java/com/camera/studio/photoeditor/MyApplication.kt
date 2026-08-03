@@ -121,17 +121,20 @@ class MyApplication : BaseApplication() {
     override fun getNotiContentRes(): Int = R.string.baseapp_noti_content
 
     // ===================== Tính năng màn IAP (icon + text đi cặp) =====================
-    override fun getFeature1IconRes(): Int = R.drawable.crown
-    override fun getFeature2IconRes(): Int = R.drawable.ic_filter
-    override fun getFeature3IconRes(): Int = R.drawable.ic_edit_frame
-    override fun getFeature4IconRes(): Int = R.drawable.ic_premium
-    override fun getFeature5IconRes(): Int = R.drawable.ic_shield_check
+    // "Trải nghiệm không quảng cáo" LUÔN đặt ở slot feature5 (cuối danh sách) — quy ước chung, xem
+    // docs/integration/HUONG_DAN_TICH_HOP.md §8.3.1: các tính năng khác biệt hoá (filter/frame/HD/
+    // priority) xếp trước vì thuyết phục nâng cấp tốt hơn; ad-free coi như lợi ích "mặc định đi kèm".
+    override fun getFeature1IconRes(): Int = R.drawable.ic_filter
+    override fun getFeature2IconRes(): Int = R.drawable.ic_edit_frame
+    override fun getFeature3IconRes(): Int = R.drawable.ic_premium
+    override fun getFeature4IconRes(): Int = R.drawable.ic_shield_check
+    override fun getFeature5IconRes(): Int = R.drawable.crown
 
-    override fun getFeature1TextRes(): Int? = R.string.premium_feature1
-    override fun getFeature2TextRes(): Int? = R.string.premium_feature2
-    override fun getFeature3TextRes(): Int? = R.string.premium_feature3
-    override fun getFeature4TextRes(): Int? = R.string.premium_feature4
-    override fun getFeature5TextRes(): Int? = R.string.premium_feature5
+    override fun getFeature1TextRes(): Int? = R.string.premium_feature2
+    override fun getFeature2TextRes(): Int? = R.string.premium_feature3
+    override fun getFeature3TextRes(): Int? = R.string.premium_feature4
+    override fun getFeature4TextRes(): Int? = R.string.premium_feature5
+    override fun getFeature5TextRes(): Int? = R.string.premium_feature1
 
     // ===================== Cấu hình quảng cáo =====================
     override fun isPurchased(): Boolean = IAPUtils.isPremium()
