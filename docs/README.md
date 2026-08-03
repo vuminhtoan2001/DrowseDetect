@@ -50,17 +50,9 @@ bằng cách đọc trực tiếp code của chính app này (không phải app 
 trò: vừa là **ví dụ mẫu** cho quy trình ở mục A, vừa là **tài liệu tham chiếu thật** khi cần tra lại
 "màn X hoạt động đúng như thế nào" mà không muốn đọc lại toàn bộ source Kotlin.
 
-## D. Đã dọn khỏi thư mục này (2026-08-03)
+## Nguyên tắc khi thêm tài liệu mới vào `docs/`
 
-Khi rà soát lại để phân loại, phát hiện 2 file **không liên quan tới vga52a-kotlin** — tài liệu của
-app **vga34b (GeoStamp Camera, `com.camera.geostamp`)**, một app camera GPS-stamp hoàn toàn khác, lạc
-vào `docs/` của app này (khả năng cao do copy nhầm thư mục `docs/` mẫu lúc khởi tạo project):
-
-- `CHECKLIST.md` — checklist port RN→Kotlin của vga34b (DataMap/GPS overlay/Uninstall shortcut — các
-  tính năng không tồn tại ở app camera/photo-editor này).
-- `KE_HOACH_CHUYEN_KOTLIN_vga34b.md` — kế hoạch chuyển đổi riêng của vga34b.
-
-Đã **xoá** (lịch sử vẫn còn trong `git log` nếu cần tra lại) để tránh gây nhầm lẫn cho người đọc sau.
-`KE_HOACH_TICH_HOP.md` (case ví dụ app `vga_49`/DetectorSpy) được **giữ lại** trong `integration/` vì
-được `PLAYBOOK_TICH_HOP.md` trích dẫn làm minh hoạ thực tế cho quy trình tích hợp — đọc với tinh thần
-"đây là 1 ví dụ đã áp dụng playbook cho app khác", không phải tài liệu của app hiện tại.
+Trước khi thêm 1 file `.md` vào đây, xác nhận nó thuộc đúng 1 trong 3 nhóm A/B/C ở trên (hoặc chuyên
+biệt của app này). Nếu 1 file nói về app/tính năng KHÁC vga52a-kotlin (copy nhầm từ project khác lúc
+clone) hoặc chỉ là ghi chú tiến độ tạm thời của 1 phiên làm việc (không phải tài liệu tham chiếu lâu
+dài) — không thêm vào đây, hoặc xoá nếu phát hiện đã lỡ thêm.

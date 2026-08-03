@@ -5,12 +5,6 @@
 > quảng cáo/IAP vào app. Đây là bộ playbook **tái dùng cho mọi app** trong dự án — không phải tài
 > liệu riêng của vga52a-kotlin (không nói về Camera/Edit Photo/Collage/Wallpaper), nên khi copy app
 > mới chỉ cần copy nguyên cả thư mục `integration/` này.
->
-> ⚠️ 2 file `CHECKLIST.md` và `KE_HOACH_CHUYEN_KOTLIN_vga34b.md` từng nằm ở `docs/` (thư mục cha) đã
-> bị **xoá** khỏi repo này (2026-08-03) — đó là tài liệu của app **vga34b (GeoStamp Camera)**, lạc
-> vào đây lúc dựng project (rất có thể do copy nhầm thư mục `docs/` mẫu), không liên quan gì tới
-> vga52a-kotlin (Camera Studio: chụp ảnh + chỉnh sửa + collage + wallpaper). Lịch sử vẫn còn trong
-> `git log` nếu cần tra lại.
 
 ## Thứ tự đọc
 
