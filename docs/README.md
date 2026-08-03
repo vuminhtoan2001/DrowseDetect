@@ -4,10 +4,6 @@ Có 2 giai đoạn, đọc theo thứ tự:
 
 ## A. Thiết kế (khuôn trắng — điền cho app mới)
 
-Copy các file dưới khi bắt đầu đặc tả 1 app mới. Cách điền từng mục: xem
-[`../forDev/APP_SPEC_PROCESS.md`](../forDev/APP_SPEC_PROCESS.md). Bản đã điền đầy đủ, cùng cấu trúc,
-làm mẫu tham khảo: [`../docs-sample/`](../docs-sample/).
-
 | File | Nội dung |
 |---|---|
 | [`screenshot/`](screenshot/) | Ảnh chụp màn hình |
@@ -23,8 +19,7 @@ riêng tính năng của app hiện tại.
 
 - **[`integration/`](integration/)** — tích hợp lib `base-application` (ads/IAP/splash/language/
   notification). Xem [`integration/README.md`](integration/README.md) để có thứ tự đọc đầy đủ (playbook
-  tổng quát → catalog lỗi → từng chủ đề con: ads/firebase/intro-check/UI-giống-RN/bài học vận hành/
-  **chuẩn encode+R8**).
+  tổng quát → spec lib → ads (kiến trúc/API/firebase key/vận hành) → intro-check → **chuẩn encode+R8**).
 - **[`UI_FIDELITY_WORKFLOW.md`](UI_FIDELITY_WORKFLOW.md)** — dùng Roborazzi để render 1 Composable ra
-  PNG trên JVM (không cần emulator), so trực tiếp với screenshot gốc ở `docs-sample/screenshot/`, lặp
-  tới khi khớp.
+  PNG trên JVM (không cần emulator), so trực tiếp với screenshot gốc ở [`screenshot/`](screenshot/),
+  lặp tới khi khớp.

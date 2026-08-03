@@ -4,9 +4,9 @@
 > lệch (màu, khoảng cách, chi tiết nhỏ) so với ảnh gốc, và vòng lặp "sửa code → build app → cài máy →
 > chụp màn hình → so sánh" quá chậm để lặp nhiều lần. Roborazzi cho phép **render 1 Composable ra file
 > PNG trong vài giây, ngay trên máy build (JVM), không cần emulator/thiết bị thật** — AI có thể tự đọc
-> ảnh PNG đó (bằng công cụ đọc ảnh) và so trực tiếp với screenshot gốc trong `docs-sample/screenshot/`
-> (hoặc `docs/screenshot/` khi làm app mới), tự sửa code, lặp lại tới khi khớp — chỉ khi nào
-> giao diện đã khớp mới cần build/cài app thật (để kiểm tra hành vi/tương tác, không phải để soi UI).
+> ảnh PNG đó (bằng công cụ đọc ảnh) và so trực tiếp với screenshot gốc trong `docs/screenshot/`, tự
+> sửa code, lặp lại tới khi khớp — chỉ khi nào giao diện đã khớp mới cần build/cài app thật (để kiểm
+> tra hành vi/tương tác, không phải để soi UI).
 
 ## 1. Đã cài đặt sẵn trong project
 
@@ -99,8 +99,7 @@ không cần lo commit nhầm.
 
 ## 5. Quy trình dùng hằng ngày (cho AI hoặc dev)
 
-1. Xác định composable cần dựng/sửa khớp 1 file trong `docs-sample/screenshot/` (hoặc
-   `docs/screenshot/` nếu đang làm app mới) + mô tả tương ứng trong
+1. Xác định composable cần dựng/sửa khớp 1 file trong `docs/screenshot/` + mô tả tương ứng trong
    `01_MO_TA_CHUC_NANG_MAN_HINH.md`.
 2. Nếu composable đó THUẦN (mục 3) → viết 1 test Roborazzi mới trong
    `app/src/test/java/.../screenshot/`, theo khuôn `ComingSoonScreenshotTest.kt`:
@@ -110,7 +109,7 @@ không cần lo commit nhầm.
      chọn sẵn 1 mục, truyền `selected = <mục đó>` thay vì `null`) — so sánh với state khác ảnh gốc sẽ
      luôns lệch dù code đúng.
    - Đặt tên file PNG output theo cùng quy tắc đặt tên screenshot đã thống nhất (xem
-     `docs-sample/04_SCREENSHOT_MAPPING.md` mục 1) để dễ đối chiếu.
+     `04_SCREENSHOT_MAPPING.md` mục 1) để dễ đối chiếu.
 3. Chạy `./gradlew :app:recordRoborazziDebug --tests "<FQCN test>"` (vài giây tới vài chục giây sau
    lần chạy đầu — lần đầu tải Robolectric jar có thể mất vài phút, các lần sau nhanh vì đã cache).
 4. Đọc file PNG vừa sinh ra bằng công cụ đọc ảnh, đặt cạnh screenshot gốc, so trực tiếp: màu, khoảng

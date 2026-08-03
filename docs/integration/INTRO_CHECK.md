@@ -1,21 +1,24 @@
 # 12 — Logic hiển thị màn Intro (onboarding)
 
-> Bản RN **không** hiện Intro theo kiểu "lần đầu 1 lần". Nó gate theo **số lần mở app** + **nguồn cài đặt** (ad campaign vs organic) để tối ưu review Google Play. Phải port đúng.
+> Intro **không** hiện theo kiểu "lần đầu 1 lần" đơn giản. Gate theo **số lần mở app** + **nguồn cài
+> đặt** (ad campaign vs organic) để tối ưu review Google Play: user organic thấy Home sạch ngay từ
+> đầu, chỉ user từ chiến dịch ads (hoặc user organic sau vài lần mở) mới thấy onboarding.
 
-## 1. Logic gốc RN (`navigation/AppNavigation.js`)
+## 1. Logic chuẩn
 
 Biến & remote config:
-- `goToHomeNumber` — bộ đếm số lần vào Home, bắt đầu **1**, **+1 mỗi lần** `RootRoute` mount (lưu AsyncStorage). Tức = số thứ tự lần mở.
+- `goToHomeNumber` — bộ đếm số lần vào Home, bắt đầu **1**, **+1 mỗi lần** app mount màn gốc (lưu
+  local). Tức = số thứ tự lần mở.
 - `count_app_open` (default 3), `organic_number_not_guide` (default 3) — từ Remote Config.
-- `isAdsCampaign` — từ **InstallReferrer** (native), KHÔNG phải remote config.
+- `isAdsCampaign` — từ **InstallReferrer**, KHÔNG phải remote config.
 
 Công thức:
-```js
+```
 goToHomeStatus = isAdsCampaign
   ? goToHomeNumber >= count_app_open
   : (goToHomeNumber < organic_number_not_guide ||
-     goToHomeNumber >= count_app_open + organic_number_not_guide);
-goLanguageIntro = !goToHomeStatus;   // true → hiện LanguageFirst → replace('Intro')
+     goToHomeNumber >= count_app_open + organic_number_not_guide)
+goShowIntro = !goToHomeStatus
 ```
 
 Bảng chân trị (count=3, organic=3):
@@ -25,19 +28,19 @@ Bảng chân trị (count=3, organic=3):
 | **Ad campaign** | **Intro** | Home | Home |
 | **Organic** | Home | **Intro** | Home |
 
-Ý nghĩa: user organic / các lần mở đầu thấy Home sạch; chỉ user từ chiến dịch ads (hoặc sau vài lần mở) mới thấy onboarding.
+## 2. Khác biệt khi dùng lib `base-application`
 
-## 2. Khác biệt kiến trúc khi sang Kotlin
+- **Lib sở hữu màn Language** (Splash→Inter→**Language**→IAP→Home). Công thức trên chỉ chi phối
+  **màn Intro của app** — Language không cần gate riêng, lib đã lo.
+- `isAdsCampaign` xác định qua **InstallReferrer**.
 
-- **Lib sở hữu màn Language** (Splash→Inter→**Language**→IAP→Home). RN gate cả `LanguageFirst` bằng công thức trên; trên Kotlin phần Language **do lib lo**, nên port chỉ chi phối **màn Intro của app**.
-- `isAdsCampaign` được xác định qua **InstallReferrer** như RN.
+## 3. Cài đặt Kotlin
 
-## 3. Port Kotlin
-
-### `core/InstallReferrerHelper.kt` — port `AppLifecycleModule.isAdsCampaign`
+### `core/InstallReferrerHelper.kt`
 Query InstallReferrer **1 lần duy nhất trong đời app** rồi cache (nguồn cài không đổi). Chạy **async fire-and-forget** trong `Application.onCreate` → **không block splash**.
 
-Quy tắc phân loại (giữ đúng RN, mọi nhánh lỗi → coi là **ads=true**):
+Quy tắc phân loại (mọi nhánh lỗi → coi là **ads=true**, an toàn hơn organic vì hiện thêm 1 màn Intro
+vô hại còn hơn bỏ sót review Google Play cho ads campaign):
 - có `gclid` → ads
 - không có `utm_medium` / `(not set)` → organic
 - `utm_medium == "organic"` → organic
@@ -59,7 +62,7 @@ InstallReferrerHelper.resolve(this)   // async, cache; bỏ qua nếu đã resol
 
 ### `core/MainActivity.resolveStartRoute()`
 ```kotlin
-// shortcut "uninstall" → Uninstall (KHÔNG tăng counter — giống RN: RootRoute không mount)
+// shortcut "uninstall" → Uninstall (KHÔNG tăng counter — màn này không tính là 1 lần mở app)
 val n = AppStorage.goToHomeNumber(this)
 AppStorage.setGoToHomeNumber(this, n + 1)          // +1 cho lần sau
 val countAppOpen = remote.getInt("count_app_open").let { if (it <= 0) 3 else it }
@@ -71,7 +74,8 @@ return if (goToHomeStatus) Screen.Home.route else Screen.Intro.route
 ```
 
 ### `res/xml/config.xml`
-Thêm `count_app_open` (=3) và `organic_number_not_guide` (=3, khớp default RN). Các key này readable (xem `11_FIREBASE_KEY.md` §4) → điều chỉnh được từ Remote Config.
+Thêm `count_app_open` (=3) và `organic_number_not_guide` (=3). Các key này readable (xem
+`ADS.md` §"Config key hash") → điều chỉnh được từ Remote Config.
 
 ## 4. Cách test bằng adb
 
@@ -93,4 +97,4 @@ adb shell run-as <applicationId> cat /data/data/<applicationId>/shared_prefs/App
 - [ ] `goToHomeNumber` +1 mỗi lần mở vào Home; shortcut Uninstall không tăng.
 - [ ] `count_app_open` + `organic_number_not_guide` đọc từ Remote Config (readable).
 - [ ] Fallback `isAdsCampaign = true` khi chưa resolve.
-- [ ] Bảng chân trị khớp RN (test bằng adb).
+- [ ] Bảng chân trị đúng như mục 1 (test bằng adb).

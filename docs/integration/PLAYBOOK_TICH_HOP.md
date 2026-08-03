@@ -1,11 +1,10 @@
 # PLAYBOOK: Tích hợp `base-application` AAR (ads/IAP/splash/language/notification) vào app Android bất kỳ
 
-> File tổng hợp tái dùng cho **mọi app**. Gộp 3 nguồn:
-> - `drive-download-.../HUONG_DAN_TICH_HOP.md` — **spec đầy đủ của thư viện** (API, hàm abstract, tài nguyên). Giữ làm tham chiếu chi tiết.
-> - `MIGRATE_ADS_TO_LIB.md` — **công thức chuyển ads** GMA → `com.nlbn.ads`.
-> - `KE_HOACH_TICH_HOP.md` — ví dụ kế hoạch + rủi ro (app vga_49).
+> File tổng hợp tái dùng cho **mọi app**. Nguồn tham chiếu chi tiết:
+> `HUONG_DAN_TICH_HOP.md` — **spec đầy đủ của thư viện** (API, hàm abstract, tài nguyên).
 >
-> Playbook này = **quy trình + catalog lỗi thực chiến**. Khi áp vào app mới: đọc playbook này trước, tra HUONG_DAN khi cần chi tiết.
+> Playbook này = **quy trình + catalog lỗi thực chiến**, đúc kết từ nhiều lần áp dụng thật. Khi áp
+> vào app mới: đọc playbook này trước, tra HUONG_DAN khi cần chi tiết; cách gọi ads xem `ADS.md`.
 
 ---
 
@@ -20,7 +19,7 @@ Config `ads_config` (`FirebaseRemoteConfigUtil.getAdsConfigValue`).
 1. Tạo `HostApplication : BaseApplication()` cấp icon/chuỗi/cấu hình.
 2. Cung cấp tài nguyên (drawable/string/array/màu/`default_ads_config.json`/`splash_loading.json`).
 3. Gỡ phần trùng của app (splash/language/consent/init-ads/notification…).
-4. Chuyển ads tự-gọi-GMA sang `Admob.getInstance()` của lib (xem `MIGRATE_ADS_TO_LIB.md`).
+4. Gọi ads qua `Admob.getInstance()` của lib — không tự gọi Google Mobile Ads SDK trực tiếp (xem `ADS.md`).
 
 ---
 
@@ -57,7 +56,7 @@ Config `ads_config` (`FirebaseRemoteConfigUtil.getAdsConfigValue`).
   Cách ít rủi ro: **giữ facade `RemoteConfigManager` cũ, đổi ruột** ủy quyền `FirebaseRemoteConfigUtil`;
   `getString` cho ad-unit → `getAdsConfigValue`, fallback `getString`. Đăng ký default app qua
   `setAppDefaultsFromXml(R.xml.config)` trong `HostApplication.onCreate()` SAU `super.onCreate()`.
-- **Ads:** theo `MIGRATE_ADS_TO_LIB.md` — xóa consent/MobileAds.init/AppOpen của app; native→`Admob.loadNativeAd`;
+- **Ads:** theo `ADS.md` §2 — xóa consent/MobileAds.init/AppOpen của app; native→`Admob.loadNativeAd`;
   inter→`Admob.loadAndShowInter`; giữ tầng điều phối; native full-screen giữ view custom + `setNativeAd`.
 - **Premium:** `GlobalAds.isPremiumUser` → `IAPUtils.isPremium()`.
 
@@ -200,5 +199,4 @@ C-2 SpinKit, C-5 mediation…), sửa, commit, rồi chạy lại `./push.sh bui
 ## G. THỨ TỰ FILE THAM CHIẾU
 1. **PLAYBOOK_TICH_HOP.md** (file này) — quy trình + lỗi.
 2. **HUONG_DAN_TICH_HOP.md** — spec lib đầy đủ (hàm abstract, tài nguyên, luồng runtime, IAP, RemoteConfig).
-3. **MIGRATE_ADS_TO_LIB.md** — công thức chuyển ads GMA → lib.
-4. **KE_HOACH_TICH_HOP.md** — ví dụ kế hoạch + rủi ro (case vga_49).
+3. **ADS.md** — kiến trúc/cách gọi/component tái dùng/pipeline firebase key/bài học vận hành ads.
