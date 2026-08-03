@@ -26,8 +26,7 @@
    encode/R8 thực chiến (namespace sai, manifest lệch rename, tên trùng Compose/API hệ thống,
    JNI/reflection thiếu keep-rule...), và checklist migrate chuẩn này sang app khác.
 6. **[`PROGUARD_SDK_RECIPES.md`](PROGUARD_SDK_RECIPES.md)** — công thức proguard cho SDK phổ biến
-   (CameraX/Media3/Room/Maps/Retrofit/WebRTC/libpag/OpenCV...), tách riêng để cập nhật độc lập với
-   `ENCODE_R8_STANDARD.md`.
+   (CameraX/Media3/Room/Maps/Retrofit/WebRTC/libpag/OpenCV...)
 
 ## Nguyên tắc xuyên suốt (áp dụng mọi app dùng lib này)
 
