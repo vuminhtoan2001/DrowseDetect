@@ -1,8 +1,9 @@
-// rename-code-symbols.js
+// rename-code-symbols.js — LÕI DÙNG CHUNG, không sửa khi clone app mới (xem rename-config-global.js).
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const config = require("./rename-config-global");
+const safeSkipBase = require("./safe-skip-base");
 
 // ✅ Tách riêng mapping theo loại
 const classMappings = new Map();
@@ -17,34 +18,12 @@ const outputPath = config.codeSymbolsOutputFile;
 const RANDOM_SALT = config.RANDOM_SALT;
 const HASH_LENGTH = config.HASH_LENGTH;
 
-const IGNORE_NAMES = new Set([
-  "main",
-  "Application",
-  "MyApplication",
-  "BuildConfig",
-  "R",
-  "Manifest",
-  "AppModule",
-  // Các từ trùng segment package/class của thư viện ngoài (com.brian.*/com.nlbn.*/androidx.*)
-  // — nếu đổi tên sẽ làm hỏng import (vd com.brian.base_application.language → ...f9eef09).
-  "language",
-  "device",
-  "Device",
-  "iap",
-  "start",
-  "base",
-  "util",
-  "utils",
-  "ads",
-  "callback",
-  "nativead",
-  // Phòng vệ thêm: segment gốc của package thư viện ngoài (androidx.*/java.*/kotlin.*/kotlinx.*
-  // /com.*/google.*) — nếu một extension-function bị parse sai receiver (xem regex EXT_FUN_RE)
-  // hoặc lọt qua fix, các tên này KHÔNG BAO GIỜ được rename vì sẽ phá import trên toàn project.
-  "androidx",
-  "java",
-  "kotlin",
-  "kotlinx",
+// Tên hàm/class/segment package KHÔNG BAO GIỜ rename — gộp danh sách lõi dùng chung
+// (safe-skip-base.js) + danh sách riêng của app này (rename-config-global.js →
+// SAFE_SKIP_APP_SPECIFIC). KHÔNG thêm tên mới trực tiếp vào đây — thêm vào 1 trong 2 file config.
+const SAFE_SKIP_NAMES = new Set([
+  ...safeSkipBase.SAFE_SKIP_BASE,
+  ...(config.SAFE_SKIP_APP_SPECIFIC || []),
 ]);
 
 // Ngưỡng độ dài tối thiểu để 1 symbol được rename. Symbol quá ngắn (1-2 ký tự, vd hàm `m()`,
@@ -52,108 +31,6 @@ const IGNORE_NAMES = new Set([
 // updateReferences() replace theo `\bOLD\b` toàn văn bản — gây hỏng comment (vd "thêm" → "thêm"
 // với "m" bị thay bằng hash, ra "thêfcebc90"). An toàn hơn là bỏ qua rename cho các tên quá ngắn.
 const MIN_RENAMABLE_NAME_LENGTH = 3;
-
-const SAFE_SKIP_NAMES = new Set([
-  "loadAd",
-  "showPrivacyOptionsForm",
-  "show",
-  "getInstance",
-  "init",
-  "onCreate",
-  "onResume",
-  "onPause",
-  "onStop",
-  "onDestroy",
-  "onNewToken",
-  "onMessageReceived",
-  "onReceive",
-  "provideSharedPreferences",
-  "provideAppDatabase",
-  "provideWifiScanHistoryDao",
-  "provideDeviceInfoDao",
-  "provideWifiScanHistoryRepository",
-  "provideDeviceInfoRepository",
-  "provideCoroutineScope",
-  "LoadingViewModel",
-  "View",
-  "ViewParent",
-  "Int",
-  "Currency",
-  "String",
-  "Context",
-  "Splash",
-  "Setting",
-  "Intro",
-  "Permission",
-  "Language",
-  "Uninstall",
-  "MainUiState",
-  "interface",
-  "findViewById",
-  "isShowing",
-  "show",
-  "dismiss",
-  "Type",
-  "Preview",
-  "PreviewView",
-  "remove",
-  "clear",
-  "contains",
-  "TabItem",
-  "BrightSpotAnalyzer",
-  "analyze",
-  "release",
-  "BlendMode",
-  "destroy",
-  "start",
-  "hide",
-  "startForegroundService",
-  "startForeground",
-  "startService",
-  "resume",
-  "stop",
-  "pause",
-  "setEnabled",
-  "isEnabled",
-  "isPlaying",
-  "setVolume",
-  "LoadingDialog",
-  "loadPAGFile",
-  "setVolume",
-  "updateLocale",
-  "startConnection",
-  "retryConnection",
-  "Product",
-  "Error",
-  "FileData",
-  "for",
-  "processPurchases",
-  "launchBillingFlow",
-  "handlePurchaseUpdates",
-  "acknowledgePurchase",
-  "fromJson",
-  "createNotificationChannel",
-  "cancelNotification",
-  "cancelAllNotifications",
-  "scheduleAlarm",
-  "cancelAlarm",
-  "doInBackground",
-  "Theme",
-  "register",
-  "unregister",
-  "logAdRevenue",
-  "MainActivity",
-  "AdActivity",
-  // Trùng tên thật với hàm/class của thư viện ngoài — rename bừa bãi sẽ phá luôn chỗ gọi thư viện
-  // (phát hiện qua test build R8 thật, không đoán trước được hết bằng regex/blacklist tĩnh):
-  "insert",       // app tự khai fun insert() trong DAO — TRÙNG android.content.ContentResolver.insert()/
-                  // SQLite insert() dùng ở nơi khác trong app (MediaStore lưu ảnh vào gallery)
-  "save",         // app tự khai fun save() trong 3 ViewModel — TRÙNG các API "save" khác trong code
-  "decode",       // app tự khai fun decode() trong CollageViewModel — TRÙNG java.net.URLDecoder
-                  // .decode()/android.net.Uri.decode() dùng ở InstallReferrerHelper/AppNavHost
-  "SolidColor",   // data class SolidColor(...) của app TRÙNG tên androidx.compose.ui.graphics.SolidColor
-                  // (Brush constructor) — rename phá luôn moi noi dung Compose SolidColor(...) that
-]);
 
 function shouldSkipRename(name) {
   if (SAFE_SKIP_NAMES.has(name)) return true;
@@ -301,7 +178,6 @@ function processFile(filePath) {
       continue;
     }
 
-    if (IGNORE_NAMES.has(oldName)) continue;
     if (shouldSkipRename(oldName)) continue;
 
     const mapping = getMappingByType(type);

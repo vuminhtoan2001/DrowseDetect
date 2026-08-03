@@ -264,8 +264,10 @@ function updateReferences() {
     for (const [oldKey, newKey] of listKey) {
       // @string/key trong XML
       const xmlRegex = new RegExp(`@string/${oldKey}\\b`, "g");
-      // R.string.key trong code
-      const codeRegex = new RegExp(`R\\.string\\.${oldKey}\\b`, "g");
+      // R.string.key trong code — negative lookbehind (?<!android\.) loại trừ
+      // `android.R.string.*` (resource hệ thống, KHÔNG phải resource của app) khỏi bị rename nhầm
+      // nếu app từng đặt tên string trùng tên resource hệ thống (vd "cancel"/"ok"/"yes"/"no").
+      const codeRegex = new RegExp(`(?<!android\\.)R\\.string\\.${oldKey}\\b`, "g");
 
       if (xmlRegex.test(content) || codeRegex.test(content)) {
         content = content.replace(xmlRegex, `@string/${newKey}`);

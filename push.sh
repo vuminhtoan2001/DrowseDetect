@@ -22,24 +22,22 @@ PUSH_BRANCH="androidsdkads"
 BUILD_PUSH_BRANCH="main"
 TARGET="${1:-both}"
 
-# LƯU Ý: KHÔNG hash config key (rename-config-key) vì app đọc key động
+# Danh sách bước bật/tắt qua rename-config-global.js -> pipeline (KHÔNG sửa ở đây nữa — xem
+# encode-scripts/rename-all.js). Mặc định renameConfigKey TẮT vì app đọc key Remote Config động
 # (getBoolean("${placement}_enable"), getInt("${p}_ratio")) → hash sẽ làm release đọc trượt key
 # → tắt hết ads. Giữ config key readable ở cả config.xml + code + firebase.
-ENCODE_SCRIPTS=(
-    rename-drawables.js
-    rename-languages.js
-    rename-file.js
-    rename-code-symbols.js
-)
 
-# Tất cả file cần copy tạm ra root để chạy
+# Tất cả file cần copy tạm ra root để chạy (rename-all.js gọi các script còn lại bằng đường dẫn
+# tương đối cùng thư mục, nên phải copy đủ TOÀN BỘ, không chỉ script nào đang bật trong pipeline)
 TEMP_FILES=(
     rename-config-global.js
     rename-config-key.js
+    safe-skip-base.js
     rename-drawables.js
     rename-file.js
     rename-languages.js
     rename-code-symbols.js
+    rename-all.js
     reverse.js
     package.json
 )
@@ -138,13 +136,14 @@ push_build_tool() {
     step "Copy script mã hóa ra root"
     copy_scripts_to_root
 
-    # ── BƯỚC 3: Chạy mã hóa ──────────────────────────────────────────────────
+    # ── BƯỚC 3: Chạy mã hóa (rename-all.js — thứ tự bước cố định, xem comment trong file đó) ──
     step "Chạy mã hóa code"
-    for script in "${ENCODE_SCRIPTS[@]}"; do
-        echo "    → node $script"
-        (cd "$REPO_ROOT" && node "$script") || warn "$script thất bại, tiếp tục..."
-    done
+    # KHÔNG dùng "|| warn ... tiếp tục" như trước: nếu 1 bước rename lỗi giữa chừng, code đã ở
+    # trạng thái rename DỞ DANG (một phần file/class đã đổi tên, phần khác chưa) — chạy tiếp bước
+    # sau chỉ làm hỏng thêm. rename-all.js tự dừng ngay khi có bước lỗi (exit code != 0) — để
+    # _cleanup phía dưới tự reverse toàn bộ về bản gốc, đúng với mục đích cờ encode_done.
     encode_done=true
+    (cd "$REPO_ROOT" && node rename-all.js) || die "Mã hoá thất bại — xem log ở trên. Code sẽ được reverse."
     # Lúc này: code đã bị rename, keychange*.json đã có → reverse.js có thể hoạt động
 
     # ── BƯỚC 4: BUILD TEST ────────────────────────────────────────────────────

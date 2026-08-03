@@ -6,6 +6,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose") version "2.1.20"
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    alias(libs.plugins.roborazzi) // screenshot testing — xem docs/UI_FIDELITY_WORKFLOW.md
 }
 
 android {
@@ -43,6 +44,7 @@ android {
             isShrinkResources = true        // BẮT BUỘC (đi cặp với minifyEnabled)
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules-base.pro", // lõi dùng chung — xem docs/integration/16_ENCODE_R8_STANDARD.md
                 "proguard-rules.pro"
             )
         }
@@ -67,6 +69,15 @@ android {
     }
     hilt {
         enableAggregatingTask = false
+    }
+    // Roborazzi screenshot testing (unit test JVM, không cần emulator) — xem docs/UI_FIDELITY_WORKFLOW.md
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+            all {
+                it.systemProperties["robolectric.pixelCopyRenderMode"] = "hardware"
+            }
+        }
     }
 }
 
@@ -93,6 +104,13 @@ dependencies {
     implementation(libs.material)
 
     testImplementation(libs.junit)
+    // Roborazzi screenshot testing — render Composable ra PNG trên JVM, không cần emulator/device.
+    testImplementation(libs.roborazzi)
+    testImplementation(libs.roborazzi.compose)
+    testImplementation(libs.roborazzi.junit.rule)
+    testImplementation(libs.robolectric)
+    testImplementation(platform(libs.androidx.compose.bom))
+    testImplementation(libs.androidx.ui.test.junit4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

@@ -25,6 +25,15 @@ reviewKtx = "2.0.2"
 billingKtx = "8.0.0"
 material = "1.13.0"
 
+# Screenshot testing (UI-fidelity workflow — xem docs/UI_FIDELITY_WORKFLOW.md).
+# Roborazzi PIN Ở 1.60.0 (không phải bản mới nhất 1.70.0): từ 1.61.0 trở đi lib được build bằng
+# Kotlin 2.3.21 (metadata version 2.3.0) — không tương thích compiler Kotlin 2.1.20 của project này
+# ("Module was compiled with an incompatible version of Kotlin... expected version is 2.1.0").
+# 1.60.0 là bản mới nhất còn build bằng Kotlin 2.0.21 (metadata 2.0.0, tương thích ngược). Khi nào
+# project bump Kotlin lên >= 2.3.x mới nên gỡ pin này.
+roborazzi = "1.60.0"
+robolectric = "4.16.1"
+
 
 
 [libraries]
@@ -65,8 +74,14 @@ review-ktx = { group = "com.google.android.play", name = "review-ktx", version.r
 billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "billingKtx" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 
+roborazzi = { group = "io.github.takahirom.roborazzi", name = "roborazzi", version.ref = "roborazzi" }
+roborazzi-compose = { group = "io.github.takahirom.roborazzi", name = "roborazzi-compose", version.ref = "roborazzi" }
+roborazzi-junit-rule = { group = "io.github.takahirom.roborazzi", name = "roborazzi-junit-rule", version.ref = "roborazzi" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
+
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 dagger-hilt-android = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }

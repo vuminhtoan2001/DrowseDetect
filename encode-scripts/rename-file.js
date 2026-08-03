@@ -1,8 +1,9 @@
-// rename-file.js
+// rename-file.js — LÕI DÙNG CHUNG, không sửa khi clone app mới (xem rename-config-global.js).
 const fs = require("fs");
 const path = require("path");
 const crypto = require("crypto");
 const config = require("./rename-config-global");
+const safeSkipBase = require("./safe-skip-base");
 
 const projectManifest = path.resolve(
   __dirname,
@@ -21,40 +22,18 @@ const PROTECTED_PATH = PROTECTED_PACKAGE_ROOT.replace(/\./g, path.sep);
 
 const outputFile = config.fileChangeOutputFile;
 
-// ✅ Danh sách tên folder được bảo vệ (không đổi tên, nhưng nội dung bên trong vẫn đổi)
+// ✅ Danh sách tên folder được bảo vệ (không đổi tên, nhưng nội dung bên trong vẫn đổi) — gộp
+// segment của BASE_NAMESPACE (per-app) + danh sách lõi dùng chung (safe-skip-base.js) + danh sách
+// riêng của app này (rename-config-global.js → PROTECTED_FOLDER_NAMES_APP_SPECIFIC).
 const PROTECTED_FOLDER_NAMES = new Set([
   ...config.BASE_NAMESPACE.split("."),
-  "Color",
-  "com",
-  "smartbudget",
-  "trackermoney",
-  "res",
-  "values",
-  "layout",
-  "drawable",
-  "mipmap",
-  "menu",
-  "xml",
-  "raw",
-  "assets",
-  "keystore",
-  "Type",
-  "ui",
-  "theme",
-  // Thêm các folder khác cần bảo vệ ở đây
+  ...safeSkipBase.PROTECTED_FOLDER_NAMES_BASE,
+  ...(config.PROTECTED_FOLDER_NAMES_APP_SPECIFIC || []),
 ]);
-// bảo vệ cả folde và file ở trong
+// bảo vệ cả folder và file ở trong — gộp tương tự
 const PROTECTED_FOLDER_AND_FILE = new Set([
-  "dao",
-  "database",
-  "core",
-  "data",
-  "Color",
-  "Type",
-  "Success",
-  "Theme",
-  "MainActivity",
-  "AdActivity"
+  ...safeSkipBase.PROTECTED_FOLDER_AND_FILE_BASE,
+  ...(config.PROTECTED_FOLDER_AND_FILE_APP_SPECIFIC || []),
 ]);
 
 // Maps để lưu mapping

@@ -127,7 +127,9 @@ fun AppNavHost(
                 title = "Edit Photo",
                 multiSelect = false,
                 onBack = ::goBack,
-                onConfirm = { picked -> navController.navigate(Screen.editPhotoEditor(picked.first())) { popUpTo(Screen.EditPhotoPicker.route) { inclusive = true } } },
+                // KHÔNG popUpTo picker — giữ nguyên trong back stack để bấm "Close" ở Edit Photo
+                // quay lại đúng màn chọn ảnh này (thay vì rơi thẳng về Home).
+                onConfirm = { picked -> navController.navigate(Screen.editPhotoEditor(picked.first())) },
             )
         }
         composable(
@@ -148,7 +150,9 @@ fun AppNavHost(
                 title = "Collage Maker",
                 multiSelect = true,
                 onBack = ::goBack,
-                onConfirm = { picked -> navController.navigate(Screen.collageEditor(picked)) { popUpTo(Screen.CollagePicker.route) { inclusive = true } } },
+                // Tương tự Edit Photo — không popUpTo picker, để "Close" ở Collage Maker quay lại
+                // đúng màn chọn ảnh.
+                onConfirm = { picked -> navController.navigate(Screen.collageEditor(picked)) },
             )
         }
         composable(

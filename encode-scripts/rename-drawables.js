@@ -129,8 +129,10 @@ function updateReferences() {
     for (const [oldKey, newKey] of entries) {
       // @drawable/oldKey trong XML
       const xmlRegex = new RegExp(`@drawable/${oldKey}\\b`, "g");
-      // R.drawable.oldKey trong code
-      const codeRegex = new RegExp(`R\\.drawable\\.${oldKey}\\b`, "g");
+      // R.drawable.oldKey trong code — negative lookbehind (?<!android\.) loại trừ
+      // `android.R.drawable.*` (resource hệ thống, KHÔNG phải resource của app) khỏi bị rename
+      // nhầm nếu app từng đặt tên drawable trùng tên resource hệ thống (vd "cancel"/"ok").
+      const codeRegex = new RegExp(`(?<!android\\.)R\\.drawable\\.${oldKey}\\b`, "g");
 
       if (xmlRegex.test(content) || codeRegex.test(content)) {
         content = content.replace(xmlRegex, `@drawable/${newKey}`);

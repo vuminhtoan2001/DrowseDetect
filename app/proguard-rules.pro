@@ -1,67 +1,24 @@
-# ===========================================
-# GOOGLE PLAY BILLING
-# ===========================================
--keep class com.android.billingclient.api.** { *; }
--keep class com.android.billingclient.** { *; }
--keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
-}
+# ============================================================================
+# proguard-rules.pro — Rule RIÊNG của vga52a-kotlin (Camera Studio: chụp ảnh/video, chỉnh sửa ảnh,
+# collage, wallpaper, thư viện).
+#
+# Rule dùng chung cho mọi app (base-application AAR, Billing, AdMob mediation, Gson, Crashlytics)
+# đã tách sang `proguard-rules-base.pro` (xem `proguardFiles(...)` trong app/build.gradle.kts) —
+# KHÔNG lặp lại ở đây. File này chỉ giữ rule cho SDK/model ĐẶC THÙ của app này.
+#
+# Khi clone sang app mới: xoá hết nội dung dưới đây, chỉ giữ 3 dòng comment trên + thêm rule cho SDK
+# riêng của app mới (xem "công thức" cho SDK phổ biến ở docs/integration/16_ENCODE_R8_STANDARD.md).
+# ============================================================================
 
-# =====================================================================
-# Tích hợp base-application (ads/IAP/notification của thư viện)
-# =====================================================================
-# --- Thư viện (đã có consumer rules trong AAR, giữ thêm cho chắc) ---
--keep class com.nlbn.** { *; }
--keep class com.brian.** { *; }
--keep class com.google.android.gms.ads.nativead.** { *; }
-
-# --- AdMob mediation (Meta/Facebook Audience Network) — nạp bằng reflection ---
--keep class com.google.ads.mediation.** { *; }
--keep class com.facebook.ads.** { *; }
--dontwarn com.facebook.ads.**
--dontwarn com.facebook.ads.internal.**
-
-# --- Gson: giữ generic signature + TypeToken + field @SerializedName ---
--keepattributes Signature, InnerClasses, EnclosingMethod, *Annotation*
--keep,allowobfuscation,allowshrinking class * extends com.google.gson.reflect.TypeToken
--keepclassmembers,allowobfuscation class * {
-    @com.google.gson.annotations.SerializedName <fields>;
-}
-
-# --- Model / data của app (Room entities + DTO Gson/Retrofit) ---
+# --- Model / data của app (Room entities + DTO Gson) ---
 -keep class com.camera.studio.photoeditor.data.** { *; }
 
-# --- jsoup (Play Store version scrape) ---
--keep class org.jsoup.** { *; }
--dontwarn org.jsoup.**
-
-# --- Retrofit (giữ generic signature — theo NOTES_vga48 §B.1; cần khi R8 + Retrofit/Gson) ---
--keepattributes Exceptions, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations, AnnotationDefault
--dontwarn retrofit2.**
--keep,allowobfuscation,allowshrinking class retrofit2.Response
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
--if interface * { @retrofit2.http.* <methods>; }
--keep,allowoptimization,allowobfuscation,allowshrinking interface <1>
-
-# --- Crashlytics: giữ stack trace đọc được ---
--keepattributes SourceFile,LineNumberTable
-
-# --- Cảnh báo lành tính ---
--dontwarn de.hdodenhof.circleimageview.**
-
-# =====================================================================
-# CameraX / Media3 / Google Maps / Room (app camera GPS-stamp — vga34d)
-# =====================================================================
+# --- CameraX / Media3 / Room (chụp ảnh-video + burn overlay + lưu lịch sử) ---
 -keep class androidx.camera.** { *; }
 -dontwarn androidx.camera.**
 
 -keep class androidx.media3.** { *; }
 -dontwarn androidx.media3.**
-
--keep class com.google.android.gms.maps.** { *; }
--keep class com.google.maps.android.** { *; }
--dontwarn com.google.android.gms.maps.**
 
 -keep class androidx.room.** { *; }
 -keep @androidx.room.Entity class * { *; }
