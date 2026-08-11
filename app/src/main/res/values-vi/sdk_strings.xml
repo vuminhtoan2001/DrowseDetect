@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature5_text">Xóa tất cả quảng cáo</string>
+    <string name="feature2_text">Quét &amp; tạo không giới hạn</string>
+    <string name="feature3_text">Nhanh, không gián đoạn</string>
+    <string name="feature4_text">Kiểu QR cao cấp</string>
+    <string name="feature1_text">Hỗ trợ ưu tiên</string>
+
+    <string name="sdk_noti_title">Bật thông báo</string>
+    <string name="sdk_noti_content">Cho phép thông báo để nhận nhắc quét và cập nhật.</string>
+
+    <string name="sdk_new_file_content">Đã phát hiện mã QR mới</string>
+    <string name="sdk_screenshot_title">Quét mã QR trong ảnh chụp màn hình?</string>
+    <string name="sdk_recent_title">Quét gần đây</string>
+    <string name="sdk_daily_content">Quét hoặc tạo mã QR hôm nay</string>
+    <string name="sdk_check_now">Kiểm tra ngay</string>
+    <string name="sdk_fullscreen_1">Trình quét QR</string>
+    <string name="sdk_fullscreen_2">Chạm để quét mã QR</string>
+    <string name="sdk_out_app_title">Trình quét QR</string>
+    <string name="sdk_out_app_content">Mở để quét hoặc tạo mã QR</string>
+
+    <string-array name="notification_title2">
+        <item>Quét mã QR</item>
+        <item>Kết nối Wi-Fi</item>
+        <item>Lưu danh bạ</item>
+        <item>Tạo mã QR</item>
+        <item>Thêm sự kiện</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Quét mọi mã QR hoặc mã vạch tức thì</item>
+        <item>Quét QR Wi-Fi để kết nối nhanh</item>
+        <item>Quét thẻ liên hệ để lưu lại</item>
+        <item>Tạo mã QR của riêng bạn ngay</item>
+        <item>Quét QR lịch để thêm sự kiện</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Quét</item>
+        <item>Kết nối</item>
+        <item>Lưu</item>
+        <item>Tạo</item>
+        <item>Thêm</item>
+    </string-array>
+</resources>

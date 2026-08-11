@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature5_text">Rimuovi tutte le pubblicità</string>
+    <string name="feature2_text">Scansione e creazione illimitate</string>
+    <string name="feature3_text">Veloce, senza interruzioni</string>
+    <string name="feature4_text">Stili QR premium</string>
+    <string name="feature1_text">Supporto prioritario</string>
+
+    <string name="sdk_noti_title">Attiva le notifiche</string>
+    <string name="sdk_noti_content">Consenti le notifiche per promemoria di scansione e aggiornamenti.</string>
+
+    <string name="sdk_new_file_content">Rilevato un nuovo codice QR</string>
+    <string name="sdk_screenshot_title">Scansionare il codice QR nello screenshot?</string>
+    <string name="sdk_recent_title">Scansioni recenti</string>
+    <string name="sdk_daily_content">Scansiona o crea un codice QR oggi</string>
+    <string name="sdk_check_now">Controlla ora</string>
+    <string name="sdk_fullscreen_1">Scanner QR</string>
+    <string name="sdk_fullscreen_2">Tocca per scansionare un codice QR</string>
+    <string name="sdk_out_app_title">Scanner QR</string>
+    <string name="sdk_out_app_content">Apri per scansionare o creare codici QR</string>
+
+    <string-array name="notification_title2">
+        <item>Scansiona un codice QR</item>
+        <item>Connetti al Wi-Fi</item>
+        <item>Salva un contatto</item>
+        <item>Crea un codice QR</item>
+        <item>Aggiungi un evento</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Scansiona qualsiasi QR o codice a barre all\'istante</item>
+        <item>Scansiona un QR Wi-Fi per connetterti rapidamente</item>
+        <item>Scansiona una scheda contatto per salvarla</item>
+        <item>Crea ora il tuo codice QR</item>
+        <item>Scansiona un QR calendario per aggiungere eventi</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Scansiona</item>
+        <item>Connetti</item>
+        <item>Salva</item>
+        <item>Crea</item>
+        <item>Aggiungi</item>
+    </string-array>
+</resources>

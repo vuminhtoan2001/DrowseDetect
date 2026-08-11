@@ -1,45 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="baseapp_new_file_content">Sua nova foto está pronta</string>
-    <string name="baseapp_screenshot_title">Captura de tela feita — abrir Camera Studio</string>
-    <string name="baseapp_recent_title">Fotos criadas recentemente</string>
-    <string name="baseapp_open">Abrir</string>
-    <string name="baseapp_scan">Capturar</string>
-    <string name="baseapp_daily_open_content">Crie algo novo hoje com o Camera Studio</string>
-    <string name="baseapp_check_now">Abrir câmera</string>
-    <string name="baseapp_fullscreen_1">Capture o seu momento</string>
-    <string name="baseapp_fullscreen_2">Toque para abrir o Camera Studio agora</string>
-    <string name="baseapp_outapp_title">Camera Studio</string>
-    <string name="baseapp_outapp_content">Não se esqueça de editar suas fotos hoje — toque para abrir</string>
-
-    <string name="baseapp_noti_title">Ativar notificações</string>
-    <string name="baseapp_noti_content">Receba lembretes e dicas para editar suas fotos</string>
-
-    <string-array name="notification_title2">
-        <item>Capture o seu momento</item>
-        <item>Novo filtro para experimentar</item>
-        <item>Sua galeria sente sua falta</item>
-        <item>Crie uma colagem hoje</item>
-        <item>Novos modelos de papel de parede</item>
-    </string-array>
-    <string-array name="notification_message2">
-        <item>Tire uma foto agora</item>
-        <item>Experimente um novo filtro ou moldura</item>
-        <item>Confira suas fotos salvas</item>
-        <item>Combine suas melhores fotos em uma colagem</item>
-        <item>Transforme suas fotos em papéis de parede</item>
-    </string-array>
-    <string-array name="notification_button2">
-        <item>Capturar</item>
-        <item>Ver</item>
-        <item>Abrir</item>
-        <item>Criar</item>
-        <item>Explorar</item>
-    </string-array>
-
-    <string name="premium_feature1">Experiência sem anúncios</string>
-    <string name="premium_feature2">Desbloqueie todos os filtros</string>
-    <string name="premium_feature3">Desbloqueie todas as molduras</string>
-    <string name="premium_feature4">Exportação em HD</string>
-    <string name="premium_feature5">Suporte prioritário</string>
+    <string name="layout_language_header" formatted="false">Idioma</string>
+    <string name="ME_LINK" formatted="false">Me Link</string>
+    <string name="CUSTOMIZE_QRCODE" formatted="false">Personalizar código QR</string>
+    <string name="rateApp" formatted="false">Avaliar a aplicação</string>
+    <string name="export" formatted="false">Exportar</string>
+    <string name="notiSub" formatted="false">Mostrar alertas</string>
+    <string name="intro3Sub" formatted="false">Insira os detalhes e gere um código personalizado
+        facilmente</string>
+    <string name="DONE" formatted="false">Feito</string>
+    <string name="saving_image" formatted="false">A guardar a imagem...</string>
+    <string name="GENERAL_SETTINGS" formatted="false">Definições Gerais</string>
+    <string name="i8f46e6" formatted="false">Experiência sem anúncios</string>
+    <string name="CALL" formatted="false">Ligar</string>
+    <string name="tip90" formatted="false">Orientação 90°</string>
+    <string name="light" formatted="false">Luz</string>
+    <string name="cb0af4" formatted="false">por mês</string>
+    <string name="update_isReady_title" formatted="false">Nova atualização disponível</string>
+    <string name="END" formatted="false">Fim</string>
+    <string name="SEND_SMS" formatted="false">Enviar SMS</string>
+    <string name="OPEN" formatted="false">Abrir</string>
+    <string name="layout_button_send" formatted="false">Enviar</string>
+    <string name="PRIVACY_POLICY" formatted="false">Política de Privacidade</string>
+    <string name="CONTACT_US" formatted="false">Contacte-nos</string>
+    <string name="update_isReady_mss" formatted="false">Por favor, reinicie a aplicação para
+        atualizar!</string>
+    <string name="EMAIL_ADDRESS" formatted="false">Endereço de Email</string>
+    <string name="share_message" formatted="false">Aplicação rápida e prática para criar e ler
+        códigos QR, disponível agora na Google Play!</string>
+    <string name="egwthe" formatted="false">Depois disso</string>
+    <string name="continue_str" formatted="false">Continuar</string>
+    <string name="PLEASE_ENTER_SOMETHING" formatted="false">Por favor, introduza algo</string>
+    <string name="INSTAGRAM" formatted="false">Instagram</string>
+    <string name="ME_USERNAME" formatted="false">Nome de Utilizador Me</string>
+    <string name="intro3" formatted="false">Crie o seu QR &amp; Código de barras</string>
+    <string name="LINK" formatted="false">Link</string>
+    <string name="SAVE_IMAGE" formatted="false">Guardar Imagem</string>
+    <string name="manualScan" formatted="false">Digitalização manual</string>
+    <string name="prev" formatted="false">Anterior</string>
+    <string name="CLEAR_FILTER" formatted="false">Limpar Filtro</string>
+    <string name="SONG_NAME" formatted="false">Nome da Música</string>
+    <string name="delete_history_success" formatted="false">Histórico eliminado com sucesso!</string>
+    <string name="perCameraSub" formatted="false">Digitalizar código QR</string>
+    <string name="TITLE" formatted="false">Título</string>
+    <string name="CLIPBOARD" formatted="false">Área de Transferência</string>
+    <string name="OPEN_BROWSER" formatted="false">Abrir navegador</string>
+    <string name="j9c4c14">Experimente grátis por %1$s dias</string>
+    <string name="YOUTUBE_URL" formatted="false">URL do YouTube</string>
+    <string name="VIDEO_ID" formatted="false">ID do Vídeo</string>
+    <string name="Utilitles" formatted="false">Utilitários</string>
+    <string name="next" formatted="false">Seguinte</string>
+    <string name="scanningTips" formatted="false">Dicas de digitalização</string>
+    <string name="SHOW_ON_MAP" formatted="false">Mostrar no mapa</string>
+    <string name="CREATE" formatted="false">Criar</string>
+    <string name="Social" formatted="false">Social</string>
+    <string name="CLEAR_HISTORY" formatted="false">Limpar Histórico</string>
+    <string name="ledDark" formatted="false">LED no escuro</string>
+    <string name="SAVE" formatted="false">Guardar</string>
+    <string name="COPY_TO_CLIPBOARD" formatted="false">Copiado para a área de transferência</string>
+    <string name="layout_do_you_like" formatted="false">Você gosta</string>
+    <string name="COPY_PASSWORD" formatted="false">Copiar palavra-passe</string>
+    <string name="uninstall" formatted="false">Desinstalar</string>
+    <string name="TEXT_EMPTY_FORM" formatted="false">Por favor, introduza algo</string>
+    <string name="aw1" formatted="false">Difícil de usar</string>
+    <string name="SETTINGS" formatted="false">Definições</string>
+    <string name="intro2" formatted="false">Construa o seu histórico de digitalizações</string>
+    <string name="g6dd514" formatted="false">Não será cobrado durante o período de teste e pode
+        cancelar a qualquer momento. Ao continuar, concorda com a nossa Política de Privacidade e
+        Termos de Utilização. Para gerir, pausar ou cancelar a sua subscrição, aceda às Definições
+        na Google Play.</string>
+    <string name="ALLDAY" formatted="false">Dia Inteiro</string>
+    <string name="BIRTHDAY" formatted="false">Data de Nascimento</string>
+    <string name="ADDRESS" formatted="false">Morada</string>
+    <string name="scan" formatted="false">Digitalizar</string>
+    <string name="note" formatted="false">Nota</string>
+    <string name="scanControl" formatted="false">Controlo de digitalização</string>
+    <string name="SAVE_CUSTOMIZE" formatted="false">Guardar Personalização</string>
+    <string name="SPOTIFY" formatted="false">Spotify</string>
+    <string name="ORG" formatted="false">Organização</string>
+    <string name="newVersion_isReady_mss" formatted="false">Por favor, atualize a aplicação para
+        continuar a usar!</string>
+    <string name="TITLE_CREATE" formatted="false">Gerador de Códigos QR</string>
+    <string name="start" formatted="false">Começar</string>
+    <string name="ConnectionSuccessful" formatted="false">Conexão bem‑sucedida</string>
+    <string name="TEL" formatted="false">Telefone</string>
+    <string name="CALENDAR" formatted="false">Calendário</string>
+    <string name="perCamera" formatted="false">Câmara</string>
+    <string name="lowContrast" formatted="false">Baixo contraste</string>
+    <string name="g672873" formatted="false">Anual</string>
+    <string name="tipOther" formatted="false">Outra orientação</string>
+    <string name="APPLY" formatted="false">Aplicar</string>
+    <string name="scanImage" formatted="false">Digitalizar imagem</string>
+    <string name="CHANNEL_ID" formatted="false">ID do Canal</string>
+    <string name="permission" formatted="false">Permissão</string>
+    <string name="NAME" formatted="false">Nome</string>
+    <string name="CONNECT_TO_WIFI" formatted="false">Ligar ao Wi-Fi</string>
+    <string name="FEEDBACK" formatted="false">Feedback</string>
+    <string name="TEXT" formatted="false">Texto</string>
+    <string name="COPY" formatted="false">Copiar</string>
+    <string name="import_str" formatted="false">Importar</string>
+    <string name="policy" formatted="false">Política de Privacidade</string>
+    <string name="share_success" formatted="false">Partilha bem-sucedida</string>
+    <string name="aw3" formatted="false">Demasiados anúncios</string>
+    <string name="ADD_TO_EVENTS" formatted="false">Adicionar aos Eventos</string>
+    <string name="vibrate" formatted="false">Vibrar</string>
+    <string name="newVersion_isReady_title" formatted="false">Nova versão disponível</string>
+    <string name="tip0" formatted="false">Orientação 0°</string>
+    <string name="noti" formatted="false">Notificação</string>
+    <string name="YES" formatted="false">Sim</string>
+    <string name="perSub" formatted="false">A app requer permissão para usar a câmara e notificações</string>
+    <string name="saved_customize_success" formatted="false">Personalização guardada!</string>
+    <string name="update_isReady_btn_update" formatted="false">Atualizar</string>
+    <string name="WEBSITE" formatted="false">Website</string>
+    <string name="tooClose" formatted="false">Demasiado perto / desfocado</string>
+    <string name="Personal" formatted="false">Pessoal</string>
+    <string name="share_cancel" formatted="false">Cancelar partilha</string>
+    <string name="SAVE_OPTION" formatted="false">Opção de Guardar</string>
+    <string name="saved_image_success" formatted="false">Imagem guardada na biblioteca com sucesso!</string>
+    <string name="layout_share_btn_label" formatted="false">Partilhar aplicação</string>
+    <string name="ENTER" formatted="false">Introduzir</string>
+    <string name="DESCRIPTION" formatted="false">Descrição</string>
+    <string name="FILTER_HISTORY" formatted="false">Filtrar Histórico</string>
+    <string name="NO" formatted="false">Não</string>
+    <string name="intro2Sub" formatted="false">Capture, armazene e organize cada código digitalizado
+        de forma inteligente</string>
+    <string name="CONTACTS" formatted="false">Contactos</string>
+    <string name="aw4" formatted="false">Não é útil</string>
+    <string name="f5776c5" formatted="false">Ano</string>
+    <string name="manualScanSub" formatted="false">Evitar digitalizações acidentais</string>
+    <string name="EMAIL" formatted="false">Email</string>
+    <string name="INVALID_PHONE" formatted="false">Número de telefone inválido</string>
+    <string name="textSplash" formatted="false">Esta ação pode conter anúncios</string>
+    <string name="layout_thanks" formatted="false">Obrigado pela avaliação</string>
+    <string name="CUSTOMIZE" formatted="false">Personalizar</string>
+    <string name="lightOrDark" formatted="false">Claro ou escuro</string>
+    <string name="autoScanSub" formatted="false">Ignorar ação após a digitalização</string>
+    <string name="intro1Sub" formatted="false">Digitalize códigos QR instantaneamente onde estiver</string>
+    <string name="selected" formatted="false">Selecionado</string>
+    <string name="VIBER" formatted="false">Viber</string>
+    <string name="SCAN" formatted="false">Scan</string>
+    <string name="close" formatted="false">Fechar</string>
+    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">Copiar automaticamente para a área de
+        transferência</string>
+    <string name="autoOpen" formatted="false">Abrir a página web automaticamente</string>
+    <string name="intro1" formatted="false">Digitalização QR rápida</string>
+    <string name="aw5" formatted="false">Outro motivo</string>
+    <string name="SHARE" formatted="false">Partilhar</string>
+    <string name="intro4" formatted="false">Digitalização multi-código</string>
+    <string name="START" formatted="false">Início</string>
+    <string name="SECURITY_MODE" formatted="false">Modo de Segurança</string>
+    <string name="loadingAds" formatted="false">Carregando anúncios</string>
+    <string name="intro4Sub" formatted="false">Ideal para digitalizar vários códigos durante tarefas
+        de recolha de dados</string>
+    <string name="titleuninstall" formatted="false">Por que desinstalou a aplicação?</string>
+    <string name="NOTE" formatted="false">Nota</string>
+    <string name="ConnectionFailed" formatted="false">Falha na conexão</string>
+    <string name="duplicateCodeSub" formatted="false">Guardar códigos de barras duplicados no
+        histórico</string>
+    <string name="USERNAME" formatted="false">Nome de Utilizador</string>
+    <string name="i874505" formatted="false">Mensal</string>
+    <string name="FACEBOOK_PROFILE" formatted="false">Perfil do Facebook</string>
+    <string name="FACEBOOK_ID" formatted="false">ID do Facebook</string>
+    <string name="TWITTER" formatted="false">Twitter</string>
+    <string name="CANCEL" formatted="false">Cancelar</string>
+    <string name="MYCARD" formatted="false">Meu Cartão</string>
+    <string name="TEXT_MESSAGE" formatted="false">Mensagem de Texto</string>
+    <string name="DATA_EMPTY" formatted="false">Dados vazios</string>
+    <string name="MAXIMUM_MESSAGE" formatted="false">Selecionou o número máximo permitido de meios</string>
+    <string name="requestCamera" formatted="false">Solicitar acesso</string>
+    <string name="ARTIST_NAME" formatted="false">Nome do Artista</string>
+    <string name="NOTIFICATION" formatted="false">Notificação</string>
+    <string name="TAP_HERE_TO_CHANGE" formatted="false">Toque aqui para alterar</string>
+    <string name="ADD_TO_CONTACTS" formatted="false">Adicionar aos Contactos</string>
+    <string name="NETWORK_NAME" formatted="false">Nome da Rede</string>
+    <string name="WiFI" formatted="false">Wi-Fi</string>
+    <string name="CONTENT" formatted="false">Conteúdo</string>
+    <string name="aw2" formatted="false">Aplicação não funciona</string>
+    <string name="LANGUAGE_OPTIONS" formatted="false">Opções de Idioma</string>
+    <string name="PAYPAL" formatted="false">Paypal</string>
+    <string name="share_image_success" formatted="false">Imagem partilhada com sucesso!</string>
+    <string name="PHONE_NUMBER" formatted="false">Número de Telefone</string>
+    <string name="HISTORY" formatted="false">Histórico</string>
+    <string name="update_isReady_btn_late" formatted="false">Mais tarde</string>
+    <string name="duplicateCode" formatted="false">Código de barras duplicado</string>
+    <string name="NONE" formatted="false">Nenhum</string>
+    <string name="NOT_FIND_QRCODE" formatted="false">Não foi encontrado nenhum código QR na imagem</string>
+    <string name="noPerCamera" formatted="false">Sem permissão para aceder à câmara</string>
+    <string name="search" formatted="false">Buscar</string>
+    <string name="cancelsubscriptions" formatted="false">Cancelar subscrição</string>
+    <string name="e6a423" formatted="false">Mês</string>
+    <string name="PASSWORD" formatted="false">Palavra-passe</string>
+    <string name="SMS" formatted="false">SMS</string>
+    <string name="SUB_DELETE" formatted="false">Tem a certeza de que deseja eliminar?</string>
+    <string name="SEND_EMAIL" formatted="false">Enviar Email</string>
+    <string name="af84d5" formatted="false">por ano</string>
+    <string name="autoScan" formatted="false">Digitalização contínua</string>
+    <string name="skip" formatted="false">Saltar</string>
+    <string name="HELP" formatted="false">Ajuda</string>
 </resources>

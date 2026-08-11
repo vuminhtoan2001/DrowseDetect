@@ -8,25 +8,25 @@
 
 ## Thứ tự đọc
 
-1. **[`PLAYBOOK_TICH_HOP.md`](PLAYBOOK_TICH_HOP.md)** — đọc đầu tiên của nhóm này. Quy trình 5 phase
-   tích hợp lib + catalog lỗi thực chiến (C-1 → C-11) + cách dùng `push.sh`.
-2. **[`HUONG_DAN_TICH_HOP.md`](HUONG_DAN_TICH_HOP.md)** — spec đầy đủ của lib (mọi hàm abstract phải
-   override, tài nguyên bắt buộc, luồng runtime Splash→Inter→Language→IAP→Home). Tra cứu chi tiết khi
-   `PLAYBOOK_TICH_HOP.md` không đủ.
-3. **[`ADS.md`](ADS.md)** — mọi thứ về quảng cáo trong 1 file: kiến trúc & cách gọi API lib (không tự
-   gọi Google Mobile Ads SDK), kịch bản tần suất (enable/ratio/max + native xen kẽ sau interstitial),
-   danh sách component "lõi ads" copy nguyên được sang app khác, pipeline gộp `firebase_key.json`, và
-   bài học vận hành thực chiến (⚠️ bắt buộc đọc trước khi đụng ads: log bị strip ở release, shimmer
-   kẹt, NO_FILL bình thường, encode gotchas, ký & remote).
-4. **[`INTRO_CHECK.md`](INTRO_CHECK.md)** — logic quyết định có hiện màn Intro hay không (đếm số
-   lần mở app + nguồn cài đặt qua InstallReferrer).
-5. **[`ENCODE_R8_STANDARD.md`](ENCODE_R8_STANDARD.md)** — ⚠️ **bắt buộc đọc trước khi chạy
+1. **[`PLAYBOOK_TICH_HOP.md`](PLAYBOOK_TICH_HOP.md)** — đọc đầu tiên của nhóm này. Build R8/release,
+   catalog lỗi build chung, test bằng adb, cách dùng `push.sh` (đẩy 2 remote). Không còn phần migrate
+   lib vào app cũ — base skeleton đã tích hợp sẵn.
+2. **[`ADS.md`](ADS.md)** — cách gọi ads có sẵn trong app (native/inter/native-sau-inter), setup lần
+   đầu khi clone app mới (test mode + key bắt buộc), quy ước key `_enable`/`_showRatio`/`_maxShowPerDay`.
+3. **[`COMMON_ACTIONS.md`](COMMON_ACTIONS.md)** — 5 pattern không phải ads nhưng dùng chung mọi app:
+   check update (Play Core, chỉ gọi ở Home), mở màn Language/IAP của lib, rate app (In-App Review), share app.
+4. **[`ENCODE_R8_STANDARD.md`](ENCODE_R8_STANDARD.md)** — ⚠️ **bắt buộc đọc trước khi chạy
    `push.sh build_tool`/`rename-all.js` lần đầu cho 1 app**: mô hình "chỉ 2-3 file cần sửa khi clone
    app mới" (`rename-config-global.js`/`rename-config-key.js`/`proguard-rules.pro`), catalog bug
    encode/R8 thực chiến (namespace sai, manifest lệch rename, tên trùng Compose/API hệ thống,
    JNI/reflection thiếu keep-rule...), và checklist migrate chuẩn này sang app khác.
-6. **[`PROGUARD_SDK_RECIPES.md`](PROGUARD_SDK_RECIPES.md)** — công thức proguard cho SDK phổ biến
-   (CameraX/Media3/Room/Maps/Retrofit/WebRTC/libpag/OpenCV...)
+5. **[`PROGUARD_SDK_RECIPES.md`](PROGUARD_SDK_RECIPES.md)** — checklist ngắn khi thêm 1 SDK mới hoặc
+   build bản có minify: 3 câu tự hỏi (JNI? reflection? model serialize?) để biết có cần thêm rule
+   không, không phải catalog recipe cho từng SDK cụ thể.
+
+> Đã xoá `HUONG_DAN_TICH_HOP.md` (spec đầy đủ của lib — không cần đọc lại khi base đã tích hợp sẵn) và
+> `INTRO_CHECK.md` (logic gate Intro đã chốt, baked sẵn trong skeleton — app mới chỉ đổi ảnh/title,
+> không cần đọc lại logic).
 
 ## Nguyên tắc xuyên suốt (áp dụng mọi app dùng lib này)
 

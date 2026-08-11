@@ -2,31 +2,53 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- ===== Quyền lib base-application yêu cầu (spec tích hợp §4.2) ===== -->
+    <!-- Quyền core dùng chung mọi app (khung sườn) -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- Chặn READ_MEDIA_* kể cả khi thư viện (Facebook/AppsFlyer…) tự merge vào, để tránh cảnh báo
+         "Invalid use of the photo and video permissions" trên Google Play — chỉ khai lại (xoá dòng
+         này) khi app thật cần đọc ảnh/video từ máy. -->
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
+    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" tools:node="remove" />
+
+    <!-- Quyền tính năng riêng của app (camera/wifi/storage/...) — thêm lại khi build tính năng thật,
+         không phải phần khung sườn. -->
+
+    <!-- SDK base-application yêu cầu (xem docs/integration/PLAYBOOK_TICH_HOP.md) -->
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <!-- ===== Quyền màn Permission (onboarding) — thêm quyền tính năng riêng (media/wallpaper/...)
-         khi bắt đầu 1 tính năng thật ===== -->
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
-        android:name=".MyApplication"
-        android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/logo"
+        android:name=".HostApplication"
+        android:allowBackup="false"
+        android:icon="@drawable/icon_app"
         android:label="@string/app_name"
+        android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
-        android:theme="@style/Theme.App"
-        tools:replace="android:allowBackup,android:dataExtractionRules,android:fullBackupContent"
-        tools:targetApi="31">
+        android:theme="@style/Theme.QrScanner"
+        tools:replace="android:theme,android:allowBackup">
 
+        <!-- SDK Splash là launcher → MainActivity KHÔNG khai MAIN/LAUNCHER (§4.4).
+             MainActivity = Home trả qua HostApplication.getHomeActivity(). -->
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.QrScanner" />
+
+        <!-- AppCompat lưu ngôn ngữ per-app trên Android < 13 -->
+        <service
+            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
+            android:enabled="false"
+            android:exported="false">
+            <meta-data
+                android:name="autoStoreLocales"
+                android:value="true" />
+        </service>
+
+        <!-- SDK: AdMob + Facebook meta-data (§4.3) -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="@string/admob_app_id" />
@@ -37,18 +59,6 @@
             android:name="com.facebook.sdk.ClientToken"
             android:value="@string/facebook_client_token" />
 
-        <!-- Launcher do thư viện base-application cung cấp (SplashActivity). MainActivity KHÔNG còn
-             MAIN/LAUNCHER; lib mở nó qua getHomeActivity() sau luồng Splash→Inter→Language→IAP. -->
-        <activity
-            android:name=".core.MainActivity"
-            android:configChanges="locale|layoutDirection"
-            android:exported="false"
-            android:launchMode="singleTask"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.App"
-            android:windowSoftInputMode="adjustResize" />
-
-        <!-- FileProvider (chia sẻ app / file) -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.fileprovider"
@@ -58,10 +68,5 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
-
-        <!-- Notification/FCM/foreground-service của app ĐÃ GỠ — dùng hệ của thư viện base-application
-             (module_native/notificationcustom của RN bị bỏ hoàn toàn). -->
-
     </application>
-
 </manifest>

@@ -1,45 +1,197 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="baseapp_new_file_content">Ảnh mới của bạn đã sẵn sàng</string>
-    <string name="baseapp_screenshot_title">Đã chụp màn hình — mở Camera Studio</string>
-    <string name="baseapp_recent_title">Ảnh vừa tạo gần đây</string>
-    <string name="baseapp_open">Mở</string>
-    <string name="baseapp_scan">Chụp</string>
-    <string name="baseapp_daily_open_content">Tạo điều gì đó mới với Camera Studio hôm nay</string>
-    <string name="baseapp_check_now">Mở camera</string>
-    <string name="baseapp_fullscreen_1">Ghi lại khoảnh khắc của bạn</string>
-    <string name="baseapp_fullscreen_2">Chạm để mở Camera Studio ngay</string>
-    <string name="baseapp_outapp_title">Camera Studio</string>
-    <string name="baseapp_outapp_content">Đừng quên chỉnh sửa ảnh hôm nay — chạm để mở</string>
-
-    <string name="baseapp_noti_title">Bật thông báo</string>
-    <string name="baseapp_noti_content">Nhận nhắc nhở và mẹo chỉnh sửa ảnh</string>
-
-    <string-array name="notification_title2">
-        <item>Ghi lại khoảnh khắc của bạn</item>
-        <item>Bộ lọc mới đã sẵn sàng</item>
-        <item>Thư viện đang nhớ bạn</item>
-        <item>Tạo ảnh ghép hôm nay</item>
-        <item>Mẫu hình nền mới</item>
-    </string-array>
-    <string-array name="notification_message2">
-        <item>Chụp ảnh ngay</item>
-        <item>Thử bộ lọc hoặc khung ảnh mới</item>
-        <item>Xem lại ảnh đã lưu</item>
-        <item>Ghép những bức ảnh đẹp nhất thành ảnh ghép</item>
-        <item>Biến ảnh của bạn thành hình nền</item>
-    </string-array>
-    <string-array name="notification_button2">
-        <item>Chụp</item>
-        <item>Xem</item>
-        <item>Mở</item>
-        <item>Tạo</item>
-        <item>Khám phá</item>
-    </string-array>
-
-    <string name="premium_feature1">Trải nghiệm không quảng cáo</string>
-    <string name="premium_feature2">Mở khóa tất cả bộ lọc</string>
-    <string name="premium_feature3">Mở khóa tất cả khung hình</string>
-    <string name="premium_feature4">Xuất ảnh HD</string>
-    <string name="premium_feature5">Hỗ trợ ưu tiên</string>
+    <string name="select_country">Chọn quốc gia</string>
+    <string name="SETTINGS" formatted="false">Cài đặt</string>
+    <string name="MYCARD" formatted="false">Thẻ của tôi</string>
+    <string name="HISTORY" formatted="false">Lịch sử</string>
+    <string name="notiSub" formatted="false">Hiển thị cảnh báo</string>
+    <string name="ADD_TO_CONTACTS" formatted="false">Thêm liên lạc</string>
+    <string name="Personal" formatted="false">Cá nhân</string>
+    <string name="SONG_NAME" formatted="false">Tên bài hát</string>
+    <string name="YOUTUBE_URL" formatted="false">URL Youtube</string>
+    <string name="TITLE" formatted="false">Tiều đề</string>
+    <string name="aw1" formatted="false">Khó sử dụng</string>
+    <string name="loadingAds" formatted="false">Tải quảng cáo</string>
+    <string name="SUB_DELETE" formatted="false">Bạn có chắc muốn xóa không?</string>
+    <string name="prev" formatted="false">Quay lại</string>
+    <string name="close" formatted="false">Đóng</string>
+    <string name="scanningTips" formatted="false">Mẹo quét</string>
+    <string name="ConnectionSuccessful" formatted="false">Kết nối thành công</string>
+    <string name="vibrate" formatted="false">Rung</string>
+    <string name="USERNAME" formatted="false">Tên đăng nhập</string>
+    <string name="CALL" formatted="false">Gọi điện</string>
+    <string name="perCameraSub" formatted="false">Quét mã QR</string>
+    <string name="EMAIL_ADDRESS" formatted="false">Địa chỉ email</string>
+    <string name="CLIPBOARD" formatted="false">Bộ nhớ tạm</string>
+    <string name="DESCRIPTION" formatted="false">Phần mô tả</string>
+    <string name="PAYPAL" formatted="false">Paypal</string>
+    <string name="intro4Sub" formatted="false">Lý tưởng để quét nhiều mã khi thu thập dữ liệu</string>
+    <string name="NO" formatted="false">Không</string>
+    <string name="NETWORK_NAME" formatted="false">Tên mạng</string>
+    <string name="aw4" formatted="false">Không hữu ích</string>
+    <string name="ME_LINK" formatted="false">Liên kết Me</string>
+    <string name="SAVE_OPTION" formatted="false">Tùy chọn lưu</string>
+    <string name="perSub" formatted="false">Ứng dụng cần quyền sử dụng camera và thông báo</string>
+    <string name="START" formatted="false">Bắt đầu</string>
+    <string name="CONNECT_TO_WIFI" formatted="false">Kết nối Wi-Fi</string>
+    <string name="FACEBOOK_PROFILE" formatted="false">Hồ sơ Facebook</string>
+    <string name="requestCamera" formatted="false">Yêu cầu truy cập</string>
+    <string name="TAP_HERE_TO_CHANGE" formatted="false">Chạm vào đây để thay đổi</string>
+    <string name="update_isReady_btn_late" formatted="false">Để sau</string>
+    <string name="share_cancel" formatted="false">Huỷ bỏ chia sẻ</string>
+    <string name="autoScanSub" formatted="false">Bỏ qua hành động sau khi quét</string>
+    <string name="NAME" formatted="false">Tên</string>
+    <string name="i874505" formatted="false">Hàng tháng</string>
+    <string name="SEND_SMS" formatted="false">Gửi tin nhắn</string>
+    <string name="share_message" formatted="false">Ứng dụng tạo và quét mã QR nhanh tiện lợi, có sẵn
+        trên Goole Play tải xuống ngay!</string>
+    <string name="YES" formatted="false">Đồng ý</string>
+    <string name="SCAN" formatted="false">Quét QR</string>
+    <string name="af84d5" formatted="false">mỗi năm</string>
+    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">Sao chép vào bộ nhớ đệm</string>
+    <string name="layout_language_header" formatted="false">Ngôn ngữ</string>
+    <string name="lightOrDark" formatted="false">Ánh sang hay bóng tối</string>
+    <string name="e6a423" formatted="false">Tháng</string>
+    <string name="update_isReady_title" formatted="false">Bản cập nhật mới đã sẵn sàng</string>
+    <string name="OPEN" formatted="false">Mở</string>
+    <string name="egwthe" formatted="false">Sau đó</string>
+    <string name="g672873" formatted="false">Hàng năm</string>
+    <string name="TWITTER" formatted="false">Twitter</string>
+    <string name="scanImage" formatted="false">Quét hình ảnh</string>
+    <string name="CONTACTS" formatted="false">Liên hệ</string>
+    <string name="INSTAGRAM" formatted="false">Instagram</string>
+    <string name="duplicateCode" formatted="false">Mã vạch trùng lặp</string>
+    <string name="noti" formatted="false">Thông báo</string>
+    <string name="INVALID_PHONE" formatted="false">Số điện thoại không hợp lệ</string>
+    <string name="saved_image_success" formatted="false">Đã lưu ảnh vào thư viện!</string>
+    <string name="WEBSITE" formatted="false">Trang Web</string>
+    <string name="autoOpen" formatted="false">Mở trang Web 1 cách tự động</string>
+    <string name="SEND_EMAIL" formatted="false">Gửi Email</string>
+    <string name="textSplash" formatted="false">Hành động này có thể chứa quảng cáo</string>
+    <string name="Utilitles" formatted="false">Tiện ích</string>
+    <string name="SECURITY_MODE" formatted="false">Loại bảo mật</string>
+    <string name="ENTER" formatted="false">Nhập</string>
+    <string name="FACEBOOK_ID" formatted="false">ID Facebook</string>
+    <string name="lowContrast" formatted="false">Độ tương phản thấp</string>
+    <string name="FEEDBACK" formatted="false">Phản hồi</string>
+    <string name="ADD_TO_EVENTS" formatted="false">Add to sự kiện</string>
+    <string name="import_str" formatted="false">Nhập</string>
+    <string name="next" formatted="false">Tiếp tục</string>
+    <string name="VIDEO_ID" formatted="false">ID video</string>
+    <string name="intro3Sub" formatted="false">Nhập thông tin và tạo mã cá nhân dễ dàng</string>
+    <string name="saving_image" formatted="false">Đang lưu ảnh...</string>
+    <string name="OPEN_BROWSER" formatted="false">Mở trình duyệt</string>
+    <string name="CUSTOMIZE_AND_SAVE" formatted="false">Chỉnh sửa &amp; Lưu</string>
+    <string name="layout_thanks" formatted="false">Cảm ơn bạn đã đánh giá</string>
+    <string name="FILTER_HISTORY" formatted="false">Lọc lịch sử</string>
+    <string name="ledDark" formatted="false">LED khi tối</string>
+    <string name="CLEAR_FILTER" formatted="false">Xóa bộ lọc</string>
+    <string name="ME_USERNAME" formatted="false">Tên người dùng Me</string>
+    <string name="selected" formatted="false">Đã chọn</string>
+    <string name="ADDRESS" formatted="false">Địa chỉ nhà</string>
+    <string name="ARTIST_NAME" formatted="false">Tên nghệ sĩ</string>
+    <string name="CLEAR_HISTORY" formatted="false">Xóa lịch sử</string>
+    <string name="layout_button_send" formatted="false">Gửi</string>
+    <string name="i8f46e6" formatted="false">Trải nghiệm không quảng cáo</string>
+    <string name="CANCEL" formatted="false">Hủy</string>
+    <string name="VIBER" formatted="false">Viber</string>
+    <string name="continue_str" formatted="false">Tiếp tục</string>
+    <string name="CONTACT_US" formatted="false">Liên hệ với chúng tôi</string>
+    <string name="intro4" formatted="false">Quét nhiều mã cùng lúc</string>
+    <string name="update_isReady_mss" formatted="false">Vui lòng khởi động lại ứng dụng để cập nhật!</string>
+    <string name="MAXIMUM_MESSAGE" formatted="false">Bạn đã chọn số lượng phương tiện tối đa được
+        phép</string>
+    <string name="COPY_TO_CLIPBOARD" formatted="false">Đã sap chép vào bộ nhớ đệm</string>
+    <string name="policy" formatted="false">Chính sách bảo mật</string>
+    <string name="TEXT_EMPTY_FORM" formatted="false">Vui lòng nhập nội dung</string>
+    <string name="manualScan" formatted="false">Quét thủ công</string>
+    <string name="Social" formatted="false">Xã hội</string>
+    <string name="intro1" formatted="false">Quét QR nhanh</string>
+    <string name="PASSWORD" formatted="false">Mật khẩu</string>
+    <string name="SPOTIFY" formatted="false">Spotify</string>
+    <string name="delete_history_success" formatted="false">Xóa lịch sử thành công!</string>
+    <string name="COPY_PASSWORD" formatted="false">Sao chép mật khẩu</string>
+    <string name="PRIVACY_POLICY" formatted="false">Điều khoản</string>
+    <string name="share_success" formatted="false">Chia sẻ thành công</string>
+    <string name="note" formatted="false">Ghi chú</string>
+    <string name="CHANNEL_ID" formatted="false">ID kênh</string>
+    <string name="APPLY" formatted="false">Áp dụng</string>
+    <string name="tip90" formatted="false">Định hướng 90°</string>
+    <string name="aw3" formatted="false">Quá nhiều quảng cáo</string>
+    <string name="share_image_success" formatted="false">Chia sẻ hình ảnh thành công!</string>
+    <string name="layout_share_btn_label" formatted="false">Chia sẻ ứng dụng</string>
+    <string name="ALLDAY" formatted="false">Cả ngày</string>
+    <string name="CONTENT" formatted="false">Nội dung</string>
+    <string name="WiFI" formatted="false">Wi-Fi</string>
+    <string name="scanControl" formatted="false">Điều khiển quét</string>
+    <string name="tip0" formatted="false">Định hướng 0°</string>
+    <string name="SAVE_IMAGE" formatted="false">Lưu ảnh</string>
+    <string name="TITLE_CREATE" formatted="false">Trình tạo mã QR</string>
+    <string name="NOTE" formatted="false">Chú thích</string>
+    <string name="PLEASE_ENTER_SOMETHING" formatted="false">Vui lòng nhập một cái gì đó</string>
+    <string name="tipOther" formatted="false">Định hướng khác</string>
+    <string name="EMAIL" formatted="false">E-mail</string>
+    <string name="titleuninstall" formatted="false">Tại sao bạn gỡ cài đặt ứng dụng?</string>
+    <string name="SHOW_ON_MAP" formatted="false">Hiển thị trên bản đồ</string>
+    <string name="END" formatted="false">Kết thúc</string>
+    <string name="SMS" formatted="false">Tin nhắn SMS</string>
+    <string name="NOTIFICATION" formatted="false">Thông báo</string>
+    <string name="rateApp" formatted="false">Đánh giá</string>
+    <string name="search" formatted="false">Tìm kiếm</string>
+    <string name="layout_do_you_like" formatted="false">Bạn có thích</string>
+    <string name="CUSTOMIZE_QRCODE" formatted="false">Tùy chỉnh QR code</string>
+    <string name="COPY" formatted="false">Sao chép</string>
+    <string name="LINK" formatted="false">Liên kết</string>
+    <string name="CALENDAR" formatted="false">Lịch</string>
+    <string name="newVersion_isReady_mss" formatted="false">Xin vui lòng cập nhật ứng dụng để tiếp
+        tục sử dụng!</string>
+    <string name="GENERAL_SETTINGS" formatted="false">Cài đặt chung</string>
+    <string name="intro1Sub" formatted="false">Quét mã QR tức thì ở bất cứ đâu</string>
+    <string name="autoScan" formatted="false">Quét liên tục</string>
+    <string name="j9c4c14">Dùng thử miễn phí %1$s ngày</string>
+    <string name="LANGUAGE_OPTIONS" formatted="false">Tùy chọn ngôn ngữ</string>
+    <string name="SHARE" formatted="false">Chia sẻ</string>
+    <string name="PHONE_NUMBER" formatted="false">Số điện thoại</string>
+    <string name="BIRTHDAY" formatted="false">Sinh nhật</string>
+    <string name="ConnectionFailed" formatted="false">Kết nối thất bại</string>
+    <string name="cancelsubscriptions" formatted="false">Hủy đăng ký</string>
+    <string name="g6dd514" formatted="false">Bạn sẽ không bị tính phí trong thời gian dùng thử và có
+        thể hủy bất cứ lúc nào. Khi tiếp tục, bạn đồng ý với Chính sách bảo mật và Điều khoản sử
+        dụng của chúng tôi. Để quản lý, tạm dừng hoặc hủy đăng ký, hãy vào phần Cài đặt trong Google
+        Play.</string>
+    <string name="permission" formatted="false">Quyền</string>
+    <string name="aw5" formatted="false">Lý do khác</string>
+    <string name="NONE" formatted="false">Không có</string>
+    <string name="saved_customize_success" formatted="false">Đã lưu tùy chỉnh!</string>
+    <string name="tooClose" formatted="false">Quá gần / mờ</string>
+    <string name="HELP" formatted="false">Trợ giúp</string>
+    <string name="TEL" formatted="false">Điện thoại</string>
+    <string name="intro2Sub" formatted="false">Lưu, tổ chức mọi mã đã quét thông minh</string>
+    <string name="duplicateCodeSub" formatted="false">Lưu mã vạch trùng lặp trong lịch sử</string>
+    <string name="TEXT" formatted="false">Văn bản</string>
+    <string name="SAVE_CUSTOMIZE" formatted="false">Lưu chỉnh sửa</string>
+    <string name="aw2" formatted="false">Ứng dụng không hoạt động</string>
+    <string name="newVersion_isReady_title" formatted="false">Có bản cập nhật mới</string>
+    <string name="intro2" formatted="false">Xây dựng lịch sử quét</string>
+    <string name="intro3" formatted="false">Tạo QR &amp; mã vạch của bạn</string>
+    <string name="light" formatted="false">Ánh sáng</string>
+    <string name="DONE" formatted="false">Xong</string>
+    <string name="start" formatted="false">Bắt đầu</string>
+    <string name="manualScanSub" formatted="false">Tránh vô tình quét</string>
+    <string name="CUSTOMIZE" formatted="false">Tùy chỉnh</string>
+    <string name="ORG" formatted="false">Tổ chức</string>
+    <string name="noPerCamera" formatted="false">Không có quyền truy cập vào máy ảnh</string>
+    <string name="TEXT_MESSAGE" formatted="false">Tin nhắn văn bản</string>
+    <string name="perCamera" formatted="false">Camera</string>
+    <string name="scan" formatted="false">Quét</string>
+    <string name="uninstall" formatted="false">Gỡ cài đặt</string>
+    <string name="DATA_EMPTY" formatted="false">Không có dữ liệu</string>
+    <string name="f5776c5" formatted="false">Năm</string>
+    <string name="export" formatted="false">Xuất</string>
+    <string name="cb0af4" formatted="false">mỗi tháng</string>
+    <string name="skip" formatted="false">Bỏ qua</string>
+    <string name="CREATE" formatted="false">Tạo QR</string>
+    <string name="SAVE" formatted="false">Lưu</string>
+    <string name="NOT_FIND_QRCODE" formatted="false">Không tìm thấy mã QRCode ở trong ảnh</string>
+    <string name="update_isReady_btn_update" formatted="false">Cập nhật</string>
 </resources>

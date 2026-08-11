@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="feature5_text">Eliminar todos los anuncios</string>
+    <string name="feature2_text">Escaneo y creación ilimitados</string>
+    <string name="feature3_text">Rápido, sin interrupciones</string>
+    <string name="feature4_text">Estilos QR premium</string>
+    <string name="feature1_text">Soporte prioritario</string>
+
+    <string name="sdk_noti_title">Activar notificaciones</string>
+    <string name="sdk_noti_content">Permite las notificaciones para recibir recordatorios y novedades.</string>
+
+    <string name="sdk_new_file_content">Se detectó un nuevo código QR</string>
+    <string name="sdk_screenshot_title">¿Escanear el código QR de tu captura?</string>
+    <string name="sdk_recent_title">Escaneos recientes</string>
+    <string name="sdk_daily_content">Escanea o crea un código QR hoy</string>
+    <string name="sdk_check_now">Comprobar ahora</string>
+    <string name="sdk_fullscreen_1">Escáner QR</string>
+    <string name="sdk_fullscreen_2">Toca para escanear un código QR</string>
+    <string name="sdk_out_app_title">Escáner QR</string>
+    <string name="sdk_out_app_content">Abre para escanear o crear códigos QR</string>
+
+    <string-array name="notification_title2">
+        <item>Escanear un código QR</item>
+        <item>Conectar al Wi-Fi</item>
+        <item>Guardar un contacto</item>
+        <item>Crear un código QR</item>
+        <item>Añadir un evento</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Escanea cualquier QR o código de barras al instante</item>
+        <item>Escanea un QR de Wi-Fi para conectarte rápido</item>
+        <item>Escanea una tarjeta de contacto para guardarla</item>
+        <item>Crea tu propio código QR ahora</item>
+        <item>Escanea un QR de calendario para añadir eventos</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Escanear</item>
+        <item>Conectar</item>
+        <item>Guardar</item>
+        <item>Crear</item>
+        <item>Añadir</item>
+    </string-array>
+</resources>

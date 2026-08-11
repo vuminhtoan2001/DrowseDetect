@@ -1,61 +1,38 @@
-# Công thức proguard cho SDK phổ biến (thêm vào `proguard-rules.pro` RIÊNG app khi cần)
+# Checklist proguard khi thêm SDK mới / build bản có minify
 
-> File này tách riêng khỏi `ENCODE_R8_STANDARD.md` để khi phát hiện SDK mới cần rule, hoặc rule
-> có SDK nào đó cần cập nhật, chỉ sửa **file này** — không đụng vào `ENCODE_R8_STANDARD.md`.
+> `proguard-rules-base.pro` đã có rule dùng chung (AAR core, Billing, AdMob mediation, Gson,
+> Crashlytics) — KHÔNG cần đụng khi chỉ thêm màn/tính năng mới không kèm SDK mới.
 
-`proguard-rules-base.pro` chỉ chứa rule THỰC SỰ dùng chung (AAR core, Billing, AdMob mediation, Gson,
-Crashlytics). SDK dưới đây **tuỳ app có dùng hay không** — copy đúng khối cần vào `proguard-rules.pro`
-riêng của app, đừng copy thừa (dễ tạo cruft: rule cho SDK app không dùng, nằm vô hại nhưng gây khó đọc).
+Chỉ cần đọc file này khi: (a) thêm 1 SDK/lib mới vào app, hoặc (b) sắp build bản `assembleRelease`
+(minify+shrink) lần đầu cho 1 SDK mới thêm.
 
-```proguard
-# --- CameraX / Media3 / Room (app quay/chụp, lưu overlay/lịch sử) ---
--keep class androidx.camera.** { *; }
--dontwarn androidx.camera.**
--keep class androidx.media3.** { *; }
--dontwarn androidx.media3.**
--keep class androidx.room.** { *; }
--keep @androidx.room.Entity class * { *; }
--dontwarn androidx.room.**
+## Khi thêm 1 SDK mới — tự hỏi 3 câu
 
-# --- Google Maps ---
--keep class com.google.android.gms.maps.** { *; }
--keep class com.google.maps.android.** { *; }
--dontwarn com.google.android.gms.maps.**
+1. **SDK có dùng JNI/native method không?** (file `.so`, hàm `external fun`...) → cần:
+   ```proguard
+   -keep class <package_goc_cua_sdk>.** { *; }
+   -keepclasseswithmembernames class * { native <methods>; }
+   ```
+2. **SDK có nạp class bằng reflection không?** (`Class.forName`, DI tự chế, parser tự dò annotation...)
+   → cần `-keep` cho package gốc + `-dontwarn <package_goc>.**`.
+3. **SDK có model serialize (Gson/Retrofit/Room entity) không?** → cần giữ field không bị đổi tên/xoá:
+   ```proguard
+   -keepattributes Signature, RuntimeVisibleAnnotations, AnnotationDefault
+   -keep class <package_model_cua_app>.** { *; }
+   ```
 
-# --- Retrofit (chỉ thêm nếu app dùng Retrofit, KHÔNG mặc định) ---
--keepattributes Exceptions, RuntimeVisibleAnnotations, RuntimeVisibleParameterAnnotations, AnnotationDefault
--dontwarn retrofit2.**
--keep,allowobfuscation,allowshrinking class retrofit2.Response
--keep,allowobfuscation,allowshrinking class kotlin.coroutines.Continuation
--if interface * { @retrofit2.http.* <methods>; }
--keep,allowoptimization,allowobfuscation,allowshrinking interface <1>
+Nếu cả 3 câu đều "không" — thường không cần thêm rule (SDK Java thuần, không reflection).
 
-# --- jsoup (chỉ thêm nếu app gọi trực tiếp — jsoup thường chỉ là dependency gián tiếp của
-#     base-application AAR, không cần khai lại nếu app không tự import) ---
--keep class org.jsoup.** { *; }
--dontwarn org.jsoup.**
+## Vì sao phải check trước build release
 
-# --- WebRTC (app video-call/P2P) ---
--keep class org.webrtc.** { *; }
--keepclassmembers class org.webrtc.** { *; }
--dontwarn org.webrtc.**
+R8 chỉ xoá/rename class **lúc build `release` có `isMinifyEnabled = true`** — build `debug` không lộ
+lỗi này. Thiếu rule đúng chỗ → crash `ClassNotFoundException`/`NoSuchMethodError` chỉ xảy ra ở bản
+release, không tái hiện được lúc debug. Luôn `assembleRelease` + cài máy test thật sau khi thêm SDK
+mới, không chỉ tin vào build debug chạy được.
 
-# --- libpag / native JNI theo tên lớp cứng (app dùng animation Tencent libpag) ---
--keep class org.libpag.** { *; }
--keep class org.extra.tools.** { *; }
--keep class org.ffavc.** { *; }
--keep class com.tencent.tav.** { *; }
--keep class androidx.exifinterface.** { *; }
--keepclasseswithmembernames class * { native <methods>; }
+## Không tìm được rule đúng?
 
-# --- OpenCV (app xử lý ảnh bằng JNI, vd Scan PDF phát hiện góc tài liệu) ---
--keep class org.opencv.** { *; }
--dontwarn org.opencv.**
--keepclasseswithmembernames class * { native <methods>; }
-```
-
-**Quy tắc chung khi thêm SDK mới không có trong danh sách trên**: nếu SDK dùng JNI/native method
-hoặc bị nạp bằng reflection (`Class.forName`), luôn cần `-keep` cho package gốc của nó +
-`-keepclasseswithmembernames class * { native <methods>; }` (nếu có JNI) — xem
-`ENCODE_R8_STANDARD.md` §3.9 để hiểu vì sao (bug loại này chỉ lộ ở bản R8 thật, không lộ lúc code/
-build debug).
+Tra theo tên SDK trên trang chính thức của SDK đó (mục "Proguard"/"R8 rules") — hầu hết SDK phổ biến
+đã tự publish rule chuẩn qua `consumer-rules.pro` đóng gói sẵn trong AAR của họ (không cần app tự khai
+lại) — chỉ cần tự khai thêm khi SDK **không** đóng gói `consumer-rules.pro` (kiểm tra: giải nén AAR,
+tìm file này bên trong).

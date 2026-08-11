@@ -1,16 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF4A4A4A</color>
+    <!-- Màu thương hiệu (port từ colors.js) -->
+    <color name="theme">#013495</color>
+    <color name="theme_second">#045ECD</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
 
-    <!-- Notification text colors (light) -->
-    <color name="notification_text_primary">#FF000000</color>
-    <color name="notification_text_secondary">#FF757575</color>
-    <color name="notification_text_tertiary">#FF9E9E9E</color>
-
-    <!-- ===== base-application (lib) yêu cầu: primaryColor == accentTone; text1 (spec §5.1) ===== -->
-    <!-- Tông khớp app RN vga34b (COLOR.THEME = #0C87FF). -->
-    <color name="primaryColor">#0C87FF</color>
-    <color name="accentTone">#0C87FF</color>
-    <color name="text1">#212121</color>
+    <!-- SDK base-application yêu cầu (HUONG_DAN_TICH_HOP §5.1): primaryColor == accentTone; text1 cố định -->
+    <color name="primaryColor">#013495</color>
+    <color name="accentTone">#013495</color>
+    <color name="text1">#00091D</color>
 </resources>

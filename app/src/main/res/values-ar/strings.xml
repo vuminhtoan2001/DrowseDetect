@@ -1,45 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="baseapp_new_file_content">صورتك الجديدة جاهزة</string>
-    <string name="baseapp_screenshot_title">تم التقاط لقطة شاشة — افتح Camera Studio</string>
-    <string name="baseapp_recent_title">الصور التي تم إنشاؤها مؤخرًا</string>
-    <string name="baseapp_open">فتح</string>
-    <string name="baseapp_scan">التقاط</string>
-    <string name="baseapp_daily_open_content">أنشئ شيئًا جديدًا مع Camera Studio اليوم</string>
-    <string name="baseapp_check_now">فتح الكاميرا</string>
-    <string name="baseapp_fullscreen_1">التقط لحظتك</string>
-    <string name="baseapp_fullscreen_2">اضغط لفتح Camera Studio الآن</string>
-    <string name="baseapp_outapp_title">Camera Studio</string>
-    <string name="baseapp_outapp_content">لا تنس تعديل صورك اليوم — اضغط للفتح</string>
-
-    <string name="baseapp_noti_title">تفعيل الإشعارات</string>
-    <string name="baseapp_noti_content">احصل على تذكيرات ونصائح لتعديل صورك</string>
-
-    <string-array name="notification_title2">
-        <item>التقط لحظتك</item>
-        <item>فلتر جديد جاهز للتجربة</item>
-        <item>معرض صورك يفتقدك</item>
-        <item>أنشئ صورة مجمعة اليوم</item>
-        <item>قوالب خلفيات جديدة</item>
-    </string-array>
-    <string-array name="notification_message2">
-        <item>التقط صورة الآن</item>
-        <item>جرّب فلترًا أو إطارًا جديدًا</item>
-        <item>تحقق من صورك المحفوظة</item>
-        <item>ادمج أفضل لقطاتك في صورة مجمعة</item>
-        <item>حوّل صورك إلى خلفيات</item>
-    </string-array>
-    <string-array name="notification_button2">
-        <item>التقاط</item>
-        <item>عرض</item>
-        <item>فتح</item>
-        <item>إنشاء</item>
-        <item>استكشاف</item>
-    </string-array>
-
-    <string name="premium_feature1">تجربة بدون إعلانات</string>
-    <string name="premium_feature2">فتح جميع الفلاتر</string>
-    <string name="premium_feature3">فتح جميع الإطارات</string>
-    <string name="premium_feature4">تصدير بجودة HD</string>
-    <string name="premium_feature5">دعم ذو أولوية</string>
+    <string name="notiSub" formatted="false">عرض تنبيهات</string>
+    <string name="Utilitles" formatted="false">أدوات</string>
+    <string name="WiFI" formatted="false">واي فاي</string>
+    <string name="lightOrDark" formatted="false">فاتح أو داكن</string>
+    <string name="CLIPBOARD" formatted="false">الحافظة</string>
+    <string name="INVALID_PHONE" formatted="false">رقم الهاتف غير صالح</string>
+    <string name="HISTORY" formatted="false">التاريخ</string>
+    <string name="FEEDBACK" formatted="false">ردود الفعل</string>
+    <string name="update_isReady_title" formatted="false">التحديث الجديد جاهز</string>
+    <string name="CUSTOMIZE_QRCODE" formatted="false">تخصيص رمز الاستجابة السريعة</string>
+    <string name="OPEN_BROWSER" formatted="false">افتح المتصفح</string>
+    <string name="DESCRIPTION" formatted="false">الوصف</string>
+    <string name="DONE" formatted="false">تم</string>
+    <string name="i874505" formatted="false">شهري</string>
+    <string name="manualScanSub" formatted="false">تجنب المسح غير المقصود</string>
+    <string name="layout_share_btn_label" formatted="false">مشاركة التطبيق</string>
+    <string name="VIDEO_ID" formatted="false">معرف الفيديو</string>
+    <string name="share_image_success" formatted="false">تم مشاركة الصورة بنجاح!</string>
+    <string name="delete_history_success" formatted="false">تم حذف السجل بنجاح!</string>
+    <string name="PHONE_NUMBER" formatted="false">رقم الهاتف</string>
+    <string name="intro1" formatted="false">مسح QR السريع</string>
+    <string name="aw2" formatted="false">التطبيق لا يعمل</string>
+    <string name="tip0" formatted="false">اتجاه 0°</string>
+    <string name="perCameraSub" formatted="false">مسح رمز QR</string>
+    <string name="scan" formatted="false">مسح</string>
+    <string name="CHANNEL_ID" formatted="false">معرف القناة</string>
+    <string name="COPY" formatted="false">نسخ</string>
+    <string name="HELP" formatted="false">مساعدة</string>
+    <string name="SHOW_ON_MAP" formatted="false">عرض على الخريطة</string>
+    <string name="USERNAME" formatted="false">اسم المستخدم</string>
+    <string name="prev" formatted="false">السابق</string>
+    <string name="VIBER" formatted="false">فايبر</string>
+    <string name="layout_button_send" formatted="false">إرسال</string>
+    <string name="CANCEL" formatted="false">إلغاء</string>
+    <string name="duplicateCode" formatted="false">الباركود المكرر</string>
+    <string name="ConnectionFailed" formatted="false">فشل الاتصال</string>
+    <string name="g6dd514" formatted="false">لن يتم تحصيل أي رسوم خلال فترة التجربة ويمكنك الإلغاء
+        في أي وقت. بالمتابعة، فإنك توافق على سياسة الخصوصية وشروط الاستخدام الخاصة بنا. لإدارة أو
+        إيقاف أو إلغاء الاشتراك، انتقل إلى الإعدادات في Google Play.</string>
+    <string name="APPLY" formatted="false">تقديم</string>
+    <string name="perSub" formatted="false">يتطلب التطبيق إذنًا لاستخدام الكاميرا والإشعارات</string>
+    <string name="noti" formatted="false">الإشعارات</string>
+    <string name="ADD_TO_EVENTS" formatted="false">إضافة إلى الأحداث</string>
+    <string name="NETWORK_NAME" formatted="false">اسم الشبكة</string>
+    <string name="note" formatted="false">ملاحظة</string>
+    <string name="newVersion_isReady_title" formatted="false">إصدار جديد متاح</string>
+    <string name="END" formatted="false">الانتهاء</string>
+    <string name="FACEBOOK_PROFILE" formatted="false">ملف Facebook</string>
+    <string name="uninstall" formatted="false">إلغاء التثبيت</string>
+    <string name="ME_LINK" formatted="false">رابط Me</string>
+    <string name="g672873" formatted="false">سنوي</string>
+    <string name="NAME" formatted="false">الاسم</string>
+    <string name="aw1" formatted="false">صعب الاستخدام</string>
+    <string name="MYCARD" formatted="false">بطاقتي</string>
+    <string name="start" formatted="false">ابدأ</string>
+    <string name="perCamera" formatted="false">الكاميرا</string>
+    <string name="TITLE" formatted="false">العنوان</string>
+    <string name="saved_image_success" formatted="false">تم حفظ الصورة في المكتبة!</string>
+    <string name="CONTACTS" formatted="false">جهات الاتصال</string>
+    <string name="INSTAGRAM" formatted="false">إنستجرام</string>
+    <string name="close" formatted="false">إغلاق</string>
+    <string name="intro4Sub" formatted="false">مثالي لمسح عدة أكواد أثناء جمع البيانات</string>
+    <string name="tooClose" formatted="false">قريب جدًا / غير واضح</string>
+    <string name="cancelsubscriptions" formatted="false">إلغاء الاشتراك</string>
+    <string name="Personal" formatted="false">شخصي</string>
+    <string name="TWITTER" formatted="false">تويتر</string>
+    <string name="SAVE_OPTION" formatted="false">خيار الحفظ</string>
+    <string name="f5776c5" formatted="false">سنة</string>
+    <string name="aw5" formatted="false">سبب آخر</string>
+    <string name="YOUTUBE_URL" formatted="false">عنوان URL لـ Youtube</string>
+    <string name="WEBSITE" formatted="false">موقع الويب</string>
+    <string name="layout_language_header" formatted="false">اللغة</string>
+    <string name="import_str" formatted="false">استيراد</string>
+    <string name="SHARE" formatted="false">مشاركة</string>
+    <string name="intro3" formatted="false">إنشاء رمز QR &amp; الباركود</string>
+    <string name="search" formatted="false">البحث</string>
+    <string name="intro3Sub" formatted="false">أدخل التفاصيل وأنشئ رمزًا شخصيًا بسهولة</string>
+    <string name="selected" formatted="false">تم الاختيار</string>
+    <string name="saving_image" formatted="false">جاري حفظ الصورة...</string>
+    <string name="e6a423" formatted="false">شهر</string>
+    <string name="intro2Sub" formatted="false">التقاط وتخزين وتنظيم كل رمز ممسوح بذكاء</string>
+    <string name="CONTACT_US" formatted="false">اتصل بنا</string>
+    <string name="lowContrast" formatted="false">تباين منخفض</string>
+    <string name="ENTER" formatted="false">إدخال</string>
+    <string name="CLEAR_HISTORY" formatted="false">مسح التاريخ</string>
+    <string name="share_cancel" formatted="false">إلغاء المشاركة</string>
+    <string name="PLEASE_ENTER_SOMETHING" formatted="false">يرجى إدخال شيء ما</string>
+    <string name="NOT_FIND_QRCODE" formatted="false">لم يتم العثور على رمز الاستجابة السريعة في
+        الصورة</string>
+    <string name="manualScan" formatted="false">المسح اليدوي</string>
+    <string name="CREATE" formatted="false">إنشاء</string>
+    <string name="aw4" formatted="false">غير مفيد</string>
+    <string name="EMAIL" formatted="false">البريد الإلكتروني</string>
+    <string name="CLEAR_FILTER" formatted="false">مسح التصفية</string>
+    <string name="ORG" formatted="false">المنظمة</string>
+    <string name="SECURITY_MODE" formatted="false">وضع الأمان</string>
+    <string name="SAVE_CUSTOMIZE" formatted="false">حفظ التخصيص</string>
+    <string name="scanImage" formatted="false">مسح الصورة</string>
+    <string name="EMAIL_ADDRESS" formatted="false">عنوان البريد الإلكتروني</string>
+    <string name="noPerCamera" formatted="false">لا توجد أذونات للوصول إلى الكاميرا</string>
+    <string name="LINK" formatted="false">رابط</string>
+    <string name="requestCamera" formatted="false">طلب الوصول</string>
+    <string name="ledDark" formatted="false">الضوء في الظلام</string>
+    <string name="Social" formatted="false">اجتماعي</string>
+    <string name="COPY_PASSWORD" formatted="false">نسخ كلمة المرور</string>
+    <string name="af84d5" formatted="false">كل سنة</string>
+    <string name="saved_customize_success" formatted="false">تم حفظ التخصيص!</string>
+    <string name="SMS" formatted="false">رسالة نصية</string>
+    <string name="TITLE_CREATE" formatted="false">مولد رمز الاستجابة السريعة</string>
+    <string name="scanningTips" formatted="false">نصائح المسح</string>
+    <string name="ADDRESS" formatted="false">العنوان</string>
+    <string name="YES" formatted="false">نعم</string>
+    <string name="CONTENT" formatted="false">المحتوى</string>
+    <string name="autoScan" formatted="false">المسح المستمر</string>
+    <string name="BIRTHDAY" formatted="false">تاريخ الميلاد</string>
+    <string name="titleuninstall" formatted="false">لماذا قمت بإلغاء التثبيت؟</string>
+    <string name="TEL" formatted="false">الهاتف</string>
+    <string name="layout_do_you_like" formatted="false">هل تحب</string>
+    <string name="tip90" formatted="false">اتجاه 90°</string>
+    <string name="SETTINGS" formatted="false">الإعدادات</string>
+    <string name="PAYPAL" formatted="false">Paypal</string>
+    <string name="CUSTOMIZE" formatted="false">تخصيص</string>
+    <string name="autoScanSub" formatted="false">تخطي الإجراء بعد المسح</string>
+    <string name="newVersion_isReady_mss" formatted="false">يرجى تحديث التطبيق للمتابعة في
+        الاستخدام!</string>
+    <string name="intro4" formatted="false">مسح عدة أكواد</string>
+    <string name="loadingAds" formatted="false">جارٍ تحميل الإعلانات</string>
+    <string name="NONE" formatted="false">لا يوجد</string>
+    <string name="SPOTIFY" formatted="false">Spotify</string>
+    <string name="MAXIMUM_MESSAGE" formatted="false">لقد اخترت الحد الأقصى لعدد وسائط مسموح به</string>
+    <string name="COPY_TO_CLIPBOARD" formatted="false">تم النسخ إلى الحافظة</string>
+    <string name="CALL" formatted="false">اتصال</string>
+    <string name="ALLDAY" formatted="false">طوال اليوم</string>
+    <string name="TEXT" formatted="false">نص</string>
+    <string name="CONNECT_TO_WIFI" formatted="false">الاتصال بالواي فاي</string>
+    <string name="TAP_HERE_TO_CHANGE" formatted="false">اضغط هنا للتغيير</string>
+    <string name="PRIVACY_POLICY" formatted="false">سياسة الخصوصية</string>
+    <string name="share_message" formatted="false">تطبيق لإنشاء ومسح رموز QR بسرعة وسهولة، متوفر
+        الآن على Google Play، حمّله فورًا!</string>
+    <string name="FILTER_HISTORY" formatted="false">تصفية التاريخ</string>
+    <string name="FACEBOOK_ID" formatted="false">معرف Facebook</string>
+    <string name="continue_str" formatted="false">متابعة</string>
+    <string name="ARTIST_NAME" formatted="false">اسم الفنان</string>
+    <string name="TEXT_MESSAGE" formatted="false">رسالة نصية</string>
+    <string name="next" formatted="false">التالي</string>
+    <string name="TEXT_EMPTY_FORM" formatted="false">يرجى إدخال المحتوى</string>
+    <string name="export" formatted="false">تصدير</string>
+    <string name="aw3" formatted="false">الكثير من الإعلانات</string>
+    <string name="scanControl" formatted="false">التحكم في المسح</string>
+    <string name="rateApp" formatted="false">قيّم التطبيق</string>
+    <string name="duplicateCodeSub" formatted="false">حفظ الباركود المكرر في السجل</string>
+    <string name="NO" formatted="false">لا</string>
+    <string name="SCAN" formatted="false">مسح</string>
+    <string name="vibrate" formatted="false">اهتزاز</string>
+    <string name="egwthe" formatted="false">بعد ذلك</string>
+    <string name="intro2" formatted="false">بناء سجل المسح</string>
+    <string name="SEND_EMAIL" formatted="false">إرسال بريد إلكتروني</string>
+    <string name="PASSWORD" formatted="false">كلمة المرور</string>
+    <string name="SEND_SMS" formatted="false">إرسال رسالة نصية</string>
+    <string name="skip" formatted="false">تخطي</string>
+    <string name="START" formatted="false">البدء</string>
+    <string name="share_success" formatted="false">تمت المشاركة بنجاح</string>
+    <string name="NOTE" formatted="false">ملاحظة</string>
+    <string name="intro1Sub" formatted="false">امسح رموز QR على الفور في أي مكان</string>
+    <string name="ConnectionSuccessful" formatted="false">تم الاتصال بنجاح</string>
+    <string name="i8f46e6" formatted="false">تجربة بدون إعلانات</string>
+    <string name="SAVE" formatted="false">حفظ</string>
+    <string name="update_isReady_mss" formatted="false">يرجى إعادة تشغيل التطبيق للتحديث!</string>
+    <string name="SONG_NAME" formatted="false">اسم الأغنية</string>
+    <string name="NOTIFICATION" formatted="false">إشعار</string>
+    <string name="SUB_DELETE" formatted="false">هل أنت متأكد من رغبتك في الحذف؟</string>
+    <string name="update_isReady_btn_late" formatted="false">لاحقًا</string>
+    <string name="policy" formatted="false">سياسة الخصوصية</string>
+    <string name="layout_thanks" formatted="false">شكرًا لتقييمك</string>
+    <string name="ME_USERNAME" formatted="false">اسم مستخدم Me</string>
+    <string name="textSplash" formatted="false">قد يحتوي هذا الإجراء على إعلانات</string>
+    <string name="GENERAL_SETTINGS" formatted="false">إعدادات عامة</string>
+    <string name="ADD_TO_CONTACTS" formatted="false">إضافة إلى جهات الاتصال</string>
+    <string name="j9c4c14">تجربة مجانية لمدة %1$s يومًا</string>
+    <string name="tipOther" formatted="false">اتجاه آخر</string>
+    <string name="light" formatted="false">إضاءة</string>
+    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">نسخ تلقائي إلى الحافظة</string>
+    <string name="SAVE_IMAGE" formatted="false">حفظ الصورة</string>
+    <string name="cb0af4" formatted="false">كل شهر</string>
+    <string name="autoOpen" formatted="false">فتح الصفحة تلقائيًا</string>
+    <string name="CALENDAR" formatted="false">التقويم</string>
+    <string name="permission" formatted="false">الإذن</string>
+    <string name="LANGUAGE_OPTIONS" formatted="false">خيارات اللغة</string>
+    <string name="update_isReady_btn_update" formatted="false">تحديث</string>
+    <string name="OPEN" formatted="false">فتح</string>
+    <string name="DATA_EMPTY" formatted="false">لا توجد بيانات</string>
 </resources>

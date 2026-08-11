@@ -1,25 +1,15 @@
 {
   "open_splash": "ca-app-pub-3940256099942544/9257395921",
   "inter_splash": "ca-app-pub-3940256099942544/1033173712",
+  "open_all": "ca-app-pub-3940256099942544/9257395921",
   "splash_uninstall": "ca-app-pub-3940256099942544/9257395921",
   "native_language": "ca-app-pub-3940256099942544/2247696110",
-  "native_language_select": "ca-app-pub-3940256099942544/2247696110",
-  "open_all": "ca-app-pub-3940256099942544/9257395921",
   "native_keep_user": "ca-app-pub-3940256099942544/2247696110",
   "native_survey_user": "ca-app-pub-3940256099942544/2247696110",
   "native_exit_app": "ca-app-pub-3940256099942544/2247696110",
+  "native_permission": "ca-app-pub-3940256099942544/2247696110",
   "native_intro1": "ca-app-pub-3940256099942544/2247696110",
   "native_intro2": "ca-app-pub-3940256099942544/2247696110",
   "native_intro3": "ca-app-pub-3940256099942544/2247696110",
-  "native_intro4": "ca-app-pub-3940256099942544/2247696110",
-  "native_permission": "ca-app-pub-3940256099942544/2247696110",
-  "native_home": "ca-app-pub-3940256099942544/2247696110",
-  "native_media_picker": "ca-app-pub-3940256099942544/2247696110",
-  "native_template": "ca-app-pub-3940256099942544/2247696110",
-  "native_gallery": "ca-app-pub-3940256099942544/2247696110",
-  "native_settings": "ca-app-pub-3940256099942544/2247696110",
-  "native_draw_style": "ca-app-pub-3940256099942544/2247696110",
-  "native_takepho_sucess": "ca-app-pub-3940256099942544/2247696110",
-  "inter_home": "ca-app-pub-3940256099942544/1033173712",
-  "native_inter_home": "ca-app-pub-3940256099942544/2247696110"
+  "native_intro4": "ca-app-pub-3940256099942544/2247696110"
 }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ==== Khoá dịch vụ SDK (TODO-SDK: điền giá trị THẬT) ==== -->
+    <!-- AdMob App ID test chính thức của Google — đổi lại id thật khi app có tài khoản AdMob riêng -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    <!-- AppsFlyer dev key (từ RN ControlProvider) -->
+    <string name="app_flyer_id" translatable="false">Qhno4yJY6KHmZp9uS9DRe4</string>
+    <!-- TODO-SDK: điền Facebook App ID + Client Token thật (để trống có thể lỗi FB SDK) -->
+    <string name="facebook_app_id" translatable="false"></string>
+    <string name="facebook_client_token" translatable="false"></string>
+    <!-- TODO-SDK: điền Google Play license key (Base64) -->
+    <string name="public_license_key" translatable="false"></string>
+
+    <!-- ==== 5 tính năng trên màn IAP (text đi cặp icon) ==== -->
+    <!-- TODO-APP: đổi lại nội dung khớp tính năng thật của app khi build từ khung sườn này —
+         text PHẢI ngắn gọn, súc tích (nhiều ngôn ngữ dịch ra dài hơn tiếng Anh, view có giới hạn). -->
+    <string name="feature5_text">Remove all ads</string>
+    <string name="feature2_text">Unlock all features</string>
+    <string name="feature3_text">No interruptions</string>
+    <string name="feature4_text">Premium content</string>
+    <string name="feature1_text">Priority support</string>
+
+    <!-- ==== Dialog xin quyền thông báo ==== -->
+    <string name="sdk_noti_title">Enable notifications</string>
+    <string name="sdk_noti_content">Allow notifications to get scan reminders and updates.</string>
+
+    <!-- ==== Thông báo (chủ đề QR) ==== -->
+    <string name="sdk_new_file_content">A new QR code was detected</string>
+    <string name="sdk_screenshot_title">Scan the QR code in your screenshot?</string>
+    <string name="sdk_recent_title">Recent scans</string>
+    <string name="sdk_daily_content">Scan or create a QR code today</string>
+    <string name="sdk_check_now">Check now</string>
+    <string name="sdk_fullscreen_1">QR Scanner</string>
+    <string name="sdk_fullscreen_2">Tap to scan a QR code</string>
+    <string name="sdk_out_app_title">QR Scanner</string>
+    <string name="sdk_out_app_content">Open to scan or create QR codes</string>
+
+    <!-- ==== 5 thông báo (ghép theo index với getNotificationImages) ==== -->
+    <string-array name="notification_title2">
+        <item>Scan a QR code</item>
+        <item>Connect to Wi-Fi</item>
+        <item>Save a contact</item>
+        <item>Create a QR code</item>
+        <item>Add an event</item>
+    </string-array>
+    <string-array name="notification_message2">
+        <item>Scan any QR or barcode instantly</item>
+        <item>Scan a Wi-Fi QR to connect fast</item>
+        <item>Scan a contact card to save it</item>
+        <item>Make your own QR code now</item>
+        <item>Scan a calendar QR to add events</item>
+    </string-array>
+    <string-array name="notification_button2">
+        <item>Scan</item>
+        <item>Connect</item>
+        <item>Save</item>
+        <item>Create</item>
+        <item>Add</item>
+    </string-array>
+</resources>

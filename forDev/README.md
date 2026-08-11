@@ -17,8 +17,9 @@
 3. Điền phần đặc tả trong [`../docs/`](../docs/) cho app mới (copy khuôn trắng, viết nội dung thật).
 4. Sau khi có đủ đặc tả: đọc `HANDOFF_NEXT_APP.md` (ở `vga49a/` — thư mục cha) để chọn app mẫu gần
    giống nhất trong dự án làm khung code, rồi tiếp tục theo
-   [`../docs/integration/README.md`](../docs/integration/README.md) và
-   [`../docs/UI_FIDELITY_WORKFLOW.md`](../docs/UI_FIDELITY_WORKFLOW.md) để dựng app thật.
+   [`../docs/integration/README.md`](../docs/integration/README.md),
+   [`../docs/DESIGN_TOKENS.md`](../docs/DESIGN_TOKENS.md) (map Style Guide vào code — làm TRƯỚC khi
+   code màn hình) và [`../docs/UI_FIDELITY_WORKFLOW.md`](../docs/UI_FIDELITY_WORKFLOW.md) để dựng app thật.
 
 ## Nguyên tắc khi thêm tài liệu mới
 

@@ -1,45 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="baseapp_new_file_content">새 사진이 준비되었습니다</string>
-    <string name="baseapp_screenshot_title">스크린샷 촬영됨 — Camera Studio 열기</string>
-    <string name="baseapp_recent_title">최근 만든 사진</string>
-    <string name="baseapp_open">열기</string>
-    <string name="baseapp_scan">촬영</string>
-    <string name="baseapp_daily_open_content">오늘도 Camera Studio로 새로운 것을 만들어보세요</string>
-    <string name="baseapp_check_now">카메라 열기</string>
-    <string name="baseapp_fullscreen_1">당신의 순간을 담아보세요</string>
-    <string name="baseapp_fullscreen_2">지금 바로 Camera Studio를 열려면 탭하세요</string>
-    <string name="baseapp_outapp_title">Camera Studio</string>
-    <string name="baseapp_outapp_content">오늘도 사진 편집을 잊지 마세요 — 탭하여 열기</string>
-
-    <string name="baseapp_noti_title">알림 사용</string>
-    <string name="baseapp_noti_content">사진 편집을 위한 알림과 팁을 받아보세요</string>
-
-    <string-array name="notification_title2">
-        <item>당신의 순간을 담아보세요</item>
-        <item>새로운 필터를 사용해보세요</item>
-        <item>갤러리가 당신을 기다려요</item>
-        <item>오늘 콜라주를 만들어보세요</item>
-        <item>새로운 배경화면 템플릿</item>
-    </string-array>
-    <string-array name="notification_message2">
-        <item>지금 사진을 찍어보세요</item>
-        <item>새로운 필터나 프레임을 사용해보세요</item>
-        <item>저장된 사진을 확인해보세요</item>
-        <item>가장 멋진 사진을 콜라주로 만들어보세요</item>
-        <item>사진을 배경화면으로 만들어보세요</item>
-    </string-array>
-    <string-array name="notification_button2">
-        <item>촬영</item>
-        <item>보기</item>
-        <item>열기</item>
-        <item>만들기</item>
-        <item>둘러보기</item>
-    </string-array>
-
-    <string name="premium_feature1">광고 없는 경험</string>
-    <string name="premium_feature2">모든 필터 잠금 해제</string>
-    <string name="premium_feature3">모든 프레임 잠금 해제</string>
-    <string name="premium_feature4">HD 내보내기</string>
-    <string name="premium_feature5">우선 지원</string>
+    <string name="prev" formatted="false">이전</string>
+    <string name="perSub" formatted="false">앱은 카메라 및 알림 사용 권한을 요구합니다</string>
+    <string name="ledDark" formatted="false">어두운 곳에서 LED</string>
+    <string name="tooClose" formatted="false">너무 가까움 / 흐림</string>
+    <string name="autoScan" formatted="false">연속 스캔</string>
+    <string name="DESCRIPTION" formatted="false">설명</string>
+    <string name="MAXIMUM_MESSAGE" formatted="false">허용되는 최대 미디어 수를 선택했습니다</string>
+    <string name="INSTAGRAM" formatted="false">Instagram</string>
+    <string name="layout_button_send" formatted="false">보내기</string>
+    <string name="aw2" formatted="false">앱이 작동하지 않음</string>
+    <string name="af84d5" formatted="false">연마다</string>
+    <string name="SHARE" formatted="false">공유</string>
+    <string name="duplicateCode" formatted="false">중복 바코드</string>
+    <string name="COPY_PASSWORD" formatted="false">비밀번호 복사</string>
+    <string name="CUSTOMIZE" formatted="false">사용자 지정</string>
+    <string name="saved_customize_success" formatted="false">사용자 지정이 저장되었습니다!</string>
+    <string name="manualScan" formatted="false">수동 스캔</string>
+    <string name="scanningTips" formatted="false">스캔 팁</string>
+    <string name="autoOpen" formatted="false">웹 페이지 자동 열기</string>
+    <string name="ME_USERNAME" formatted="false">나의 사용자 이름</string>
+    <string name="TITLE_CREATE" formatted="false">QR 코드 생성기</string>
+    <string name="OPEN" formatted="false">열기</string>
+    <string name="rateApp" formatted="false">앱 평가하기</string>
+    <string name="layout_thanks" formatted="false">평가해 주셔서 감사합니다</string>
+    <string name="ME_LINK" formatted="false">나의 링크</string>
+    <string name="EMAIL" formatted="false">이메일</string>
+    <string name="LANGUAGE_OPTIONS" formatted="false">언어 옵션</string>
+    <string name="update_isReady_btn_update" formatted="false">업데이트</string>
+    <string name="TWITTER" formatted="false">Twitter</string>
+    <string name="start" formatted="false">시작</string>
+    <string name="i874505" formatted="false">월간</string>
+    <string name="cancelsubscriptions" formatted="false">구독 취소</string>
+    <string name="ARTIST_NAME" formatted="false">아티스트 이름</string>
+    <string name="TEXT_EMPTY_FORM" formatted="false">내용을 입력하십시오</string>
+    <string name="vibrate" formatted="false">진동</string>
+    <string name="ADDRESS" formatted="false">주소</string>
+    <string name="perCamera" formatted="false">카메라</string>
+    <string name="SAVE" formatted="false">저장</string>
+    <string name="perCameraSub" formatted="false">QR 코드 스캔</string>
+    <string name="intro1" formatted="false">빠른 QR 스캔</string>
+    <string name="delete_history_success" formatted="false">히스토리가 성공적으로 삭제되었습니다!</string>
+    <string name="YOUTUBE_URL" formatted="false">YouTube URL</string>
+    <string name="CONTACTS" formatted="false">연락처</string>
+    <string name="ADD_TO_CONTACTS" formatted="false">연락처에 추가</string>
+    <string name="notiSub" formatted="false">알림 표시</string>
+    <string name="autoScanSub" formatted="false">스캔 후 동작 건너뛰기</string>
+    <string name="END" formatted="false">종료</string>
+    <string name="aw5" formatted="false">기타 이유</string>
+    <string name="TEL" formatted="false">전화</string>
+    <string name="layout_share_btn_label" formatted="false">앱 공유</string>
+    <string name="TITLE" formatted="false">제목</string>
+    <string name="COPY" formatted="false">복사</string>
+    <string name="CREATE" formatted="false">생성</string>
+    <string name="policy" formatted="false">개인정보처리방침</string>
+    <string name="CLEAR_FILTER" formatted="false">필터 지우기</string>
+    <string name="newVersion_isReady_mss" formatted="false">계속 사용하려면 앱을 업데이트하십시오!</string>
+    <string name="aw3" formatted="false">광고가 너무 많음</string>
+    <string name="intro1Sub" formatted="false">어디서나 QR 코드를 즉시 스캔</string>
+    <string name="intro3Sub" formatted="false">세부 정보를 입력하고 쉽게 개인 코드 생성</string>
+    <string name="PRIVACY_POLICY" formatted="false">개인 정보 정책</string>
+    <string name="YES" formatted="false">예</string>
+    <string name="SAVE_IMAGE" formatted="false">이미지 저장</string>
+    <string name="GENERAL_SETTINGS" formatted="false">일반 설정</string>
+    <string name="SEND_SMS" formatted="false">SMS 보내기</string>
+    <string name="CUSTOMIZE_QRCODE" formatted="false">QR 코드 사용자 지정</string>
+    <string name="update_isReady_mss" formatted="false">업데이트를 위해 앱을 다시 시작하십시오!</string>
+    <string name="SAVE_OPTION" formatted="false">저장 옵션</string>
+    <string name="INVALID_PHONE" formatted="false">잘못된 전화번호</string>
+    <string name="FACEBOOK_PROFILE" formatted="false">페이스북 프로필</string>
+    <string name="NAME" formatted="false">이름</string>
+    <string name="SEND_EMAIL" formatted="false">이메일 보내기</string>
+    <string name="close" formatted="false">닫기</string>
+    <string name="g672873" formatted="false">연간</string>
+    <string name="selected" formatted="false">선택됨</string>
+    <string name="SCAN" formatted="false">스캔</string>
+    <string name="loadingAds" formatted="false">광고 로드 중</string>
+    <string name="MYCARD" formatted="false">내 명함</string>
+    <string name="tip0" formatted="false">방향 0°</string>
+    <string name="lightOrDark" formatted="false">밝거나 어두움</string>
+    <string name="OPEN_BROWSER" formatted="false">브라우저 열기</string>
+    <string name="cb0af4" formatted="false">월마다</string>
+    <string name="requestCamera" formatted="false">접근 요청</string>
+    <string name="TAP_HERE_TO_CHANGE" formatted="false">여기를 눌러 변경</string>
+    <string name="aw1" formatted="false">사용하기 어려움</string>
+    <string name="light" formatted="false">조명</string>
+    <string name="titleuninstall" formatted="false">앱을 제거한 이유는 무엇인가요?</string>
+    <string name="layout_language_header" formatted="false">언어</string>
+    <string name="continue_str" formatted="false">계속</string>
+    <string name="uninstall" formatted="false">제거</string>
+    <string name="share_image_success" formatted="false">이미지 공유에 성공했습니다!</string>
+    <string name="USERNAME" formatted="false">사용자 이름</string>
+    <string name="ConnectionFailed" formatted="false">연결 실패</string>
+    <string name="HISTORY" formatted="false">기록</string>
+    <string name="export" formatted="false">내보내기</string>
+    <string name="ALLDAY" formatted="false">하루 종일</string>
+    <string name="import_str" formatted="false">가져오기</string>
+    <string name="j9c4c14">%1$s일 무료 체험</string>
+    <string name="NOTIFICATION" formatted="false">알림</string>
+    <string name="g6dd514" formatted="false">체험 기간 동안 요금이 청구되지 않으며 언제든지 취소할 수 있습니다. 계속 진행하면
+        개인정보처리방침과 이용약관에 동의하는 것으로 간주됩니다. 구독을 관리, 일시중지 또는 취소하려면 Google Play 설정으로 이동하세요.</string>
+    <string name="LINK" formatted="false">링크</string>
+    <string name="next" formatted="false">다음</string>
+    <string name="SPOTIFY" formatted="false">Spotify</string>
+    <string name="SECURITY_MODE" formatted="false">보안 모드</string>
+    <string name="ENTER" formatted="false">입력</string>
+    <string name="e6a423" formatted="false">월</string>
+    <string name="CLIPBOARD" formatted="false">클립 보드</string>
+    <string name="START" formatted="false">시작</string>
+    <string name="SHOW_ON_MAP" formatted="false">지도에 표시</string>
+    <string name="noti" formatted="false">알림</string>
+    <string name="duplicateCodeSub" formatted="false">중복 바코드를 기록에 저장</string>
+    <string name="VIBER" formatted="false">Viber</string>
+    <string name="saving_image" formatted="false">이미지 저장 중...</string>
+    <string name="SETTINGS" formatted="false">설정</string>
+    <string name="ORG" formatted="false">조직</string>
+    <string name="layout_do_you_like" formatted="false">좋아하시나요</string>
+    <string name="FILTER_HISTORY" formatted="false">히스토리 필터링</string>
+    <string name="scanControl" formatted="false">스캔 제어</string>
+    <string name="f5776c5" formatted="false">년</string>
+    <string name="tip90" formatted="false">방향 90°</string>
+    <string name="HELP" formatted="false">도움말</string>
+    <string name="CLEAR_HISTORY" formatted="false">기록 지우기</string>
+    <string name="PHONE_NUMBER" formatted="false">전화번호</string>
+    <string name="FACEBOOK_ID" formatted="false">페이스북 ID</string>
+    <string name="update_isReady_title" formatted="false">새 업데이트가 준비되었습니다</string>
+    <string name="TEXT_MESSAGE" formatted="false">텍스트 메시지</string>
+    <string name="TEXT" formatted="false">텍스트</string>
+    <string name="BIRTHDAY" formatted="false">생일</string>
+    <string name="share_success" formatted="false">공유 성공</string>
+    <string name="ConnectionSuccessful" formatted="false">연결 성공</string>
+    <string name="tipOther" formatted="false">다른 방향</string>
+    <string name="SAVE_CUSTOMIZE" formatted="false">사용자 지정 저장</string>
+    <string name="PLEASE_ENTER_SOMETHING" formatted="false">무언가를 입력하십시오</string>
+    <string name="permission" formatted="false">권한</string>
+    <string name="search" formatted="false">검색</string>
+    <string name="note" formatted="false">메모</string>
+    <string name="WEBSITE" formatted="false">웹 사이트</string>
+    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">클립 보드로 자동 복사</string>
+    <string name="CANCEL" formatted="false">취소</string>
+    <string name="Utilitles" formatted="false">유틸리티</string>
+    <string name="PASSWORD" formatted="false">비밀번호</string>
+    <string name="DATA_EMPTY" formatted="false">데이터가 없습니다</string>
+    <string name="intro3" formatted="false">나만의 QR &amp; 바코드 만들기</string>
+    <string name="CALENDAR" formatted="false">캘린더</string>
+    <string name="intro4" formatted="false">다중 코드 스캔</string>
+    <string name="VIDEO_ID" formatted="false">비디오 ID</string>
+    <string name="SONG_NAME" formatted="false">노래 제목</string>
+    <string name="EMAIL_ADDRESS" formatted="false">이메일 주소</string>
+    <string name="skip" formatted="false">건너뛰기</string>
+    <string name="Personal" formatted="false">개인</string>
+    <string name="Social" formatted="false">소셜</string>
+    <string name="update_isReady_btn_late" formatted="false">나중에</string>
+    <string name="egwthe" formatted="false">그 이후</string>
+    <string name="COPY_TO_CLIPBOARD" formatted="false">클립 보드로 복사</string>
+    <string name="saved_image_success" formatted="false">이미지가 라이브러리에 저장되었습니다!</string>
+    <string name="intro2" formatted="false">스캔 기록 생성</string>
+    <string name="CONNECT_TO_WIFI" formatted="false">Wi-Fi 연결</string>
+    <string name="lowContrast" formatted="false">낮은 대비</string>
+    <string name="noPerCamera" formatted="false">카메라 접근 권한이 없습니다</string>
+    <string name="CONTACT_US" formatted="false">문의하기</string>
+    <string name="NETWORK_NAME" formatted="false">네트워크 이름</string>
+    <string name="share_cancel" formatted="false">공유 취소</string>
+    <string name="aw4" formatted="false">유용하지 않음</string>
+    <string name="NOT_FIND_QRCODE" formatted="false">이미지에서 QR 코드를 찾을 수 없습니다</string>
+    <string name="APPLY" formatted="false">적용</string>
+    <string name="i8f46e6" formatted="false">광고 없는 경험</string>
+    <string name="NO" formatted="false">아니요</string>
+    <string name="textSplash" formatted="false">이 작업에는 광고가 포함될 수 있습니다</string>
+    <string name="SMS" formatted="false">SMS</string>
+    <string name="intro4Sub" formatted="false">데이터 수집 작업에서 여러 코드를 스캔하는 데 이상적</string>
+    <string name="FEEDBACK" formatted="false">피드백</string>
+    <string name="WiFI" formatted="false">Wi-Fi</string>
+    <string name="SUB_DELETE" formatted="false">정말 삭제하시겠습니까?</string>
+    <string name="intro2Sub" formatted="false">모든 스캔된 코드를 스마트하게 캡처, 저장 및 정리</string>
+    <string name="manualScanSub" formatted="false">의도치 않은 스캔 방지</string>
+    <string name="ADD_TO_EVENTS" formatted="false">이벤트에 추가</string>
+    <string name="NOTE" formatted="false">노트</string>
+    <string name="share_message" formatted="false">빠르고 편리한 QR 코드 생성 및 스캔 앱, 지금 Google Play에서
+        다운로드하세요!</string>
+    <string name="NONE" formatted="false">없음</string>
+    <string name="scan" formatted="false">스캔</string>
+    <string name="CONTENT" formatted="false">내용</string>
+    <string name="scanImage" formatted="false">이미지 스캔</string>
+    <string name="PAYPAL" formatted="false">Paypal</string>
+    <string name="DONE" formatted="false">완료</string>
+    <string name="CALL" formatted="false">전화 걸기</string>
+    <string name="newVersion_isReady_title" formatted="false">새 버전이 준비되었습니다</string>
+    <string name="CHANNEL_ID" formatted="false">채널 ID</string>
 </resources>
