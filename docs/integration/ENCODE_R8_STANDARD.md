@@ -42,12 +42,33 @@ app/
 ## 2. Quy trình chạy
 
 ```bash
-cd encode-scripts && npm install        # 1 lần
-# copy toàn bộ *.js sang REPO_ROOT (push.sh làm tự động — xem push.sh: copy_scripts_to_root)
+cd encode-scripts && npm install         # 1 lần
 node rename-all.js                       # chạy cả pipeline, dừng ngay nếu 1 bước lỗi
-./gradlew assembleRelease                 # build test
-node reverse.js                           # khôi phục code gốc sau khi build xong / khi lỗi
+(cd .. && ./gradlew assembleRelease)     # build test
+node reverse.js                          # khôi phục code gốc sau khi build xong / khi lỗi
 ```
+
+### ⚠️ Chạy TRONG `encode-scripts/`, KHÔNG copy script ra repo root
+Cả bộ script giải đường dẫn theo **vị trí của chính nó**, nên phải chạy tại chỗ:
+
+| Chỗ | Cách giải đường dẫn | Chỉ đúng khi ở |
+|---|---|---|
+| `rename-*.js`, `reverse.js` | `path.resolve(__dirname, config.srcCodePath)` với `srcCodePath: "../app/src/main"` | `encode-scripts/` |
+| `firebase-merge.js` | `ROOT = process.cwd()` rồi `path.join(ROOT, config.srcCodePath, …)` | `encode-scripts/` |
+| `keychange*.json` | ghi cạnh script | encode và `reverse.js` phải cùng chỗ |
+| `rename-all.js` | `execSync(…, { cwd: __dirname })` | tự truyền, chạy đâu cũng được |
+
+Bản `push.sh` cũ copy 10 script ra root rồi chạy ở đó (`copy_scripts_to_root`) — xem mục 3.12 để biết
+vì sao đó là bug, không phải lựa chọn. `push.sh` hiện tại chạy tại chỗ qua `run_encode_in_place`.
+
+### `reverse.js` khôi phục ĐÚNG NỘI DUNG, không byte-exact
+Đã đo trên vga58a (encode → reverse, không build): 4 bước chạy sạch, 24 drawable + 20 file ngôn ngữ +
+282 symbol đổi tên, reverse xong **21 file `strings.xml` vẫn hiện `M` trong `git status`**. So sánh
+ngữ nghĩa từng cặp `name → text` bằng parser XML: **giống hệt 21/21** — `rename-languages.js` ghi lại
+file nên đổi thụt lề (6 → 4 space) và bỏ dòng trống, reverse trả đúng key nhưng không trả whitespace.
+Vì vậy: **đừng dùng "working tree sạch" làm bằng chứng reverse thành công** — phải so nội dung. Sau
+một lần `push.sh build_tool` thất bại, chạy `git checkout -- app/src/main/res` để dọn phần dư này
+(chỉ an toàn khi đã commit hết trước lúc chạy, đúng như §E.5 #2 yêu cầu).
 
 `push.sh build_tool` đã được cập nhật để gọi `node rename-all.js` (không còn mảng `ENCODE_SCRIPTS`
 hardcode) — tự dừng + tự reverse nếu 1 bước lỗi giữa chừng (trước đây `|| warn ... tiếp tục` sẽ chạy
@@ -159,7 +180,42 @@ tiếp các bước sau dù 1 bước đã lỗi, để lại code rename dở d
 - `_cleanup()` (trap EXIT) chạy sau khi hàm cha unwind → biến local có thể "unbound" dưới `set -u` →
   dùng `${var:-default}` thay vì tham chiếu trực tiếp.
 - PHẢI commit hết trước khi chạy `push.sh` — script tự tạo branch tạm rồi `git checkout`, uncommitted
-  changes sẽ mất.
+  changes sẽ mất. Guard đầu script chỉ bắt **staged** changes, file sửa-mà-chưa-`add` lọt qua — xem
+  `PLAYBOOK_TICH_HOP.md` §E.5 #2.
+- **Bất cứ thứ gì chặn `git checkout` lúc dọn dẹp = bị bỏ lại trên nhánh tạm.** Đã xảy ra 2 lần với 2
+  nguyên nhân khác nhau: (1) `WORK_BRANCH` khai tên nhánh không tồn tại; (2) một file **untracked** chặn
+  checkout — bản thử `git rm --cached push.sh` (để repo build không chứa file quy trình dev) làm
+  `push.sh` thành untracked trên nhánh tạm, git từ chối ghi đè nó khi quay về `main`. Bài học: đừng đánh
+  đổi 12 KB "sạch repo" bằng rủi ro làm hỏng đường về; và `_cleanup` phải **báo to** khi checkout thất
+  bại thay vì `|| true` (bản hiện tại in hướng dẫn khắc phục kèm tên nhánh tạm).
+- **`WORK_BRANCH` khai sai tên = bị bỏ lại trên nhánh tạm.** `_cleanup()` chạy
+  `git checkout "$WORK_BRANCH" 2>/dev/null || true`: nếu nhánh đó không tồn tại (hay gặp khi copy
+  `push.sh` từ app trước — file trông "đã điền đúng"), checkout thất bại và bị `|| true` **che im
+  lặng**, rồi `git branch -D "$tb"` cũng thất bại vì không xoá được nhánh đang đứng. Kết quả: bạn còn
+  ở nhánh tạm, mà ở luồng `build_tool` nhánh tạm là bản **đã xoá sạch `*.md` + `encode-scripts/`** →
+  trông y như mất file, dễ tưởng encode script phá hỏng repo. Đối chiếu `WORK_BRANCH` với
+  `git branch --show-current` trước lần đầu chạy cho một app mới. Đã gặp ở vga58a (khai
+  `androidsdkads` trong khi repo chỉ có `main`) — cùng lớp lỗi "copy config từ app trước mà quên sửa"
+  với `BASE_NAMESPACE` ở §3.1.
+
+### 3.12 Copy script ra repo root → `srcCodePath` trỏ lên trên repo một cấp
+- **Đã xảy ra ở vga58a + đã sửa.** `push.sh` cũ copy 10 script ra `$REPO_ROOT` rồi chạy `node
+  rename-all.js` ở đó. Nhưng `srcCodePath: "../app/src/main"` được giải bằng
+  `path.resolve(__dirname, …)`, mà `__dirname` giờ là repo root → `..` thành **thư mục cha của repo** →
+  `ENOENT: scandir 'C:\workspace\java_app\app\src\main'`.
+- **Hai điểm khiến nó khó lần ra:**
+  1. Bước 1 (`rename-drawables.js`) **không chết ngay**: nó quét thư mục không tồn tại, in
+     `✅ Đã đổi tên 0 file drawable`, ghi mapping rỗng, rồi mới chết ở bước cập nhật tham chiếu — đọc
+     log tưởng "encode chạy được một phần".
+  2. `reverse.js` dùng đúng cùng `srcCodePath` nên **cũng chết cùng lý do** → `trap` gọi reverse nhưng
+     reverse không làm gì. Ở vga58a may là chưa file nào bị sửa (0 file rename) nên repo còn nguyên;
+     nếu lỗi rơi vào bước 3 (`rename-file.js`) thì đã mất khả năng khôi phục tự động.
+- **Bài học tổng quát**: cơ chế an toàn (`trap` + `reverse.js`) chỉ có giá trị khi nó chạy trong CÙNG
+  điều kiện đường dẫn với encode. Cấu hình sai chỗ chạy làm hỏng CẢ HAI cùng lúc — chạy encode và
+  reverse ở đúng một chỗ (`encode-scripts/`) là điều kiện để lưới an toàn còn tác dụng.
+- **Cách kiểm nhanh cho app mới**, trước khi tin vào `push.sh`: chạy encode rồi reverse ngay, KHÔNG
+  build (~10 giây), rồi so nội dung với `HEAD` bằng parser XML thay vì đọc `git status` (xem lý do ở
+  mục 2, phần "không byte-exact").
 
 ## 4. `rename-config-key.js` — khi nào bật, khi nào tắt
 
@@ -210,7 +266,9 @@ SDK mới cần thêm rule, chỉ sửa file đó, không phải sửa file này
    `SAFE_SKIP_APP_SPECIFIC` thay vì xoá mất.
 4. Thêm `(?<!android\.)` vào `rename-drawables.js`/`rename-languages.js` của app đó (mục 3.5).
 5. Thêm `pipeline: {...}` vào `rename-config-global.js`, xác định `renameConfigKey` bật/tắt theo mục 4.
-6. Cập nhật `push.sh` của app đó: thay mảng `ENCODE_SCRIPTS` hardcode bằng `node rename-all.js`.
+6. Cập nhật `push.sh` của app đó: thay mảng `ENCODE_SCRIPTS` hardcode bằng `node rename-all.js`, chạy
+   **trong `encode-scripts/`** chứ không copy script ra root (mục 3.12), và đối chiếu `WORK_BRANCH`
+   với `git branch --show-current` (mục 3.11).
 7. Tách `proguard-rules.pro` hiện tại của app đó: phần trùng với `proguard-rules-base.pro` (Billing/
    AAR core/AdMob mediation/Gson/Crashlytics) → xoá khỏi file riêng, thêm `proguardFiles(...,
    "proguard-rules-base.pro", "proguard-rules.pro")` vào `build.gradle.kts`; phần còn lại (SDK riêng)

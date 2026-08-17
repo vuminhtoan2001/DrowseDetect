@@ -23,6 +23,10 @@
 5. **[`PROGUARD_SDK_RECIPES.md`](PROGUARD_SDK_RECIPES.md)** — checklist ngắn khi thêm 1 SDK mới hoặc
    build bản có minify: 3 câu tự hỏi (JNI? reflection? model serialize?) để biết có cần thêm rule
    không, không phải catalog recipe cho từng SDK cụ thể.
+6. **[`REMOTE_CONFIG_TEMPLATE.md`](REMOTE_CONFIG_TEMPLATE.md)** — dựng template Firebase Remote Config
+   để import lên console: gộp key của SDK + key riêng của app + ad unit id theo placement. Đi kèm 2
+   file dữ liệu trong cùng thư mục: [`remote_config_setup.json`](remote_config_setup.json) (đầu vào —
+   key SDK cần) và [`remote_config_new.json`](remote_config_new.json) (đầu ra đã dựng sẵn cho app này).
 
 > Đã xoá `HUONG_DAN_TICH_HOP.md` (spec đầy đủ của lib — không cần đọc lại khi base đã tích hợp sẵn) và
 > `INTRO_CHECK.md` (logic gate Intro đã chốt, baked sẵn trong skeleton — app mới chỉ đổi ảnh/title,

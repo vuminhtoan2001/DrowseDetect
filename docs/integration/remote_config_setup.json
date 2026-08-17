@@ -1,0 +1,276 @@
+{
+  "parameters": {
+    "interval_auto_open_app": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "type_of_start_up_first_time": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "is_auto_open_app": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "BOOLEAN"
+    },
+    "type_of_start_up": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "request_feature_setting_on_off": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "BOOLEAN"
+    }
+  },
+  "parameterGroups": {
+    "noti": {
+      "parameters": {
+        "notification_frequency_minutes": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "request_noti_activity_on_off": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "notification_step_increase": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_step_decrease": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_step_organic": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_min_timeout": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_max_timeout": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_max_hour": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_min_hour": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "interval_show_inter_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "timeout_load_inter_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "turn_off_noti_service_if_premium": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "always_request_noti_when_enter_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "notification_out_app_interval_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "is_show_notification_out_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_duplicate_notification": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_call_use_app_noti_normal": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_noti_head_up_content_view": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_set_fullscreen_alarm": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_noti_media": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "type_of_noti_call_use_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        }
+      }
+    },
+    "ads": {
+      "parameters": {
+        "ads_config": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "JSON"
+        },
+        "apply_admob_api_35": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_big_ads": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "preload_native_language": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_ads_main": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "type_ads_detail": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "type_ads_uninstall": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        }
+      }
+    },
+    "iap": {
+      "parameters": {
+        "free_trial_button_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "free_trial_button_text_2": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "free_trial_explain_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_button_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_explain_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_price_color": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_screen_type": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "iap_weekly_plan": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "is_free_trial_enable": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "log_purchase_event": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        }
+      }
+    }
+  }
+}

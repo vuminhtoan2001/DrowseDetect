@@ -1,0 +1,448 @@
+{
+  "parameters": {
+    "interval_auto_open_app": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "type_of_start_up_first_time": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "is_auto_open_app": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "BOOLEAN"
+    },
+    "type_of_start_up": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "NUMBER"
+    },
+    "request_feature_setting_on_off": {
+      "defaultValue": {
+        "useInAppDefault": true
+      },
+      "valueType": "BOOLEAN"
+    }
+  },
+  "parameterGroups": {
+    "noti": {
+      "parameters": {
+        "notification_frequency_minutes": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "request_noti_activity_on_off": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "notification_step_increase": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_step_decrease": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_step_organic": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_min_timeout": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_max_timeout": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_max_hour": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "notification_min_hour": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "interval_show_inter_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "timeout_load_inter_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "turn_off_noti_service_if_premium": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "always_request_noti_when_enter_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "notification_out_app_interval_second": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "is_show_notification_out_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_duplicate_notification": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_call_use_app_noti_normal": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_noti_head_up_content_view": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_set_fullscreen_alarm": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_noti_media": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "type_of_noti_call_use_app": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        }
+      }
+    },
+    "ads": {
+      "parameters": {
+        "ads_config": {
+          "defaultValue": {
+            "value": "{\"open_splash\":\"ca-app-pub-9405071173323068/7674792065\",\"inter_splash\":\"ca-app-pub-9405071173323068/2297558484\",\"open_all\":\"ca-app-pub-9405071173323068/6473391039\",\"splash_uninstall\":\"ca-app-pub-9405071173323068/3502828947\",\"native_language\":\"ca-app-pub-9405071173323068/1312759815\",\"native_keep_user\":\"ca-app-pub-9405071173323068/6361710398\",\"native_survey_user\":\"ca-app-pub-9405071173323068/2189747279\",\"native_exit_app\":\"ca-app-pub-9405071173323068/5048628726\",\"native_permission\":\"ca-app-pub-3940256099942544/2247696110\",\"native_intro1\":\"ca-app-pub-9405071173323068/9984476815\",\"native_intro2\":\"ca-app-pub-9405071173323068/8671395143\",\"native_intro3\":\"ca-app-pub-9405071173323068/7358313476\",\"native_intro4\":\"ca-app-pub-9405071173323068/6098182639\",\"native_tab\":\"ca-app-pub-9405071173323068/9876665608\",\"native_progress\":\"ca-app-pub-9405071173323068/3419068466\",\"native_finished\":\"ca-app-pub-9405071173323068/2105986799\",\"native_history\":\"ca-app-pub-9405071173323068/4785100960\",\"native_bookmark\":\"ca-app-pub-9405071173323068/6373514805\",\"native_setting\":\"ca-app-pub-9405071173323068/2422465381\",\"native_option_download\":\"ca-app-pub-9405071173323068/3472019297\",\"native_password\":\"ca-app-pub-9405071173323068/6108810986\",\"native_inter_download\":\"ca-app-pub-9405071173323068/3018779063\",\"native_inter_private\":\"ca-app-pub-9405071173323068/3687445598\",\"inter_download\":\"ca-app-pub-9405071173323068/9792905122\",\"inter_private\":\"ca-app-pub-9405071173323068/6764397047\"}"
+          },
+          "valueType": "JSON"
+        },
+        "apply_admob_api_35": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "is_big_ads": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "preload_native_language": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "show_ads_main": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "type_ads_detail": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "type_ads_uninstall": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        }
+      }
+    },
+    "iap": {
+      "parameters": {
+        "free_trial_button_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "free_trial_button_text_2": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "free_trial_explain_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_button_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_explain_text": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_price_color": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "iap_screen_type": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "NUMBER"
+        },
+        "iap_weekly_plan": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "STRING"
+        },
+        "is_free_trial_enable": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        },
+        "log_purchase_event": {
+          "defaultValue": {
+            "useInAppDefault": true
+          },
+          "valueType": "BOOLEAN"
+        }
+      }
+    },
+    "new_sdk_ads_vexaro": {
+      "parameters": {
+        "native_tab_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_progress_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_finished_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_history_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_bookmark_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_setting_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_option_download_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_password_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "inter_download_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "inter_download_showRatio": {
+          "defaultValue": {
+            "value": "3"
+          },
+          "valueType": "NUMBER"
+        },
+        "inter_download_maxShowPerDay": {
+          "defaultValue": {
+            "value": "10"
+          },
+          "valueType": "NUMBER"
+        },
+        "inter_private_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "inter_private_showRatio": {
+          "defaultValue": {
+            "value": "3"
+          },
+          "valueType": "NUMBER"
+        },
+        "inter_private_maxShowPerDay": {
+          "defaultValue": {
+            "value": "10"
+          },
+          "valueType": "NUMBER"
+        },
+        "native_inter_download_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_inter_download_showRatio": {
+          "defaultValue": {
+            "value": "3"
+          },
+          "valueType": "NUMBER"
+        },
+        "native_inter_download_maxShowPerDay": {
+          "defaultValue": {
+            "value": "10"
+          },
+          "valueType": "NUMBER"
+        },
+        "native_inter_private_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_inter_private_showRatio": {
+          "defaultValue": {
+            "value": "3"
+          },
+          "valueType": "NUMBER"
+        },
+        "native_inter_private_maxShowPerDay": {
+          "defaultValue": {
+            "value": "10"
+          },
+          "valueType": "NUMBER"
+        },
+        "native_permission_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_intro1_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_intro2_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_intro3_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_intro4_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "positionIntrol": {
+          "defaultValue": {
+            "value": "[[1,22,3,4],[1,2,33,4],[1,2,3,4]]"
+          },
+          "valueType": "JSON"
+        },
+        "count_app_open": {
+          "defaultValue": {
+            "value": "3"
+          },
+          "valueType": "NUMBER"
+        },
+        "organic_number_not_guide": {
+          "defaultValue": {
+            "value": "1"
+          },
+          "valueType": "NUMBER"
+        }
+      }
+    }
+  }
+}

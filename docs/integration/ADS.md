@@ -138,7 +138,8 @@ placement riêng biệt** (2 bộ đếm tần suất độc lập), nhớ `maxS
 
 **Bước 3** — trong Composable của màn chứa hành động đó:
 ```kotlin
-val interFlow = rememberInterFlow()
+// State CHUNG toàn app, đã cấp ở AppRoot — KHÔNG gọi rememberInterFlow() ở màn tính năng
+val interFlow = LocalInterFlow.current
 
 fun onHoanTatHanhDong() {
     val activity = context as? android.app.Activity
@@ -148,12 +149,19 @@ fun onHoanTatHanhDong() {
     }
 }
 
-// đặt 1 lần trong Composable, phủ toàn màn khi cần hiện:
-InterFlowOverlay(interFlow)
 ```
+`InterFlowOverlay` **không cần** thêm vào màn: nó đã nhúng một lần ở `AppRoot`.
 - `interFlow.run(context, activity, interPlacement, fakePlacement, onDone)`: tự kiểm tra
   `AdManager.shouldShowInter` cho từng placement, tự quyết định hiện inter thật hay bỏ qua, rồi luôn
   thử tiếp placement thứ 2, cuối cùng gọi `onDone()`.
+- ⚠️ **Native-sau-inter được tải SONG SONG với inter**, không phải sau khi inter đóng. Bản đầu tải ở
+  bước sau nên tắt inter xong là người dùng nhìn một màn ĐEN suốt thời gian tải — tưởng app treo.
+  Việc tải do `InterFlowState` giữ, KHÔNG do composable: preload bằng cách mount composable ở một chỗ
+  rồi lúc hiện lại mount vào trong `Dialog` thì composable bị huỷ và dựng lại, `DisposableEffect`
+  destroy luôn ad vừa tải → preload vô ích.
+- `onDone` nên để RỖNG nếu hành động chính có thể chạy nền song song với quảng cáo (vd bấm tải: gọi
+  `downloadOption()` trước rồi mới `run(...)`). Chỉ đặt việc vào `onDone` khi nó buộc phải xảy ra SAU
+  quảng cáo (vd điều hướng sang màn khác).
 - Ví dụ thật cùng khuôn: `inter_scan`/`native_fake_inter_scan` (`ScanScreen.kt`),
   `inter_create`/`native_fake_inter_create` (`CreateItemScreen.kt`),
   `inter_menu`/`native_fake_inter_menu` (`CreateScreen.kt`) — chỉ khác tên "fake" vì thêm trước khi có
