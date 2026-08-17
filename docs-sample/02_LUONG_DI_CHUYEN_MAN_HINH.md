@@ -1,122 +1,174 @@
-# vga52a-kotlin — Luồng di chuyển màn hình
+# Video Downloader — Luồng di chuyển màn hình
+
+> Tên màn hình trong tài liệu này khớp 1-1 với
+> [`01_MO_TA_CHUC_NANG_MAN_HINH.md`](01_MO_TA_CHUC_NANG_MAN_HINH.md).
+>
+> Phân biệt quan trọng: **Trình duyệt** và **Quản lý tải xuống** là 2 màn được chuyển qua lại bằng
+> thanh điều hướng đáy (ngang hàng nhau); các màn còn lại **mở chồng lên** và thoát bằng nút quay lại.
 
 ## 1. Sơ đồ tổng quan
 
 ```mermaid
 flowchart TD
-    Splash[Splash - do lib nền tảng tự quản lý] --> IntroCheck{Đã xem Intro?}
-    IntroCheck -- Chưa --> Intro[Intro - 4 slide]
-    IntroCheck -- Rồi, thiếu quyền --> Permission
-    IntroCheck -- Rồi, đủ quyền --> Home
-    Intro -- Start --> Permission[Permission]
-    Permission -- Đủ 2 quyền / Skip --> Home[Home]
+    START([Mở app]) --> BOOT[Luồng khởi động dùng chung<br/>Splash → Ngôn ngữ → Gói trả phí]
+    BOOT --> ONB{Lần mở đầu?}
+    ONB -- Có --> INTRO[Giới thiệu + Xin quyền]
+    ONB -- Không --> BROWSER
+    INTRO --> BROWSER
 
-    Home -- Take Photo --> Camera[Camera Photo/Video]
-    Home -- Edit Photo --> EPPicker[Media Picker: Edit Photo]
-    Home -- Collage Maker --> CPicker[Media Picker: Collage]
-    Home -- Wallpaper --> WTemplates[Wallpaper Templates]
-    Home -- My Gallery --> Gallery[Gallery]
-    Home -- Settings icon --> Setting[Setting]
-    Home -- Crown icon --> Paywall[[Premium Paywall - IAP]]
-    Home -- tap item gần đây --> ImportResult[Import Photo Result]
+    BROWSER[1. TRÌNH DUYỆT<br/>mục đáy: Thẻ]
 
-    Camera -- chụp ảnh xong --> Success[Take Photo Successfully]
-    Camera -- dừng quay video --> Camera
-    Camera -.route có sẵn, chưa dùng.-> VideoResult[Video Result]
-    Camera -- tap thumbnail gần nhất --> ImportResult
-    Camera -- nút X --> Home
-    Camera -- nút X, vào từ Picker --> EPPicker
-    Camera -- ghép đủ Collage live-shoot --> Success
+    BROWSER <-->|mục đáy Progress / Finished ↔ Thẻ| DL[2. QUẢN LÝ TẢI XUỐNG<br/>tab Progress / Finished]
 
-    VideoResult -- xác nhận --> Success
-    VideoResult -- huỷ --> Camera
+    BROWSER -->|menu ⋮ → History| HIS[3. LỊCH SỬ DUYỆT WEB]
+    BROWSER -->|bảng Thẻ → Favorite sites| SITES[4. TRANG WEB GỢI Ý]
+    BROWSER -->|bánh răng, hoặc menu ⋮ → Settings| SET[6. CÀI ĐẶT]
+    BROWSER -->|menu ⋮ → Bookmarks| BM[8. DẤU TRANG]
+    BROWSER -->|dấu hỏi ?| HOW[9. CÁCH TẢI VỀ]
 
-    Success -- Back to home --> Home
+    DL -->|tab Finished → thư mục có ổ khoá| PIN[5. VIDEO RIÊNG TƯ<br/>nhập/đặt mã PIN]
+    DL -->|Cách tải về| HOW
+    DL -->|bấm 1 mục đã tải xong| PLAY[7. TRÌNH PHÁT VIDEO]
 
-    ImportResult -- Edit, chỉ ảnh --> EditPhoto[Edit Photo Editor]
-    ImportResult -- back / xoá xong --> Camera
-    ImportResult -- back / xoá xong --> Home
-    ImportResult -- back / xoá xong --> Gallery
+    SET -->|Cách tải về| HOW
+    SET -->|Language options| LANG[Màn ngôn ngữ dùng chung]
 
-    Gallery -- tap item --> ImportResult
-    Gallery -- back --> Home
+    PIN -->|đúng mã| PRIV[Danh sách video riêng tư]
+    PRIV -->|bấm 1 video| PLAY
 
-    EPPicker -- chọn 1 ảnh --> EditPhoto
-    EPPicker -- back --> Home
-    EditPhoto -- X, không mở tool --> EPPicker
-    EditPhoto -- Save thành công --> Home
+    HIS -->|bấm 1 mục / Open in new tab| BROWSER
+    SITES -->|bấm 1 ô| BROWSER
+    BM -->|bấm 1 mục| BROWSER
+    HOW -->|Bắt đầu tải video| BROWSER
 
-    CPicker -- xác nhận đã chọn --> CollageEditor[Collage Editor]
-    CPicker -- back --> Home
-    CollageEditor -- X, không mở tool --> CPicker
-    CollageEditor -- Add / tap ô ảnh --> SubPicker[[Màn chọn ảnh con]]
-    SubPicker --> CollageEditor
-    CollageEditor -- Save thành công --> Home
+    HIS -.Back.-> BROWSER
+    SITES -.Back.-> BROWSER
+    SET -.Back.-> BROWSER
+    BM -.Back.-> BROWSER
+    HOW -.Back.-> PREV[Màn trước đó]
+    PIN -.Back.-> DL
+    PRIV -.Back.-> DL
+    PLAY -.Back.-> PREV2[Màn trước đó:<br/>Tải xuống hoặc Riêng tư]
 
-    WTemplates -- chọn mẫu --> WEditor[Wallpaper Editor]
-    WTemplates -- back --> Home
-    WEditor -- X, không mở tool --> WTemplates
-    WEditor -- Add / tap khe hở / Upload --> SubPicker2[[Màn chọn ảnh con]]
-    SubPicker2 --> WEditor
-    WEditor -- Save thành công --> WEditor
-
-    Setting -- back --> Home
-    Setting -- Language --> LangPicker[[Chọn ngôn ngữ - màn dùng chung]]
-    Setting -- Share app --> ShareSheet[[Share sheet hệ thống]]
-    Setting -- Rate app --> RateDialog[[Rate dialog]]
-    RateDialog -- điểm từ 4 sao --> PlayStore[[Trang app trên Play Store]]
-    Setting -- Premium --> Paywall
+    RING[10. NHẠC CHUÔNG ⏸ hoãn — bản đầu không có lối vào]
 ```
 
 ## 2. Bảng chi tiết vào/ra từng màn
 
 | # | Màn hình | Vào từ (nguồn) | Điều kiện/ghi chú khi vào | Ra tới (đích) | Điều kiện/ghi chú khi ra |
 |---|---|---|---|---|---|
-| 1 | **Intro** | Điểm khởi đầu app (nếu thuộc diện cần xem Intro) | Người dùng mới/chưa qua Intro | Permission | Luôn luôn, khi bấm "Start" ở slide 4. Intro bị xoá khỏi lịch sử (không back lại được). |
-| 2 | **Permission** | Intro (Start) hoặc điểm khởi đầu trực tiếp | Cho người dùng cũ chưa cấp đủ quyền camera/micro | Home | (a) cấp đủ Camera + Audio (tự động), hoặc (b) bấm "Skip". |
-| 3 | **Home** | Permission, hoặc điểm khởi đầu trực tiếp (đã qua Intro + đủ quyền), hoặc quay về sau khi hoàn tất 1 luồng tạo nội dung | — | Camera / Setting / Gallery / EditPhotoPicker / CollagePicker / WallpaperTemplates / ImportPhotoResult / Premium Paywall | Các mục chính (Camera/Gallery/Edit Photo/Collage/Wallpaper) có thể hiện quảng cáo interstitial (`inter_home`) trước khi điều hướng thật sự xảy ra. |
-| 4 | **Camera** (Photo/Video) | Home (Take Photo, qua `inter_home`), hoặc màn chọn ảnh (nút "+" — không đổi route, mở đè tại chỗ) | Tự xin quyền Camera nếu chưa có | Home (nút X, vào từ Home) / màn chọn ảnh (nút X, vào từ đó) / TakePhotoSuccessfully (chụp ảnh xong hoặc ghép Collage xong) / ImportPhotoResult (tap thumbnail gần nhất) | Chụp 1 ảnh đơn không tự điều hướng — ở lại Camera để chụp tiếp. Dừng quay video **hiện không** mở VideoResult (route có sẵn nhưng không được gọi trong luồng thật) — video tự lưu, ở lại Camera. |
-| 5 | **VideoResult** | Về mặt hệ thống: Camera sau khi dừng quay (**hiện chưa được kích hoạt** trong luồng thật — xem mục 01, phần Camera §7.4/§9) | Nhận đường dẫn video + độ rộng preview | Camera (huỷ, nút X) / TakePhotoSuccessfully (xác nhận, nút ✓) | Xác nhận: xoá các màn từ Home tới đó khỏi lịch sử trước khi vào Success. |
-| 6 | **TakePhotoSuccessfully** | Camera (ảnh đã lưu) hoặc VideoResult (video đã xác nhận) | Cả 2 nguồn đều xoá bớt lịch sử về Home trước khi vào | Home | Duy nhất 1 lối ra ("Back to home"), xoá sạch lịch sử phía sau — không back lại Camera/Success được nữa. |
-| 7 | **ImportPhotoResult** (chi tiết ảnh/video) | Camera (tap thumbnail gần nhất) / Home (tap item gần đây) / Gallery (tap item) | Nhận đường dẫn file + cờ isVideo | Quay lại đúng nơi đã mở tới (Camera/Home/Gallery) — qua back hoặc sau khi xoá xong / EditPhotoScreen (nút Edit, chỉ với ảnh) | Xoá thành công → tự đóng màn, không còn cách xem lại file đã xoá. |
-| 8 | **Gallery** | Home (My Gallery, qua `inter_home`) | 3 tab Photo/Video/Templates, mặc định "xem tất cả media máy" tắt | ImportPhotoResult (tap item) / Home (back) | Công tắc "xem tất cả media máy" luôn reset về tắt mỗi lần vào lại Gallery. |
-| 9 | **MediaPickerScreen — Edit Photo** (`title="Edit Photo", multiSelect=false`) | Home (Edit Photo, qua `inter_home`) | Chọn 1 ảnh | EditPhotoScreen (chọn ảnh — điều hướng ngay, không cần xác nhận) / Home (back) | Route **không** bị gỡ khỏi lịch sử khi vào Editor — để nút X trong Editor quay lại đúng màn này. |
-| 10 | **EditPhotoScreen** (Editor chính) | MediaPickerScreen (Edit Photo, đã chọn 1 ảnh) hoặc ImportPhotoResult (nút Edit) | Nhận đường dẫn ảnh nguồn | MediaPickerScreen — Edit Photo (nút X, không mở tool nào) / Home (Save thành công) | Save thành công: xoá sạch lịch sử phía sau kể cả màn chọn ảnh — back sau đó không quay lại Editor/Picker được. |
-| 11 | **MediaPickerScreen — Collage Maker** (`title="Collage Maker", multiSelect=true`) | Home (Collage Maker, qua `inter_home`) | Chọn nhiều ảnh, xác nhận qua icon tick | CollageMakerScreen (xác nhận danh sách đã chọn) / Home (back) | Route **không** bị gỡ khỏi lịch sử khi vào Editor. |
-| 12 | **CollageMakerScreen** (Editor) | MediaPickerScreen — Collage Maker (đã xác nhận danh sách ảnh) | Nhận danh sách đường dẫn ảnh | MediaPickerScreen — Collage Maker (nút X, không mở tool nào) / màn chọn ảnh con (Add / tap 1 ô ảnh — quay lại đúng Editor sau khi chọn xong) / Home (Save thành công) | Save thành công: thoát hẳn luồng về Home, back không quay lại Picker được nữa. |
-| 13 | **WallpaperTemplatesScreen** | Home (Wallpaper, qua `inter_home`) | Danh sách mẫu tự liệt kê từ tài nguyên | WallpaperEditorScreen (chọn 1 mẫu, mang theo mã mẫu) / Home (back) | Chạm mẫu premium vẫn mở Editor bình thường — chưa có bước chặn thanh toán thật. |
-| 14 | **WallpaperEditorScreen** | WallpaperTemplatesScreen (đã chọn mẫu, mã 0 = canvas trống) | Mẫu có thể có "khe hở" ảnh dựng sẵn | WallpaperTemplatesScreen (nút X, không mở tool nào) / màn chọn ảnh con (chạm khe hở / Add / Upload — quay lại đúng Editor) | Save thành công: **không tự điều hướng** — chỉ hiện dialog "Set as Wallpaper?", người dùng vẫn ở lại Editor sau khi đóng dialog (khác Collage Maker). |
-| 15 | **Setting** | Home (icon bánh răng) | — | Home (back) / màn chọn ngôn ngữ dùng chung (Language) / Share sheet hệ thống (Share app) / Rate dialog nội bộ (Rate app, ở lại Setting) / Premium Paywall / Play Store (chỉ khi Rate ≥ 4 sao) | — |
+| 1 | **Trình duyệt** | Mở app | Sau luồng khởi động dùng chung + (lần đầu) màn Giới thiệu/Xin quyền | Quản lý tải xuống | Bấm mục đáy `Progress` hoặc `Finished` |
+| | | Quản lý tải xuống | Bấm mục đáy `Thẻ`, hoặc biểu tượng 🌐 trên 1 thẻ mục tải (mở lại trang nguồn) | Lịch sử duyệt web | Menu ⋮ → `History` |
+| | | Lịch sử / Trang web gợi ý / Cài đặt / Dấu trang / Cách tải về | Bấm quay lại, hoặc bấm 1 mục trong danh sách | Trang web gợi ý | Bảng danh sách thẻ → `Favorite sites` |
+| | | | | Cài đặt | Bánh răng (chỉ hiện ở trang chủ) **hoặc** menu ⋮ → `Settings` |
+| | | | | Dấu trang | Menu ⋮ → `Bookmarks` |
+| | | | | Cách tải về | Biểu tượng dấu hỏi ở trang chủ |
+| | | | | Bảng chia sẻ hệ thống | Menu ⋮ → `Chia sẻ` |
+| 2 | **Quản lý tải xuống** | Trình duyệt | Bấm mục đáy `Progress`/`Finished`; tab mở đúng theo mục vừa bấm | Trình duyệt | Bấm mục đáy `Thẻ`, hoặc 🌐 trên 1 thẻ mục tải |
+| | | Thông báo tiến trình tải | Chạm thông báo ngoài app → mở thẳng tab `Progress` | Video riêng tư | Chỉ ở tab `Finished` → biểu tượng thư mục có ổ khoá |
+| | | | | Trình phát video | Bấm 1 mục đã tải xong, hoặc menu ⋮ → `Phát` |
+| | | | | Cách tải về | Bấm dải `Cách tải về` (chỉ hiện khi danh sách rỗng) |
+| 3 | **Lịch sử duyệt web** | Trình duyệt | Menu ⋮ → `History` | Trình duyệt | Back / bấm 1 mục (tải trong thẻ hiện tại) / `Open in new tab` (tải trong thẻ mới) |
+| | | | | Bảng chia sẻ hệ thống | Menu của mục → `Chia sẻ` |
+| 4 | **Trang web gợi ý** | Trình duyệt | Mở bảng danh sách thẻ → `Favorite sites` | Trình duyệt | Back / bấm 1 ô (tải trong **thẻ hiện tại**) |
+| 5 | **Video riêng tư (mã PIN)** | Quản lý tải xuống | Tab `Finished` → thư mục có ổ khoá | Quản lý tải xuống | Back |
+| | | | | Danh sách video riêng tư | Nhập đúng mã 4 số (lần đầu phải nhập 2 lần để đặt) |
+| 5b | **Danh sách video riêng tư** | Màn nhập mã PIN | Sau khi mở khoá | Quản lý tải xuống | Back — **không** quay lại màn nhập mã |
+| | | | | Trình phát video | Bấm 1 video |
+| 6 | **Cài đặt** | Trình duyệt | Bánh răng / menu ⋮ → `Settings` | Trình duyệt | Back |
+| | | | | Cách tải về | Mục `Cách tải về` trong nhóm `Help` |
+| | | | | Màn ngôn ngữ dùng chung | Mục `Language options` |
+| | | | | Bộ chọn thư mục hệ thống | Mục `Download location` |
+| | | | | Trang chính sách bảo mật | Mục `Chính sách bảo mật` — mở trong trình duyệt của app |
+| 7 | **Trình phát video** | Quản lý tải xuống (tab `Finished`) hoặc Danh sách riêng tư | Bấm 1 video | Màn trước đó | Back — trả về đúng nơi đã vào |
+| | | | | Bảng chia sẻ hệ thống | Biểu tượng chia sẻ |
+| 8 | **Dấu trang** | Trình duyệt | Menu ⋮ → `Bookmarks` | Trình duyệt | Back / bấm 1 mục / `Open in new tab` |
+| 9 | **Cách tải về** | Trình duyệt (dấu hỏi) · Quản lý tải xuống (nút `Cách tải về`) · Cài đặt (mục `Cách tải về`) | **3 lối vào, cùng 1 màn đích** | Màn trước đó | Back |
+| | | | | Trình duyệt | Nút `Bắt đầu tải video` — luôn về Trình duyệt bất kể vào từ đâu |
+| 10 ⏸ | **Nhạc chuông** | — | Bản đầu **không có lối vào** (đã bỏ ô lối tắt ở trang chủ) | — | — |
 
 ## 3. Quy tắc back-stack (lịch sử điều hướng) cần lưu ý
 
-Đây là các quy tắc **không hiển nhiên nếu chỉ nhìn giao diện**, phải đọc code điều hướng mới biết:
+### 3.1 Thứ tự xử lý nút Back — [ĐÃ CHỐT]
 
-1. **Xoá sạch lịch sử về Home** khi hoàn tất "tạo nội dung": lưu ảnh chỉnh sửa xong (Edit Photo), lưu
-   collage xong, và khi bấm "Back to home" ở màn Success — cả 3 trường hợp đều xoá toàn bộ back-stack
-   phía sau, để người dùng không back ngược lại được vào giữa 1 luồng tạo nội dung đã hoàn tất.
-2. **Giữ nguyên back-stack** ở 2 màn chọn ảnh (Edit Photo Picker, Collage Picker): khi vào Editor,
-   route của màn chọn ảnh KHÔNG bị gỡ — để nút "X" (huỷ, không lưu) trong Editor quay lại đúng màn
-   chọn ảnh thay vì rơi thẳng về Home. Đây là điểm khác biệt so với Wallpaper (không có bước "gỡ hay
-   giữ" vì Wallpaper Editor không tự điều hướng đi đâu sau khi lưu).
-3. **Chụp ảnh trong luồng phụ** (nút "+" ở màn chọn ảnh): không tạo route mới — Camera được vẽ đè
-   ngay tại chỗ trong màn chọn ảnh, nên "vào/ra Camera" ở luồng này không ảnh hưởng gì tới back-stack
-   chính của app.
-4. **Route khai báo sẵn nhưng không dùng tới** (`VideoResult`): hệ thống có route/tham số đầy đủ cho
-   1 màn "xem lại trước khi lưu", nhưng luồng nghiệp vụ thực tế lại không gọi tới.
-5. **Wallpaper Editor không tự rời màn sau khi lưu** (khác Collage Maker/Edit Photo tự về Home) — vì
-   sau khi lưu còn cần hỏi người dùng có muốn đặt làm hình nền máy hay không; đây là lựa chọn thiết kế
-   có chủ đích, không phải thiếu sót.
+Xét từ trên xuống, gặp điều kiện nào đúng trước thì dừng ở đó:
+
+1. **Đang mở lớp phủ** (bảng danh sách thẻ / menu ⋮ / hộp thoại / bảng chọn video / chế độ chọn
+   nhiều) → **đóng lớp phủ**, không đổi màn, không lùi lịch sử web.
+2. **Đang ở màn chồng lên** (Lịch sử / Trang web gợi ý / Cài đặt / Dấu trang / Cách tải về / Trình
+   phát / Video riêng tư) → **về màn đã vào từ đó**.
+3. **Đang ở tab `Progress` hoặc `Finished`** → **về tab `Thẻ`**, KHÔNG thoát app.
+   *Lý do chốt:* 3 mục đáy là 3 khu vực ngang hàng nhau nhưng `Thẻ` là gốc của app; thoát thẳng khi
+   đang ở tab phụ là hành vi dễ gây mất việc đang làm.
+4. **Đang ở tab `Thẻ`, thẻ còn lịch sử web** → **lùi 1 bước trong trang**.
+5. **Đang ở tab `Thẻ`, hết lịch sử web nhưng chưa ở trang chủ** → **về trang chủ của thẻ**.
+6. **Đang ở tab `Thẻ`, đang ở trang chủ** → **thoát app**.
+
+### 3.2 Trình duyệt có lịch sử riêng nằm bên trong màn
+
+Khi đang xem trang web, Back **không** thoát màn Trình duyệt mà lùi trong lịch sử của **thẻ đang xem**
+— mỗi thẻ có lịch sử riêng, đóng thẻ là mất lịch sử của thẻ đó.
+
+### 3.3 Đóng thẻ cuối cùng KHÔNG thoát app — [ĐÃ CHỐT]
+
+Đóng thẻ cuối (bằng ✕ trong bảng thẻ hoặc `Close current tab`) → **tạo ngay 1 thẻ trống mới** ở trang
+chủ. Mục đáy `Thẻ` không bao giờ được rơi vào trạng thái không có nội dung.
+
+### 3.4 Xoá lịch sử sau khi mở khoá PIN — [ĐÃ CHỐT]
+
+Sau khi nhập đúng mã và vào danh sách video riêng tư, Back **không** quay lại màn nhập mã mà về thẳng
+màn Quản lý tải xuống. Thoát app rồi vào lại thì phải nhập mã từ đầu.
+
+### 3.5 Mở trang từ Lịch sử / Dấu trang / Trang web gợi ý là "về", không phải "đi tiếp"
+
+Bấm 1 mục ở 3 màn này sẽ **đóng màn đó** rồi tải trang trong màn Trình duyệt — Back sau đó **không**
+quay lại màn Lịch sử/Dấu trang/Gợi ý mà lùi trong lịch sử web.
+
+### 3.6 Màn `Cách tải về` có 3 lối vào, Back phải trả về đúng nơi
+
+Back → về đúng màn đã vào (Trình duyệt / Tải xuống / Cài đặt). Riêng nút `Bắt đầu tải video` ở cuối
+màn **luôn** đưa về màn Trình duyệt, bất kể vào từ đâu — đây là chủ đích, vì nút đó là lời kêu gọi
+hành động chứ không phải nút quay lại.
+
+### 3.7 Màn Giới thiệu/Xin quyền lần đầu bị xoá khỏi lịch sử
+
+Sau khi hoàn tất, Back từ màn Trình duyệt không được quay lại onboarding.
+
+### 3.8 Chế độ chọn nhiều là một lớp, không phải một màn
+
+Bật chế độ chọn nhiều **không** tạo bước điều hướng mới; Back chỉ tắt chế độ đó và trả danh sách về
+trạng thái thường.
 
 ## 4. Điều hướng KHÔNG đổi route (overlay/dialog trong cùng 1 màn)
 
-Một số "điều hướng" trong mô tả chức năng thực chất chỉ là mở overlay/dialog ngay trong màn hiện tại,
-không tạo màn mới trong lịch sử điều hướng:
+Những thứ dưới đây **rất dễ nhầm là màn hình riêng** — thực chất chỉ là trạng thái/lớp phủ của cùng 1
+màn, không tạo bước điều hướng mới:
 
-- Mọi **panel công cụ** trong Edit Photo/Collage Maker/Wallpaper Editor (Frame/Text/Filter/Sticker/
-  Draw/Background/Layout/Ratio/Margin) — đóng/mở tại chỗ trên cùng 1 màn Editor.
-- **Menu "More" + bảng chọn tỉ lệ + 5 bảng chỉnh màu** trong Camera — đều là overlay trong cùng màn
-  Camera.
-- **Camera nhúng trong màn chọn ảnh** (nút "+") — vẽ đè tại chỗ, không phải điều hướng sang màn khác.
-- **Rate dialog** (Setting), **dialog Info/Delete** (ImportPhotoResult), **dialog "Set as Wallpaper?"**
-  (Wallpaper Editor) — đều là dialog nổi trên màn hiện tại, đóng xong vẫn ở nguyên màn đó.
+| Lớp phủ | Thuộc màn | Kiểu | Đóng bằng |
+|---|---|---|---|
+| Trang chủ ↔ trang web đã tải | Trình duyệt | Đổi **trạng thái nội dung**, không đổi màn | — |
+| Ô nhập địa chỉ đang gõ + danh sách gợi ý + thanh phím tắt | Trình duyệt | Đổi **trạng thái thanh công cụ** | Back / chọn 1 gợi ý |
+| Menu ⋮ 8 mục | Trình duyệt | Bảng nổi thả xuống | Chạm ra ngoài / Back |
+| Bảng danh sách thẻ (`Tabs`) | Trình duyệt | Bảng trượt từ **trái**, phủ tối phần còn lại | Chạm vùng tối / vuốt trái / Back |
+| **Bảng chọn video** (sau khi bấm nút tải nổi) | Trình duyệt | Bảng trượt lên từ đáy | Chọn 1 video / vuốt xuống / Back |
+| Hộp thoại `Link you copied` | Trình duyệt | Hộp thoại, tự bật khi vào app nếu bộ nhớ tạm có đường dẫn mới | `Mở` / `Hủy bỏ` |
+| Hộp thoại `Close browser` | Trình duyệt (từ trong bảng thẻ) | Hộp thoại 2 lựa chọn | Chọn 1 mục / chạm ra ngoài |
+| Bật/tắt `Desktop site` | Trình duyệt | Đổi ô đánh dấu **tại chỗ**, trang tải lại | Menu tự đóng |
+| Thông báo ngắn "không tìm thấy video" / "đã thêm vào danh sách tải" | Trình duyệt | Thông báo ngắn | Tự tắt |
+| Tab `PROGRESS` ↔ `FINISHED` | Quản lý tải xuống | Đổi tab **trong cùng màn** (vuốt ngang được) | — |
+| **Chế độ chọn nhiều** | Quản lý tải xuống / Riêng tư / Dấu trang | Đổi **trạng thái danh sách** + thanh hành động trượt lên | ✕ / Back |
+| Menu ⋮ của 1 mục tải | Quản lý tải xuống | Bảng nổi 5 mục | Chọn 1 mục / chạm ra ngoài |
+| Hộp thoại xác nhận huỷ 1 mục tải | Quản lý tải xuống | Hộp thoại | Xác nhận / Huỷ |
+| Menu 4 mục của 1 dòng lịch sử | Lịch sử duyệt web | Bảng nổi thả từ nút ba chấm | Chọn 1 mục / chạm ra ngoài |
+| Hộp thoại xác nhận xoá toàn bộ lịch sử | Lịch sử duyệt web | Hộp thoại | `Xoá` / `Huỷ` |
+| Bước `Set PIN` → `Nhập lại PIN` | Video riêng tư | Đổi **trạng thái** trong cùng màn nhập mã | — |
+| Hộp thoại chọn công cụ tìm kiếm | Cài đặt | Hộp thoại danh sách | Chọn 1 mục |
+| 3 hộp thoại xác nhận `Clear cache` / `Clear browser history` / `Clear cookies` | Cài đặt | Hộp thoại | Xác nhận / Huỷ |
+| Gạt công tắc bất kỳ | Cài đặt | Đổi trạng thái **tại chỗ** | — |
+| Giao diện điều khiển hiện/ẩn | Trình phát video | Đổi trạng thái, tự ẩn sau 3 giây | Chạm màn |
+| Menu ⋮ (tốc độ phát / chuyển riêng tư / xoá) | Trình phát video | Bảng nổi | Chọn 1 mục |
+| Xoay ngang/dọc | Trình phát video | Đổi hướng, **cùng một màn** | — |
+
+**Ngược lại, đây là điều hướng thật (đổi màn):** Lịch sử · Trang web gợi ý · Cài đặt · Dấu trang ·
+Cách tải về · Video riêng tư (màn nhập mã và danh sách là **2 màn khác nhau**) · Trình phát video · và
+cặp Trình duyệt ↔ Quản lý tải xuống.

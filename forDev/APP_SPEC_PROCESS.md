@@ -16,7 +16,7 @@
 >
 > **[`../docs-sample/`](../docs-sample/) — bản ví dụ, KHÔNG dành cho AI đọc, chỉ để DEV tham khảo khi
 > viết `docs/`, xoá đi khi dùng xong.** Cùng cấu trúc với `docs/`, nhưng là bản đã điền đầy đủ cho app
-> demo **vga52a-kotlin** (app này). Xem [`docs-sample/README.md`](../docs-sample/README.md).
+> demo **vga58a-kotlin** (app này). Xem [`docs-sample/README.md`](../docs-sample/README.md).
 
 ## 1. Bốn tài liệu bắt buộc cho MỖI app
 
@@ -80,13 +80,12 @@ Với MỖI màn hình, viết đủ 5 mục sau (xem cấu trúc mẫu chi ti�
 5. **Điều hướng vào/ra màn hình này** — liệt kê rõ "từ đâu tới đây" và "từ đây đi đâu".
 
 Nguồn thông tin để viết mục này:
-- Nếu **port lại 1 app đã có code** (như case vga52a → vga52a-kotlin): đọc trực tiếp code UI của
+- Nếu **port lại 1 app đã có code** (như case vga58a → vga58a-kotlin): đọc trực tiếp code UI của
   từng màn — chính xác nhất, không cần đoán.
 - Nếu **chỉ có screenshot + mô tả nghiệp vụ** (app hoàn toàn mới, giao việc dạng "làm app giống ảnh
   này, chức năng như sau..."): kết hợp đọc kỹ từng ảnh chụp màn hình với mô tả nghiệp vụ do người
   giao việc cung cấp; chỗ ảnh không thể hiện rõ (case rỗng, lỗi...) → suy luận hợp lý và đánh dấu
-  **[ASSUMPTION]**, liệt kê lại thành danh sách cần xác nhận riêng (xem cách vga52a/docs làm — file
-  `09_OPEN_ASSUMPTIONS.md`).
+  **[ASSUMPTION]**, liệt kê lại thành danh sách cần xác nhận riêng.
 
 ### Bước 2 — Vẽ luồng di chuyển màn hình (`02_LUONG_DI_CHUYEN_MAN_HINH.md`)
 Xem cấu trúc mẫu trong [`docs-sample/02_LUONG_DI_CHUYEN_MAN_HINH.md`](../docs-sample/02_LUONG_DI_CHUYEN_MAN_HINH.md). Cần có:
@@ -101,7 +100,7 @@ Xem cấu trúc mẫu trong [`docs-sample/02_LUONG_DI_CHUYEN_MAN_HINH.md`](../do
 
 ### Bước 3 — Viết Style Guide (`03_STYLE_APP.md`)
 Xem cấu trúc mẫu trong [`docs-sample/03_STYLE_APP.md`](../docs-sample/03_STYLE_APP.md), tham khảo thêm định dạng
-gốc ở `vga51b/new_style.md.txt`. Cấu trúc chuẩn cần có đủ:
+gốc ở `vga58a/new_style.md.txt`. Cấu trúc chuẩn cần có đủ:
 1. Font (tên font, các weight dùng).
 2. Bảng màu (nền/surface, accent/primary, trạng thái success-warning-error, màu chữ).
 3. Typography (cỡ chữ + weight cho từng vai trò: tiêu đề màn, tiêu đề nhóm, body, caption, chữ nút).
@@ -138,8 +137,8 @@ không phải tuỳ chọn — làm SAU khi đã có cả Bước 0 (screenshot)
 ### Bước 4 — Rà soát & xác nhận
 - Gom toàn bộ chỗ đánh dấu **[ASSUMPTION]/[CẦN XÁC NHẬN]** từ cả 3 tài liệu, CỘNG với toàn bộ cảnh báo
   từ `04_SCREENSHOT_MAPPING.md` (màn thiếu ảnh/ảnh orphan/tên mơ hồ), vào 1 danh sách, gửi lại cho
-  người giao việc xác nhận trước khi bắt đầu code (tham khảo cách vga52a làm ở
-  `../../vga52a/docs/09_OPEN_ASSUMPTIONS.md`).
+  người giao việc xác nhận trước khi bắt đầu code (tham khảo cách vga58a làm ở
+  `../../vga58a/docs/09_OPEN_ASSUMPTIONS.md`).
 - Chỉ sau khi đã có đủ 4 tài liệu (kể cả khi còn vài mục `[ASSUMPTION]` chưa xác nhận xong) mới chuyển
   sang giai đoạn chọn công nghệ + code, đọc tiếp `HANDOFF_NEXT_APP.md` (chọn app mẫu gần giống nhất để
   clone) và [`docs/integration/`](../docs/integration/) (tích hợp lib ads/IAP dùng chung — xem

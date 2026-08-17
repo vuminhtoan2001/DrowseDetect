@@ -1,12 +1,8 @@
-# docs-sample/ — Bản ví dụ hoàn chỉnh (vga52a-kotlin)
+# docs/ — Tài liệu cho AI đọc để dựng app
 
-> ⚠️ **Thư mục này CHỈ dành cho DEV tham khảo khi viết `docs/` cho 1 app mới — AI KHÔNG cần đọc thư
-> mục này để dựng app.** Sau khi đã viết xong `docs/` thật (cho app mới, hoặc điền lại cho chính app
-> này), **xoá thư mục `docs-sample/` đi** — nó không phải tài liệu cần giữ lâu dài.
+Có 2 giai đoạn, đọc theo thứ tự:
 
-Cách dùng: xem [`../forDev/APP_SPEC_PROCESS.md`](../forDev/APP_SPEC_PROCESS.md). Cùng cấu trúc file
-với [`../docs/`](../docs/) — đây là bản đã điền đầy đủ cho app demo vga52a-kotlin, dùng làm mẫu tham
-khảo khi điền `docs/` cho app mới.
+## A. Thiết kế (khuôn trắng — điền cho app mới)
 
 | File | Nội dung |
 |---|---|
@@ -15,3 +11,20 @@ khảo khi điền `docs/` cho app mới.
 | [`02_LUONG_DI_CHUYEN_MAN_HINH.md`](02_LUONG_DI_CHUYEN_MAN_HINH.md) | Luồng di chuyển màn hình |
 | [`03_STYLE_APP.md`](03_STYLE_APP.md) | Style guide / design system |
 | [`04_SCREENSHOT_MAPPING.md`](04_SCREENSHOT_MAPPING.md) | Đối chiếu màn hình ↔ screenshot |
+
+## B. Dựng app (sau khi đã có đủ 4 tài liệu ở mục A)
+
+Đây là tài liệu **dùng chung cho mọi app** trong dự án (copy nguyên khi làm app mới), không mô tả
+riêng tính năng của app hiện tại.
+
+- **[`integration/`](integration/)** — tích hợp lib `base-application` (ads/IAP/splash/language/
+  notification). Xem [`integration/README.md`](integration/README.md) để có thứ tự đọc đầy đủ (playbook
+  tổng quát → spec lib → ads (kiến trúc/API/firebase key/vận hành) → intro-check → **chuẩn encode+R8**).
+- **[`QUY_CHUAN_DESIGN.md`](QUY_CHUAN_DESIGN.md)** — ⚠️ đọc TRƯỚC khi code màn hình đầu tiên. Quy chuẩn
+  dùng chung mọi app: 15 vai trò typography của Material3 (không được tự đặt tên), thang cỡ chữ mặc
+  định, bảng tra "cấp chữ trên màn → role nào", và cách map `03_STYLE_APP.md` (§2 màu, §3 typography)
+  vào `ui/theme/Type.kt`/`Theme.kt`/`Color.kt` — không hardcode `fontSize`/`fontWeight`/`Color(0x...)`
+  tại từng màn hình.
+- **[`UI_FIDELITY_WORKFLOW.md`](UI_FIDELITY_WORKFLOW.md)** — dùng Roborazzi để render 1 Composable ra
+  PNG trên JVM (không cần emulator), so trực tiếp với screenshot gốc ở [`screenshot/`](screenshot/),
+  lặp tới khi khớp.

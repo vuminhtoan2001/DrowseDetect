@@ -62,6 +62,11 @@ fun NativeAdsFull(
     buttonText: String? = null,
     countdownSec: Int = 2,
     loadOnMount: Boolean = true,
+    /**
+     * Ad đã được tải sẵn từ bên ngoài (xem [InterFlowState]). Có giá trị thì composable này KHÔNG tự
+     * tải nữa, và cũng KHÔNG destroy khi rời cây — chủ sở hữu là bên truyền vào.
+     */
+    providedAd: NativeAd? = null,
     onError: (() -> Unit)? = null,
     onLoaded: (() -> Unit)? = null,
     onLoadedNative: ((NativeAd) -> Unit)? = null,
@@ -71,17 +76,18 @@ fun NativeAdsFull(
 ) {
     if (unitId.isBlank()) return
 
-    var nativeAd by remember { mutableStateOf<NativeAd?>(null) }
+    var selfLoadedAd by remember { mutableStateOf<NativeAd?>(null) }
+    val nativeAd = providedAd ?: selfLoadedAd
     var counter by remember { mutableStateOf(countdownSec) }
     val context = LocalContext.current
 
     // Preload ad khi vào cây (dù đang ẩn) — giống loadOnMount của app mẫu.
-    LaunchedEffect(loadOnMount, unitId) {
-        if (!loadOnMount) return@LaunchedEffect
+    LaunchedEffect(loadOnMount, unitId, providedAd != null) {
+        if (!loadOnMount || providedAd != null) return@LaunchedEffect
         Admob.getInstance().loadNativeAd(context, unitId, object : NativeCallback() {
             override fun onNativeAdLoaded(ad: NativeAd) {
-                nativeAd?.destroy()
-                nativeAd = ad
+                selfLoadedAd?.destroy()
+                selfLoadedAd = ad
                 onLoadedNative?.invoke(ad)
                 onLoaded?.invoke()
             }
@@ -101,8 +107,10 @@ fun NativeAdsFull(
         }
     }
 
+    // Chỉ dọn ad do CHÍNH nó tải. `providedAd` là của bên ngoài — destroy ở đây thì bên ngoài còn
+    // giữ tham chiếu tới một ad đã chết.
     DisposableEffect(Unit) {
-        onDispose { nativeAd?.destroy(); nativeAd = null }
+        onDispose { selfLoadedAd?.destroy(); selfLoadedAd = null }
     }
 
     if (!start) return
