@@ -46,12 +46,12 @@ class AppViewModel @Inject constructor(
             val organicNotGuide = frc.getLong("organic_number_not_guide").toInt().coerceAtLeast(0)
 
             val goToHome = if (isAdsCampaign) {
-                goToHomeNumber >= countAppOpen
+                goToHomeNumber > countAppOpen
             } else {
                 goToHomeNumber <= organicNotGuide ||
-                    goToHomeNumber >= countAppOpen + organicNotGuide
+                    goToHomeNumber > countAppOpen + organicNotGuide
             }
-            _startDestination.value = if (goToHome) Dest.ONB_INTRO else Dest.ONB_INTRO
+            _startDestination.value = if (goToHome) Dest.HOME else Dest.ONB_INTRO
         }
     }
 

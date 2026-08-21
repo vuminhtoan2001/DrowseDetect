@@ -92,6 +92,8 @@ module.exports = {
     "NotificationCompat", "NotificationBuilder", "NotificationAction", "NotificationStyle",
     "exists", "isEmpty", "isNull", "isNotNull", "isTrue", "isFalse", "isValid", "isInvalid",
     "text", "clearHistory", "saveState", "player", "openInBrowser",
+    "selected", "unselected", "enabled", "disabled", "visible", "invisible", "gone",
+    "result", "success", "failure", "error", "warning", "info", "debug", "trace",
   ],
 
   // Tên folder luôn được bảo vệ (không đổi tên folder, nhưng vẫn quét/đổi tên file BÊN TRONG) —

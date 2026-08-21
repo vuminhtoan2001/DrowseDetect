@@ -15,19 +15,29 @@ const filesToDelete = [
   "\\res\\drawable\\ic_viber.png",
   "\\res\\drawable\\ic_card.png",
   "\\res\\drawable\\ic_paypal.png",
+  "\\res\\drawable\\ic_tiktok.png",
+  "\\res\\drawable\\ic_instagram.png",
   "\\res\\drawable\\ic_clipboard.png",
   "\\res\\drawable\\ic_youtube.webp",
   "\\res\\drawable\\tipother.webp",
+  "\\res\\drawable\\ic_whatsapp.png",
   "\\res\\drawable\\ic_spotify.png",
   "\\res\\drawable\\stvjcsjp5riidkxrjkxv.webp",
   "\\res\\drawable\\tiplight.webp",
+  "\\res\\drawable\\ic_wifi.png",
+  "\\res\\drawable\\ic_web.png",
+  "\\res\\drawable\\ic_calendar.png",
   "\\res\\drawable\\tip0.webp",
   "\\res\\drawable\\tip90.webp",
+  "\\res\\drawable\\ic_contact.png",
   "\\res\\drawable\\tipdark.webp",
   "\\res\\drawable\\tipblur.webp",
   "\\res\\drawable\\ic_phone.png",
   "\\res\\drawable\\ic_sms.png",
   "\\res\\drawable\\ic_email.png",
+  "\\res\\drawable\\ic_text.png",
+  "\\res\\drawable\\ic_x.png",
+  "\\res\\drawable\\ic_fb.png",
   "\\res\\drawable\\tipcontrast.webp",
   "\\res\\drawable\\q6mzetxepgs3l0tb3smr.webp",
   "\\res\\drawable\\hwuzri9ywotxwb3a4grv.webp",
@@ -36,8 +46,11 @@ const filesToDelete = [
   "\\res\\drawable\\ndrhjd8qq36zg3i1toef.webp",
   "\\res\\drawable\\ic_feature_support.xml",
   "\\res\\drawable\\vavjm0adwtx2vbdonnl5.webp",
+  "\\res\\drawable\\ic_stat_noti.xml",
   "\\res\\drawable\\xxv9mvezn6mcatljwpnt.webp",
   "\\res\\drawable\\upej1iox5bueppd7yfxx.webp",
+  "\\res\\drawable\\ic_feature_premium.xml",
+  "\\res\\drawable\\ic_feature_fast.xml",
   "\\res\\drawable\\jwfh2pkdhdk413ftapto.webp",
   "\\res\\drawable\\uchywybaxu9tpprw4wch.webp",
   "\\res\\drawable\\tsj331la5qvaxu4jxzjz.webp",
@@ -49,7 +62,7 @@ const filesToDelete = [
 ];
 
 console.log(`🗑️ Sẽ xóa ${filesToDelete.length} files...`);
-console.log(`💾 Tổng dung lượng tiết kiệm: 0.10 MB`);
+console.log(`💾 Tổng dung lượng tiết kiệm: 0.14 MB`);
 console.log("⚠️  Đang tạo backup...");
 
 // Tạo thư mục backup

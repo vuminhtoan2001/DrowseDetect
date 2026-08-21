@@ -1,6 +1,5 @@
-package com.camera.qrscanner.barcode.ui.intro
+package com.finora.expense.budget.ui.intro
 
-import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -8,8 +7,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
@@ -41,11 +43,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.core.app.NotificationManagerCompat
-import com.camera.qrscanner.barcode.R
-import com.camera.qrscanner.barcode.ads.AdManager
-import com.camera.qrscanner.barcode.ads.NativeAdSlot
-import com.camera.qrscanner.barcode.ads.NativeAdsFull
+import com.finora.expense.budget.R
+import com.finora.expense.budget.ads.AdManager
+import com.finora.expense.budget.ads.NativeAdSlot
+import com.finora.expense.budget.ads.NativeAdsFull
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -67,10 +68,7 @@ private const val INLINE_AD_TIMEOUT_MS = 5_000L
 private val MODAL_RANGE = listOf(0..3, 0..1, 1..2, 2..3)
 
 @Composable
-fun IntroScreen(
-    onGoPermission: () -> Unit,
-    onGoMain: () -> Unit,
-) {
+fun IntroScreen(onGoMain: () -> Unit) {
     val context = LocalContext.current
     val pager = rememberPagerState(pageCount = { SLIDES.size })
     val scope = rememberCoroutineScope()
@@ -94,9 +92,8 @@ fun IntroScreen(
     val shouldShowAd = inlineEnabled(page)
     val busy = adLoading.getOrElse(page) { false }
 
-    fun finish() {
-        if (hasNoti(context)) onGoMain() else onGoPermission()
-    }
+    // App không có màn Permission — hết Intro là vào Home, quyền thông báo để SDK tự xin.
+    fun finish() = onGoMain()
 
     // Bấm nút / auto-next / đóng modal đều gọi hàm này (khớp onButtonClick bản mẫu).
     val onButtonClick: () -> Unit = {
@@ -132,75 +129,88 @@ fun IntroScreen(
     }
 
     Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
-        // Chỉ chừa safe area đáy (nav bar/gesture) để native ad dưới cùng không bị che.
-        Column(Modifier.fillMaxSize().navigationBarsPadding()) {
-            HorizontalPager(
-                state = pager,
-                userScrollEnabled = false, // chỉ tiến bằng nút / auto / đóng modal (như bản mẫu)
-                modifier = Modifier.weight(1f),
-            ) { p ->
-                val s = SLIDES[p]
-                Column(Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally) {
-                    Image(
-                        painter = painterResource(s.img),
-                        contentDescription = null,
-                        contentScale = ContentScale.Crop,
-                        modifier = Modifier.fillMaxWidth().weight(1f),
-                    )
-                    Text(
-                        stringResource(s.title),
-                        textAlign = TextAlign.Center,
-                        style = MaterialTheme.typography.titleLarge,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
-                    )
-                    Text(
-                        stringResource(s.sub),
-                        textAlign = TextAlign.Center,
-                        color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
-                        style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
-                    )
-                }
-            }
+        // ẢNH NỀN phủ TOÀN màn (tràn cả sau status bar / nav bar). Pager giờ chỉ còn chứa ảnh nên
+        // ảnh vẫn trượt ngang khi sang trang.
+        HorizontalPager(
+            state = pager,
+            userScrollEnabled = false, // chỉ tiến bằng nút / auto / đóng modal (như bản mẫu)
+            modifier = Modifier.fillMaxSize().padding(bottom = 20.dp),
+        ) { p ->
+            Image(
+                painter = painterResource(SLIDES[p].img),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.fillMaxSize(),
+            )
+        }
 
-            // Dots
-            Row(
-                Modifier.fillMaxWidth().padding(vertical = 12.dp),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                repeat(SLIDES.size) { i ->
-                    val active = i == page
-                    Row(
-                        Modifier
-                            .padding(horizontal = 2.dp)
-                            .size(width = if (active) 20.dp else 8.dp, height = 8.dp)
-                            .background(
-                                if (active) MaterialTheme.colorScheme.primary else Color(0xFF9BC4FB),
-                                CircleShape,
-                            ),
-                    ) {}
-                }
-            }
+        // TOÀN BỘ phần còn lại đè lên ảnh và dồn sát đáy (flex-end): chữ → dots → nút → native ad.
+        // Khối này chỉ cao bằng nội dung của nó, phần ảnh còn lại lộ ra ở trên.
+        val slide = SLIDES[page]
+        Column(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                // Nền chuyển dần từ trong suốt xuống màu nền: chữ nằm trên ảnh vẫn đọc được, và
+                // khối ad ở dưới cùng có nền đặc để không bị hoa văn của ảnh xen vào.
+                .background(
+                    Brush.verticalGradient(
+                        0f to MaterialTheme.colorScheme.background.copy(alpha = 0.99f),
+                        0.22f to MaterialTheme.colorScheme.background,
+                        1f to MaterialTheme.colorScheme.background,
+                    ),
+                )
+                // Chỉ LỚP PHỦ chừa safe area đáy; ảnh nền vẫn tràn hết xuống mép dưới.
+                .padding(vertical = 2.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Text(
+                stringResource(slide.title),
+                textAlign = TextAlign.Center,
+                style = MaterialTheme.typography.titleLarge,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
+            )
+            Text(
+                stringResource(slide.sub),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
+                style = MaterialTheme.typography.bodyMedium,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+            )
 
-            // Có ad inline → nút chỉ là text (ad đã có CTA riêng); không ad → nút THEME to.
+            // Có ad inline → nút chỉ là text (ad đã có CTA riêng) và dots nằm CÙNG HÀNG với nút:
+            // dots dồn sát lề trái, nút vẫn ở CHÍNH GIỮA màn. Dùng Box chứ không dùng Row-với-weight
+            // vì Row sẽ đẩy nút lệch sang phải theo bề rộng của dãy dots.
+            // Không có ad → dots một hàng riêng ở giữa, bên dưới là nút THEME to.
             if (shouldShowAd) {
-                TextButton(
-                    onClick = onButtonClick,
-                    enabled = !busy,
-                    modifier = Modifier.fillMaxWidth(),
+                Box(
+                    Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+                    contentAlignment = Alignment.Center,
                 ) {
-                    if (busy) {
-                        CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.size(20.dp))
-                    } else {
-                        Text(
-                            stringResource(if (page != SLIDES.lastIndex) R.string.continue_str else R.string.start),
-                            color = MaterialTheme.colorScheme.primary,
-                            fontWeight = FontWeight.Medium,
-                        )
+                    Dots(page, Modifier.align(Alignment.CenterStart))
+                    TextButton(
+                        onClick = onButtonClick,
+                        enabled = !busy,
+                        // Bóp nhỏ nút so với mặc định Material. Chỉ đổi contentPadding là KHÔNG đủ:
+                        // ruột Button còn tự áp defaultMinSize(58×40) nên nút không nhỏ hơn được.
+                        // defaultMinSize ở ngoài đặt min-constraint khác 0, Surface truyền xuống
+                        // (propagateMinConstraints) nên defaultMinSize bên trong bị vô hiệu.
+                        modifier = Modifier.defaultMinSize(minWidth = 1.dp, minHeight = 1.dp),
+                        contentPadding = PaddingValues(horizontal = 12.dp, vertical = 4.dp),
+                    ) {
+                        if (busy) {
+                            CircularProgressIndicator(strokeWidth = 2.dp, modifier = Modifier.size(20.dp))
+                        } else {
+                            Text(
+                                stringResource(if (page != SLIDES.lastIndex) R.string.continue_str else R.string.start),
+                                color = MaterialTheme.colorScheme.primary,
+                                fontWeight = FontWeight.Medium,
+                            )
+                        }
                     }
                 }
             } else {
+                Dots(page, Modifier.fillMaxWidth().padding(vertical = 8.dp))
                 Button(
                     onClick = onButtonClick,
                     shape = RoundedCornerShape(16.dp),
@@ -221,12 +231,11 @@ fun IntroScreen(
                     slotName = "native_intro${page + 1}",
                     unitId = introUnit(page + 1),
                     isSmall = false,
-                    modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    modifier = Modifier.fillMaxWidth(),
                     onStartLoad = { if (page < adLoading.size) adLoading[page] = true },
                     onImpressionOrError = { if (page < adLoading.size) adLoading[page] = false },
                 )
             }
-
         }
 
         // Modal native toàn màn (NN) — preload theo phạm vi trang, hiện khi showFull[i].
@@ -246,5 +255,31 @@ fun IntroScreen(
     }
 }
 
-private fun hasNoti(context: Context): Boolean =
-    NotificationManagerCompat.from(context).areNotificationsEnabled()
+/**
+ * Dãy chấm chỉ trang — chấm của trang đang xem dài ra thành viên thuốc.
+ *
+ * Vị trí do [modifier] quyết định, không do hàm này: `fillMaxWidth()` thì `Arrangement.Center` căn
+ * giữa (trang không có ad), còn khi đặt trong Box bằng `align(CenterStart)` thì Row chỉ rộng bằng nội
+ * dung nên nằm sát lề trái (trang có ad, đứng cùng hàng với nút).
+ */
+@Composable
+private fun Dots(page: Int, modifier: Modifier = Modifier) {
+    Row(
+        modifier,
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically,
+    ) {
+        repeat(SLIDES.size) { i ->
+            val active = i == page
+            Box(
+                Modifier
+                    .padding(horizontal = 2.dp)
+                    .size(width = if (active) 20.dp else 8.dp, height = 8.dp)
+                    .background(
+                        if (active) MaterialTheme.colorScheme.primary else Color(0xFF9BC4FB),
+                        CircleShape,
+                    ),
+            )
+        }
+    }
+}
