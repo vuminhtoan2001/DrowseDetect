@@ -1,198 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="SETTINGS" formatted="false">Pengaturan</string>
-    <string name="selected" formatted="false">Terpilih</string>
-    <string name="PRIVACY_POLICY" formatted="false">Kebijakan Privasi</string>
-    <string name="export" formatted="false">Ekspor</string>
     <string name="notiSub" formatted="false">Tampilkan peringatan</string>
-    <string name="YOUTUBE_URL" formatted="false">URL YouTube</string>
-    <string name="DESCRIPTION" formatted="false">Deskripsi</string>
-    <string name="EMAIL_ADDRESS" formatted="false">Alamat Email</string>
-    <string name="tipOther" formatted="false">Orientasi lain</string>
-    <string name="scanningTips" formatted="false">Tips pemindaian</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">Profil Facebook</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">Harap masukkan sesuatu</string>
-    <string name="SCAN" formatted="false">Pindai</string>
-    <string name="skip" formatted="false">Lewati</string>
     <string name="intro3Sub" formatted="false">Masukkan detail dan buat kode pribadi dengan mudah</string>
-    <string name="CHANNEL_ID" formatted="false">ID Saluran</string>
-    <string name="share_success" formatted="false">Berbagi Berhasil</string>
-    <string name="USERNAME" formatted="false">Nama Pengguna</string>
-    <string name="textSplash" formatted="false">Tindakan ini dapat berisi iklan</string>
-    <string name="ConnectionSuccessful" formatted="false">Koneksi berhasil</string>
-    <string name="INVALID_PHONE" formatted="false">Nomor Telepon Tidak Valid</string>
-    <string name="SMS" formatted="false">SMS</string>
-    <string name="loadingAds" formatted="false">Memuat Iklan</string>
-    <string name="tip0" formatted="false">Orientasi 0°</string>
-    <string name="TWITTER" formatted="false">Twitter</string>
     <string name="OPEN" formatted="false">Buka</string>
-    <string name="FILTER_HISTORY" formatted="false">Filter Riwayat</string>
-    <string name="CREATE" formatted="false">Buat</string>
-    <string name="delete_history_success" formatted="false">Riwayat berhasil dihapus!</string>
-    <string name="light" formatted="false">Cahaya</string>
-    <string name="CUSTOMIZE" formatted="false">Kustomisasi</string>
-    <string name="share_cancel" formatted="false">Batal Berbagi</string>
     <string name="share_message" formatted="false">Aplikasi pembuat dan pemindai kode QR yang cepat
         dan praktis, tersedia di Google Play sekarang juga!</string>
-    <string name="DATA_EMPTY" formatted="false">Tidak ada data</string>
-    <string name="CONTACTS" formatted="false">Kontak</string>
-    <string name="NO" formatted="false">Tidak</string>
-    <string name="cancelsubscriptions" formatted="false">Batalkan langganan</string>
-    <string name="SECURITY_MODE" formatted="false">Mode Keamanan</string>
-    <string name="scanControl" formatted="false">Kontrol pemindaian</string>
-    <string name="SUB_DELETE" formatted="false">Apakah Anda yakin ingin menghapusnya?</string>
-    <string name="ME_USERNAME" formatted="false">Nama Pengguna Saya</string>
-    <string name="prev" formatted="false">Sebelumnya</string>
-    <string name="g672873" formatted="false">Tahunan</string>
-    <string name="tooClose" formatted="false">Terlalu dekat / buram</string>
-    <string name="HISTORY" formatted="false">Riwayat</string>
-    <string name="layout_thanks" formatted="false">Terima kasih atas penilaiannya</string>
     <string name="start" formatted="false">Mulai</string>
     <string name="update_isReady_btn_late" formatted="false">Nanti</string>
-    <string name="NONE" formatted="false">Tidak Ada</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">Kustomisasi Kode QR</string>
-    <string name="SAVE_IMAGE" formatted="false">Simpan Gambar</string>
-    <string name="layout_do_you_like" formatted="false">Apakah Anda menyukai</string>
-    <string name="close" formatted="false">Tutup</string>
-    <string name="egwthe" formatted="false">Setelah itu</string>
-    <string name="ME_LINK" formatted="false">Tautan Saya</string>
-    <string name="NOTIFICATION" formatted="false">Notifikasi</string>
-    <string name="SHARE" formatted="false">Bagikan</string>
-    <string name="NETWORK_NAME" formatted="false">Nama Jaringan</string>
-    <string name="tip90" formatted="false">Orientasi 90°</string>
-    <string name="PHONE_NUMBER" formatted="false">Nomor Telepon</string>
-    <string name="CONTACT_US" formatted="false">Hubungi Kami</string>
-    <string name="noPerCamera" formatted="false">Tidak ada izin untuk mengakses kamera</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">Tersalin ke Papan Klip</string>
-    <string name="CLIPBOARD" formatted="false">Papan Klip</string>
-    <string name="aw3" formatted="false">Terlalu banyak iklan</string>
-    <string name="perCamera" formatted="false">Kamera</string>
-    <string name="f5776c5" formatted="false">Tahun</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">Tambahkan ke Kontak</string>
-    <string name="aw1" formatted="false">Sulit digunakan</string>
     <string name="intro1" formatted="false">Pemindaian QR Cepat</string>
-    <string name="CONTENT" formatted="false">Konten</string>
-    <string name="VIBER" formatted="false">Viber</string>
-    <string name="duplicateCodeSub" formatted="false">Simpan barcode duplikat dalam riwayat</string>
-    <string name="update_isReady_mss" formatted="false">Silakan restart aplikasi untuk memperbarui!</string>
     <string name="intro1Sub" formatted="false">Pindai kode QR secara instan di mana saja</string>
     <string name="noti" formatted="false">Notifikasi</string>
-    <string name="END" formatted="false">Selesai</string>
-    <string name="COPY" formatted="false">Salin</string>
-    <string name="SEND_EMAIL" formatted="false">Kirim Email</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">Opsi Bahasa</string>
-    <string name="SEND_SMS" formatted="false">Kirim SMS</string>
-    <string name="note" formatted="false">Catatan</string>
-    <string name="SHOW_ON_MAP" formatted="false">Tampilkan di Peta</string>
-    <string name="EMAIL" formatted="false">Email</string>
-    <string name="APPLY" formatted="false">Terapkan</string>
     <string name="rateApp" formatted="false">Beri Rating Aplikasi</string>
-    <string name="PASSWORD" formatted="false">Kata Sandi</string>
-    <string name="ARTIST_NAME" formatted="false">Nama Artis</string>
-    <string name="ENTER" formatted="false">Masuk</string>
-    <string name="SAVE" formatted="false">Simpan</string>
-    <string name="saved_customize_success" formatted="false">Kustomisasi Tersimpan!</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">Harap masukkan sesuatu</string>
-    <string name="af84d5" formatted="false">per tahun</string>
-    <string name="TEXT_MESSAGE" formatted="false">Pesan Teks</string>
-    <string name="aw4" formatted="false">Tidak berguna</string>
-    <string name="PAYPAL" formatted="false">Paypal</string>
-    <string name="cb0af4" formatted="false">per bulan</string>
-    <string name="manualScanSub" formatted="false">Hindari pemindaian tidak sengaja</string>
-    <string name="saved_image_success" formatted="false">Gambar berhasil disimpan!</string>
-    <string name="lightOrDark" formatted="false">Terang atau gelap</string>
-    <string name="TEL" formatted="false">Telepon</string>
-    <string name="layout_button_send" formatted="false">Kirim</string>
-    <string name="i874505" formatted="false">Bulanan</string>
-    <string name="SAVE_OPTION" formatted="false">Opsi Simpan</string>
-    <string name="NOTE" formatted="false">Catatan</string>
-    <string name="LINK" formatted="false">Tautan</string>
-    <string name="Utilitles" formatted="false">Utilitas</string>
-    <string name="ConnectionFailed" formatted="false">Koneksi gagal</string>
     <string name="intro4" formatted="false">Pemindaian Banyak Kode</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">Salin ke Papan Klip secara otomatis</string>
-    <string name="HELP" formatted="false">Bantuan</string>
-    <string name="NAME" formatted="false">Nama</string>
-    <string name="manualScan" formatted="false">Pemindaian manual</string>
-    <string name="aw2" formatted="false">Aplikasi tidak berfungsi</string>
-    <string name="GENERAL_SETTINGS" formatted="false">Pengaturan Umum</string>
-    <string name="vibrate" formatted="false">Getar</string>
     <string name="layout_share_btn_label" formatted="false">Bagikan Aplikasi</string>
-    <string name="share_image_success" formatted="false">Berhasil membagikan gambar!</string>
-    <string name="scanImage" formatted="false">Pindai gambar</string>
-    <string name="FEEDBACK" formatted="false">Umpan Balik</string>
-    <string name="g6dd514" formatted="false">Anda tidak akan dikenakan biaya selama masa uji coba
-        dan dapat membatalkannya kapan saja. Dengan melanjutkan, Anda menyetujui Kebijakan Privasi
-        dan Ketentuan Penggunaan kami. Untuk mengelola, menjeda, atau membatalkan langganan, buka
-        Pengaturan di Google Play.</string>
-    <string name="Social" formatted="false">Sosial</string>
-    <string name="WEBSITE" formatted="false">Situs Web</string>
-    <string name="SONG_NAME" formatted="false">Nama Lagu</string>
-    <string name="next" formatted="false">Berikutnya</string>
     <string name="permission" formatted="false">Izin</string>
-    <string name="layout_language_header" formatted="false">Bahasa</string>
     <string name="perSub" formatted="false">Aplikasi membutuhkan izin untuk menggunakan kamera dan
         notifikasi</string>
     <string name="update_isReady_btn_update" formatted="false">Perbarui</string>
-    <string name="YES" formatted="false">Ya</string>
-    <string name="autoOpen" formatted="false">Buka halaman web secara otomatis</string>
-    <string name="import_str" formatted="false">Impor</string>
-    <string name="FACEBOOK_ID" formatted="false">ID Facebook</string>
-    <string name="ORG" formatted="false">Organisasi</string>
     <string name="intro4Sub" formatted="false">Ideal untuk memindai beberapa kode saat pengumpulan
         data</string>
-    <string name="INSTAGRAM" formatted="false">Instagram</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">Ketuk di sini untuk mengubah</string>
     <string name="newVersion_isReady_mss" formatted="false">Harap perbarui aplikasi untuk terus
         menggunakan!</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">Tidak menemukan kode QR dalam gambar</string>
-    <string name="j9c4c14">Uji coba gratis %1$s hari</string>
     <string name="scan" formatted="false">Pindai</string>
-    <string name="TITLE_CREATE" formatted="false">Pembuat Kode QR</string>
-    <string name="autoScan" formatted="false">Pemindaian berkelanjutan</string>
-    <string name="CANCEL" formatted="false">Batal</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">Hubungkan ke Wi-Fi</string>
     <string name="intro3" formatted="false">Buat QR &amp; Barcode Anda</string>
-    <string name="e6a423" formatted="false">Bulan</string>
-    <string name="CLEAR_FILTER" formatted="false">Hapus Filter</string>
-    <string name="DONE" formatted="false">Selesai</string>
-    <string name="WiFI" formatted="false">Wi-Fi</string>
     <string name="update_isReady_title" formatted="false">Pembaruan Baru Siap</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">Anda telah memilih jumlah media maksimum yang
-        diizinkan</string>
-    <string name="VIDEO_ID" formatted="false">ID Video</string>
-    <string name="duplicateCode" formatted="false">Barcode duplikat</string>
-    <string name="CLEAR_HISTORY" formatted="false">Hapus Riwayat</string>
-    <string name="titleuninstall" formatted="false">Mengapa Anda menghapus aplikasi?</string>
     <string name="intro2Sub" formatted="false">Tangkap, simpan, dan atur setiap kode yang dipindai
         dengan cerdas</string>
-    <string name="ledDark" formatted="false">LED dalam kegelapan</string>
-    <string name="perCameraSub" formatted="false">Pindai kode QR</string>
-    <string name="uninstall" formatted="false">Hapus instalan</string>
-    <string name="MYCARD" formatted="false">Kartu Saya</string>
-    <string name="OPEN_BROWSER" formatted="false">Buka Browser</string>
-    <string name="CALL" formatted="false">Telepon</string>
-    <string name="TEXT" formatted="false">Teks</string>
-    <string name="ADDRESS" formatted="false">Alamat</string>
-    <string name="ALLDAY" formatted="false">Sepanjang Hari</string>
-    <string name="BIRTHDAY" formatted="false">Tanggal Lahir</string>
-    <string name="START" formatted="false">Mulai</string>
     <string name="intro2" formatted="false">Bangun Riwayat Pemindaianmu</string>
-    <string name="COPY_PASSWORD" formatted="false">Salin Kata Sandi</string>
-    <string name="ADD_TO_EVENTS" formatted="false">Tambahkan ke Acara</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">Simpan Kustomisasi</string>
-    <string name="lowContrast" formatted="false">Kontras rendah</string>
-    <string name="requestCamera" formatted="false">Minta akses</string>
-    <string name="CALENDAR" formatted="false">Kalender</string>
-    <string name="Personal" formatted="false">Pribadi</string>
-    <string name="aw5" formatted="false">Alasan lain</string>
-    <string name="autoScanSub" formatted="false">Lewati tindakan setelah pemindaian</string>
-    <string name="search" formatted="false">Cari</string>
-    <string name="policy" formatted="false">Kebijakan Privasi</string>
-    <string name="TITLE" formatted="false">Judul</string>
-    <string name="saving_image" formatted="false">Menyimpan gambar...</string>
-    <string name="i8f46e6" formatted="false">Pengalaman tanpa iklan</string>
-    <string name="newVersion_isReady_title" formatted="false">Versi Baru Tersedia</string>
-    <string name="SPOTIFY" formatted="false">Spotify</string>
     <string name="continue_str" formatted="false">Lanjutkan</string>
 </resources>

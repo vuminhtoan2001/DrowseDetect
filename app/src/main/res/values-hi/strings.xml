@@ -1,198 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="PHONE_NUMBER" formatted="false">फ़ोन नंबर</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">कृपया कुछ दर्ज करें</string>
-    <string name="cb0af4" formatted="false">प्रतिमाह</string>
-    <string name="egwthe" formatted="false">इसके बाद</string>
-    <string name="CREATE" formatted="false">बनाएँ</string>
-    <string name="share_image_success" formatted="false">छवि सफलतापूर्वक साझा की गई!</string>
-    <string name="FACEBOOK_ID" formatted="false">फेसबुक आईडी</string>
-    <string name="CONTENT" formatted="false">सामग्री</string>
-    <string name="PAYPAL" formatted="false">पेपैल</string>
-    <string name="LINK" formatted="false">लिंक</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">संपर्कों में जोड़ें</string>
-    <string name="selected" formatted="false">चयनित</string>
-    <string name="tip0" formatted="false">अभिविन्यास 0°</string>
-    <string name="SAVE_IMAGE" formatted="false">छवि सहेजें</string>
-    <string name="ConnectionSuccessful" formatted="false">कनेक्शन सफल</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">कृपया सामग्री दर्ज करें</string>
-    <string name="Personal" formatted="false">व्यक्तिगत</string>
-    <string name="HELP" formatted="false">मदद</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">Wi-Fi से कनेक्ट करें</string>
-    <string name="newVersion_isReady_title" formatted="false">नई संस्करण उपलब्ध है</string>
-    <string name="layout_thanks" formatted="false">मूल्यांकन के लिए धन्यवाद</string>
-    <string name="layout_do_you_like" formatted="false">क्या आपको पसंद है</string>
-    <string name="FILTER_HISTORY" formatted="false">इतिहास को फ़िल्टर करें</string>
-    <string name="NONE" formatted="false">कोई नहीं</string>
     <string name="intro2Sub" formatted="false">हर स्कैन किए गए कोड को स्मार्ट तरीके से कैप्चर, स्टोर
         और व्यवस्थित करें</string>
-    <string name="Social" formatted="false">सामाजिक</string>
-    <string name="NOTE" formatted="false">टिप्पणी</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">आपने सर्वाधिक अनुमत मीडिया मात्रा का चयन किया
-        है</string>
-    <string name="noPerCamera" formatted="false">कैमरा तक पहुंच की अनुमति नहीं है</string>
     <string name="layout_share_btn_label" formatted="false">ऐप साझा करें</string>
     <string name="continue_str" formatted="false">जारी रखें</string>
-    <string name="j9c4c14">%1$s दिनों का मुफ्त ट्रायल</string>
-    <string name="Utilitles" formatted="false">उपयोगिताएँ</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">सान्निध्य बचाओ</string>
-    <string name="YOUTUBE_URL" formatted="false">YouTube URL</string>
-    <string name="ORG" formatted="false">संगठन</string>
-    <string name="aw5" formatted="false">अन्य कारण</string>
-    <string name="TITLE" formatted="false">शीर्षक</string>
-    <string name="aw2" formatted="false">ऐप काम नहीं कर रहा है</string>
-    <string name="NO" formatted="false">नहीं</string>
-    <string name="COPY" formatted="false">कॉपी</string>
-    <string name="autoOpen" formatted="false">स्वचालित रूप से वेबपेज खोलें</string>
-    <string name="PASSWORD" formatted="false">पासवर्ड</string>
     <string name="update_isReady_btn_update" formatted="false">अपडेट</string>
     <string name="permission" formatted="false">अनुमति</string>
-    <string name="perCamera" formatted="false">कैमरा</string>
-    <string name="TITLE_CREATE" formatted="false">QR कोड जेनरेटर</string>
-    <string name="requestCamera" formatted="false">अनुमति मांगें</string>
-    <string name="ADDRESS" formatted="false">पता</string>
-    <string name="aw1" formatted="false">उपयोग करना कठिन</string>
-    <string name="duplicateCode" formatted="false">डुप्लिकेट बारकोड</string>
-    <string name="INVALID_PHONE" formatted="false">अमान्य फ़ोन नंबर</string>
-    <string name="NOTIFICATION" formatted="false">सूचना</string>
-    <string name="perCameraSub" formatted="false">QR कोड स्कैन करें</string>
-    <string name="CLIPBOARD" formatted="false">क्लिपबोर्ड</string>
-    <string name="SAVE_OPTION" formatted="false">सहेजने का विकल्प</string>
-    <string name="FEEDBACK" formatted="false">प्रतिक्रिया</string>
-    <string name="aw3" formatted="false">बहुत सारे विज्ञापन</string>
-    <string name="cancelsubscriptions" formatted="false">सदस्यता रद्द करें</string>
-    <string name="CONTACT_US" formatted="false">हमसे संपर्क करें</string>
     <string name="intro4" formatted="false">मल्टी-कोड स्कैनिंग</string>
-    <string name="e6a423" formatted="false">महीना</string>
     <string name="scan" formatted="false">स्कैन</string>
-    <string name="DATA_EMPTY" formatted="false">कोई डेटा उपलब्ध नहीं है</string>
-    <string name="VIDEO_ID" formatted="false">वीडियो आईडी</string>
-    <string name="PRIVACY_POLICY" formatted="false">गोपनीयता नीति</string>
-    <string name="EMAIL" formatted="false">ईमेल</string>
-    <string name="prev" formatted="false">पीछे</string>
-    <string name="WEBSITE" formatted="false">वेबसाइट</string>
-    <string name="TEXT" formatted="false">टेक्स्ट</string>
-    <string name="ConnectionFailed" formatted="false">कनेक्शन विफल</string>
-    <string name="CHANNEL_ID" formatted="false">चैनल आईडी</string>
-    <string name="GENERAL_SETTINGS" formatted="false">सामान्य सेटिंग्स</string>
-    <string name="skip" formatted="false">छोड़ें</string>
-    <string name="search" formatted="false">खोज</string>
-    <string name="i874505" formatted="false">मासिक</string>
-    <string name="import_str" formatted="false">आयात करें</string>
-    <string name="SUB_DELETE" formatted="false">क्या आप वाकई हटाना चाहते हैं?</string>
-    <string name="manualScanSub" formatted="false">अनजाने में स्कैनिंग से बचें</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">स्वचालित रूप से क्लिपबोर्ड पर कॉपी करें</string>
-    <string name="light" formatted="false">प्रकाश</string>
-    <string name="g6dd514" formatted="false">ट्रायल अवधि के दौरान आपसे कोई शुल्क नहीं लिया जाएगा और
-        आप कभी भी रद्द कर सकते हैं। आगे बढ़ने पर, आप हमारी गोपनीयता नीति और उपयोग की शर्तों से सहमत
-        होते हैं। सदस्यता को प्रबंधित करने, रोकने या रद्द करने के लिए Google Play की सेटिंग्स में
-        जाएँ।</string>
-    <string name="aw4" formatted="false">उपयोगी नहीं है</string>
     <string name="intro4Sub" formatted="false">डेटा संग्रह कार्यों के दौरान कई कोड स्कैन करने के लिए
         आदर्श</string>
-    <string name="loadingAds" formatted="false">विज्ञापन लोड हो रहे हैं</string>
-    <string name="EMAIL_ADDRESS" formatted="false">ईमेल पता</string>
-    <string name="VIBER" formatted="false">वाइबर</string>
-    <string name="af84d5" formatted="false">प्रतिवर्ष</string>
-    <string name="scanImage" formatted="false">छवि स्कैन करें</string>
-    <string name="layout_language_header" formatted="false">भाषा</string>
-    <string name="ADD_TO_EVENTS" formatted="false">इवेंट में जोड़ें</string>
-    <string name="tip90" formatted="false">अभिविन्यास 90°</string>
-    <string name="saved_customize_success" formatted="false">सान्निध्य सहेजा गया!</string>
-    <string name="CLEAR_FILTER" formatted="false">फ़िल्टर हटाएं</string>
-    <string name="scanControl" formatted="false">स्कैन नियंत्रण</string>
-    <string name="SCAN" formatted="false">स्कैन</string>
     <string name="notiSub" formatted="false">अलर्ट दिखाएं</string>
-    <string name="ME_USERNAME" formatted="false">मे उपयोगकर्ता नाम</string>
     <string name="rateApp" formatted="false">ऐप को रेट करें</string>
-    <string name="NAME" formatted="false">नाम</string>
-    <string name="CONTACTS" formatted="false">संपर्क</string>
     <string name="intro3" formatted="false">अपना QR और बारकोड बनाएं</string>
-    <string name="ENTER" formatted="false">प्रवेश</string>
-    <string name="saved_image_success" formatted="false">छवि को पुस्तकालय में सहेज लिया गया!</string>
-    <string name="saving_image" formatted="false">छवि सहेजी जा रही है...</string>
     <string name="SETTINGS" formatted="false">सेटिंग्स</string>
-    <string name="SMS" formatted="false">एसएमएस</string>
     <string name="intro2" formatted="false">अपना स्कैन इतिहास बनाएँ</string>
-    <string name="WiFI" formatted="false">वाईफाई</string>
-    <string name="SECURITY_MODE" formatted="false">सुरक्षा मोड</string>
     <string name="start" formatted="false">शुरू करें</string>
     <string name="share_message" formatted="false">क्यूआर कोड बनाने और स्कैन करने के लिए तेज़ और
         सुविधाजनक ऐप, अभी Google Play पर उपलब्ध है!</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">यहाँ बदलने के लिए टैप करें</string>
-    <string name="NETWORK_NAME" formatted="false">नेटवर्क का नाम</string>
-    <string name="update_isReady_mss" formatted="false">कृपया अपडेट के लिए ऐप को फिर से चालने के लिए
-        कहें!</string>
-    <string name="APPLY" formatted="false">लागू करें</string>
-    <string name="USERNAME" formatted="false">उपयोगकर्ता नाम</string>
-    <string name="SAVE" formatted="false">सहेजें</string>
-    <string name="share_success" formatted="false">साझा करने में सफल</string>
-    <string name="TEL" formatted="false">टेलीफोन</string>
-    <string name="SEND_SMS" formatted="false">एसएमएस भेजें</string>
-    <string name="layout_button_send" formatted="false">भेजें</string>
-    <string name="CALL" formatted="false">कॉल</string>
-    <string name="delete_history_success" formatted="false">इतिहास सफलतापूर्वक हटा दिया गया!</string>
-    <string name="ALLDAY" formatted="false">पूरा दिन</string>
-    <string name="MYCARD" formatted="false">माय कार्ड</string>
-    <string name="DONE" formatted="false">सम्पूर्ण</string>
-    <string name="CALENDAR" formatted="false">कैलेंडर</string>
     <string name="OPEN" formatted="false">खोलें</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">कस्टमाइज़ करें QR कोड</string>
-    <string name="SEND_EMAIL" formatted="false">ईमेल भेजें</string>
     <string name="update_isReady_title" formatted="false">नई अपडेट तैयार है</string>
-    <string name="CANCEL" formatted="false">रद्द करें</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">चित्र में कोई QR कोड नहीं मिला</string>
-    <string name="f5776c5" formatted="false">साल</string>
-    <string name="HISTORY" formatted="false">इतिहास</string>
-    <string name="CUSTOMIZE" formatted="false">सान्निध्य बचाओ</string>
-    <string name="END" formatted="false">समाप्ति</string>
-    <string name="g672873" formatted="false">वार्षिक</string>
-    <string name="manualScan" formatted="false">मैनुअल स्कैन</string>
-    <string name="SPOTIFY" formatted="false">स्पॉटिफ़ाई</string>
-    <string name="ARTIST_NAME" formatted="false">कलाकार का नाम</string>
-    <string name="uninstall" formatted="false">アンインストール करें</string>
-    <string name="close" formatted="false">बंद करें</string>
     <string name="noti" formatted="false">सूचना</string>
-    <string name="SHARE" formatted="false">साझा करें</string>
-    <string name="tooClose" formatted="false">बहुत करीब / धुंधला</string>
-    <string name="autoScan" formatted="false">निरंतर स्कैनिंग</string>
-    <string name="vibrate" formatted="false">वाइब्रेट</string>
-    <string name="share_cancel" formatted="false">साझा करना रद्द करें</string>
-    <string name="BIRTHDAY" formatted="false">जन्मदिन</string>
-    <string name="titleuninstall" formatted="false">आपने ऐप को अनइंस्टॉल क्यों किया?</string>
-    <string name="note" formatted="false">नोट</string>
-    <string name="i8f46e6" formatted="false">बिना विज्ञापन का अनुभव</string>
     <string name="perSub" formatted="false">ऐप को कैमरा और सूचनाओं के उपयोग की अनुमति की आवश्यकता है</string>
-    <string name="next" formatted="false">आगे</string>
-    <string name="scanningTips" formatted="false">स्कैनिंग युक्तियाँ</string>
-    <string name="autoScanSub" formatted="false">स्कैनिंग के बाद क्रिया छोड़ें</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">भाषा विकल्प</string>
     <string name="intro1" formatted="false">त्वरित QR स्कैनिंग</string>
-    <string name="CLEAR_HISTORY" formatted="false">इतिहास साफ़ करें</string>
-    <string name="lightOrDark" formatted="false">हल्का या गहरा</string>
-    <string name="ledDark" formatted="false">अंधेरे में एलईडी</string>
-    <string name="SHOW_ON_MAP" formatted="false">मानचित्र पर दिखाएं</string>
     <string name="intro3Sub" formatted="false">जानकारी दर्ज करें और आसानी से एक व्यक्तिगत कोड जनरेट
         करें</string>
     <string name="update_isReady_btn_late" formatted="false">बाद में</string>
-    <string name="DESCRIPTION" formatted="false">विवरण</string>
-    <string name="INSTAGRAM" formatted="false">इंस्टाग्राम</string>
-    <string name="COPY_PASSWORD" formatted="false">पासवर्ड कॉपी करें</string>
-    <string name="policy" formatted="false">गोपनीयता नीति</string>
-    <string name="duplicateCodeSub" formatted="false">इतिहास में डुप्लिकेट बारकोड सहेजें</string>
-    <string name="START" formatted="false">प्रारंभ</string>
-    <string name="TEXT_MESSAGE" formatted="false">टेक्स्ट संदेश</string>
-    <string name="OPEN_BROWSER" formatted="false">ब्राउज़र खोलें</string>
-    <string name="SONG_NAME" formatted="false">गीत का नाम</string>
-    <string name="TWITTER" formatted="false">ट्विटर</string>
-    <string name="export" formatted="false">निर्यात करें</string>
-    <string name="lowContrast" formatted="false">कम कंट्रास्ट</string>
     <string name="intro1Sub" formatted="false">कहीं भी तुरंत QR कोड स्कैन करें</string>
-    <string name="textSplash" formatted="false">इस क्रिया में विज्ञापन हो सकते हैं</string>
-    <string name="YES" formatted="false">हाँ</string>
     <string name="newVersion_isReady_mss" formatted="false">कृपया जारी रखने के लिए ऐप को अपडेट करें!</string>
-    <string name="ME_LINK" formatted="false">मे लिंक</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">क्लिपबोर्ड पर कॉपी किया गया</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">फेसबुक प्रोफाइल</string>
-    <string name="tipOther" formatted="false">अन्य अभिविन्यास</string>
 </resources>

@@ -369,7 +369,7 @@ function cleanupStringsXml() {
       
       if (changed) {
         // Backup file gốc
-        fs.copyFileSync(filePath, filePath + ".backup");
+        // fs.copyFileSync(filePath, filePath + ".backup");
         
         // Ghi file mới
         const newXml = builder.build(parsed);

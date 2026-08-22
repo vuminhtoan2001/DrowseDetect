@@ -77,6 +77,7 @@ const stringsToRemove = new Set([
   "PAYPAL",
   "PHONE_NUMBER",
   "PLEASE_ENTER_SOMETHING",
+  "PRIVACY_POLICY",
   "Personal",
   "SAVE",
   "SAVE_CUSTOMIZE",
@@ -146,15 +147,14 @@ const stringsToRemove = new Set([
   "lowContrast",
   "manualScan",
   "manualScanSub",
-  "mm_deleted",
-  "mm_ok",
-  "mm_saved",
   "newVersion_isReady_title",
+  "next",
   "noPerCamera",
   "note",
   "perCamera",
   "perCameraSub",
   "policy",
+  "prev",
   "requestCamera",
   "saved_customize_success",
   "saved_image_success",
@@ -162,6 +162,7 @@ const stringsToRemove = new Set([
   "scanControl",
   "scanImage",
   "scanningTips",
+  "search",
   "select_country",
   "selected",
   "share_cancel",
@@ -185,14 +186,14 @@ console.log(`🗑️ Sẽ xóa ${stringsToRemove.size} unused strings...`);
 function cleanupStringsXml() {
   const pattern = path.join(RES_DIR, "values*/strings.xml").replace(/\\/g, "/");
   const files = glob.sync(pattern);
-
+  
   const parser = new XMLParser({
     ignoreAttributes: false,
     attributeNamePrefix: "@_",
     textNodeName: "#text",
     parseTagValue: false,
   });
-
+  
   const builder = new XMLBuilder({
     ignoreAttributes: false,
     attributeNamePrefix: "@_",
@@ -201,23 +202,23 @@ function cleanupStringsXml() {
     indentBy: "    ",
     suppressEmptyNode: true,
   });
-
+  
   for (const filePath of files) {
     try {
       const xmlText = fs.readFileSync(filePath, "utf8");
       const parsed = parser.parse(xmlText);
-
+      
       if (!parsed || !parsed.resources) continue;
-
+      
       let changed = false;
       const resources = parsed.resources;
-
+      
       // Xử lý <string>
       if (resources.string) {
-        const strings = Array.isArray(resources.string)
-          ? resources.string
+        const strings = Array.isArray(resources.string) 
+          ? resources.string 
           : [resources.string];
-
+        
         const filtered = strings.filter(item => {
           const key = item["@_name"];
           if (key && stringsToRemove.has(key)) {
@@ -227,17 +228,17 @@ function cleanupStringsXml() {
           }
           return true;
         });
-
+        
         resources.string = filtered.length === 1 ? filtered[0] : filtered;
         if (filtered.length === 0) delete resources.string;
       }
-
+      
       // Xử lý <string-array>
       if (resources["string-array"]) {
-        const arrays = Array.isArray(resources["string-array"])
-          ? resources["string-array"]
+        const arrays = Array.isArray(resources["string-array"]) 
+          ? resources["string-array"] 
           : [resources["string-array"]];
-
+        
         const filtered = arrays.filter(item => {
           const key = item["@_name"];
           if (key && stringsToRemove.has(key)) {
@@ -247,17 +248,17 @@ function cleanupStringsXml() {
           }
           return true;
         });
-
+        
         resources["string-array"] = filtered.length === 1 ? filtered[0] : filtered;
         if (filtered.length === 0) delete resources["string-array"];
       }
-
+      
       // Xử lý <plurals>
       if (resources.plurals) {
-        const plurals = Array.isArray(resources.plurals)
-          ? resources.plurals
+        const plurals = Array.isArray(resources.plurals) 
+          ? resources.plurals 
           : [resources.plurals];
-
+        
         const filtered = plurals.filter(item => {
           const key = item["@_name"];
           if (key && stringsToRemove.has(key)) {
@@ -267,21 +268,21 @@ function cleanupStringsXml() {
           }
           return true;
         });
-
+        
         resources.plurals = filtered.length === 1 ? filtered[0] : filtered;
         if (filtered.length === 0) delete resources.plurals;
       }
-
+      
       if (changed) {
         // Backup file gốc
         // fs.copyFileSync(filePath, filePath + ".backup");
-
+        
         // Ghi file mới
         const newXml = builder.build(parsed);
         fs.writeFileSync(filePath, newXml.trim() + "\n", "utf8");
         console.log(`✅ Đã cập nhật: ${filePath}`);
       }
-
+      
     } catch (error) {
       console.error(`❌ Lỗi khi xử lý ${filePath}:`, error.message);
     }

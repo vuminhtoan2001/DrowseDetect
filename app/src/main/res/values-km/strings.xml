@@ -1,193 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="NONE" formatted="false">គ្មាន</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">បន្ថែមទៅបញ្ជីទំនាក់ទំនង</string>
-    <string name="uninstall" formatted="false">លុបការតម្លើង</string>
-    <string name="g672873" formatted="false">ប្រចាំឆ្នាំ</string>
     <string name="update_isReady_title" formatted="false">ការធ្វើបច្ចុប្បន្នភាពថ្មីគេសម្រេច</string>
-    <string name="EMAIL_ADDRESS" formatted="false">អាសយដ្ឋានអ៊ីម៉ែល</string>
-    <string name="lowContrast" formatted="false">ការផ្ទុយទាប</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">កំណែបណ្តាញ QR តាមប្រភេទខ្មែរ</string>
-    <string name="g6dd514" formatted="false">អ្នកនឹងមិនត្រូវបង់ប្រាក់នៅក្នុងអំឡុងពេលសាកល្បងទេ
-        ហើយអ្នកអាចបោះបង់បានគ្រប់ពេល។ ដោយបន្ត អ្នកយល់ព្រមនឹងគោលការណ៍ឯកជនភាព
-        និងលក្ខខណ្ឌប្រើប្រាស់របស់យើង។ ដើម្បីគ្រប់គ្រង ផ្អាក ឬបោះបង់ការជាវ សូមចូលទៅកាន់ការកំណត់ក្នុង
-        Google Play។</string>
-    <string name="i874505" formatted="false">ប្រចាំខែ</string>
-    <string name="aw5" formatted="false">ហេតុផលផ្សេងទៀត</string>
-    <string name="ME_USERNAME" formatted="false">ឈ្មោះអ្នកប្រើប្រាស់របស់ខ្ញុំ</string>
-    <string name="INSTAGRAM" formatted="false">Instagram</string>
     <string name="rateApp" formatted="false">វាយតម្លៃកម្មវិធី</string>
-    <string name="SMS" formatted="false">សារ SMS</string>
-    <string name="SAVE_IMAGE" formatted="false">រកមិននិងរូបភាព</string>
-    <string name="f5776c5" formatted="false">ឆ្នាំ</string>
-    <string name="close" formatted="false">បិទ</string>
-    <string name="tip90" formatted="false">ទិសដៅ 90°</string>
-    <string name="DONE" formatted="false">រួចរាល់</string>
-    <string name="WEBSITE" formatted="false">គេហទំព័រ</string>
-    <string name="INVALID_PHONE" formatted="false">លេខទូរស័ព្ទមិនត្រឹមត្រូវ</string>
-    <string name="VIDEO_ID" formatted="false">ID វីដេអូ</string>
-    <string name="TITLE_CREATE" formatted="false">អ្នកបង្កើតកូដ QR</string>
-    <string name="manualScan" formatted="false">ស្កេនដោយដៃ</string>
-    <string name="af84d5" formatted="false">រៀងរាល់ឆ្នាំ</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">ចុចនៅទីនេះដើម្បីផ្លាស់ប្ដូរ</string>
-    <string name="FILTER_HISTORY" formatted="false">ត្រួតពិនិត្យប្រវត្តិ</string>
-    <string name="SECURITY_MODE" formatted="false">របៀបសុវត្ថិភាព</string>
-    <string name="FEEDBACK" formatted="false">មតិយោបល់</string>
-    <string name="prev" formatted="false">ថយក្រោយ</string>
-    <string name="ADD_TO_EVENTS" formatted="false">បន្ថែមទៅព្រឹត្តិការ</string>
-    <string name="noPerCamera" formatted="false">គ្មានសិទិ្ធចូលដំណើរការកាមេរ៉ា</string>
-    <string name="PRIVACY_POLICY" formatted="false">គោលការណ៍ភាពឯកជន</string>
-    <string name="layout_thanks" formatted="false">សូមអរគុណចូលចិត្ត</string>
-    <string name="CHANNEL_ID" formatted="false">ID ស្វែងរក</string>
     <string name="intro1Sub" formatted="false">ស្កេនកូដ QR បានភ្លាមៗគ្រប់ទីកន្លែង</string>
-    <string name="OPEN_BROWSER" formatted="false">បើកកម្មវិធីរុករក</string>
-    <string name="titleuninstall" formatted="false">ហេតុអ្វីបានលុបកម្មវិធី?</string>
-    <string name="DESCRIPTION" formatted="false">ការពិពណ៌នា</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">ចម្លងទៅផ្ទៃកម្មវិធីផ្ទៃកម្មវិធី</string>
     <string name="noti" formatted="false">ការជូនដំណឹង</string>
-    <string name="delete_history_success" formatted="false">ប្រវត្តិត្រូវបានលុបចោល!</string>
     <string name="intro2" formatted="false">បង្កើតប្រវត្តិស្កេនរបស់អ្នក</string>
-    <string name="MYCARD" formatted="false">ស្ថាបនិករបស់ខ្ញុំ</string>
-    <string name="ORG" formatted="false">អង្គការ</string>
-    <string name="saved_customize_success" formatted="false">ការកំណត់ផ្ទាល់ត្រូវបានរកមិននិង!</string>
-    <string name="GENERAL_SETTINGS" formatted="false">ការកំណត់ទូទៅ</string>
-    <string name="layout_do_you_like" formatted="false">តើអ្នកចូលចិត្ត</string>
-    <string name="saving_image" formatted="false">កំពុង​រក្សាទុករូបភាព...</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">សូមបញ្ចូលអ្វីមួយ</string>
-    <string name="CONTACTS" formatted="false">ទំនាក់ទំនង</string>
     <string name="intro2Sub" formatted="false">ថត ទុក និងរៀបចំកូដដែលបានស្កេនយ៉ាងឆ្លាតវៃ</string>
-    <string name="update_isReady_mss" formatted="false">សូមចាប់ផ្តើមកម្មវិធីម្តងទៀតដើម្បីធ្វើបច្ចុប្បន្នភាព!</string>
-    <string name="SHARE" formatted="false">ចែករំលែក</string>
-    <string name="e6a423" formatted="false">ខែ</string>
-    <string name="autoScan" formatted="false">ស្កេនបន្ត</string>
-    <string name="PAYPAL" formatted="false">Paypal</string>
     <string name="start" formatted="false">ចាប់ផ្ដើម</string>
-    <string name="COPY" formatted="false">ចម្លង</string>
-    <string name="tip0" formatted="false">ទិសដៅ 0°</string>
     <string name="intro4" formatted="false">ស្កេនកូដច្រើន</string>
     <string name="share_message" formatted="false">កម្មវិធីបង្កើតនិងស្កេន QR កូដយ៉ាងឆាប់រហ័ស
         និងងាយស្រួល មាននៅលើ Google Play ទាញយកឥឡូវនេះ!</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">មិនមិន QR Code នៅក្នុងរូបភាព</string>
-    <string name="SHOW_ON_MAP" formatted="false">បង្ហាញនៅលើផែត</string>
-    <string name="NETWORK_NAME" formatted="false">ឈ្មោះបណ្តាញ</string>
-    <string name="CONTACT_US" formatted="false">ទំនាក់ទំនងយើង</string>
-    <string name="loadingAds" formatted="false">កំពុងផ្ទុកការផ្សព្វផ្សាយ</string>
-    <string name="USERNAME" formatted="false">ឈ្មោះអ្នកប្រើប្រាស់</string>
     <string name="scan" formatted="false">ស្កេន</string>
-    <string name="import_str" formatted="false">នាំចូល</string>
-    <string name="END" formatted="false">បញ្ចប់</string>
-    <string name="ME_LINK" formatted="false">តំណរង្វាន់របស់ខ្ញុំ</string>
-    <string name="aw1" formatted="false">ពិបាកប្រើ</string>
-    <string name="NOTE" formatted="false">ចំណាំ</string>
-    <string name="CLIPBOARD" formatted="false">ផ្ទៃកម្មវិធី</string>
-    <string name="HELP" formatted="false">ជំនួយ</string>
-    <string name="requestCamera" formatted="false">ស្នើសុំព្រមាន</string>
-    <string name="APPLY" formatted="false">អនុវត្ត</string>
-    <string name="SONG_NAME" formatted="false">ឈ្មោះបទ</string>
-    <string name="START" formatted="false">ចាប់ផ្តើម</string>
     <string name="intro3Sub" formatted="false">បញ្ចូលព័ត៌មាន និងបង្កើតកូដផ្ទាល់ខ្លួនយ៉ាងងាយស្រួល</string>
-    <string name="light" formatted="false">ពន្លឺ</string>
-    <string name="autoOpen" formatted="false">បើកគេហទំព័រដោយស្វ័យប្រវត្តិ</string>
-    <string name="NO" formatted="false">ទេ</string>
-    <string name="CREATE" formatted="false">បង្កើត</string>
-    <string name="DATA_EMPTY" formatted="false">គ្មានទិន្នន័យ</string>
-    <string name="ConnectionSuccessful" formatted="false">ការតភ្ជាប់ជោគជ័យ</string>
-    <string name="layout_language_header" formatted="false">ភាសា</string>
-    <string name="perCameraSub" formatted="false">ស្កេនកូដ QR</string>
-    <string name="ADDRESS" formatted="false">អាសយដ្ឋាន</string>
     <string name="update_isReady_btn_late" formatted="false">ពេញការ</string>
     <string name="OPEN" formatted="false">បើក</string>
-    <string name="YES" formatted="false">បាទ</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">តភ្ជាប់ទៅ Wi-Fi</string>
-    <string name="ENTER" formatted="false">បញ្ចូល</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">ជម្រើសភាសា</string>
-    <string name="TWITTER" formatted="false">Twitter</string>
-    <string name="PASSWORD" formatted="false">ពាក្យសម្ងាត់</string>
-    <string name="Personal" formatted="false">ផ្ទាល់ខ្លួន</string>
-    <string name="COPY_PASSWORD" formatted="false">ចម្លងពាក្យសម្ងាត់</string>
-    <string name="ARTIST_NAME" formatted="false">ឈ្មោះអ្នកបច្ចេកទេស</string>
-    <string name="j9c4c14">សាកល្បងឥតគិតថ្លៃ %1$s ថ្ងៃ</string>
-    <string name="share_image_success" formatted="false">រូបភាព​បានចែករំលែកដោយជោគជ័យ!</string>
-    <string name="aw2" formatted="false">App មិនធ្វើការ</string>
-    <string name="HISTORY" formatted="false">ប្រវត្តិ</string>
-    <string name="CALENDAR" formatted="false">ប្រតិទិន</string>
-    <string name="share_cancel" formatted="false">បោះបង់ការចែករំលែក</string>
-    <string name="CLEAR_FILTER" formatted="false">លុបតម្រង</string>
     <string name="permission" formatted="false">ការអនុញ្ញាត</string>
-    <string name="NOTIFICATION" formatted="false">សេចក្ដីជូនដំណឹង</string>
-    <string name="policy" formatted="false">គោលការណ៍ឯកជនភាព</string>
     <string name="intro1" formatted="false">ការស្កេន QR យ៉ាងលឿន</string>
-    <string name="SCAN" formatted="false">ស្វែងរក</string>
-    <string name="egwthe" formatted="false">បន្ទាប់មក</string>
-    <string name="layout_button_send" formatted="false">ផ្ញើ</string>
-    <string name="saved_image_success" formatted="false">រូបភាព​បានរក្សាទុកទៅក្បាលទស្សន៍ដោយជោគជ័យ!</string>
-    <string name="aw3" formatted="false">មានផ្សាយពាណិជ្ជកម្មច្រើនពេក</string>
     <string name="intro4Sub" formatted="false">ល្អឥតខ្ចោះសម្រាប់ស្កេនកូដច្រើនក្នុងការប្រមូលទិន្នន័យ</string>
-    <string name="SPOTIFY" formatted="false">Spotify</string>
-    <string name="cancelsubscriptions" formatted="false">បោះបង់ការជាវ</string>
-    <string name="BIRTHDAY" formatted="false">ថ្ងៃកំណើត</string>
-    <string name="EMAIL" formatted="false">អ៊ីម៉ែល</string>
-    <string name="Utilitles" formatted="false">ឧបករណ៍</string>
-    <string name="perCamera" formatted="false">កាមេរ៉ា</string>
-    <string name="SEND_EMAIL" formatted="false">ផ្ញើអ៊ីម៉ែល</string>
-    <string name="duplicateCode" formatted="false">បាកូដធ្វើស្ទួន</string>
-    <string name="TITLE" formatted="false">ចំណងជើង</string>
-    <string name="textSplash" formatted="false">សកម្មភាពនេះអាចមានផ្សាយពាណិជ្ជកម្ម</string>
-    <string name="SAVE" formatted="false">រក្សាទុក</string>
-    <string name="CONTENT" formatted="false">មាតិកា</string>
-    <string name="SEND_SMS" formatted="false">ផ្ញើសារ SMS</string>
-    <string name="tipOther" formatted="false">ទិសដៅផ្សេងទៀត</string>
-    <string name="export" formatted="false">នាំចេញ</string>
-    <string name="selected" formatted="false">បានជ្រើសរើស</string>
-    <string name="TEL" formatted="false">ទូរស័ព្ទ</string>
-    <string name="scanControl" formatted="false">ការគ្រប់គ្រងការស្កេន</string>
-    <string name="CUSTOMIZE" formatted="false">កំណត់ផ្ទាល់</string>
-    <string name="cb0af4" formatted="false">រៀងរាល់ខែ</string>
-    <string name="SUB_DELETE" formatted="false">តើអ្នកប្រាកដថាចង់លុបវាទេ?</string>
-    <string name="VIBER" formatted="false">Viber</string>
-    <string name="CALL" formatted="false">ហៅ</string>
-    <string name="LINK" formatted="false">តំណ</string>
-    <string name="CANCEL" formatted="false">បោះបង់</string>
     <string name="notiSub" formatted="false">បង្ហាញការជូនដំណឹង</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">សូមបញ្ចូលអ្វីមួយ</string>
-    <string name="tooClose" formatted="false">ជិតពេក / ព្រិល</string>
-    <string name="WiFI" formatted="false">Wi-Fi</string>
     <string name="intro3" formatted="false">បង្កើត QR និងបារកូដរបស់អ្នក</string>
-    <string name="lightOrDark" formatted="false">ភ្លឺ ឬ ងងឹត</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">រកមិននិងការកំណត់</string>
-    <string name="CLEAR_HISTORY" formatted="false">សម្អាតប្រវត្តិ</string>
-    <string name="Social" formatted="false">សង្គម</string>
-    <string name="manualScanSub" formatted="false">ជៀសវាងការស្កេនដោយចៃដន្យ</string>
-    <string name="next" formatted="false">បន្ទាប់</string>
     <string name="continue_str" formatted="false">បន្ត</string>
-    <string name="ALLDAY" formatted="false">ពេញមួយថ្ងៃ</string>
-    <string name="note" formatted="false">ចំណាំ</string>
-    <string name="TEXT" formatted="false">អត្ថបទ</string>
-    <string name="YOUTUBE_URL" formatted="false">URL YouTube</string>
-    <string name="scanImage" formatted="false">ស្កេនរូបភាព</string>
-    <string name="scanningTips" formatted="false">គន្លឹះស្កេន</string>
-    <string name="ledDark" formatted="false">LED ក្នុងភាពងងឹត</string>
-    <string name="ConnectionFailed" formatted="false">ការតភ្ជាប់បរាជ័យ</string>
-    <string name="skip" formatted="false">រំលង</string>
-    <string name="TEXT_MESSAGE" formatted="false">សារអត្ថបទ</string>
-    <string name="i8f46e6" formatted="false">បទពិសោធន៍គ្មានការផ្សព្វផ្សាយ</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">ចម្លងទៅផ្ទៃកម្មវិធីផ្ទៃកម្មវិធីដោយស្វែងរកដោយស្វែងរក</string>
     <string name="SETTINGS" formatted="false">ការកំណត់</string>
-    <string name="duplicateCodeSub" formatted="false">រក្សាទុកបាកូដធ្វើស្ទួនក្នុងប្រវត្តិ</string>
-    <string name="vibrate" formatted="false">រោទ៍</string>
-    <string name="PHONE_NUMBER" formatted="false">លេខទូរស័ព្ទ</string>
-    <string name="share_success" formatted="false">ចែករំលែកបានជោគជ័យ</string>
     <string name="perSub" formatted="false">កម្មវិធីត្រូវការសិទ្ធិប្រើកាមេរ៉ា និងការជូនដំណឹង</string>
     <string name="update_isReady_btn_update" formatted="false">ធ្វើបច្ចុប្បន្នភាព</string>
     <string name="newVersion_isReady_mss" formatted="false">សូមធ្វើបច្ចុប្បន្នភាពកម្មវិធីដើម្បីបន្តទៀតប្រើវាបាន!</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">ទិដ្ឋភាពលម្អិត Facebook</string>
-    <string name="FACEBOOK_ID" formatted="false">ID Facebook</string>
-    <string name="SAVE_OPTION" formatted="false">ជម្រើសរកម្ម</string>
-    <string name="aw4" formatted="false">មិនមានប្រយោជន៍</string>
-    <string name="search" formatted="false">ស្វែងរក</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">អ្នកបានជ្រើសការចែករំលែកចំនួននៃមេឌាយខ្ពស់បំផុត</string>
     <string name="layout_share_btn_label" formatted="false">ចែករំលែកកម្មវិធី</string>
-    <string name="newVersion_isReady_title" formatted="false">កំណែបណ្តាញថ្មីមានស្រាប់</string>
-    <string name="autoScanSub" formatted="false">រំលងអំពើបន្ទាប់ពីស្កេន</string>
-    <string name="NAME" formatted="false">ឈ្មោះ</string>
 </resources>

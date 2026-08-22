@@ -1,198 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="SHOW_ON_MAP" formatted="false">Показать на карте</string>
-    <string name="aw2" formatted="false">Приложение не работает</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">Сохранить настройки</string>
     <string name="update_isReady_btn_late" formatted="false">Позже</string>
-    <string name="cb0af4" formatted="false">в месяц</string>
-    <string name="TWITTER" formatted="false">Twitter</string>
-    <string name="e6a423" formatted="false">Месяц</string>
-    <string name="NETWORK_NAME" formatted="false">Имя сети</string>
-    <string name="CONTACTS" formatted="false">Контакты</string>
-    <string name="textSplash" formatted="false">Это действие может содержать рекламу</string>
-    <string name="INVALID_PHONE" formatted="false">Неверный номер телефона</string>
-    <string name="SAVE" formatted="false">Сохранить</string>
     <string name="share_message" formatted="false">Быстрое и удобное приложение для создания и
         сканирования QR-кодов — уже доступно в Google Play!</string>
-    <string name="share_image_success" formatted="false">Изображение успешно поделено!</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">Настройки языка</string>
-    <string name="YES" formatted="false">Да</string>
-    <string name="light" formatted="false">Освещение</string>
-    <string name="ConnectionFailed" formatted="false">Не удалось подключиться</string>
-    <string name="YOUTUBE_URL" formatted="false">URL YouTube</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">QR-код не найден на изображении</string>
-    <string name="VIDEO_ID" formatted="false">ID видео</string>
-    <string name="ORG" formatted="false">Организация</string>
-    <string name="PHONE_NUMBER" formatted="false">Номер телефона</string>
-    <string name="PAYPAL" formatted="false">Paypal</string>
-    <string name="Utilitles" formatted="false">Утилиты</string>
-    <string name="FACEBOOK_ID" formatted="false">ID Facebook</string>
-    <string name="SUB_DELETE" formatted="false">Вы уверены, что хотите удалить?</string>
     <string name="intro3" formatted="false">Создайте ваш QR и штрих‑код</string>
-    <string name="OPEN_BROWSER" formatted="false">Открыть браузер</string>
     <string name="permission" formatted="false">Разрешение</string>
-    <string name="CLEAR_FILTER" formatted="false">Очистить фильтр</string>
-    <string name="search" formatted="false">Поиск</string>
-    <string name="tip90" formatted="false">Ориентация 90°</string>
-    <string name="LINK" formatted="false">Ссылка</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">Вы выбрали максимально допустимое количество
-        мультимедиа</string>
-    <string name="TEXT" formatted="false">Текст</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">Подключиться к Wi-Fi</string>
-    <string name="NONE" formatted="false">Нет</string>
-    <string name="DONE" formatted="false">Готово</string>
-    <string name="APPLY" formatted="false">Применить</string>
-    <string name="PASSWORD" formatted="false">Пароль</string>
-    <string name="manualScan" formatted="false">Ручное сканирование</string>
-    <string name="FILTER_HISTORY" formatted="false">Фильтр истории</string>
-    <string name="CLIPBOARD" formatted="false">Буфер обмена</string>
-    <string name="update_isReady_mss" formatted="false">Пожалуйста, перезапустите приложение для
-        обновления!</string>
-    <string name="aw3" formatted="false">Слишком много рекламы</string>
-    <string name="aw5" formatted="false">Другая причина</string>
-    <string name="VIBER" formatted="false">Viber</string>
-    <string name="lowContrast" formatted="false">Низкая контрастность</string>
     <string name="notiSub" formatted="false">Показать оповещения</string>
-    <string name="ENTER" formatted="false">Ввод</string>
-    <string name="SAVE_OPTION" formatted="false">Опция сохранения</string>
     <string name="intro4" formatted="false">Массовое сканирование</string>
-    <string name="share_cancel" formatted="false">Отмена поделиться</string>
-    <string name="WEBSITE" formatted="false">Веб-сайт</string>
-    <string name="layout_do_you_like" formatted="false">Вам нравится</string>
-    <string name="aw4" formatted="false">Не полезно</string>
-    <string name="requestCamera" formatted="false">Запросить доступ</string>
-    <string name="COPY" formatted="false">Копировать</string>
-    <string name="i874505" formatted="false">Ежемесячно</string>
-    <string name="autoOpen" formatted="false">Автоматически открывать веб-страницу</string>
     <string name="layout_share_btn_label" formatted="false">Поделиться приложением</string>
-    <string name="MYCARD" formatted="false">Моя карточка</string>
     <string name="update_isReady_btn_update" formatted="false">Обновить</string>
-    <string name="noPerCamera" formatted="false">Нет доступа к камере</string>
-    <string name="ME_LINK" formatted="false">Моя ссылка</string>
     <string name="SETTINGS" formatted="false">Настройки</string>
-    <string name="ARTIST_NAME" formatted="false">Имя исполнителя</string>
-    <string name="export" formatted="false">Экспорт</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">Настроить QR-код</string>
-    <string name="loadingAds" formatted="false">Загрузка рекламы</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">Нажмите здесь, чтобы изменить</string>
-    <string name="NAME" formatted="false">Имя</string>
-    <string name="NOTE" formatted="false">Примечание</string>
-    <string name="titleuninstall" formatted="false">Почему вы удалили приложение?</string>
-    <string name="Social" formatted="false">Социальные</string>
-    <string name="scanningTips" formatted="false">Советы по сканированию</string>
-    <string name="SECURITY_MODE" formatted="false">Режим безопасности</string>
-    <string name="NOTIFICATION" formatted="false">Уведомление</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">Скопировано в буфер обмена</string>
-    <string name="policy" formatted="false">Политика конфиденциальности</string>
-    <string name="uninstall" formatted="false">Удалить</string>
-    <string name="import_str" formatted="false">Импорт</string>
-    <string name="share_success" formatted="false">Успешно поделено</string>
-    <string name="tip0" formatted="false">Ориентация 0°</string>
-    <string name="tooClose" formatted="false">Слишком близко / размыто</string>
-    <string name="f5776c5" formatted="false">Год</string>
-    <string name="ConnectionSuccessful" formatted="false">Соединение успешно</string>
-    <string name="NO" formatted="false">Нет</string>
-    <string name="ALLDAY" formatted="false">Весь день</string>
-    <string name="close" formatted="false">Закрыть</string>
     <string name="update_isReady_title" formatted="false">Доступно новое обновление</string>
-    <string name="tipOther" formatted="false">Другая ориентация</string>
-    <string name="EMAIL" formatted="false">Email</string>
-    <string name="delete_history_success" formatted="false">История успешно удалена!</string>
-    <string name="CHANNEL_ID" formatted="false">ID канала</string>
-    <string name="CREATE" formatted="false">Создать</string>
-    <string name="HISTORY" formatted="false">История</string>
     <string name="rateApp" formatted="false">Оценить приложение</string>
-    <string name="j9c4c14">Бесплатная пробная версия на %1$s дней</string>
-    <string name="SCAN" formatted="false">Сканировать</string>
-    <string name="perCameraSub" formatted="false">Сканировать QR-код</string>
-    <string name="END" formatted="false">Конец</string>
-    <string name="selected" formatted="false">Выбрано</string>
-    <string name="CALL" formatted="false">Позвонить</string>
-    <string name="COPY_PASSWORD" formatted="false">Копировать пароль</string>
-    <string name="GENERAL_SETTINGS" formatted="false">Общие настройки</string>
-    <string name="INSTAGRAM" formatted="false">Instagram</string>
     <string name="continue_str" formatted="false">Продолжить</string>
-    <string name="ADDRESS" formatted="false">Адрес</string>
-    <string name="saved_image_success" formatted="false">Изображение успешно сохранено!</string>
-    <string name="DESCRIPTION" formatted="false">Описание</string>
-    <string name="lightOrDark" formatted="false">Светлый или тёмный</string>
-    <string name="ledDark" formatted="false">Светодиод в темноте</string>
-    <string name="manualScanSub" formatted="false">Избегать случайного сканирования</string>
     <string name="intro3Sub" formatted="false">Введите данные и легко создайте персонализированный
         код</string>
-    <string name="HELP" formatted="false">Помощь</string>
-    <string name="egwthe" formatted="false">Затем</string>
-    <string name="TEXT_MESSAGE" formatted="false">Текстовое сообщение</string>
-    <string name="SPOTIFY" formatted="false">Spotify</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">Автоматически скопировано в буфер обмена</string>
-    <string name="WiFI" formatted="false">Wi-Fi</string>
-    <string name="note" formatted="false">Заметка</string>
-    <string name="cancelsubscriptions" formatted="false">Отменить подписку</string>
-    <string name="CALENDAR" formatted="false">Календарь</string>
-    <string name="scanControl" formatted="false">Управление сканированием</string>
-    <string name="skip" formatted="false">Пропустить</string>
-    <string name="SAVE_IMAGE" formatted="false">Сохранить изображение</string>
-    <string name="SONG_NAME" formatted="false">Название песни</string>
     <string name="noti" formatted="false">Уведомления</string>
-    <string name="SEND_SMS" formatted="false">Отправить SMS</string>
     <string name="perSub" formatted="false">Приложению требуется разрешение на камеру и уведомления</string>
-    <string name="layout_button_send" formatted="false">Отправить</string>
-    <string name="layout_thanks" formatted="false">Спасибо за оценку</string>
     <string name="intro2Sub" formatted="false">Сохраняйте и организуйте все сканы умно</string>
-    <string name="prev" formatted="false">Назад</string>
-    <string name="ME_USERNAME" formatted="false">Мое имя пользователя</string>
-    <string name="BIRTHDAY" formatted="false">День рождения</string>
-    <string name="autoScanSub" formatted="false">Пропустить действие после сканирования</string>
     <string name="scan" formatted="false">Сканировать</string>
-    <string name="TITLE_CREATE" formatted="false">Генератор QR-кодов</string>
-    <string name="TITLE" formatted="false">Заголовок</string>
-    <string name="duplicateCode" formatted="false">Повторяющийся штрихкод</string>
-    <string name="CANCEL" formatted="false">Отмена</string>
-    <string name="CLEAR_HISTORY" formatted="false">Очистить историю</string>
-    <string name="SMS" formatted="false">SMS</string>
-    <string name="DATA_EMPTY" formatted="false">Данные отсутствуют</string>
     <string name="intro1" formatted="false">Быстрое сканирование QR</string>
     <string name="intro2" formatted="false">Создайте историю сканирования</string>
-    <string name="TEL" formatted="false">Телефон</string>
-    <string name="SEND_EMAIL" formatted="false">Отправить Email</string>
     <string name="OPEN" formatted="false">Открыть</string>
-    <string name="EMAIL_ADDRESS" formatted="false">Адрес электронной почты</string>
     <string name="start" formatted="false">Начать</string>
     <string name="newVersion_isReady_mss" formatted="false">Пожалуйста, обновите приложение, чтобы
         продолжить использование!</string>
-    <string name="i8f46e6" formatted="false">Опыт без рекламы</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">Профиль Facebook</string>
-    <string name="af84d5" formatted="false">в год</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">Пожалуйста, введите что-то</string>
-    <string name="layout_language_header" formatted="false">Язык</string>
-    <string name="saved_customize_success" formatted="false">Настройки сохранены!</string>
-    <string name="SHARE" formatted="false">Поделиться</string>
-    <string name="Personal" formatted="false">Личное</string>
-    <string name="scanImage" formatted="false">Сканировать изображение</string>
-    <string name="newVersion_isReady_title" formatted="false">Доступна новая версия</string>
-    <string name="CUSTOMIZE" formatted="false">Настроить</string>
-    <string name="FEEDBACK" formatted="false">Обратная связь</string>
-    <string name="perCamera" formatted="false">Камера</string>
-    <string name="g672873" formatted="false">Ежегодно</string>
-    <string name="ADD_TO_EVENTS" formatted="false">Добавить в события</string>
-    <string name="CONTENT" formatted="false">Содержание</string>
     <string name="intro1Sub" formatted="false">Мгновенно сканируйте QR-коды где угодно</string>
-    <string name="PRIVACY_POLICY" formatted="false">Политика конфиденциальности</string>
-    <string name="next" formatted="false">Далее</string>
-    <string name="vibrate" formatted="false">Вибрация</string>
-    <string name="g6dd514" formatted="false">Во время пробного периода с вас не будет взиматься
-        плата, и вы можете отменить подписку в любое время. Продолжая, вы соглашаетесь с нашей
-        Политикой конфиденциальности и Условиями использования. Для управления, приостановки или
-        отмены подписки перейдите в настройки Google Play.</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">Пожалуйста, введите что-то</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">Добавить в контакты</string>
     <string name="intro4Sub" formatted="false">Идеально для сканирования нескольких кодов при сборе
         данных</string>
-    <string name="saving_image" formatted="false">Сохранение изображения...</string>
-    <string name="CONTACT_US" formatted="false">Свяжитесь с нами</string>
-    <string name="START" formatted="false">Начало</string>
-    <string name="autoScan" formatted="false">Непрерывное сканирование</string>
-    <string name="USERNAME" formatted="false">Имя пользователя</string>
-    <string name="duplicateCodeSub" formatted="false">Сохранять повторяющиеся штрихкоды в истории</string>
-    <string name="aw1" formatted="false">Сложно использовать</string>
 </resources>

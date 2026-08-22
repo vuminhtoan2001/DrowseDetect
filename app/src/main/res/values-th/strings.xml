@@ -1,193 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="aw2" formatted="false">แอปไม่ทำงาน</string>
-    <string name="HISTORY" formatted="false">ประวัติ</string>
-    <string name="SUB_DELETE" formatted="false">คุณแน่ใจหรือไม่ว่าต้องการลบ?</string>
-    <string name="tip90" formatted="false">การวางแนว 90°</string>
-    <string name="ADDRESS" formatted="false">ที่อยู่</string>
-    <string name="TITLE_CREATE" formatted="false">สร้างรหัส QR</string>
-    <string name="NETWORK_NAME" formatted="false">ชื่อเครือข่าย</string>
-    <string name="CONTENT" formatted="false">เนื้อหา</string>
-    <string name="SECURITY_MODE" formatted="false">โหมดความปลอดภัย</string>
-    <string name="CLEAR_HISTORY" formatted="false">ล้างประวัติ</string>
-    <string name="layout_language_header" formatted="false">ภาษา</string>
-    <string name="CUSTOMIZE" formatted="false">ปรับแต่ง</string>
     <string name="intro4" formatted="false">สแกนหลายโค้ด</string>
-    <string name="selected" formatted="false">เลือกแล้ว</string>
-    <string name="saved_image_success" formatted="false">บันทึกรูปภาพลงในคลังสำเร็จ!</string>
     <string name="update_isReady_title" formatted="false">มีการอัปเดตใหม่พร้อมใช้งาน</string>
     <string name="perSub" formatted="false">แอปต้องการอนุญาตใช้กล้องและการแจ้งเตือน</string>
-    <string name="aw4" formatted="false">ไม่เป็นประโยชน์</string>
     <string name="intro2Sub" formatted="false">จับ เก็บ และจัดระเบียบโค้ดที่สแกนอย่างชาญฉลาด</string>
-    <string name="af84d5" formatted="false">ต่อปี</string>
-    <string name="ALLDAY" formatted="false">ตลอดวัน</string>
-    <string name="perCamera" formatted="false">กล้อง</string>
-    <string name="lightOrDark" formatted="false">สว่างหรือมืด</string>
-    <string name="SPOTIFY" formatted="false">Spotify</string>
     <string name="newVersion_isReady_mss" formatted="false">กรุณาอัปเดตแอปเพื่อใช้งานต่อ!</string>
-    <string name="ORG" formatted="false">องค์กร</string>
-    <string name="layout_thanks" formatted="false">ขอบคุณสำหรับการให้คะแนน</string>
-    <string name="Personal" formatted="false">ส่วนตัว</string>
-    <string name="noPerCamera" formatted="false">ไม่มีสิทธิ์เข้าถึงกล้อง</string>
-    <string name="MYCARD" formatted="false">บัตรของฉัน</string>
-    <string name="CALL" formatted="false">โทร</string>
-    <string name="CHANNEL_ID" formatted="false">รหัสช่อง</string>
     <string name="scan" formatted="false">สแกน</string>
-    <string name="CONTACTS" formatted="false">รายชื่อผู้ติดต่อ</string>
     <string name="share_message" formatted="false">แอปสร้างและสแกนคิวอาร์โค้ดที่รวดเร็วและใช้งานง่าย
         ดาวน์โหลดได้แล้ววันนี้บน Google Play!</string>
-    <string name="Social" formatted="false">โซเชียล</string>
-    <string name="COPY" formatted="false">คัดลอก</string>
-    <string name="aw5" formatted="false">เหตุผลอื่น</string>
-    <string name="HELP" formatted="false">ช่วยเหลือ</string>
-    <string name="NOTE" formatted="false">หมายเหตุ</string>
-    <string name="INSTAGRAM" formatted="false">Instagram</string>
-    <string name="i8f46e6" formatted="false">ประสบการณ์แบบไม่มีโฆษณา</string>
-    <string name="share_cancel" formatted="false">ยกเลิกการแชร์</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">ตัวเลือกภาษา</string>
     <string name="intro3Sub" formatted="false">ป้อนรายละเอียดและสร้างโค้ดส่วนบุคคลได้ง่าย</string>
-    <string name="SHOW_ON_MAP" formatted="false">แสดงบนแผนที่</string>
-    <string name="YOUTUBE_URL" formatted="false">URL ของ YouTube</string>
-    <string name="PAYPAL" formatted="false">Paypal</string>
-    <string name="aw1" formatted="false">ใช้งานยาก</string>
-    <string name="manualScan" formatted="false">สแกนด้วยตนเอง</string>
-    <string name="PASSWORD" formatted="false">รหัสผ่าน</string>
-    <string name="TITLE" formatted="false">หัวข้อ</string>
-    <string name="cb0af4" formatted="false">ต่อเดือน</string>
     <string name="intro1Sub" formatted="false">สแกนรหัส QR ได้ทันทีทุกที่</string>
     <string name="notiSub" formatted="false">แสดงการแจ้งเตือน</string>
-    <string name="autoOpen" formatted="false">เปิดหน้าเว็บโดยอัตโนมัติ</string>
-    <string name="CLEAR_FILTER" formatted="false">ล้างตัวกรอง</string>
-    <string name="i874505" formatted="false">รายเดือน</string>
-    <string name="TEL" formatted="false">โทรศัพท์</string>
-    <string name="scanControl" formatted="false">การควบคุมการสแกน</string>
-    <string name="cancelsubscriptions" formatted="false">ยกเลิกการสมัครสมาชิก</string>
-    <string name="duplicateCode" formatted="false">บาร์โค้ดซ้ำ</string>
-    <string name="USERNAME" formatted="false">ชื่อผู้ใช้</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">แตะที่นี่เพื่อเปลี่ยน</string>
-    <string name="requestCamera" formatted="false">ขอสิทธิ์เข้าถึง</string>
-    <string name="NOTIFICATION" formatted="false">การแจ้งเตือน</string>
-    <string name="CANCEL" formatted="false">ยกเลิก</string>
-    <string name="ConnectionSuccessful" formatted="false">เชื่อมต่อสำเร็จ</string>
-    <string name="TEXT_MESSAGE" formatted="false">ข้อความ</string>
-    <string name="layout_do_you_like" formatted="false">คุณชอบ</string>
-    <string name="NONE" formatted="false">ไม่มี</string>
     <string name="continue_str" formatted="false">ดำเนินการต่อ</string>
-    <string name="SEND_EMAIL" formatted="false">ส่งอีเมล</string>
-    <string name="DONE" formatted="false">เสร็จสิ้น</string>
-    <string name="Utilitles" formatted="false">เครื่องมือ</string>
-    <string name="scanningTips" formatted="false">เคล็ดลับการสแกน</string>
-    <string name="CONTACT_US" formatted="false">ติดต่อเรา</string>
-    <string name="ME_USERNAME" formatted="false">ชื่อผู้ใช้ของฉัน</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">คุณเลือกจำนวนสื่อสูงสุดที่อนุญาต</string>
-    <string name="ConnectionFailed" formatted="false">เชื่อมต่อไม่สำเร็จ</string>
-    <string name="vibrate" formatted="false">สั่น</string>
-    <string name="PHONE_NUMBER" formatted="false">หมายเลขโทรศัพท์</string>
-    <string name="CREATE" formatted="false">สร้าง</string>
-    <string name="SAVE" formatted="false">บันทึก</string>
-    <string name="WiFI" formatted="false">Wi-Fi</string>
-    <string name="aw3" formatted="false">โฆษณามากเกินไป</string>
-    <string name="autoScanSub" formatted="false">ข้ามการดำเนินการหลังจากสแกน</string>
-    <string name="import_str" formatted="false">นำเข้า</string>
-    <string name="APPLY" formatted="false">ปรับใช้</string>
     <string name="SETTINGS" formatted="false">ตั้งค่า</string>
-    <string name="e6a423" formatted="false">เดือน</string>
-    <string name="prev" formatted="false">ย้อนกลับ</string>
-    <string name="BIRTHDAY" formatted="false">วันเกิด</string>
-    <string name="g672873" formatted="false">รายปี</string>
-    <string name="NO" formatted="false">ไม่</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">เชื่อมต่อ Wi-Fi</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">บันทึกการปรับแต่ง</string>
     <string name="start" formatted="false">เริ่มต้น</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">ปรับแต่งรหัส QR</string>
-    <string name="OPEN_BROWSER" formatted="false">เปิดเบราว์เซอร์</string>
-    <string name="share_image_success" formatted="false">แชร์รูปภาพเรียบร้อย!</string>
     <string name="intro3" formatted="false">สร้าง QR &amp; บาร์โค้ดของคุณ</string>
     <string name="update_isReady_btn_late" formatted="false">ภายหลัง</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">กรุณาใส่ข้อมูล</string>
-    <string name="close" formatted="false">ปิด</string>
     <string name="OPEN" formatted="false">เปิด</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">คัดลอกไปยังคลิปบอร์ดแล้ว</string>
-    <string name="SEND_SMS" formatted="false">ส่ง SMS</string>
-    <string name="CLIPBOARD" formatted="false">คลิปบอร์ด</string>
-    <string name="ADD_TO_EVENTS" formatted="false">เพิ่มลงในกิจกรรม</string>
-    <string name="DESCRIPTION" formatted="false">คำอธิบาย</string>
-    <string name="ME_LINK" formatted="false">ลิงก์ของฉัน</string>
-    <string name="SHARE" formatted="false">แชร์</string>
-    <string name="autoScan" formatted="false">สแกนอัตโนมัติอย่างต่อเนื่อง</string>
-    <string name="TWITTER" formatted="false">Twitter</string>
-    <string name="tipOther" formatted="false">การวางแนวอื่น ๆ</string>
-    <string name="INVALID_PHONE" formatted="false">หมายเลขโทรศัพท์ไม่ถูกต้อง</string>
     <string name="intro2" formatted="false">สร้างประวัติการสแกนของคุณ</string>
-    <string name="manualScanSub" formatted="false">หลีกเลี่ยงการสแกนโดยไม่ได้ตั้งใจ</string>
-    <string name="WEBSITE" formatted="false">เว็บไซต์</string>
-    <string name="CALENDAR" formatted="false">ปฏิทิน</string>
-    <string name="FACEBOOK_ID" formatted="false">รหัส Facebook</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">เพิ่มลงในรายชื่อผู้ติดต่อ</string>
     <string name="intro4Sub" formatted="false">เหมาะสำหรับสแกนหลายโค้ดในการรวบรวมข้อมูล</string>
-    <string name="policy" formatted="false">นโยบายความเป็นส่วนตัว</string>
-    <string name="light" formatted="false">แสง</string>
-    <string name="saving_image" formatted="false">กำลังบันทึกรูปภาพ...</string>
-    <string name="share_success" formatted="false">แชร์สำเร็จ</string>
-    <string name="LINK" formatted="false">ลิงก์</string>
-    <string name="TEXT" formatted="false">ข้อความ</string>
-    <string name="egwthe" formatted="false">หลังจากนั้น</string>
-    <string name="FEEDBACK" formatted="false">คำติชม</string>
-    <string name="delete_history_success" formatted="false">ล้างประวัติเรียบร้อยแล้ว!</string>
-    <string name="EMAIL" formatted="false">อีเมล</string>
     <string name="intro1" formatted="false">สแกน QR อย่างรวดเร็ว</string>
-    <string name="layout_button_send" formatted="false">ส่ง</string>
-    <string name="perCameraSub" formatted="false">สแกน QR รหัส</string>
-    <string name="PRIVACY_POLICY" formatted="false">นโยบายความเป็นส่วนตัว</string>
-    <string name="duplicateCodeSub" formatted="false">บันทึกบาร์โค้ดที่ซ้ำกันในประวัติ</string>
-    <string name="tooClose" formatted="false">ใกล้เกินไป / ภาพเบลอ</string>
-    <string name="ARTIST_NAME" formatted="false">ชื่อศิลปิน</string>
-    <string name="scanImage" formatted="false">สแกนรูปภาพ</string>
-    <string name="note" formatted="false">บันทึก</string>
-    <string name="VIBER" formatted="false">Viber</string>
-    <string name="uninstall" formatted="false">ถอนการติดตั้ง</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">กรุณาใส่ข้อมูล</string>
-    <string name="VIDEO_ID" formatted="false">รหัสวิดีโอ</string>
-    <string name="lowContrast" formatted="false">ความคมชัดต่ำ</string>
-    <string name="export" formatted="false">ส่งออก</string>
-    <string name="ENTER" formatted="false">ป้อน</string>
-    <string name="skip" formatted="false">ข้าม</string>
-    <string name="f5776c5" formatted="false">ปี</string>
-    <string name="titleuninstall" formatted="false">ทำไมคุณถึงถอนการติดตั้งแอป?</string>
-    <string name="newVersion_isReady_title" formatted="false">มีเวอร์ชันใหม่พร้อมใช้งาน</string>
-    <string name="tip0" formatted="false">การวางแนว 0°</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">ไม่พบรหัส QR ในภาพ</string>
-    <string name="textSplash" formatted="false">การกระทำนี้อาจมีโฆษณา</string>
-    <string name="search" formatted="false">ค้นหา</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">คัดลอกไปยังคลิปบอร์ดโดยอัตโนมัติ</string>
-    <string name="START" formatted="false">เริ่ม</string>
-    <string name="END" formatted="false">สิ้นสุด</string>
     <string name="update_isReady_btn_update" formatted="false">อัปเดต</string>
-    <string name="FILTER_HISTORY" formatted="false">กรองประวัติ</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">โปรไฟล์ Facebook</string>
-    <string name="SAVE_OPTION" formatted="false">ตัวเลือกการบันทึก</string>
     <string name="layout_share_btn_label" formatted="false">แชร์แอป</string>
-    <string name="j9c4c14">ทดลองใช้ฟรี %1$s วัน</string>
-    <string name="SONG_NAME" formatted="false">ชื่อเพลง</string>
-    <string name="DATA_EMPTY" formatted="false">ไม่มีข้อมูล</string>
-    <string name="EMAIL_ADDRESS" formatted="false">ที่อยู่อีเมล</string>
-    <string name="SCAN" formatted="false">สแกน</string>
-    <string name="ledDark" formatted="false">ไฟ LED ในที่มืด</string>
-    <string name="update_isReady_mss" formatted="false">กรุณารีสตาร์ทแอปเพื่ออัปเดต!</string>
-    <string name="saved_customize_success" formatted="false">บันทึกการปรับแต่งแล้ว!</string>
     <string name="rateApp" formatted="false">ให้คะแนนแอป</string>
-    <string name="GENERAL_SETTINGS" formatted="false">การตั้งค่าทั่วไป</string>
-    <string name="NAME" formatted="false">ชื่อ</string>
     <string name="noti" formatted="false">การแจ้งเตือน</string>
-    <string name="g6dd514" formatted="false">คุณจะไม่ถูกเรียกเก็บเงินในช่วงทดลองใช้งาน
-        และสามารถยกเลิกได้ทุกเมื่อ
-        การดำเนินการต่อถือว่าคุณยอมรับนโยบายความเป็นส่วนตัวและข้อกำหนดการใช้งานของเรา
-        หากต้องการจัดการ หยุดชั่วคราว หรือยกเลิกการสมัคร โปรดไปที่การตั้งค่าใน Google Play</string>
-    <string name="SMS" formatted="false">SMS</string>
-    <string name="COPY_PASSWORD" formatted="false">คัดลอกรหัสผ่าน</string>
-    <string name="next" formatted="false">ถัดไป</string>
-    <string name="loadingAds" formatted="false">กำลังโหลดโฆษณา</string>
     <string name="permission" formatted="false">การอนุญาต</string>
-    <string name="SAVE_IMAGE" formatted="false">บันทึกภาพ</string>
-    <string name="YES" formatted="false">ใช่</string>
 </resources>

@@ -1,0 +1,563 @@
+{
+  "timestamp": "2026-08-22T03:15:55.833Z",
+  "summary": {
+    "totalDeclared": 57,
+    "totalUsed": 18,
+    "totalUnused": 39,
+    "totalUnusedFiles": 39,
+    "usageRate": "31.58%",
+    "wastedSpace": {
+      "bytes": 136353,
+      "KB": "133.16",
+      "MB": "0.13"
+    }
+  },
+  "unusedDrawables": [
+    {
+      "name": "ic_viber",
+      "fileCount": 1,
+      "totalSize": 23188,
+      "totalSizeKB": "22.64",
+      "totalSizeMB": "0.02",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_viber.png",
+          "size": 23188,
+          "sizeKB": "22.64"
+        }
+      ]
+    },
+    {
+      "name": "ic_card",
+      "fileCount": 1,
+      "totalSize": 14982,
+      "totalSizeKB": "14.63",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_card.png",
+          "size": 14982,
+          "sizeKB": "14.63"
+        }
+      ]
+    },
+    {
+      "name": "ic_paypal",
+      "fileCount": 1,
+      "totalSize": 9435,
+      "totalSizeKB": "9.21",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_paypal.png",
+          "size": 9435,
+          "sizeKB": "9.21"
+        }
+      ]
+    },
+    {
+      "name": "ic_tiktok",
+      "fileCount": 1,
+      "totalSize": 9388,
+      "totalSizeKB": "9.17",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_tiktok.png",
+          "size": 9388,
+          "sizeKB": "9.17"
+        }
+      ]
+    },
+    {
+      "name": "ic_instagram",
+      "fileCount": 1,
+      "totalSize": 8821,
+      "totalSizeKB": "8.61",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_instagram.png",
+          "size": 8821,
+          "sizeKB": "8.61"
+        }
+      ]
+    },
+    {
+      "name": "ic_clipboard",
+      "fileCount": 1,
+      "totalSize": 7817,
+      "totalSizeKB": "7.63",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_clipboard.png",
+          "size": 7817,
+          "sizeKB": "7.63"
+        }
+      ]
+    },
+    {
+      "name": "ic_youtube",
+      "fileCount": 1,
+      "totalSize": 7656,
+      "totalSizeKB": "7.48",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_youtube.webp",
+          "size": 7656,
+          "sizeKB": "7.48"
+        }
+      ]
+    },
+    {
+      "name": "tipother",
+      "fileCount": 1,
+      "totalSize": 6156,
+      "totalSizeKB": "6.01",
+      "totalSizeMB": "0.01",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tipother.webp",
+          "size": 6156,
+          "sizeKB": "6.01"
+        }
+      ]
+    },
+    {
+      "name": "ic_whatsapp",
+      "fileCount": 1,
+      "totalSize": 4845,
+      "totalSizeKB": "4.73",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_whatsapp.png",
+          "size": 4845,
+          "sizeKB": "4.73"
+        }
+      ]
+    },
+    {
+      "name": "ic_spotify",
+      "fileCount": 1,
+      "totalSize": 4711,
+      "totalSizeKB": "4.60",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_spotify.png",
+          "size": 4711,
+          "sizeKB": "4.60"
+        }
+      ]
+    },
+    {
+      "name": "stvjcsjp5riidkxrjkxv",
+      "fileCount": 1,
+      "totalSize": 3614,
+      "totalSizeKB": "3.53",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\stvjcsjp5riidkxrjkxv.webp",
+          "size": 3614,
+          "sizeKB": "3.53"
+        }
+      ]
+    },
+    {
+      "name": "tiplight",
+      "fileCount": 1,
+      "totalSize": 3076,
+      "totalSizeKB": "3.00",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tiplight.webp",
+          "size": 3076,
+          "sizeKB": "3.00"
+        }
+      ]
+    },
+    {
+      "name": "tip0",
+      "fileCount": 1,
+      "totalSize": 2546,
+      "totalSizeKB": "2.49",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tip0.webp",
+          "size": 2546,
+          "sizeKB": "2.49"
+        }
+      ]
+    },
+    {
+      "name": "tip90",
+      "fileCount": 1,
+      "totalSize": 2514,
+      "totalSizeKB": "2.46",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tip90.webp",
+          "size": 2514,
+          "sizeKB": "2.46"
+        }
+      ]
+    },
+    {
+      "name": "tipdark",
+      "fileCount": 1,
+      "totalSize": 2428,
+      "totalSizeKB": "2.37",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tipdark.webp",
+          "size": 2428,
+          "sizeKB": "2.37"
+        }
+      ]
+    },
+    {
+      "name": "tipblur",
+      "fileCount": 1,
+      "totalSize": 2414,
+      "totalSizeKB": "2.36",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tipblur.webp",
+          "size": 2414,
+          "sizeKB": "2.36"
+        }
+      ]
+    },
+    {
+      "name": "ic_phone",
+      "fileCount": 1,
+      "totalSize": 2301,
+      "totalSizeKB": "2.25",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_phone.png",
+          "size": 2301,
+          "sizeKB": "2.25"
+        }
+      ]
+    },
+    {
+      "name": "ic_sms",
+      "fileCount": 1,
+      "totalSize": 2169,
+      "totalSizeKB": "2.12",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_sms.png",
+          "size": 2169,
+          "sizeKB": "2.12"
+        }
+      ]
+    },
+    {
+      "name": "ic_email",
+      "fileCount": 1,
+      "totalSize": 2098,
+      "totalSizeKB": "2.05",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_email.png",
+          "size": 2098,
+          "sizeKB": "2.05"
+        }
+      ]
+    },
+    {
+      "name": "ic_x",
+      "fileCount": 1,
+      "totalSize": 1989,
+      "totalSizeKB": "1.94",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_x.png",
+          "size": 1989,
+          "sizeKB": "1.94"
+        }
+      ]
+    },
+    {
+      "name": "ic_fb",
+      "fileCount": 1,
+      "totalSize": 1916,
+      "totalSizeKB": "1.87",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_fb.png",
+          "size": 1916,
+          "sizeKB": "1.87"
+        }
+      ]
+    },
+    {
+      "name": "tipcontrast",
+      "fileCount": 1,
+      "totalSize": 1864,
+      "totalSizeKB": "1.82",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tipcontrast.webp",
+          "size": 1864,
+          "sizeKB": "1.82"
+        }
+      ]
+    },
+    {
+      "name": "q6mzetxepgs3l0tb3smr",
+      "fileCount": 1,
+      "totalSize": 1248,
+      "totalSizeKB": "1.22",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\q6mzetxepgs3l0tb3smr.webp",
+          "size": 1248,
+          "sizeKB": "1.22"
+        }
+      ]
+    },
+    {
+      "name": "hwuzri9ywotxwb3a4grv",
+      "fileCount": 1,
+      "totalSize": 1102,
+      "totalSizeKB": "1.08",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\hwuzri9ywotxwb3a4grv.webp",
+          "size": 1102,
+          "sizeKB": "1.08"
+        }
+      ]
+    },
+    {
+      "name": "d0mucjcjgy957sdgf77a",
+      "fileCount": 1,
+      "totalSize": 982,
+      "totalSizeKB": "0.96",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\d0mucjcjgy957sdgf77a.webp",
+          "size": 982,
+          "sizeKB": "0.96"
+        }
+      ]
+    },
+    {
+      "name": "reoztrkqwuadmldzu1zy",
+      "fileCount": 1,
+      "totalSize": 916,
+      "totalSizeKB": "0.89",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\reoztrkqwuadmldzu1zy.webp",
+          "size": 916,
+          "sizeKB": "0.89"
+        }
+      ]
+    },
+    {
+      "name": "ndrhjd8qq36zg3i1toef",
+      "fileCount": 1,
+      "totalSize": 824,
+      "totalSizeKB": "0.80",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ndrhjd8qq36zg3i1toef.webp",
+          "size": 824,
+          "sizeKB": "0.80"
+        }
+      ]
+    },
+    {
+      "name": "vavjm0adwtx2vbdonnl5",
+      "fileCount": 1,
+      "totalSize": 812,
+      "totalSizeKB": "0.79",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\vavjm0adwtx2vbdonnl5.webp",
+          "size": 812,
+          "sizeKB": "0.79"
+        }
+      ]
+    },
+    {
+      "name": "ic_stat_noti",
+      "fileCount": 1,
+      "totalSize": 637,
+      "totalSizeKB": "0.62",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ic_stat_noti.xml",
+          "size": 637,
+          "sizeKB": "0.62"
+        }
+      ]
+    },
+    {
+      "name": "xxv9mvezn6mcatljwpnt",
+      "fileCount": 1,
+      "totalSize": 618,
+      "totalSizeKB": "0.60",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\xxv9mvezn6mcatljwpnt.webp",
+          "size": 618,
+          "sizeKB": "0.60"
+        }
+      ]
+    },
+    {
+      "name": "upej1iox5bueppd7yfxx",
+      "fileCount": 1,
+      "totalSize": 606,
+      "totalSizeKB": "0.59",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\upej1iox5bueppd7yfxx.webp",
+          "size": 606,
+          "sizeKB": "0.59"
+        }
+      ]
+    },
+    {
+      "name": "jwfh2pkdhdk413ftapto",
+      "fileCount": 1,
+      "totalSize": 492,
+      "totalSizeKB": "0.48",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\jwfh2pkdhdk413ftapto.webp",
+          "size": 492,
+          "sizeKB": "0.48"
+        }
+      ]
+    },
+    {
+      "name": "uchywybaxu9tpprw4wch",
+      "fileCount": 1,
+      "totalSize": 480,
+      "totalSizeKB": "0.47",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\uchywybaxu9tpprw4wch.webp",
+          "size": 480,
+          "sizeKB": "0.47"
+        }
+      ]
+    },
+    {
+      "name": "tsj331la5qvaxu4jxzjz",
+      "fileCount": 1,
+      "totalSize": 432,
+      "totalSizeKB": "0.42",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\tsj331la5qvaxu4jxzjz.webp",
+          "size": 432,
+          "sizeKB": "0.42"
+        }
+      ]
+    },
+    {
+      "name": "ctsqowll2c55gj4q3ox8",
+      "fileCount": 1,
+      "totalSize": 414,
+      "totalSizeKB": "0.40",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ctsqowll2c55gj4q3ox8.webp",
+          "size": 414,
+          "sizeKB": "0.40"
+        }
+      ]
+    },
+    {
+      "name": "ug05gagehmhwvxo9dnzi",
+      "fileCount": 1,
+      "totalSize": 342,
+      "totalSizeKB": "0.33",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\ug05gagehmhwvxo9dnzi.webp",
+          "size": 342,
+          "sizeKB": "0.33"
+        }
+      ]
+    },
+    {
+      "name": "gcjyygcvbsfprdbmzf52",
+      "fileCount": 1,
+      "totalSize": 190,
+      "totalSizeKB": "0.19",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\gcjyygcvbsfprdbmzf52.webp",
+          "size": 190,
+          "sizeKB": "0.19"
+        }
+      ]
+    },
+    {
+      "name": "orjifuoeg9bvc24pnt8i",
+      "fileCount": 1,
+      "totalSize": 170,
+      "totalSizeKB": "0.17",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\orjifuoeg9bvc24pnt8i.webp",
+          "size": 170,
+          "sizeKB": "0.17"
+        }
+      ]
+    },
+    {
+      "name": "id7j2pfguynavy1w6gql",
+      "fileCount": 1,
+      "totalSize": 160,
+      "totalSizeKB": "0.16",
+      "totalSizeMB": "0.00",
+      "files": [
+        {
+          "path": "\\res\\drawable\\id7j2pfguynavy1w6gql.webp",
+          "size": 160,
+          "sizeKB": "0.16"
+        }
+      ]
+    }
+  ]
+}

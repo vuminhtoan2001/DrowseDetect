@@ -1,190 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="titleuninstall" formatted="false">なぜアンインストールしましたか？</string>
-    <string name="aw4" formatted="false">役に立たない</string>
-    <string name="VIBER" formatted="false">Viber</string>
-    <string name="perCameraSub" formatted="false">QRコードをスキャン</string>
-    <string name="TAP_HERE_TO_CHANGE" formatted="false">ここをタップして変更</string>
-    <string name="CLIPBOARD" formatted="false">クリップボード</string>
-    <string name="NETWORK_NAME" formatted="false">ネットワーク名</string>
-    <string name="ARTIST_NAME" formatted="false">アーティスト名</string>
-    <string name="CLEAR_FILTER" formatted="false">フィルタをクリア</string>
-    <string name="SEND_SMS" formatted="false">SMS送信</string>
-    <string name="DATA_EMPTY" formatted="false">データがありません</string>
-    <string name="ledDark" formatted="false">暗闇でのLED</string>
-    <string name="aw1" formatted="false">使いにくい</string>
-    <string name="i8f46e6" formatted="false">広告なしの体験</string>
-    <string name="SCAN" formatted="false">スキャン</string>
-    <string name="SHOW_ON_MAP" formatted="false">地図上に表示</string>
-    <string name="saved_customize_success" formatted="false">カスタマイズが保存されました！</string>
-    <string name="START" formatted="false">開始</string>
-    <string name="TITLE" formatted="false">タイトル</string>
-    <string name="CUSTOMIZE_QRCODE" formatted="false">QRコードのカスタマイズ</string>
-    <string name="PASSWORD" formatted="false">パスワード</string>
-    <string name="Personal" formatted="false">個人</string>
-    <string name="APPLY" formatted="false">適用</string>
-    <string name="CONTACT_US" formatted="false">お問い合わせ</string>
-    <string name="YOUTUBE_URL" formatted="false">YouTube URL</string>
-    <string name="EMAIL_ADDRESS" formatted="false">メールアドレス</string>
-    <string name="note" formatted="false">メモ</string>
-    <string name="ENTER" formatted="false">入力</string>
-    <string name="perCamera" formatted="false">カメラ</string>
     <string name="intro3Sub" formatted="false">詳細を入力して簡単にパーソナルコードを生成</string>
     <string name="OPEN" formatted="false">開く</string>
-    <string name="share_cancel" formatted="false">共有キャンセル</string>
-    <string name="autoOpen" formatted="false">ウェブページを自動的に開く</string>
     <string name="intro1Sub" formatted="false">どこでもQRコードをすぐにスキャン</string>
-    <string name="selected" formatted="false">選択済み</string>
-    <string name="CONTENT" formatted="false">コンテンツ</string>
-    <string name="delete_history_success" formatted="false">履歴が正常に削除されました！</string>
-    <string name="NOT_FIND_QRCODE" formatted="false">画像内にQRコードが見つかりません</string>
-    <string name="ME_USERNAME" formatted="false">私のユーザー名</string>
     <string name="start" formatted="false">開始</string>
-    <string name="CALL" formatted="false">コール</string>
     <string name="intro2Sub" formatted="false">スキャンしたコードを賢くキャプチャ、保存、整理</string>
-    <string name="cancelsubscriptions" formatted="false">サブスクリプションを解約</string>
-    <string name="g672873" formatted="false">年額</string>
-    <string name="DESCRIPTION" formatted="false">説明</string>
     <string name="intro2" formatted="false">スキャン履歴を構築</string>
-    <string name="autoScan" formatted="false">連続スキャン</string>
-    <string name="BIRTHDAY" formatted="false">誕生日</string>
-    <string name="CANCEL" formatted="false">キャンセル</string>
-    <string name="SAVE_OPTION" formatted="false">保存オプション</string>
-    <string name="CLEAR_HISTORY" formatted="false">履歴をクリア</string>
-    <string name="INSTAGRAM" formatted="false">Instagram</string>
-    <string name="Utilitles" formatted="false">ユーティリティ</string>
-    <string name="SHARE" formatted="false">共有</string>
-    <string name="NONE" formatted="false">なし</string>
     <string name="update_isReady_btn_update" formatted="false">アップデート</string>
-    <string name="i874505" formatted="false">月額</string>
-    <string name="cb0af4" formatted="false">月ごと</string>
-    <string name="MAXIMUM_MESSAGE" formatted="false">許容される最大メディア量を選択しました</string>
     <string name="intro4" formatted="false">マルチコードスキャン</string>
-    <string name="SONG_NAME" formatted="false">曲名</string>
-    <string name="CREATE" formatted="false">作成</string>
-    <string name="AUTO_COPY_TO_CLIPBOARD" formatted="false">クリップボードに自動コピー</string>
-    <string name="FILTER_HISTORY" formatted="false">履歴をフィルタリング</string>
-    <string name="PHONE_NUMBER" formatted="false">電話番号</string>
-    <string name="tip90" formatted="false">向き 90°</string>
-    <string name="autoScanSub" formatted="false">スキャン後のアクションをスキップ</string>
-    <string name="e6a423" formatted="false">月</string>
-    <string name="SAVE_CUSTOMIZE" formatted="false">カスタマイズを保存</string>
-    <string name="USERNAME" formatted="false">ユーザー名</string>
-    <string name="f5776c5" formatted="false">年</string>
-    <string name="requestCamera" formatted="false">アクセスを要求する</string>
-    <string name="PAYPAL" formatted="false">Paypal</string>
-    <string name="layout_button_send" formatted="false">送信</string>
-    <string name="FACEBOOK_ID" formatted="false">Facebook ID</string>
-    <string name="saved_image_success" formatted="false">画像をライブラリに保存しました！</string>
-    <string name="next" formatted="false">次へ</string>
-    <string name="COPY_TO_CLIPBOARD" formatted="false">クリップボードにコピー</string>
-    <string name="COPY_PASSWORD" formatted="false">パスワードをコピー</string>
-    <string name="FEEDBACK" formatted="false">フィードバック</string>
-    <string name="ConnectionFailed" formatted="false">接続失敗</string>
     <string name="noti" formatted="false">通知</string>
-    <string name="close" formatted="false">閉じる</string>
-    <string name="export" formatted="false">エクスポート</string>
-    <string name="skip" formatted="false">スキップ</string>
     <string name="SETTINGS" formatted="false">設定</string>
-    <string name="SAVE" formatted="false">保存</string>
     <string name="share_message" formatted="false">QRコードの作成とスキャンが簡単にできる便利なアプリ。今すぐGoogle Playでダウンロード！</string>
-    <string name="YES" formatted="false">はい</string>
-    <string name="SMS" formatted="false">SMS</string>
-    <string name="aw3" formatted="false">広告が多すぎる</string>
-    <string name="VIDEO_ID" formatted="false">ビデオID</string>
     <string name="notiSub" formatted="false">アラートを表示</string>
-    <string name="vibrate" formatted="false">バイブレーション</string>
-    <string name="CALENDAR" formatted="false">カレンダー</string>
-    <string name="CONTACTS" formatted="false">連絡先</string>
-    <string name="HELP" formatted="false">ヘルプ</string>
-    <string name="loadingAds" formatted="false">広告を読み込んでいます</string>
-    <string name="share_success" formatted="false">共有成功</string>
-    <string name="layout_thanks" formatted="false">評価いただきありがとうございます</string>
     <string name="permission" formatted="false">権限</string>
-    <string name="COPY" formatted="false">コピー</string>
     <string name="continue_str" formatted="false">続ける</string>
-    <string name="NOTIFICATION" formatted="false">通知</string>
-    <string name="TWITTER" formatted="false">Twitter</string>
-    <string name="ORG" formatted="false">組織</string>
-    <string name="duplicateCodeSub" formatted="false">履歴に重複したバーコードを保存</string>
-    <string name="textSplash" formatted="false">この操作には広告が含まれる場合があります</string>
-    <string name="HISTORY" formatted="false">履歴</string>
     <string name="intro4Sub" formatted="false">データ収集タスクで複数のコードをスキャンするのに最適</string>
-    <string name="PLEASE_ENTER_SOMETHING" formatted="false">何かを入力してください</string>
-    <string name="LINK" formatted="false">リンク</string>
-    <string name="import_str" formatted="false">インポート</string>
-    <string name="OPEN_BROWSER" formatted="false">ブラウザを開く</string>
-    <string name="TEXT" formatted="false">テキスト</string>
-    <string name="SEND_EMAIL" formatted="false">メール送信</string>
-    <string name="TEL" formatted="false">電話</string>
-    <string name="MYCARD" formatted="false">私のカード</string>
-    <string name="tipOther" formatted="false">他の向き</string>
-    <string name="scanControl" formatted="false">スキャン制御</string>
-    <string name="WEBSITE" formatted="false">ウェブサイト</string>
-    <string name="aw2" formatted="false">アプリが動作しない</string>
-    <string name="duplicateCode" formatted="false">重複バーコード</string>
-    <string name="tooClose" formatted="false">近すぎる / ぼやける</string>
-    <string name="share_image_success" formatted="false">画像を正常に共有しました！</string>
-    <string name="ConnectionSuccessful" formatted="false">接続成功</string>
-    <string name="manualScan" formatted="false">手動スキャン</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">言語オプション</string>
-    <string name="TEXT_MESSAGE" formatted="false">テキストメッセージ</string>
-    <string name="scanImage" formatted="false">画像をスキャン</string>
-    <string name="prev" formatted="false">戻る</string>
     <string name="update_isReady_btn_late" formatted="false">後で</string>
-    <string name="CHANNEL_ID" formatted="false">チャンネルID</string>
-    <string name="FACEBOOK_PROFILE" formatted="false">Facebookプロファイル</string>
-    <string name="TITLE_CREATE" formatted="false">QRコードジェネレータ</string>
-    <string name="PRIVACY_POLICY" formatted="false">プライバシーポリシー</string>
-    <string name="saving_image" formatted="false">画像を保存中...</string>
     <string name="intro3" formatted="false">QR＆バーコードを作成</string>
     <string name="intro1" formatted="false">クイックQRスキャン</string>
     <string name="update_isReady_title" formatted="false">新しいアップデートが準備完了</string>
-    <string name="af84d5" formatted="false">年ごと</string>
-    <string name="SECURITY_MODE" formatted="false">セキュリティモード</string>
-    <string name="WiFI" formatted="false">Wi-Fi</string>
-    <string name="update_isReady_mss" formatted="false">アップデートのためにアプリを再起動してください！</string>
-    <string name="TEXT_EMPTY_FORM" formatted="false">何かを入力してください</string>
-    <string name="NOTE" formatted="false">ノート</string>
-    <string name="policy" formatted="false">プライバシーポリシー</string>
-    <string name="search" formatted="false">検索</string>
-    <string name="light" formatted="false">ライト</string>
-    <string name="SAVE_IMAGE" formatted="false">画像を保存</string>
-    <string name="noPerCamera" formatted="false">カメラへのアクセス権がありません</string>
-    <string name="CONNECT_TO_WIFI" formatted="false">Wi-Fiに接続</string>
-    <string name="ADD_TO_EVENTS" formatted="false">イベントに追加</string>
-    <string name="SUB_DELETE" formatted="false">本当に削除しますか？</string>
-    <string name="GENERAL_SETTINGS" formatted="false">一般設定</string>
-    <string name="j9c4c14">%1$s日間の無料トライアル</string>
-    <string name="DONE" formatted="false">完了</string>
-    <string name="scanningTips" formatted="false">スキャンのヒント</string>
-    <string name="ME_LINK" formatted="false">私のリンク</string>
     <string name="scan" formatted="false">スキャン</string>
-    <string name="manualScanSub" formatted="false">誤ってスキャンしないようにする</string>
-    <string name="g6dd514" formatted="false">試用期間中は料金が発生せず、いつでもキャンセルできます。続行すると、当社のプライバシーポリシーと利用規約に同意したことになります。サブスクリプションの管理、一時停止、または解約は
-        Google Play の設定から行ってください。</string>
-    <string name="lightOrDark" formatted="false">明るい または 暗い</string>
-    <string name="NAME" formatted="false">名前</string>
-    <string name="END" formatted="false">終了</string>
-    <string name="ALLDAY" formatted="false">終日</string>
-    <string name="EMAIL" formatted="false">メール</string>
-    <string name="ADDRESS" formatted="false">住所</string>
-    <string name="NO" formatted="false">いいえ</string>
     <string name="newVersion_isReady_mss" formatted="false">続行するためにアプリをアップデートしてください！</string>
-    <string name="CUSTOMIZE" formatted="false">カスタマイズ</string>
-    <string name="ADD_TO_CONTACTS" formatted="false">連絡先に追加</string>
-    <string name="egwthe" formatted="false">その後</string>
-    <string name="uninstall" formatted="false">アンインストール</string>
-    <string name="layout_do_you_like" formatted="false">好きですか</string>
-    <string name="INVALID_PHONE" formatted="false">無効な電話番号</string>
-    <string name="Social" formatted="false">ソーシャル</string>
-    <string name="aw5" formatted="false">その他の理由</string>
-    <string name="newVersion_isReady_title" formatted="false">新しいバージョンが利用可能です</string>
-    <string name="lowContrast" formatted="false">低コントラスト</string>
-    <string name="SPOTIFY" formatted="false">Spotify</string>
     <string name="perSub" formatted="false">アプリはカメラと通知を使用する権限が必要です</string>
     <string name="layout_share_btn_label" formatted="false">アプリを共有</string>
-    <string name="tip0" formatted="false">向き 0°</string>
     <string name="rateApp" formatted="false">アプリを評価</string>
-    <string name="layout_language_header" formatted="false">言語</string>
 </resources>

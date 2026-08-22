@@ -1,5 +1,6 @@
-package com.finora.expense.budget.ui.intro
+package com.camera.qrscanner.barcode.ui.intro
 
+import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.compose.foundation.Image
@@ -43,10 +44,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.finora.expense.budget.R
-import com.finora.expense.budget.ads.AdManager
-import com.finora.expense.budget.ads.NativeAdSlot
-import com.finora.expense.budget.ads.NativeAdsFull
+import androidx.core.app.NotificationManagerCompat
+import com.camera.qrscanner.barcode.R
+import com.camera.qrscanner.barcode.ads.AdManager
+import com.camera.qrscanner.barcode.ads.NativeAdSlot
+import com.camera.qrscanner.barcode.ads.NativeAdsFull
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -68,7 +70,10 @@ private const val INLINE_AD_TIMEOUT_MS = 5_000L
 private val MODAL_RANGE = listOf(0..3, 0..1, 1..2, 2..3)
 
 @Composable
-fun IntroScreen(onGoMain: () -> Unit) {
+fun IntroScreen(
+    onGoPermission: () -> Unit,
+    onGoMain: () -> Unit,
+) {
     val context = LocalContext.current
     val pager = rememberPagerState(pageCount = { SLIDES.size })
     val scope = rememberCoroutineScope()
@@ -92,8 +97,9 @@ fun IntroScreen(onGoMain: () -> Unit) {
     val shouldShowAd = inlineEnabled(page)
     val busy = adLoading.getOrElse(page) { false }
 
-    // App không có màn Permission — hết Intro là vào Home, quyền thông báo để SDK tự xin.
-    fun finish() = onGoMain()
+    fun finish() {
+        if (hasNoti(context)) onGoMain() else onGoPermission()
+    }
 
     // Bấm nút / auto-next / đóng modal đều gọi hàm này (khớp onButtonClick bản mẫu).
     val onButtonClick: () -> Unit = {
@@ -283,3 +289,6 @@ private fun Dots(page: Int, modifier: Modifier = Modifier) {
         }
     }
 }
+
+private fun hasNoti(context: Context): Boolean =
+    NotificationManagerCompat.from(context).areNotificationsEnabled()
