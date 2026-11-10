@@ -47,14 +47,20 @@ import androidx.core.app.NotificationManagerCompat
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.repeatOnLifecycle
 import com.camera.qrscanner.barcode.R
 import com.camera.qrscanner.barcode.ads.AdManager
 import com.camera.qrscanner.barcode.ads.NativeAdSlot
+import com.camera.qrscanner.barcode.platform.LogOnboardingExit
+import com.camera.qrscanner.barcode.platform.TrackScreen
 import com.camera.qrscanner.barcode.ui.common.HandClickHint
+import com.camera.qrscanner.barcode.ui.nav.Dest
 
 @Composable
 fun PermissionScreen(onDone: () -> Unit) {
     val context = LocalContext.current
+    TrackScreen(Dest.ONB_PERMISSION)
+    LogOnboardingExit(Dest.ONB_PERMISSION)
 
     var perNoti by remember { mutableStateOf(hasNoti(context)) }
 
@@ -86,8 +92,16 @@ fun PermissionScreen(onDone: () -> Unit) {
         }
     }
     // Đủ quyền + ad đã settle (nếu có) → tự sang Main
-    LaunchedEffect(perNoti, adSettled) {
-        if (perNoti && adSettled) onDone()
+    // Gate chỗ CHUYỂN màn theo RESUMED (SCREEN_TRACKING.md §3.8): timer fallback bật adSettled gián
+    // tiếp dẫn tới onDone, không gate thì màn tự sang Home lúc đang bị che và mất screen_view.
+    LaunchedEffect(perNoti, adSettled, owner) {
+        if (!(perNoti && adSettled)) return@LaunchedEffect
+        var fired = false
+        owner.lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            if (fired) return@repeatOnLifecycle
+            fired = true
+            onDone()
+        }
     }
     // Fallback: ad treo quá lâu vẫn nhả gate để không kẹt màn Permission.
     LaunchedEffect(Unit) {

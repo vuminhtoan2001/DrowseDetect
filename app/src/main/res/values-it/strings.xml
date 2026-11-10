@@ -32,4 +32,14 @@
     <string name="update_isReady_title" formatted="false">Nuovo aggiornamento pronto</string>
     <string name="intro1" formatted="false">Scansione QR rapida</string>
     <string name="start" formatted="false">Inizia</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Lingua</string>
+    <string name="language_screen_subtitle">Scegli la lingua che vuoi usare nell\'app</string>
+    <string name="language_done">Fatto</string>
+    <string name="full_screen_intent_permission_title">Consenti avvisi a schermo intero</string>
+    <string name="full_screen_intent_permission_message">Consenti all\'app di mostrare notifiche a schermo intero per non perdere aggiornamenti importanti.</string>
+    <string name="full_screen_intent_permission_grant">Consenti</string>
+    <string name="full_screen_intent_permission_later">Non ora</string>
+    <string name="tab_home">Home</string>
 </resources>

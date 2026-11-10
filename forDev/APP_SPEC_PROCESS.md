@@ -8,7 +8,7 @@
 >
 > Tài liệu này KHÔNG nói về công nghệ implement (Compose/CameraX/Room/ads SDK...) — phần đó thuộc về
 > [`docs/integration/PLAYBOOK_TICH_HOP.md`](../docs/integration/PLAYBOOK_TICH_HOP.md) và
-> `HANDOFF_NEXT_APP.md` (đọc SAU khi đã có đủ 4 tài liệu đặc tả ở đây — xem mục 2 dưới).
+> [`START_HERE.md`](../START_HERE.md) (đọc SAU khi đã có đủ 4 tài liệu đặc tả ở đây — xem mục 2 dưới).
 >
 > **[`../docs/`](../docs/) — docs cho AI đọc, dùng để dựng app, KHÔNG chứa thông tin thừa.** Khuôn
 > trắng (chỉ có tiêu đề mục, không có đoạn hướng dẫn/comment nào) — copy thư mục này cho app MỚI, điền
@@ -140,8 +140,7 @@ không phải tuỳ chọn — làm SAU khi đã có cả Bước 0 (screenshot)
   người giao việc xác nhận trước khi bắt đầu code (tham khảo cách vga58a làm ở
   `../../vga58a/docs/09_OPEN_ASSUMPTIONS.md`).
 - Chỉ sau khi đã có đủ 4 tài liệu (kể cả khi còn vài mục `[ASSUMPTION]` chưa xác nhận xong) mới chuyển
-  sang giai đoạn chọn công nghệ + code, đọc tiếp `HANDOFF_NEXT_APP.md` (chọn app mẫu gần giống nhất để
-  clone) và [`docs/integration/`](../docs/integration/) (tích hợp lib ads/IAP dùng chung — xem
+  sang giai đoạn chọn công nghệ + code, đọc tiếp [`START_HERE.md`](../START_HERE.md) (core đã có sẵn khung, không cần chọn app mẫu để clone) và [`docs/integration/`](../docs/integration/) (tích hợp lib ads/IAP dùng chung — xem
   [`docs/integration/README.md`](../docs/integration/README.md) cho thứ tự đọc).
 
 ## 3. Checklist nhanh trước khi bắt đầu code

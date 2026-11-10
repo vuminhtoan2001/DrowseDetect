@@ -30,4 +30,14 @@
         dengan cerdas</string>
     <string name="intro2" formatted="false">Bangun Riwayat Pemindaianmu</string>
     <string name="continue_str" formatted="false">Lanjutkan</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Bahasa</string>
+    <string name="language_screen_subtitle">Pilih bahasa yang ingin Anda gunakan di aplikasi</string>
+    <string name="language_done">Selesai</string>
+    <string name="full_screen_intent_permission_title">Izinkan peringatan layar penuh</string>
+    <string name="full_screen_intent_permission_message">Izinkan aplikasi menampilkan notifikasi layar penuh agar Anda tidak melewatkan info penting.</string>
+    <string name="full_screen_intent_permission_grant">Izinkan</string>
+    <string name="full_screen_intent_permission_later">Nanti saja</string>
+    <string name="tab_home">Beranda</string>
 </resources>

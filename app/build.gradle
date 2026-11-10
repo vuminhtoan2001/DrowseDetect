@@ -10,12 +10,12 @@ plugins {
 
 android {
     namespace 'com.camera.qrscanner.barcode'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId "com.camera.qrscanner.barcode"
         minSdk 28
-        targetSdk 35
+        targetSdk 36
         versionCode 1
         versionName "0.0.1"
         multiDexEnabled true
@@ -71,14 +71,15 @@ dependencies {
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.9.4'
     implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4'
 
     // Navigation
     implementation 'androidx.navigation:navigation-compose:2.8.5'
 
     // Hilt
-    implementation 'com.google.dagger:hilt-android:2.56.2'
-    ksp 'com.google.dagger:hilt-compiler:2.56.2'
+    implementation 'com.google.dagger:hilt-android:2.57.2'
+    ksp 'com.google.dagger:hilt-compiler:2.57.2'
     implementation 'androidx.hilt:hilt-navigation-compose:1.2.0'
 
     // DataStore

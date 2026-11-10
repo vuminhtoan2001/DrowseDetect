@@ -46,6 +46,7 @@ tài khoản AdMob riêng và đã tạo unit thật:
 | Native (mọi key `native_*`) | `ca-app-pub-3940256099942544/2247696110` |
 | Interstitial (mọi key `inter_*`) | `ca-app-pub-3940256099942544/1033173712` |
 | Open/App-open (`open_splash`, `open_all`) | `ca-app-pub-3940256099942544/9257395921` |
+| Banner (`banner_splash`) | `ca-app-pub-3940256099942544/9214589741` |
 
 ⚠️ Cùng 1 loại (vd tất cả `native_*`) dùng CHUNG 1 unit id test — không cần mỗi placement 1 unit id
 test riêng, vì unit test không phân biệt vị trí, chỉ để kiểm tra pipeline load/hiện ads chạy đúng.
@@ -55,8 +56,8 @@ test riêng, vì unit test không phân biệt vị trí, chỉ để kiểm tra
 màn tính năng riêng của từng app → **không xoá, không cần đụng khi build app mới**, chỉ đổi ảnh/title
 tương ứng nếu Intro/Permission đổi nội dung:
 ```
-open_splash, inter_splash, splash_uninstall, open_all,
-native_language, native_keep_user, native_survey_user, native_exit_app,
+open_splash, inter_splash, banner_splash, splash_uninstall, open_all,
+native_language, native_language_select, native_keep_user, native_survey_user, native_exit_app,
 native_permission, native_intro1, native_intro2, native_intro3, native_intro4
 ```
 Khi thêm màn tính năng mới cho app (Home trở đi), KHÔNG thêm key vào nhóm này — làm theo mục 2/3 để

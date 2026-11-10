@@ -1,3 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Мова</string>
+    <string name="language_screen_subtitle">Виберіть мову, яку хочете використовувати в застосунку</string>
+    <string name="language_done">Готово</string>
+    <string name="full_screen_intent_permission_title">Дозволити повноекранні сповіщення</string>
+    <string name="full_screen_intent_permission_message">Дозвольте застосунку показувати повноекранні сповіщення, щоб не пропускати важливі події.</string>
+    <string name="full_screen_intent_permission_grant">Дозволити</string>
+    <string name="full_screen_intent_permission_later">Не зараз</string>
+    <string name="tab_home">Головна</string>
 </resources>

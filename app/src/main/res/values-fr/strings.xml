@@ -31,4 +31,14 @@
     <string name="layout_share_btn_label" formatted="false">Partager l\&apos;application</string>
     <string name="LANGUAGE_OPTIONS" formatted="false">Options de langue</string>
     <string name="update_isReady_btn_update" formatted="false">Mettre à jour</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Langue</string>
+    <string name="language_screen_subtitle">Choisissez la langue que vous souhaitez utiliser dans l\'application</string>
+    <string name="language_done">Terminé</string>
+    <string name="full_screen_intent_permission_title">Autoriser les alertes plein écran</string>
+    <string name="full_screen_intent_permission_message">Autorisez l\'application à afficher des notifications en plein écran pour ne manquer aucune information importante.</string>
+    <string name="full_screen_intent_permission_grant">Autoriser</string>
+    <string name="full_screen_intent_permission_later">Plus tard</string>
+    <string name="tab_home">Accueil</string>
 </resources>

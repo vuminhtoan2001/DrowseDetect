@@ -7,7 +7,7 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 /**
- * Nguồn duy nhất cho ad-id + cờ bật/tắt (MIGRATE_ADS_TO_LIB §11).
+ * Nguồn duy nhất cho ad-id + cờ bật/tắt (xem docs/integration/ADS.md).
  * - id  : getAdsConfigValue(key)  (remote 'ads_config' → fallback assets/default_ads_config.json)
  * - cờ  : getBoolean("<key>_enable")
  * - premium → id "" / cờ false (ẩn mọi ads).

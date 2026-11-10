@@ -26,4 +26,14 @@
     <string name="rateApp" formatted="false">ให้คะแนนแอป</string>
     <string name="noti" formatted="false">การแจ้งเตือน</string>
     <string name="permission" formatted="false">การอนุญาต</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">ภาษา</string>
+    <string name="language_screen_subtitle">เลือกภาษาที่คุณต้องการใช้ในแอป</string>
+    <string name="language_done">เสร็จสิ้น</string>
+    <string name="full_screen_intent_permission_title">อนุญาตการแจ้งเตือนแบบเต็มหน้าจอ</string>
+    <string name="full_screen_intent_permission_message">อนุญาตให้แอปแสดงการแจ้งเตือนแบบเต็มหน้าจอ เพื่อไม่ให้คุณพลาดข้อมูลสำคัญ</string>
+    <string name="full_screen_intent_permission_grant">อนุญาต</string>
+    <string name="full_screen_intent_permission_later">ไว้ทีหลัง</string>
+    <string name="tab_home">หน้าหลัก</string>
 </resources>

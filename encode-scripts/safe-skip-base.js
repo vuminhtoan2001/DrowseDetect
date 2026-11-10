@@ -107,6 +107,6 @@ module.exports = {
   // dùng ở rename-file.js.
   PROTECTED_FOLDER_AND_FILE_BASE: [
     "dao", "database", "core", "data", "Color", "Type", "Success", "Theme", "MainActivity",
-    "AdActivity",
+    "AdActivity", "MyLanguageActivity",
   ],
 };

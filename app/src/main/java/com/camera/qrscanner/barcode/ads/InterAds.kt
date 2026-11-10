@@ -5,7 +5,7 @@ import com.nlbn.ads.callback.AdCallback
 import com.nlbn.ads.util.Admob
 
 /**
- * Interstitial qua lib (MIGRATE_ADS_TO_LIB §4). Tự hiện loading khi nạp.
+ * Interstitial qua lib (xem docs/integration/ADS.md). Tự hiện loading khi nạp.
  * unitId rỗng (premium/tắt) → gọi onNext ngay (đi tiếp, không chặn).
  */
 object InterAds {

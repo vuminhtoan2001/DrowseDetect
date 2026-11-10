@@ -25,4 +25,14 @@
     <string name="perSub" formatted="false">アプリはカメラと通知を使用する権限が必要です</string>
     <string name="layout_share_btn_label" formatted="false">アプリを共有</string>
     <string name="rateApp" formatted="false">アプリを評価</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">言語</string>
+    <string name="language_screen_subtitle">アプリで使用する言語を選択してください</string>
+    <string name="language_done">完了</string>
+    <string name="full_screen_intent_permission_title">全画面通知を許可</string>
+    <string name="full_screen_intent_permission_message">大切なお知らせを見逃さないよう、アプリに全画面通知の表示を許可してください。</string>
+    <string name="full_screen_intent_permission_grant">許可</string>
+    <string name="full_screen_intent_permission_later">後で</string>
+    <string name="tab_home">ホーム</string>
 </resources>

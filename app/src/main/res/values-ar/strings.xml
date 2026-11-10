@@ -27,4 +27,14 @@
     <string name="LANGUAGE_OPTIONS" formatted="false">خيارات اللغة</string>
     <string name="update_isReady_btn_update" formatted="false">تحديث</string>
     <string name="OPEN" formatted="false">فتح</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">اللغة</string>
+    <string name="language_screen_subtitle">اختر اللغة التي تريد استخدامها في التطبيق</string>
+    <string name="language_done">تم</string>
+    <string name="full_screen_intent_permission_title">السماح بالتنبيهات بملء الشاشة</string>
+    <string name="full_screen_intent_permission_message">اسمح للتطبيق بعرض إشعارات بملء الشاشة حتى لا تفوتك التحديثات المهمة.</string>
+    <string name="full_screen_intent_permission_grant">سماح</string>
+    <string name="full_screen_intent_permission_later">ليس الآن</string>
+    <string name="tab_home">الرئيسية</string>
 </resources>

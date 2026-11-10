@@ -36,6 +36,7 @@ import androidx.compose.ui.unit.dp
 import com.camera.qrscanner.barcode.BuildConfig
 import com.camera.qrscanner.barcode.R
 import com.camera.qrscanner.barcode.ui.common.AppTopBar
+import com.camera.qrscanner.barcode.ui.language.MyLanguageActivity
 import com.camera.qrscanner.barcode.ui.theme.PremiumGold
 import com.camera.qrscanner.barcode.ui.theme.SettingIconTint
 import com.google.android.play.core.review.ReviewManagerFactory
@@ -61,13 +62,11 @@ fun SettingScreen() {
                 Icons.Filled.Language,
                 stringResource(R.string.LANGUAGE_OPTIONS),
                 onClick = {
-                    // Mở màn Language của SDK (đồng bộ với IAP). Confirm xong SDK tự mở lại MainActivity.
-                    (context as? androidx.fragment.app.FragmentActivity)?.let {
-                        com.brian.base_application.language.LanguageActivity.start(
-                            it,
-                            com.camera.qrscanner.barcode.MainActivity::class.java,
-                        )
-                    }
+                    // Màn Language custom của app (LANGUAGE_SCREEN_CUSTOM.md §4.2).
+                    context.startActivity(
+                        Intent(context, MyLanguageActivity::class.java)
+                            .putExtra(MyLanguageActivity.EXTRA_FROM_SETTINGS, true),
+                    )
                 },
             )
             SettingRow(Icons.Filled.Share, stringResource(R.string.layout_share_btn_label), onClick = { shareApp(context) })

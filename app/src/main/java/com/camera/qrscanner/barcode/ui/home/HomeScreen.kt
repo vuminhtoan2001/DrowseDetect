@@ -9,6 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.camera.qrscanner.barcode.ui.common.CheckForAppUpdateWithDialog
+import com.camera.qrscanner.barcode.ui.common.CheckFullScreenIntentPermission
 
 /**
  * Placeholder Home — thay bằng UI/logic tính năng thật của app khi build từ khung sườn này.
@@ -17,6 +18,8 @@ import com.camera.qrscanner.barcode.ui.common.CheckForAppUpdateWithDialog
 @Composable
 fun HomeScreen() {
     CheckForAppUpdateWithDialog()
+    // Mời user Android 14+ bật quyền full-screen intent — CHỈ ở Home, không đặt ở NavHost chung.
+    CheckFullScreenIntentPermission()
 
     Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background), contentAlignment = Alignment.Center) {
         Text("Home — TODO: build màn tính năng thật ở đây", style = MaterialTheme.typography.bodyMedium)

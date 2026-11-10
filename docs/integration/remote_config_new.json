@@ -166,7 +166,7 @@
       "parameters": {
         "ads_config": {
           "defaultValue": {
-            "value": "{\"open_splash\":\"ca-app-pub-9405071173323068/7674792065\",\"inter_splash\":\"ca-app-pub-9405071173323068/2297558484\",\"open_all\":\"ca-app-pub-9405071173323068/6473391039\",\"splash_uninstall\":\"ca-app-pub-9405071173323068/3502828947\",\"native_language\":\"ca-app-pub-9405071173323068/1312759815\",\"native_keep_user\":\"ca-app-pub-9405071173323068/6361710398\",\"native_survey_user\":\"ca-app-pub-9405071173323068/2189747279\",\"native_exit_app\":\"ca-app-pub-9405071173323068/5048628726\",\"native_permission\":\"ca-app-pub-3940256099942544/2247696110\",\"native_intro1\":\"ca-app-pub-9405071173323068/9984476815\",\"native_intro2\":\"ca-app-pub-9405071173323068/8671395143\",\"native_intro3\":\"ca-app-pub-9405071173323068/7358313476\",\"native_intro4\":\"ca-app-pub-9405071173323068/6098182639\",\"native_tab\":\"ca-app-pub-9405071173323068/9876665608\",\"native_progress\":\"ca-app-pub-9405071173323068/3419068466\",\"native_finished\":\"ca-app-pub-9405071173323068/2105986799\",\"native_history\":\"ca-app-pub-9405071173323068/4785100960\",\"native_bookmark\":\"ca-app-pub-9405071173323068/6373514805\",\"native_setting\":\"ca-app-pub-9405071173323068/2422465381\",\"native_option_download\":\"ca-app-pub-9405071173323068/3472019297\",\"native_password\":\"ca-app-pub-9405071173323068/6108810986\",\"native_inter_download\":\"ca-app-pub-9405071173323068/3018779063\",\"native_inter_private\":\"ca-app-pub-9405071173323068/3687445598\",\"inter_download\":\"ca-app-pub-9405071173323068/9792905122\",\"inter_private\":\"ca-app-pub-9405071173323068/6764397047\"}"
+            "value": "{\"open_splash\":\"ca-app-pub-9405071173323068/7674792065\",\"inter_splash\":\"ca-app-pub-9405071173323068/2297558484\",\"banner_splash\":\"ca-app-pub-3940256099942544/9214589741\",\"open_all\":\"ca-app-pub-9405071173323068/6473391039\",\"splash_uninstall\":\"ca-app-pub-9405071173323068/3502828947\",\"native_language\":\"ca-app-pub-9405071173323068/1312759815\",\"native_language_select\":\"ca-app-pub-3940256099942544/2247696110\",\"native_keep_user\":\"ca-app-pub-9405071173323068/6361710398\",\"native_survey_user\":\"ca-app-pub-9405071173323068/2189747279\",\"native_exit_app\":\"ca-app-pub-9405071173323068/5048628726\",\"native_permission\":\"ca-app-pub-3940256099942544/2247696110\",\"native_intro1\":\"ca-app-pub-9405071173323068/9984476815\",\"native_intro2\":\"ca-app-pub-9405071173323068/8671395143\",\"native_intro3\":\"ca-app-pub-9405071173323068/7358313476\",\"native_intro4\":\"ca-app-pub-9405071173323068/6098182639\",\"native_tab\":\"ca-app-pub-9405071173323068/9876665608\",\"native_progress\":\"ca-app-pub-9405071173323068/3419068466\",\"native_finished\":\"ca-app-pub-9405071173323068/2105986799\",\"native_history\":\"ca-app-pub-9405071173323068/4785100960\",\"native_bookmark\":\"ca-app-pub-9405071173323068/6373514805\",\"native_setting\":\"ca-app-pub-9405071173323068/2422465381\",\"native_option_download\":\"ca-app-pub-9405071173323068/3472019297\",\"native_password\":\"ca-app-pub-9405071173323068/6108810986\",\"native_inter_download\":\"ca-app-pub-9405071173323068/3018779063\",\"native_inter_private\":\"ca-app-pub-9405071173323068/3687445598\",\"inter_download\":\"ca-app-pub-9405071173323068/9792905122\",\"inter_private\":\"ca-app-pub-9405071173323068/6764397047\"}"
           },
           "valueType": "JSON"
         },
@@ -393,6 +393,18 @@
             "value": "10"
           },
           "valueType": "NUMBER"
+        },
+        "native_language_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
+        },
+        "native_language_select_enable": {
+          "defaultValue": {
+            "value": "true"
+          },
+          "valueType": "BOOLEAN"
         },
         "native_permission_enable": {
           "defaultValue": {

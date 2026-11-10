@@ -31,4 +31,14 @@
     <string name="permission" formatted="false">Berechtigung</string>
     <string name="update_isReady_btn_update" formatted="false">Aktualisieren</string>
     <string name="update_isReady_title" formatted="false">Neues Update ist bereit</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Sprache</string>
+    <string name="language_screen_subtitle">Wähle die Sprache, die du in der App verwenden möchtest</string>
+    <string name="language_done">Fertig</string>
+    <string name="full_screen_intent_permission_title">Vollbild-Benachrichtigungen erlauben</string>
+    <string name="full_screen_intent_permission_message">Erlaube der App, Vollbild-Benachrichtigungen anzuzeigen, damit du keine wichtigen Hinweise verpasst.</string>
+    <string name="full_screen_intent_permission_grant">Erlauben</string>
+    <string name="full_screen_intent_permission_later">Nicht jetzt</string>
+    <string name="tab_home">Start</string>
 </resources>

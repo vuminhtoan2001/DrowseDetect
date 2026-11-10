@@ -29,4 +29,14 @@
     <string name="intro1Sub" formatted="false">Мгновенно сканируйте QR-коды где угодно</string>
     <string name="intro4Sub" formatted="false">Идеально для сканирования нескольких кодов при сборе
         данных</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Язык</string>
+    <string name="language_screen_subtitle">Выберите язык, который хотите использовать в приложении</string>
+    <string name="language_done">Готово</string>
+    <string name="full_screen_intent_permission_title">Разрешить полноэкранные оповещения</string>
+    <string name="full_screen_intent_permission_message">Разрешите приложению показывать полноэкранные уведомления, чтобы не пропускать важные события.</string>
+    <string name="full_screen_intent_permission_grant">Разрешить</string>
+    <string name="full_screen_intent_permission_later">Не сейчас</string>
+    <string name="tab_home">Главная</string>
 </resources>

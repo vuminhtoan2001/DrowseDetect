@@ -31,4 +31,14 @@
     <string name="intro3Sub" formatted="false">Introduce detalles y genera un código personalizado
         fácilmente</string>
     <string name="continue_str" formatted="false">Continuar</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Idioma</string>
+    <string name="language_screen_subtitle">Elige el idioma que quieres usar en la aplicación</string>
+    <string name="language_done">Listo</string>
+    <string name="full_screen_intent_permission_title">Permitir alertas a pantalla completa</string>
+    <string name="full_screen_intent_permission_message">Permite que la aplicación muestre notificaciones a pantalla completa para que no te pierdas avisos importantes.</string>
+    <string name="full_screen_intent_permission_grant">Permitir</string>
+    <string name="full_screen_intent_permission_later">Ahora no</string>
+    <string name="tab_home">Inicio</string>
 </resources>

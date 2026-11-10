@@ -30,29 +30,24 @@ CheckForAppUpdateWithDialog()
 
 ## 2. Mở màn Language (đặt ở Settings)
 
-Màn Language do lib `base-application` sở hữu (dùng lại đúng màn chọn ngôn ngữ ở luồng khởi động
-Splash→Inter→**Language**→IAP→Home) — Settings chỉ gọi lại màn đó, không tự vẽ UI Language riêng.
-
-Ví dụ thật (`SettingScreen.kt`):
+Màn Language là màn **của app** (`MyLanguageActivity` + `LanguageScreen`, thay màn mặc định của lib) —
+chi tiết, kịch bản 2 native ad và auto-select ở
+[`../update-sdk-language/LANGUAGE_SCREEN_CUSTOM.md`](../update-sdk-language/LANGUAGE_SCREEN_CUSTOM.md).
+Settings mở lại đúng màn đó với cờ `EXTRA_FROM_SETTINGS = true`:
 ```kotlin
 SettingRow(
     Icons.Filled.Language,
     stringResource(R.string.LANGUAGE_OPTIONS),
     onClick = {
-        (context as? androidx.fragment.app.FragmentActivity)?.let {
-            com.brian.base_application.language.LanguageActivity.start(
-                it,
-                com.camera.qrscanner.barcode.MainActivity::class.java,
-            )
-        }
+        context.startActivity(
+            Intent(context, MyLanguageActivity::class.java)
+                .putExtra(MyLanguageActivity.EXTRA_FROM_SETTINGS, true),
+        )
     },
 )
 ```
-- `LanguageActivity.start(activity, targetActivityClass)` — hàm tĩnh của lib. Tham số 2 là Activity sẽ
-  được mở lại sau khi user xác nhận đổi ngôn ngữ — **luôn truyền `MainActivity::class.java`** (activity
-  gốc của app), không phải activity hiện tại.
-- `context` phải ép được về `FragmentActivity` (Compose `LocalContext.current` trong 1 Activity thường
-  đã thoả điều kiện này).
+- **KHÔNG** dùng `LanguageActivity.start(...)` của lib nữa (màn mặc định, không có tracking / kịch bản ad).
+- Confirm xong `MyLanguageActivity` tự `finish()` về Settings (`confirmLanguageSelection(..., navigate = false)`).
 
 ## 3. Mở màn IAP/Premium (gọi được ở bất cứ đâu trong app)
 
@@ -130,8 +125,8 @@ tự động, không cần điền tay.
 - [ ] Đã có dependency `com.google.android.play:app-update:2.1.0` (mục 1) và
       `com.google.android.play:review-ktx:2.0.2` (mục 4) trong `app/build.gradle`.
 - [ ] `CheckForAppUpdateWithDialog()` đặt đúng 1 lần ở màn Home/gốc — không đặt thêm ở màn khác.
-- [ ] Settings có đủ 4 dòng: Language (`LanguageActivity.start`), Premium
+- [ ] Settings có đủ 4 dòng: Language (mở `MyLanguageActivity`), Premium
       (`nativeAiStartIapActivity`), Rate app (`requestReview`), Share app (`shareApp`) — copy đúng
       khuôn ở mục 2-5, không cần viết lại logic.
-- [ ] `MainActivity::class.java` truyền đúng vào `LanguageActivity.start` (đổi theo package app mới).
+- [ ] `MyLanguageActivity` import đúng Activity Home (`MainActivity`) khi đổi package app mới.
 - [ ] String `share_message` đã điền nội dung thật cho app (không để trống/placeholder).

@@ -1,14 +1,21 @@
 package com.camera.qrscanner.barcode
 
 import android.app.Activity
+import android.app.Application
+import android.os.Bundle
 import com.brian.base_application.BaseApplication
+import com.brian.base_application.language.LanguageRouter
 import com.brian.base_iap.utils.FirebaseRemoteConfigUtil
 import com.brian.base_iap.utils.IAPUtils
+import com.camera.qrscanner.barcode.platform.HomeReached
+import com.camera.qrscanner.barcode.platform.ScreenTracker
+import com.camera.qrscanner.barcode.ui.language.MyLanguageActivity
+import com.camera.qrscanner.barcode.ui.nav.Dest
 import com.nlbn.ads.util.AppFlyer
 import dagger.hilt.android.HiltAndroidApp
 
 /**
- * Application của app, kế thừa SDK base-application (HUONG_DAN_TICH_HOP §6).
+ * Application của app, kế thừa SDK base-application (xem docs/integration/PLAYBOOK_TICH_HOP.md).
  * SDK là launcher: tự lo Splash → Inter → Language → IAP → getHomeActivity().
  *
  * TODO-SDK: điền giá trị thật cho admob_app_id / facebook_app_id / facebook_client_token /
@@ -18,10 +25,16 @@ import dagger.hilt.android.HiltAndroidApp
 class HostApplication : BaseApplication() {
 
     override fun onCreate() {
+        // PHẢI gán TRƯỚC super.onCreate() — SDK đọc giá trị này khi dựng luồng Splash (LANGUAGE_SCREEN_CUSTOM.md §3).
+        LanguageRouter.customActivityClass = MyLanguageActivity::class.java
         super.onCreate()
-        // Default cờ bật/tắt ads app tự hiển thị (MIGRATE_ADS_TO_LIB §11). Console override sau khi fetch.
+        ScreenTracker.init()
+        trackLibScreens()
+        // Default cờ bật/tắt ads app tự hiển thị (xem docs/integration/ADS.md §0.2). Console override sau khi fetch.
         FirebaseRemoteConfigUtil.getInstance().setAppDefaults(
             mapOf(
+                "native_language_enable" to true,
+                "native_language_select_enable" to true,
                 "native_permission_enable" to true,
                 "native_intro1_enable" to true,
                 "native_intro2_enable" to true,
@@ -32,6 +45,38 @@ class HostApplication : BaseApplication() {
                 "organic_number_not_guide" to 1L,
             ),
         )
+    }
+
+    /**
+     * Màn của lib (không sửa được code) → log ở onActivityResumed, so tên class bằng chuỗi
+     * (SCREEN_TRACKING.md §3.6). AdActivity (quảng cáo) cố ý bỏ qua.
+     */
+    private fun trackLibScreens() {
+        registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
+            override fun onActivityResumed(activity: Activity) {
+                val firstRun = !HomeReached.isReached(activity) // chưa từng vào Home
+                val name = when (activity.javaClass.name) {
+                    LIB_SPLASH_ACTIVITY -> Dest.SPLASH
+                    LIB_NOTI_PERMISSION_ACTIVITY -> if (firstRun) Dest.FIRST_NOTI_PERMISSION else Dest.NOTI_PERMISSION
+                    LIB_IAP_ACTIVITY -> if (firstRun) Dest.FIRST_IAP else Dest.IAP
+                    else -> return
+                }
+                ScreenTracker.log(activity, name)
+            }
+
+            override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) = Unit
+            override fun onActivityStarted(activity: Activity) = Unit
+            override fun onActivityPaused(activity: Activity) = Unit
+            override fun onActivityStopped(activity: Activity) = Unit
+            override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) = Unit
+            override fun onActivityDestroyed(activity: Activity) = Unit
+        })
+    }
+
+    private companion object {
+        const val LIB_SPLASH_ACTIVITY = "com.brian.base_application.start.SplashActivity"
+        const val LIB_NOTI_PERMISSION_ACTIVITY = "com.brian.base_application.start.RequestNotificationPermissionActivity"
+        const val LIB_IAP_ACTIVITY = "com.brian.base_iap.iap.IapActivity"
     }
 
     // ----- Splash & thương hiệu -----

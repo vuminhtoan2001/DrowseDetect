@@ -1,6 +1,6 @@
 # 16 — Chuẩn encode-scripts + proguard-rules (mô hình "2 file per app")
 
-> Chuẩn hoá bộ `encode-scripts/` và `proguard-rules.pro` của **vga52a-kotlin** làm bản gốc tham
+> Chuẩn hoá bộ `encode-scripts/` và `proguard-rules.pro` của project core này làm bản gốc tham
 > chiếu, kèm catalog lỗi thực chiến đã gặp khi áp dụng cho nhiều app khác nhau. Đọc file này
 > **trước khi đụng vào encode/R8** — phần lớn lỗi "chỉ crash ở bản release" đến từ 2 mảng này.
 

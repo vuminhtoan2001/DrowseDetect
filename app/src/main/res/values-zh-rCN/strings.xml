@@ -25,4 +25,14 @@
     <string name="continue_str" formatted="false">继续</string>
     <string name="perSub" formatted="false">应用需要权限使用相机和通知</string>
     <string name="intro3" formatted="false">创建您的二维码和彩码</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">语言</string>
+    <string name="language_screen_subtitle">选择你想在应用中使用的语言</string>
+    <string name="language_done">完成</string>
+    <string name="full_screen_intent_permission_title">允许全屏提醒</string>
+    <string name="full_screen_intent_permission_message">允许应用显示全屏通知，以免错过重要提醒。</string>
+    <string name="full_screen_intent_permission_grant">允许</string>
+    <string name="full_screen_intent_permission_later">暂不</string>
+    <string name="tab_home">首页</string>
 </resources>

@@ -3,7 +3,9 @@ package com.camera.qrscanner.barcode.ui.intro
 import android.content.Context
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
+import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,11 +32,13 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -43,9 +47,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.core.app.NotificationManagerCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
 import com.camera.qrscanner.barcode.R
+import com.camera.qrscanner.barcode.platform.AppEvents
+import com.camera.qrscanner.barcode.platform.LogOnboardingExit
+import com.camera.qrscanner.barcode.platform.TrackScreen
+import com.camera.qrscanner.barcode.ui.nav.Dest
+import com.camera.qrscanner.barcode.ui.theme.Theme
+import com.camera.qrscanner.barcode.ui.theme.ThemeSecond
 import com.camera.qrscanner.barcode.ads.AdManager
 import com.camera.qrscanner.barcode.ads.NativeAdSlot
 import com.camera.qrscanner.barcode.ads.NativeAdsFull
@@ -80,6 +95,19 @@ fun IntroScreen(
 
     // Chọn biến thể positionIntrol 1 lần cho phiên intro.
     val selectedAds = remember { AdManager.getSelectedAdPositions() }
+    val adsVariant = remember(selectedAds) { selectedAds.joinToString(",") }   // vd "1,22,3,4"
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+
+    // Firebase screen_view theo slide (SCREEN_TRACKING.md §3.5f): route tổng không log; dùng
+    // settledPage (không dùng currentPage: vuốt dở rồi kéo về sẽ log nhầm slide kế).
+    val screenName = "${Dest.ONB_INTRO}${pager.settledPage + 1}"
+    TrackScreen(screenName, mapOf("ads_variant" to adsVariant))
+    LogOnboardingExit(screenName)
+
+    fun logModal(page: Int, result: String) = AppEvents.log(
+        context, "intro_modal",
+        "page" to (page + 1), "result" to result, "ads_variant" to adsVariant,
+    )
 
     fun introUnit(oneBased: Int) = AdManager.getAdUnitId(context, "native_intro$oneBased")
     fun introOn(oneBased: Int) = AdManager.isAdEnabled("native_intro${oneBased}_enable")
@@ -102,12 +130,18 @@ fun IntroScreen(
     }
 
     // Bấm nút / auto-next / đóng modal đều gọi hàm này (khớp onButtonClick bản mẫu).
-    val onButtonClick: () -> Unit = {
+    // method = click | auto | modal_close | modal_error (event intro_next, SCREEN_TRACKING.md §3.10).
+    val onButtonClick: (String) -> Unit = { method ->
         scope.launch {
             val p = pager.currentPage
+            AppEvents.log(
+                context, "intro_next",
+                "from_page" to (p + 1), "method" to method, "ads_variant" to adsVariant,
+            )
             // Trang có modal NN chưa hiện & còn cho hiện → bật modal, chưa chuyển trang.
             if (modalEnabled(p) && !showFull[p] && modalStatus[p]) {
                 showFull[p] = true
+                logModal(p, "shown")
             } else {
                 for (k in showFull.indices) showFull[k] = false
                 if (p < SLIDES.lastIndex) {
@@ -128,10 +162,17 @@ fun IntroScreen(
     }
 
     // Auto-advance sau timeout (JS: 15s nếu trang có ad, 5s nếu không).
-    LaunchedEffect(page) {
+    // Chỉ đếm khi RESUMED (SCREEN_TRACKING.md §3.8): click native ad mở CH Play / app-open ad / bấm
+    // Home thì dừng, quay lại đếm lại từ đầu; mỗi trang chỉ auto 1 lần.
+    LaunchedEffect(page, lifecycle) {
         val hasAd = selectedAds.contains(page + 1) || selectedAds.contains((page + 1) * 11)
-        delay(if (hasAd) AUTO_NEXT_WITH_AD_MS else AUTO_NEXT_PLAIN_MS)
-        onButtonClick()
+        var fired = false
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            if (fired) return@repeatOnLifecycle
+            delay(if (hasAd) AUTO_NEXT_WITH_AD_MS else AUTO_NEXT_PLAIN_MS)
+            fired = true
+            onButtonClick("auto")
+        }
     }
 
     Box(Modifier.fillMaxSize().background(MaterialTheme.colorScheme.background)) {
@@ -140,12 +181,13 @@ fun IntroScreen(
         HorizontalPager(
             state = pager,
             userScrollEnabled = false, // chỉ tiến bằng nút / auto / đóng modal (như bản mẫu)
-            modifier = Modifier.fillMaxSize().padding(bottom = 20.dp),
+            modifier = Modifier.fillMaxSize(),
         ) { p ->
             Image(
                 painter = painterResource(SLIDES[p].img),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
+                alignment = Alignment.TopCenter, // giữ nguyên phần trên của ảnh minh hoạ
                 modifier = Modifier.fillMaxSize(),
             )
         }
@@ -153,35 +195,43 @@ fun IntroScreen(
         // TOÀN BỘ phần còn lại đè lên ảnh và dồn sát đáy (flex-end): chữ → dots → nút → native ad.
         // Khối này chỉ cao bằng nội dung của nó, phần ảnh còn lại lộ ra ở trên.
         val slide = SLIDES[page]
+        val bg = MaterialTheme.colorScheme.background
         Column(
             Modifier
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth()
-                // Nền chuyển dần từ trong suốt xuống màu nền: chữ nằm trên ảnh vẫn đọc được, và
-                // khối ad ở dưới cùng có nền đặc để không bị hoa văn của ảnh xen vào.
-                .background(
-                    Brush.verticalGradient(
-                        0f to MaterialTheme.colorScheme.background.copy(alpha = 0.99f),
-                        0.22f to MaterialTheme.colorScheme.background,
-                        1f to MaterialTheme.colorScheme.background,
-                    ),
-                )
-                // Chỉ LỚP PHỦ chừa safe area đáy; ảnh nền vẫn tràn hết xuống mép dưới.
-                .padding(vertical = 2.dp),
+                .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            // Vùng fade cao CỐ ĐỊNH phía trên chữ: ảnh tan dần vào nền nên mép không gắt.
+            Box(Modifier.fillMaxWidth().height(INTRO_FADE_HEIGHT).background(introFadeBrush(bg)))
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .background(bg.copy(alpha = INTRO_PANEL_ALPHA))
+                    // Chỉ LỚP PHỦ chừa safe area đáy; ảnh nền vẫn tràn hết xuống mép dưới.
+                    .navigationBarsPadding(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
             Text(
                 stringResource(slide.title),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.titleLarge,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 4.dp),
+                fontWeight = FontWeight.Bold,
+                fontSize = 22.sp,
+                lineHeight = 28.sp,
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis,
+                color = MaterialTheme.colorScheme.onBackground,
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp, vertical = 4.dp),
             )
             Text(
                 stringResource(slide.sub),
                 textAlign = TextAlign.Center,
+                fontSize = 15.sp,
+                lineHeight = 22.sp,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis,
                 color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.6f),
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp),
+                modifier = Modifier.fillMaxWidth().padding(horizontal = 24.dp),
             )
 
             // Có ad inline → nút chỉ là text (ad đã có CTA riêng) và dots nằm CÙNG HÀNG với nút:
@@ -195,7 +245,7 @@ fun IntroScreen(
                 ) {
                     Dots(page, Modifier.align(Alignment.CenterStart))
                     TextButton(
-                        onClick = onButtonClick,
+                        onClick = { onButtonClick("click") },
                         enabled = !busy,
                         // Bóp nhỏ nút so với mặc định Material. Chỉ đổi contentPadding là KHÔNG đủ:
                         // ruột Button còn tự áp defaultMinSize(58×40) nên nút không nhỏ hơn được.
@@ -217,18 +267,24 @@ fun IntroScreen(
                 }
             } else {
                 Dots(page, Modifier.fillMaxWidth().padding(vertical = 8.dp))
-                Button(
-                    onClick = onButtonClick,
-                    shape = RoundedCornerShape(16.dp),
-                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
-                    modifier = Modifier.padding(horizontal = 20.dp).fillMaxWidth().height(52.dp),
+                Box(
+                    Modifier
+                        .padding(horizontal = 24.dp)
+                        .fillMaxWidth()
+                        .height(52.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Brush.horizontalGradient(listOf(Theme, ThemeSecond)))
+                        .clickable { onButtonClick("click") },
+                    contentAlignment = Alignment.Center,
                 ) {
                     Text(
                         stringResource(if (page != SLIDES.lastIndex) R.string.continue_str else R.string.start).uppercase(),
-                        color = MaterialTheme.colorScheme.onPrimary,
+                        color = Color.White,
+                        fontWeight = FontWeight.Bold,
                         style = MaterialTheme.typography.labelLarge,
                     )
                 }
+                Spacer(Modifier.height(12.dp))
             }
 
             // Native inline của trang hiện tại.
@@ -242,6 +298,7 @@ fun IntroScreen(
                     onImpressionOrError = { if (page < adLoading.size) adLoading[page] = false },
                 )
             }
+            } // panel
         }
 
         // Modal native toàn màn (NN) — preload theo phạm vi trang, hiện khi showFull[i].
@@ -252,8 +309,15 @@ fun IntroScreen(
                     name = "native_intro${i + 1}",
                     buttonText = stringResource(if (i != SLIDES.lastIndex) R.string.continue_str else R.string.start),
                     start = showFull[i],
-                    onClose = { onButtonClick() },
-                    onError = { modalStatus[i] = false; showFull[i] = false },
+                    onClose = { logModal(i, "closed"); onButtonClick("modal_close") },
+                    onError = {
+                        // Đang được yêu cầu hiện mà lỗi → tự đi tiếp, không thì user kẹt (SCREEN_TRACKING.md §3.9).
+                        val requested = showFull[i]
+                        modalStatus[i] = false
+                        showFull[i] = false
+                        logModal(i, "error")
+                        if (requested) onButtonClick("modal_error")
+                    },
                     onLoaded = { if (i < adLoading.size) adLoading[i] = false },
                 )
             }
@@ -277,17 +341,32 @@ private fun Dots(page: Int, modifier: Modifier = Modifier) {
     ) {
         repeat(SLIDES.size) { i ->
             val active = i == page
+            val width by animateDpAsState(if (active) 20.dp else 8.dp, label = "dotWidth")
             Box(
                 Modifier
-                    .padding(horizontal = 2.dp)
-                    .size(width = if (active) 20.dp else 8.dp, height = 8.dp)
-                    .background(
-                        if (active) MaterialTheme.colorScheme.primary else Color(0xFF9BC4FB),
-                        CircleShape,
-                    ),
+                    .padding(horizontal = 3.dp)
+                    .size(width = width, height = 8.dp)
+                    .clip(CircleShape)
+                    .background(if (active) Theme else Theme.copy(alpha = 0.25f)),
             )
         }
     }
+}
+
+/** Chiều cao vùng ảnh tan vào nền, phía trên title. */
+private val INTRO_FADE_HEIGHT = 140.dp
+
+/** Độ đục của nền + khối chữ (< 1 để thấy ảnh mờ phía dưới); vùng fade dùng CHUNG giá trị để chỗ nối không lộ vạch. */
+private const val INTRO_PANEL_ALPHA = 0.92f
+
+/** Nhiều stop theo smoothstep: alpha tăng chậm ở mép trên, nhanh ở giữa, chậm lại khi chạm nền đặc. */
+private fun introFadeBrush(bg: Color): Brush {
+    val steps = 12
+    val stops = Array(steps + 1) { i ->
+        val t = i / steps.toFloat()
+        t to bg.copy(alpha = t * t * (3f - 2f * t) * INTRO_PANEL_ALPHA)
+    }
+    return Brush.verticalGradient(colorStops = stops)
 }
 
 private fun hasNoti(context: Context): Boolean =

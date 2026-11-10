@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.brian.base_iap.utils.FirebaseRemoteConfigUtil
 import com.camera.qrscanner.barcode.ads.CampaignHelper
 import com.camera.qrscanner.barcode.data.repository.SettingsRepository
+import com.camera.qrscanner.barcode.platform.AppEvents
 import com.camera.qrscanner.barcode.ui.nav.Dest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -51,6 +52,14 @@ class AppViewModel @Inject constructor(
                 goToHomeNumber <= organicNotGuide ||
                     goToHomeNumber > countAppOpen + organicNotGuide
             }
+            // Vì sao user có / không thấy Intro (SCREEN_TRACKING.md §3.10). ViewModel sống qua recreate()
+            // nên tự đúng điều kiện "chỉ 1 lần mỗi lần mở app".
+            AppEvents.log(
+                context, "onboarding_route",
+                "intro_shown" to !goToHome,
+                "is_ads_campaign" to isAdsCampaign,
+                "open_count" to goToHomeNumber,
+            )
             _startDestination.value = if (goToHome) Dest.HOME else Dest.ONB_INTRO
         }
     }

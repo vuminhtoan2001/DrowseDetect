@@ -32,4 +32,14 @@
           collection tasks</string>
     <string name="update_isReady_title" formatted="false">New Update Is Ready</string>
     <string name="permission" formatted="false">Permission</string>
+
+    <!-- Màn Language custom + dialog Full-screen intent -->
+    <string name="language_title">Language</string>
+    <string name="language_screen_subtitle">Choose the language you want to use in the app</string>
+    <string name="language_done">Done</string>
+    <string name="full_screen_intent_permission_title">Allow full-screen alerts</string>
+    <string name="full_screen_intent_permission_message">Allow the app to show full-screen notifications so you don\'t miss important updates.</string>
+    <string name="full_screen_intent_permission_grant">Allow</string>
+    <string name="full_screen_intent_permission_later">Not now</string>
+    <string name="tab_home">Home</string>
 </resources>

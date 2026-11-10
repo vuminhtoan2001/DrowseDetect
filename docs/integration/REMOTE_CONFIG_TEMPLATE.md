@@ -85,13 +85,18 @@ trong `ads_config`, app **không** khai `_enable` cho chúng — SDK tự bật/
 lại đều thuộc nhóm này:
 
 ```
-open_splash   inter_splash   open_all        splash_uninstall
-native_language   native_keep_user   native_survey_user   native_exit_app
+open_splash   inter_splash   banner_splash   open_all        splash_uninstall
+native_language*  native_keep_user   native_survey_user   native_exit_app
 ```
 
 Thấy 8 cái "thiếu" này thì **đừng thêm key vào `setAppDefaults`** — app không có màn nào gọi chúng, thêm
 vào chỉ tạo key chết trên console. Ranh giới: app chỉ khai `_enable` cho placement mà **chính code app**
 gọi (xem `ADS.md`), phần launcher `Splash → Inter → Language → IAP` là của SDK.
+
+> `*` **Ngoại lệ `native_language`**: màn Language giờ là màn của app (`LanguageScreen`) nên app TỰ gọi
+> `native_language` + `native_language_select` và đã khai `native_language_enable` /
+> `native_language_select_enable` trong `HostApplication.setAppDefaults`. Khi dựng template RC phải có
+> 2 key `_enable` này (cùng nhóm key riêng của app) và đủ unit id `native_language_select` trong `ads_config`.
 
 ## 5. Trường hợp NGOẠI LỆ: app đã phát hành, đã có template live
 
