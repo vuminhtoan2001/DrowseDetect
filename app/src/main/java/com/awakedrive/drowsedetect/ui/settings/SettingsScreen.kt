@@ -79,6 +79,7 @@ import com.awakedrive.drowsedetect.ui.components.ScreenBackground
 import com.awakedrive.drowsedetect.ui.components.StatusPill
 import com.awakedrive.drowsedetect.ui.components.StyledSlider
 import com.awakedrive.drowsedetect.ui.theme.BrandBlue
+import com.awakedrive.drowsedetect.ui.theme.BrandCyan
 import com.awakedrive.drowsedetect.ui.theme.Navy600
 import com.awakedrive.drowsedetect.ui.theme.StateAmber
 import com.awakedrive.drowsedetect.ui.theme.StateGreen
