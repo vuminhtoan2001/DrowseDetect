@@ -122,4 +122,11 @@
       <string name="overlay_dialog_body">Khi bạn chuyển sang bản đồ hoặc ứng dụng khác, màn cảnh báo nguy hiểm vẫn có thể mở toàn màn hình ngay để bạn không bỏ lỡ. Bạn có thể đổi lại trong Cài đặt.</string>
       <string name="overlay_dialog_allow">Cho phép</string>
       <string name="overlay_dialog_later">Để sau</string>
+
+      <string name="settings_section_detect">Phát hiện</string>
+      <string name="settings_section_sound">Âm thanh cảnh báo</string>
+      <string name="settings_section_style">Kiểu cảnh báo</string>
+      <string name="settings_section_test">Nghe thử</string>
+      <string name="settings_section_display">Hiển thị cảnh báo</string>
+      <string name="settings_volume_title">Âm lượng báo động</string>
 </resources>

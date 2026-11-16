@@ -16,4 +16,4 @@ val StateAmber = Color(0xFFFFB020)
 val StateRed = Color(0xFFFF3B4E)
 
 val TextPrimary = Color(0xFFFFFFFF)
-val TextSecondary = Color(0xFF9FB0D6)
+val TextSecondary = Color(0xFFBCC8E8)

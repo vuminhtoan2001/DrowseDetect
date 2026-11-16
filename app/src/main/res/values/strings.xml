@@ -127,4 +127,11 @@
       <string name="overlay_dialog_body">When you switch to a map or another app, the danger alert can still open full screen right away so you do not miss it. You can change this later in Settings.</string>
       <string name="overlay_dialog_allow">Allow</string>
       <string name="overlay_dialog_later">Not now</string>
+
+      <string name="settings_section_detect">Detection</string>
+      <string name="settings_section_sound">Alert sound</string>
+      <string name="settings_section_style">Alert style</string>
+      <string name="settings_section_test">Try it out</string>
+      <string name="settings_section_display">Display</string>
+      <string name="settings_volume_title">Alarm volume</string>
 </resources>
