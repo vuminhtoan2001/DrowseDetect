@@ -37,7 +37,10 @@ import com.awakedrive.drowsedetect.detection.Calibrator
 import com.awakedrive.drowsedetect.detection.DetectionConfig
 import com.awakedrive.drowsedetect.detection.DrowsinessAnalyzer
 import com.awakedrive.drowsedetect.detection.DrowsinessState
+import com.awakedrive.drowsedetect.detection.DrowsinessResult
 import com.awakedrive.drowsedetect.detection.FaceFeatures
+import com.awakedrive.drowsedetect.detection.fatigueLevel
+import com.awakedrive.drowsedetect.detection.forSensitivity
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -52,7 +55,7 @@ import java.util.concurrent.Executors
  *  - Nếu user thu hồi quyền CAMERA / app khác chiếm camera, CameraX báo qua cameraState -> hiển thị lỗi.
  */
 class MonitorService : LifecycleService() {
-    private val cfg = DetectionConfig()
+    private var cfg = DetectionConfig()
     private val executor: ExecutorService = Executors.newSingleThreadExecutor()
     private var alert: AlertManager? = null
     private var helper: FaceLandmarkerHelper? = null
@@ -100,6 +103,7 @@ class MonitorService : LifecycleService() {
             return
         }
         started = true
+        cfg = DetectionConfig.forSensitivity(AlertSettingsStore.load(this).sensitivity)
 
         val saved = BaselineStore.load(this)
         val needCalibrate = recalibrate || saved == null
@@ -110,7 +114,7 @@ class MonitorService : LifecycleService() {
             )
         }
         if (needCalibrate) calibrator = Calibrator(cfg) else analyzer = DrowsinessAnalyzer(cfg, saved ?: Baseline.DEFAULT)
-        if (!needCalibrate) MonitorStateHolder.update { it.copy(phase = MonitorPhase.MONITORING) }
+        if (!needCalibrate) beginMonitoring()
 
         alert = AlertManager(this) { AlertSettingsStore.load(this) }
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager)
@@ -193,9 +197,8 @@ class MonitorService : LifecycleService() {
                 is CalibrationResult.Success -> {
                     BaselineStore.save(this, r.baseline)
                     analyzer = DrowsinessAnalyzer(cfg, r.baseline)
-                    MonitorStateHolder.update {
-                        it.copy(phase = MonitorPhase.MONITORING, baseline = r.baseline, calibrationProgress = 1f, message = null)
-                    }
+                    MonitorStateHolder.update { it.copy(baseline = r.baseline, calibrationProgress = 1f, message = null) }
+                    beginMonitoring()
                 }
                 is CalibrationResult.Failure -> {
                     val msg = getString(
@@ -212,10 +215,41 @@ class MonitorService : LifecycleService() {
         val a = analyzer ?: return
         val res = a.process(f)
         alert?.onState(res.state)
-        MonitorStateHolder.update { it.copy(result = res, features = f, fps = fps, inferMs = inferMs) }
+        trackTrip(res, f.timestampMs)
+        MonitorStateHolder.update {
+            it.copy(result = res, features = f, fps = fps, inferMs = inferMs, warningCount = warnings, dangerCount = dangers)
+        }
         if (res.state != lastNotifState) {
             lastNotifState = res.state
             getSystemService(NotificationManager::class.java).notify(NOTIF_ID, buildNotification(stateText(res.state)))
+        }
+    }
+
+    // ---- Tổng kết chuyến (ghi từ thread MediaPipe, đọc ở onDestroy) ----
+    private val tripLock = Any()
+    private var tripStartMs = 0L
+    private var warnings = 0
+    private var dangers = 0
+    private var prevState = DrowsinessState.NORMAL
+    private var lastSampleTs = 0L
+    private val fatigueSamples = ArrayList<Float>()
+
+    private fun beginMonitoring() {
+        synchronized(tripLock) { tripStartMs = SystemClock.elapsedRealtime() }
+        MonitorStateHolder.update { it.copy(phase = MonitorPhase.MONITORING, monitoringStartMs = tripStartMs) }
+    }
+
+    private fun trackTrip(res: DrowsinessResult, tsMs: Long) {
+        synchronized(tripLock) {
+            if (res.state != prevState) {
+                if (res.state == DrowsinessState.WARNING && prevState.level < DrowsinessState.WARNING.level) warnings++
+                if (res.state == DrowsinessState.DANGER) dangers++
+                prevState = res.state
+            }
+            if (tsMs - lastSampleTs >= SAMPLE_EVERY_MS && res.state != DrowsinessState.NO_FACE) {
+                lastSampleTs = tsMs
+                fatigueSamples += fatigueLevel(res, cfg)
+            }
         }
     }
 
@@ -242,6 +276,14 @@ class MonitorService : LifecycleService() {
         executor.shutdown()
         calibrator = null
         analyzer = null
+        synchronized(tripLock) {
+            if (tripStartMs > 0) {
+                val duration = SystemClock.elapsedRealtime() - tripStartMs
+                if (duration >= MIN_TRIP_MS) {
+                    MonitorStateHolder.lastSummary.value = TripSummary(duration, warnings, dangers, fatigueSamples.toList())
+                }
+            }
+        }
         // Giữ message lỗi (nếu fail() vừa đặt), còn lại về IDLE
         MonitorStateHolder.update { MonitorUiState(phase = MonitorPhase.IDLE, baseline = it.baseline, message = it.message) }
         super.onDestroy()
@@ -280,6 +322,8 @@ class MonitorService : LifecycleService() {
         private const val TAG = "MonitorService"
         private const val CHANNEL_ID = "awake_drive_monitor"
         private const val NOTIF_ID = 1001
+        private const val SAMPLE_EVERY_MS = 5_000L
+        private const val MIN_TRIP_MS = 10_000L
         const val ACTION_START = "com.awakedrive.drowsedetect.action.START"
         const val ACTION_STOP = "com.awakedrive.drowsedetect.action.STOP"
         const val ACTION_ACK = "com.awakedrive.drowsedetect.action.ACK"

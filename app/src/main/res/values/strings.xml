@@ -21,26 +21,8 @@
       <string name="monitor_calibrating">Calibrating — look straight ahead, eyes open</string>
       <string name="monitor_eyes_open">Eyes: OPEN</string>
       <string name="monitor_eyes_closed">Eyes: CLOSED</string>
-      <string name="monitor_eye_rule">Counted as closed when EAR &lt; %1$s (baseline %2$s × 0.7) or blink score &gt; 0.5</string>
-      <string name="monitor_eye_now">Now: EAR %1$s · blink %2$s</string>
-      <string name="monitor_bar_microsleep">Continuous closed: %1$s s / 1.2 s → DANGER</string>
-      <string name="monitor_bar_perclos">PERCLOS %1$d%% (warning 15%%, danger 25%%)</string>
-      <string name="monitor_bar_yawn">Yawns (5 min): %1$d / 3 → WARNING</string>
-      <string name="monitor_bar_nod">Head nods (1 min): %1$d / 2 → WARNING</string>
-      <string name="monitor_explain_title">How it decides</string>
-      <string name="monitor_explain_body">1. Eyes closed: a frame counts as closed when EAR (eye openness) drops below 70%% of your own normal value (measured during calibration) or MediaPipe blink score is above 0.5. Frames with head turned more than 35° are ignored.
 
-2. DANGER at once: eyes closed continuously for 1.2 s or more. A normal blink lasts only 0.1–0.4 s, so it never triggers.
-
-3. Tired (PERCLOS): share of time the eyes were closed in the last 60 s. 15%% or more = WARNING, 25%% or more = DANGER (needs at least 30 s of data).
-
-4. Yawn: mouth wide open (jawOpen above 0.6) for 2 s or more. 3 yawns in 5 minutes = WARNING.
-
-5. Head nod: head tilts more than 15° from calibration and comes back within 1.5 s. 2 nods in 1 minute = WARNING. Head held down with eyes closed for 0.5 s = DANGER.
-
-6. The level only goes down after the signs have been gone for 5 s. No face for more than 3 s only shows a notice, no alarm.</string>
-
-      <string name="settings_title">Alert sound</string>
+      <string name="settings_title">Settings</string>
       <string name="settings_alarm_sound">Danger alarm sound</string>
       <string name="settings_sound_siren">Siren (built-in)</string>
       <string name="settings_sound_beep">Fast beeps (built-in)</string>
@@ -56,5 +38,82 @@
       <string name="settings_test_danger">Test danger alarm</string>
       <string name="settings_test_stop">Stop test</string>
       <string name="settings_back">Back</string>
-      <string name="settings_open">Alert settings</string>
+      <string name="settings_open">Settings</string>
+
+      <string name="home_ready_title">Ready to guard you</string>
+      <string name="home_ready_sub">Mount your phone and tap Start. The app will watch for drowsiness for you.</string>
+      <string name="home_start">Start monitoring</string>
+      <string name="home_start_first">Start (15 s setup first)</string>
+      <string name="tips_title">Before you drive</string>
+      <string name="tip_front">Phone facing you</string>
+      <string name="tip_eye">At eye level</string>
+      <string name="tip_light">Good lighting</string>
+      <string name="tip_sound">Volume up</string>
+      <string name="home_privacy">Everything is processed on your phone. No photos are sent anywhere.</string>
+      <string name="disclaimer_title">Please read</string>
+      <string name="disclaimer_body">This app is an assistant, not a certified safety device, and it cannot replace rest. If you feel sleepy, stop in a safe place. Place the phone where it does not block your view.</string>
+      <string name="disclaimer_ok">I understand</string>
+      <string name="calib_title">Getting to know your face</string>
+      <string name="calib_sub">Look straight at the phone and keep your eyes open naturally.</string>
+      <string name="calib_seconds">%1$d s left</string>
+      <string name="calib_cancel">Cancel</string>
+      <string name="mon_title">Monitoring</string>
+      <string name="mon_rec">Watching</string>
+      <string name="mon_ok_title">You are alert</string>
+      <string name="mon_ok_sub">Keep your eyes on the road. I am watching for you.</string>
+      <string name="mon_warn_title">You look tired</string>
+      <string name="mon_warn_sub">Consider stopping for a short break soon.</string>
+      <string name="mon_danger_title">Wake up!</string>
+      <string name="mon_noface_title">Cannot see your face</string>
+      <string name="mon_noface_sub">Adjust the phone so your face is in view.</string>
+      <string name="pill_ok">Alert</string>
+      <string name="pill_warn">Tired</string>
+      <string name="pill_danger">Danger</string>
+      <string name="pill_noface">No face</string>
+      <string name="fatigue_title">Fatigue level</string>
+      <string name="fatigue_low">Low</string>
+      <string name="fatigue_mid">Medium</string>
+      <string name="fatigue_high">High</string>
+      <string name="stat_time">Driving time</string>
+      <string name="stat_yawn">Yawns</string>
+      <string name="stat_nod">Nods</string>
+      <string name="eyes_open">Eyes open</string>
+      <string name="eyes_closed">Eyes closed</string>
+      <string name="mon_end">End trip</string>
+      <string name="end_confirm_title">End this trip?</string>
+      <string name="end_confirm_yes">End trip</string>
+      <string name="end_confirm_no">Keep going</string>
+      <string name="alert_title">Drowsiness detected!</string>
+      <string name="alert_sub">Stop at a safe place and rest.</string>
+      <string name="alert_reason_microsleep">Your eyes stayed closed too long.</string>
+      <string name="alert_reason_perclos">Your eyes have been closing often.</string>
+      <string name="alert_reason_yawn">You have yawned several times.</string>
+      <string name="alert_reason_nod">Your head keeps dropping.</string>
+      <string name="alert_find_rest">Find a rest stop</string>
+      <string name="rest_query">rest stop</string>
+      <string name="sum_title">Trip summary</string>
+      <string name="sum_safe_title">Safe journey!</string>
+      <string name="sum_safe_sub">No drowsiness alerts during this trip.</string>
+      <string name="sum_alerts_title">You were alerted %1$d time(s)</string>
+      <string name="sum_alerts_sub">Take regular breaks on long drives.</string>
+      <string name="sum_duration">Duration</string>
+      <string name="sum_warnings">Warnings</string>
+      <string name="sum_dangers">Danger alerts</string>
+      <string name="sum_chart">Fatigue over time</string>
+      <string name="sum_chart_empty">Trip too short to draw a chart.</string>
+      <string name="sum_tip_safe">Great! You stayed alert the whole trip.</string>
+      <string name="sum_tip_warn">Consider a short break before your next trip.</string>
+      <string name="sum_tip_danger">Rest for at least 15-20 minutes before driving again.</string>
+      <string name="sum_done">Done</string>
+      <string name="settings_sensitivity">Detection sensitivity</string>
+      <string name="settings_sens_low">Low</string>
+      <string name="settings_sens_med">Medium</string>
+      <string name="settings_sens_high">High</string>
+      <string name="settings_sens_hint">Higher sensitivity warns earlier but may warn more often.</string>
+      <string name="settings_calib_section">Calibration</string>
+      <string name="settings_recalibrate">Recalibrate on next start</string>
+      <string name="settings_recalibrate_done">Done. The next trip starts with a 15 s setup.</string>
+      <string name="settings_calib_hint">Use after changing phone position, glasses or driver.</string>
+      <string name="settings_about">About</string>
+      <string name="settings_about_text">Version %1$s. All detection runs on your phone and the app has no internet access.</string>
 </resources>

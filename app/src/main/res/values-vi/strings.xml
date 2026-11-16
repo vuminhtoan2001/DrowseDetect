@@ -4,24 +4,6 @@
 
       <string name="monitor_eyes_open">Mắt: MỞ</string>
       <string name="monitor_eyes_closed">Mắt: NHẮM</string>
-      <string name="monitor_eye_rule">Coi là nhắm khi EAR &lt; %1$s (baseline %2$s × 0.7) hoặc điểm blink &gt; 0.5</string>
-      <string name="monitor_eye_now">Hiện tại: EAR %1$s · blink %2$s</string>
-      <string name="monitor_bar_microsleep">Nhắm liên tục: %1$s s / 1.2 s → NGUY HIỂM</string>
-      <string name="monitor_bar_perclos">PERCLOS %1$d%% (cảnh báo 15%%, nguy hiểm 25%%)</string>
-      <string name="monitor_bar_yawn">Ngáp (5 phút): %1$d / 3 → CẢNH BÁO</string>
-      <string name="monitor_bar_nod">Gật đầu (1 phút): %1$d / 2 → CẢNH BÁO</string>
-      <string name="monitor_explain_title">Cơ chế đánh giá</string>
-      <string name="monitor_explain_body">1. Mắt nhắm: một khung hình được coi là nhắm khi EAR (độ mở mắt) thấp hơn 70%% mức bình thường của chính bạn (đo lúc hiệu chuẩn), hoặc điểm blink của MediaPipe &gt; 0.5. Khung hình khi quay đầu quá 35° bị bỏ qua.
-
-2. NGUY HIỂM ngay: nhắm liên tục từ 1.2 giây trở lên. Chớp mắt bình thường chỉ 0.1–0.4 giây nên không bao giờ kích hoạt.
-
-3. Mệt (PERCLOS): tỉ lệ thời gian mắt nhắm trong 60 giây gần nhất. Từ 15%% = CẢNH BÁO, từ 25%% = NGUY HIỂM (cần ít nhất 30 giây dữ liệu).
-
-4. Ngáp: há miệng rộng (jawOpen &gt; 0.6) liên tục từ 2 giây. 3 lần trong 5 phút = CẢNH BÁO.
-
-5. Gật đầu: đầu lệch quá 15° so với lúc hiệu chuẩn rồi trở lại trong 1.5 giây. 2 lần trong 1 phút = CẢNH BÁO. Cúi đầu kéo dài kèm nhắm mắt 0.5 giây = NGUY HIỂM.
-
-6. Mức báo chỉ hạ xuống sau khi hết dấu hiệu 5 giây. Không thấy mặt quá 3 giây chỉ hiện thông báo, không kêu còi.</string>
       <string name="monitor_notif_starting">Đang khởi động…</string>
       <string name="monitor_stop">Dừng</string>
       <string name="monitor_state_normal">Đang giám sát — bình thường</string>
@@ -35,7 +17,7 @@
       <string name="monitor_err_calib_face">Không thấy mặt đủ lâu khi hiệu chuẩn. Đặt điện thoại chính diện, ngang tầm mắt, cách 40–70 cm.</string>
       <string name="monitor_err_calib_eyes">Mắt bị coi là nhắm khi hiệu chuẩn. Nhìn thẳng, mở mắt bình thường rồi thử lại.</string>
 
-      <string name="settings_title">Âm thanh cảnh báo</string>
+      <string name="settings_title">Cài đặt</string>
       <string name="settings_alarm_sound">Âm báo nguy hiểm</string>
       <string name="settings_sound_siren">Còi hú (có sẵn)</string>
       <string name="settings_sound_beep">Bíp dồn dập (có sẵn)</string>
@@ -51,5 +33,82 @@
       <string name="settings_test_danger">Nghe thử còi nguy hiểm</string>
       <string name="settings_test_stop">Dừng nghe thử</string>
       <string name="settings_back">Quay lại</string>
-      <string name="settings_open">Cài đặt cảnh báo</string>
+      <string name="settings_open">Cài đặt</string>
+
+      <string name="home_ready_title">Sẵn sàng đồng hành</string>
+      <string name="home_ready_sub">Gắn điện thoại rồi bấm Bắt đầu. Ứng dụng sẽ canh chừng cơn buồn ngủ giúp bạn.</string>
+      <string name="home_start">Bắt đầu giám sát</string>
+      <string name="home_start_first">Bắt đầu (cần 15 giây làm quen)</string>
+      <string name="tips_title">Trước khi lái</string>
+      <string name="tip_front">Đặt máy chính diện</string>
+      <string name="tip_eye">Ngang tầm mắt</string>
+      <string name="tip_light">Đủ ánh sáng</string>
+      <string name="tip_sound">Bật âm lượng</string>
+      <string name="home_privacy">Mọi xử lý diễn ra ngay trên máy. Không có ảnh nào được gửi đi.</string>
+      <string name="disclaimer_title">Lưu ý quan trọng</string>
+      <string name="disclaimer_body">Ứng dụng chỉ hỗ trợ cảnh báo, không phải thiết bị an toàn được chứng nhận và không thay thế việc nghỉ ngơi. Nếu thấy buồn ngủ, hãy dừng xe ở nơi an toàn. Đặt điện thoại ở vị trí không che tầm nhìn.</string>
+      <string name="disclaimer_ok">Tôi đã hiểu</string>
+      <string name="calib_title">Đang làm quen với gương mặt bạn</string>
+      <string name="calib_sub">Nhìn thẳng vào điện thoại và mở mắt tự nhiên.</string>
+      <string name="calib_seconds">Còn %1$d giây</string>
+      <string name="calib_cancel">Hủy</string>
+      <string name="mon_title">Đang giám sát</string>
+      <string name="mon_rec">Đang theo dõi</string>
+      <string name="mon_ok_title">Bạn đang tỉnh táo</string>
+      <string name="mon_ok_sub">Cứ tập trung lái xe, mình đang canh chừng giúp bạn.</string>
+      <string name="mon_warn_title">Bạn có vẻ mệt</string>
+      <string name="mon_warn_sub">Hãy cân nhắc dừng xe nghỉ một lát.</string>
+      <string name="mon_danger_title">Tỉnh dậy nào!</string>
+      <string name="mon_noface_title">Không thấy khuôn mặt bạn</string>
+      <string name="mon_noface_sub">Chỉnh điện thoại để thấy rõ mặt bạn.</string>
+      <string name="pill_ok">Tỉnh táo</string>
+      <string name="pill_warn">Mệt</string>
+      <string name="pill_danger">Nguy hiểm</string>
+      <string name="pill_noface">Không thấy mặt</string>
+      <string name="fatigue_title">Mức mệt mỏi</string>
+      <string name="fatigue_low">Thấp</string>
+      <string name="fatigue_mid">Vừa</string>
+      <string name="fatigue_high">Cao</string>
+      <string name="stat_time">Thời gian lái</string>
+      <string name="stat_yawn">Ngáp</string>
+      <string name="stat_nod">Gật gù</string>
+      <string name="eyes_open">Mắt đang mở</string>
+      <string name="eyes_closed">Mắt đang nhắm</string>
+      <string name="mon_end">Kết thúc chuyến</string>
+      <string name="end_confirm_title">Kết thúc chuyến đi?</string>
+      <string name="end_confirm_yes">Kết thúc</string>
+      <string name="end_confirm_no">Tiếp tục</string>
+      <string name="alert_title">Phát hiện buồn ngủ!</string>
+      <string name="alert_sub">Hãy dừng xe ở nơi an toàn và nghỉ ngơi.</string>
+      <string name="alert_reason_microsleep">Mắt bạn nhắm quá lâu.</string>
+      <string name="alert_reason_perclos">Mắt bạn nhắm thường xuyên.</string>
+      <string name="alert_reason_yawn">Bạn đã ngáp nhiều lần.</string>
+      <string name="alert_reason_nod">Đầu bạn liên tục gục xuống.</string>
+      <string name="alert_find_rest">Tìm chỗ nghỉ</string>
+      <string name="rest_query">trạm dừng chân</string>
+      <string name="sum_title">Tổng kết chuyến đi</string>
+      <string name="sum_safe_title">Chuyến đi an toàn!</string>
+      <string name="sum_safe_sub">Không có cảnh báo buồn ngủ nào.</string>
+      <string name="sum_alerts_title">Bạn đã được cảnh báo %1$d lần</string>
+      <string name="sum_alerts_sub">Hãy nghỉ giải lao đều đặn khi đi đường dài.</string>
+      <string name="sum_duration">Thời lượng</string>
+      <string name="sum_warnings">Cảnh báo</string>
+      <string name="sum_dangers">Nguy hiểm</string>
+      <string name="sum_chart">Mức mệt mỏi theo thời gian</string>
+      <string name="sum_chart_empty">Chuyến quá ngắn để vẽ biểu đồ.</string>
+      <string name="sum_tip_safe">Tuyệt vời! Bạn giữ được sự tỉnh táo suốt chuyến đi.</string>
+      <string name="sum_tip_warn">Hãy nghỉ một lát trước chuyến sau.</string>
+      <string name="sum_tip_danger">Hãy nghỉ ít nhất 15-20 phút trước khi lái tiếp.</string>
+      <string name="sum_done">Xong</string>
+      <string name="settings_sensitivity">Độ nhạy phát hiện</string>
+      <string name="settings_sens_low">Thấp</string>
+      <string name="settings_sens_med">Vừa</string>
+      <string name="settings_sens_high">Cao</string>
+      <string name="settings_sens_hint">Nhạy cao sẽ cảnh báo sớm hơn nhưng có thể báo nhiều hơn.</string>
+      <string name="settings_calib_section">Hiệu chuẩn</string>
+      <string name="settings_recalibrate">Hiệu chuẩn lại ở lần bắt đầu tới</string>
+      <string name="settings_recalibrate_done">Đã đặt. Chuyến tới sẽ bắt đầu bằng 15 giây làm quen.</string>
+      <string name="settings_calib_hint">Dùng khi đổi vị trí gắn máy, đổi kính hoặc đổi người lái.</string>
+      <string name="settings_about">Giới thiệu</string>
+      <string name="settings_about_text">Phiên bản %1$s. Mọi nhận diện chạy ngay trên máy và ứng dụng không có quyền truy cập mạng.</string>
 </resources>

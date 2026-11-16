@@ -1,6 +1,7 @@
 package com.awakedrive.drowsedetect.alert
 
 import android.content.Context
+import com.awakedrive.drowsedetect.detection.Sensitivity
 
 enum class AlarmSound { SIREN, BEEP, SYSTEM }
 
@@ -13,6 +14,7 @@ data class AlertSettings(
     val warningBeep: Boolean = true,
     val voice: Boolean = true,
     val vibrate: Boolean = true,
+    val sensitivity: Sensitivity = Sensitivity.MEDIUM,
 )
 
 /** SharedPreferences: đọc đồng bộ được từ service lẫn UI. */
@@ -29,6 +31,7 @@ object AlertSettingsStore {
             warningBeep = p.getBoolean("warning_beep", d.warningBeep),
             voice = p.getBoolean("voice", d.voice),
             vibrate = p.getBoolean("vibrate", d.vibrate),
+            sensitivity = runCatching { Sensitivity.valueOf(p.getString("sensitivity", null) ?: "") }.getOrDefault(d.sensitivity),
         )
     }
 
@@ -40,6 +43,7 @@ object AlertSettingsStore {
             .putBoolean("warning_beep", s.warningBeep)
             .putBoolean("voice", s.voice)
             .putBoolean("vibrate", s.vibrate)
+            .putString("sensitivity", s.sensitivity.name)
             .apply()
     }
 }

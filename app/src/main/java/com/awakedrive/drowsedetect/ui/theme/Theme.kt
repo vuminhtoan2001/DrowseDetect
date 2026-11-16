@@ -1,39 +1,25 @@
 package com.awakedrive.drowsedetect.ui.theme
 
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
-import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
 
-// background/surface = trắng — khớp thực tế mọi màn hình đang dùng nền trắng (không dùng `Bg`
-// #F5F5F5 cho nền toàn màn; `Bg`/`Bg2` để dành cho surface phụ nếu app mới cần).
-private val LightColors = lightColorScheme(
-    primary = Theme,
-    secondary = ThemeSecond,
-    background = Color.White,
-    surface = Color.White,
-    onBackground = Color.Black,
-    onSurface = Color.Black,
-    onSurfaceVariant = Color.Gray,
-    tertiary = Orange,
-)
-
-private val DarkColors = darkColorScheme(
-    primary = ThemeSecond,
-    secondary = Theme,
-    tertiary = Orange,
+// App dùng khi lái xe (thường tối) nên chỉ có giao diện tối, không theo chế độ hệ thống.
+private val AppColors = darkColorScheme(
+    primary = BrandBlue,
+    secondary = BrandCyan,
+    tertiary = StateAmber,
+    error = StateRed,
+    background = Navy900,
+    surface = Navy800,
+    surfaceVariant = Navy700,
+    onPrimary = TextPrimary,
+    onBackground = TextPrimary,
+    onSurface = TextPrimary,
+    onSurfaceVariant = TextSecondary,
 )
 
 @Composable
-fun AwakeDriveTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
-) {
-    MaterialTheme(
-        colorScheme = LightColors,
-        typography = AppTypography,
-        content = content,
-    )
+fun AwakeDriveTheme(content: @Composable () -> Unit) {
+    MaterialTheme(colorScheme = AppColors, typography = AppTypography, content = content)
 }

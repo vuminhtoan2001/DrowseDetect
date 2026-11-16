@@ -27,7 +27,9 @@ data class DetectionConfig(
     val downgradeHoldMs: Long = 5_000L,
     /** Khoảng hở giữa 2 frame lớn hơn mức này bị cắt (tránh 1 frame trễ làm lệch PERCLOS). */
     val maxFrameGapMs: Long = 500L,
-)
+) {
+    companion object
+}
 
 /** Đặc trưng của 1 frame (spec §6). */
 data class FaceFeatures(
@@ -72,3 +74,16 @@ data class DrowsinessResult(
     /** Frame hiện tại bị coi là mắt nhắm (đã loại frame quay đầu). */
     val eyesClosed: Boolean = false,
 )
+
+/** Độ nhạy người dùng chọn trong Cài đặt; ánh xạ sang bộ ngưỡng [DetectionConfig]. */
+enum class Sensitivity { LOW, MEDIUM, HIGH }
+
+fun DetectionConfig.Companion.forSensitivity(s: Sensitivity): DetectionConfig = when (s) {
+    Sensitivity.LOW -> DetectionConfig(
+        eyeClosedRatio = 0.65f, microsleepMs = 1_600L, perclosWarning = 0.18f, perclosDanger = 0.30f,
+    )
+    Sensitivity.MEDIUM -> DetectionConfig()
+    Sensitivity.HIGH -> DetectionConfig(
+        eyeClosedRatio = 0.75f, microsleepMs = 1_000L, perclosWarning = 0.12f, perclosDanger = 0.20f,
+    )
+}

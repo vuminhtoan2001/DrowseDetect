@@ -4,28 +4,30 @@ import android.app.Activity
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Slider
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,15 +38,29 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import com.awakedrive.drowsedetect.BuildConfig
 import com.awakedrive.drowsedetect.R
 import com.awakedrive.drowsedetect.alert.AlarmSound
 import com.awakedrive.drowsedetect.alert.AlertManager
 import com.awakedrive.drowsedetect.alert.AlertSettings
 import com.awakedrive.drowsedetect.alert.AlertSettingsStore
+import com.awakedrive.drowsedetect.detection.Sensitivity
+import com.awakedrive.drowsedetect.service.BaselineStore
+import com.awakedrive.drowsedetect.ui.components.GlassCard
+import com.awakedrive.drowsedetect.ui.components.GradientButton
+import com.awakedrive.drowsedetect.ui.components.OutlineButton
+import com.awakedrive.drowsedetect.ui.components.ScreenBackground
+import com.awakedrive.drowsedetect.ui.theme.BrandBlue
+import com.awakedrive.drowsedetect.ui.theme.Navy600
+import com.awakedrive.drowsedetect.ui.theme.StateRed
+import com.awakedrive.drowsedetect.ui.theme.TextSecondary
 
 @Composable
 fun SettingsScreen(onBack: () -> Unit) {
@@ -55,7 +71,7 @@ fun SettingsScreen(onBack: () -> Unit) {
         AlertSettingsStore.save(context, n)
     }
 
-    // Dùng chính AlertManager của app để nghe thử, đọc cài đặt mới nhất mỗi lần phát.
+    // Dùng chính AlertManager của app để nghe thử; luôn đọc cài đặt mới nhất mỗi lần phát.
     val latest = remember { arrayOf(s) }
     latest[0] = s
     val alert = remember { AlertManager(context) { latest[0] } }
@@ -75,56 +91,148 @@ fun SettingsScreen(onBack: () -> Unit) {
         }.getOrNull() ?: context.getString(R.string.settings_default_tone)
     }
 
-    Surface(Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-        Column(Modifier.fillMaxSize().statusBarsPadding()) {
+    ScreenBackground {
+        Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
             Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = onBack) {
-                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.settings_back))
+                    Icon(Icons.AutoMirrored.Filled.ArrowBack, contentDescription = stringResource(R.string.settings_back), tint = Color.White)
                 }
                 Text(stringResource(R.string.settings_title), style = MaterialTheme.typography.titleLarge)
             }
             Column(
                 Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(horizontal = 16.dp, vertical = 8.dp),
-                verticalArrangement = Arrangement.spacedBy(8.dp),
+                verticalArrangement = Arrangement.spacedBy(14.dp),
             ) {
-                Text(stringResource(R.string.settings_alarm_sound), style = MaterialTheme.typography.titleMedium)
-                SoundOption(s.alarmSound == AlarmSound.SIREN, R.string.settings_sound_siren) { update(s.copy(alarmSound = AlarmSound.SIREN)) }
-                SoundOption(s.alarmSound == AlarmSound.BEEP, R.string.settings_sound_beep) { update(s.copy(alarmSound = AlarmSound.BEEP)) }
-                SoundOption(s.alarmSound == AlarmSound.SYSTEM, R.string.settings_sound_system) { update(s.copy(alarmSound = AlarmSound.SYSTEM)) }
-                OutlinedButton(
-                    onClick = {
-                        picker.launch(
-                            Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
-                                .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
-                                .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
-                                .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, s.systemToneUri?.let(Uri::parse)),
-                        )
-                    },
-                    modifier = Modifier.fillMaxWidth(),
-                ) { Text(stringResource(R.string.settings_pick_system, toneTitle)) }
+                // ---- Độ nhạy ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.settings_sensitivity), style = MaterialTheme.typography.titleMedium)
+                    Segmented(
+                        options = listOf(
+                            R.string.settings_sens_low to Sensitivity.LOW,
+                            R.string.settings_sens_med to Sensitivity.MEDIUM,
+                            R.string.settings_sens_high to Sensitivity.HIGH,
+                        ),
+                        selected = s.sensitivity,
+                        onSelect = { update(s.copy(sensitivity = it)) },
+                        modifier = Modifier.padding(top = 12.dp),
+                    )
+                    Text(
+                        stringResource(R.string.settings_sens_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary,
+                        modifier = Modifier.padding(top = 8.dp),
+                    )
+                }
 
-                Text(
-                    stringResource(R.string.settings_volume, (s.volume * 100).toInt()),
-                    style = MaterialTheme.typography.titleMedium,
-                    modifier = Modifier.padding(top = 12.dp),
+                // ---- Âm báo nguy hiểm ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.settings_alarm_sound), style = MaterialTheme.typography.titleMedium)
+                    SoundOption(s.alarmSound == AlarmSound.SIREN, R.string.settings_sound_siren) { update(s.copy(alarmSound = AlarmSound.SIREN)) }
+                    SoundOption(s.alarmSound == AlarmSound.BEEP, R.string.settings_sound_beep) { update(s.copy(alarmSound = AlarmSound.BEEP)) }
+                    SoundOption(s.alarmSound == AlarmSound.SYSTEM, R.string.settings_sound_system) { update(s.copy(alarmSound = AlarmSound.SYSTEM)) }
+                    OutlineButton(
+                        stringResource(R.string.settings_pick_system, toneTitle),
+                        onClick = {
+                            picker.launch(
+                                Intent(RingtoneManager.ACTION_RINGTONE_PICKER)
+                                    .putExtra(RingtoneManager.EXTRA_RINGTONE_TYPE, RingtoneManager.TYPE_ALARM)
+                                    .putExtra(RingtoneManager.EXTRA_RINGTONE_SHOW_DEFAULT, true)
+                                    .putExtra(RingtoneManager.EXTRA_RINGTONE_EXISTING_URI, s.systemToneUri?.let(Uri::parse)),
+                            )
+                        },
+                        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+                    )
+
+                    Text(
+                        stringResource(R.string.settings_volume, (s.volume * 100).toInt()),
+                        style = MaterialTheme.typography.titleMedium,
+                        modifier = Modifier.padding(top = 16.dp),
+                    )
+                    Slider(value = s.volume, onValueChange = { update(s.copy(volume = it)) }, valueRange = 0.2f..1f)
+                    Text(stringResource(R.string.settings_volume_hint), style = MaterialTheme.typography.bodySmall, color = TextSecondary)
+                }
+
+                // ---- Kiểu cảnh báo ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    SwitchRow(R.string.settings_warning_beep, s.warningBeep) { update(s.copy(warningBeep = it)) }
+                    SwitchRow(R.string.settings_voice, s.voice) { update(s.copy(voice = it)) }
+                    SwitchRow(R.string.settings_vibrate, s.vibrate) { update(s.copy(vibrate = it)) }
+                }
+
+                // ---- Nghe thử ----
+                GradientButton(stringResource(R.string.settings_test_warning), { alert.testWarning() }, Modifier.fillMaxWidth())
+                GradientButton(
+                    stringResource(R.string.settings_test_danger), { alert.testDanger() }, Modifier.fillMaxWidth(),
+                    colors = listOf(Color(0xFFFF5A5F), Color(0xFFD7263D)),
                 )
-                Slider(value = s.volume, onValueChange = { update(s.copy(volume = it)) }, valueRange = 0.2f..1f)
-                Text(stringResource(R.string.settings_volume_hint), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                OutlineButton(stringResource(R.string.settings_test_stop), { alert.stopTest() }, Modifier.fillMaxWidth())
 
-                SwitchRow(R.string.settings_warning_beep, s.warningBeep) { update(s.copy(warningBeep = it)) }
-                SwitchRow(R.string.settings_voice, s.voice) { update(s.copy(voice = it)) }
-                SwitchRow(R.string.settings_vibrate, s.vibrate) { update(s.copy(vibrate = it)) }
+                // ---- Hiệu chuẩn ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.settings_calib_section), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        stringResource(R.string.settings_calib_hint),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary,
+                        modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
+                    )
+                    OutlineButton(
+                        stringResource(R.string.settings_recalibrate),
+                        onClick = {
+                            BaselineStore.clear(context)
+                            Toast.makeText(context, R.string.settings_recalibrate_done, Toast.LENGTH_LONG).show()
+                        },
+                        modifier = Modifier.fillMaxWidth(),
+                        color = StateRed,
+                    )
+                }
 
-                Button(onClick = { alert.testWarning() }, modifier = Modifier.fillMaxWidth().padding(top = 8.dp)) {
-                    Text(stringResource(R.string.settings_test_warning))
+                // ---- Giới thiệu ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    Text(stringResource(R.string.settings_about), style = MaterialTheme.typography.titleMedium)
+                    Text(
+                        stringResource(R.string.settings_about_text, BuildConfig.VERSION_NAME),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary,
+                        modifier = Modifier.padding(top = 4.dp),
+                    )
                 }
-                Button(onClick = { alert.testDanger() }, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.settings_test_danger))
-                }
-                OutlinedButton(onClick = { alert.stopTest() }, modifier = Modifier.fillMaxWidth()) {
-                    Text(stringResource(R.string.settings_test_stop))
-                }
+                Text(
+                    stringResource(R.string.disclaimer_body),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = TextSecondary,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp),
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun <T> Segmented(
+    options: List<Pair<Int, T>>,
+    selected: T,
+    onSelect: (T) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    Row(
+        modifier.fillMaxWidth().clip(RoundedCornerShape(14.dp)).background(Navy600.copy(alpha = 0.6f)).padding(4.dp),
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+    ) {
+        options.forEach { (label, value) ->
+            val on = value == selected
+            Text(
+                stringResource(label),
+                style = MaterialTheme.typography.labelMedium,
+                textAlign = TextAlign.Center,
+                modifier = Modifier
+                    .weight(1f)
+                    .clip(RoundedCornerShape(11.dp))
+                    .background(if (on) BrandBlue else Color.Transparent)
+                    .clickable(role = Role.RadioButton) { onSelect(value) }
+                    .padding(vertical = 10.dp),
+            )
         }
     }
 }
@@ -132,7 +240,7 @@ fun SettingsScreen(onBack: () -> Unit) {
 @Composable
 private fun SoundOption(selected: Boolean, label: Int, onClick: () -> Unit) {
     Row(
-        Modifier.fillMaxWidth().selectable(selected = selected, role = Role.RadioButton, onClick = onClick),
+        Modifier.fillMaxWidth().selectable(selected = selected, role = Role.RadioButton, onClick = onClick).padding(vertical = 4.dp),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         RadioButton(selected = selected, onClick = null)
@@ -142,8 +250,12 @@ private fun SoundOption(selected: Boolean, label: Int, onClick: () -> Unit) {
 
 @Composable
 private fun SwitchRow(label: Int, checked: Boolean, onChange: (Boolean) -> Unit) {
-    Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
-        Text(stringResource(label), style = MaterialTheme.typography.bodyLarge)
+    Row(
+        Modifier.fillMaxWidth().padding(vertical = 2.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Text(stringResource(label), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
         Switch(checked = checked, onCheckedChange = onChange)
     }
 }

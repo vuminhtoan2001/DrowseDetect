@@ -1,6 +1,8 @@
 package com.awakedrive.drowsedetect
 
+import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.SystemBarStyle
 import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -15,7 +17,11 @@ import com.awakedrive.drowsedetect.ui.theme.AwakeDriveTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
+        // App chỉ có giao diện tối: icon thanh trạng thái/điều hướng luôn sáng
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT),
+        )
         super.onCreate(savedInstanceState)
         setContent {
             AwakeDriveTheme {

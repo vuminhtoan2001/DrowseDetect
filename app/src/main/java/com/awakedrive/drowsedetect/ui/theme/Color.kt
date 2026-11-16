@@ -2,15 +2,18 @@ package com.awakedrive.drowsedetect.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-// Màu thương hiệu port từ utils/Values/colors.js
-val Theme = Color(0xFF013495)         // COLOR.THEME
-val ThemeSecond = Color(0xFF045ecd)   // COLOR.THEME_SECOND
-val Bg = Color(0xFFF5F5F5)            // COLOR.BG
-val Bg2 = Color(0xFFE2F1FF)           // COLOR.BG2
-val Orange = Color(0xFFFCAC38)        // COLOR.orange
-val Border = Color(0xFFF3F2F7)        // COLOR.BORDER
+// Bảng màu "đêm lái xe": nền xanh navy đậm, điểm nhấn xanh dương/cyan, trạng thái xanh lá/vàng/đỏ.
+val Navy900 = Color(0xFF050B1F)
+val Navy800 = Color(0xFF0B1530)
+val Navy700 = Color(0xFF111F44)
+val Navy600 = Color(0xFF1A2B5C)
 
-// Màu accent riêng — không có slot tương ứng trong Material3 ColorScheme, khai tên riêng để vẫn
-// sửa được 1 chỗ (đừng hardcode Color(0xFF...) lại tại nơi dùng).
-val PremiumGold = Color(0xFFF9CB16)     // Icon/nút mở màn IAP (Premium)
-val SettingIconTint = Color(0xFF30295E) // Icon các dòng trong màn Settings
+val BrandBlue = Color(0xFF2F6BFF)
+val BrandCyan = Color(0xFF19C2FF)
+
+val StateGreen = Color(0xFF22D07A)
+val StateAmber = Color(0xFFFFB020)
+val StateRed = Color(0xFFFF3B4E)
+
+val TextPrimary = Color(0xFFFFFFFF)
+val TextSecondary = Color(0xFF9FB0D6)
