@@ -32,7 +32,7 @@ Chỉ tra khi gặp việc liên quan: `docs/integration/COMMON_ACTIONS.md` (upd
    python -I scripts/init_app.py --package com.acme.notes --name NotesApp --prefix NT
    python -I scripts/init_app.py --package com.acme.notes --name NotesApp --prefix NT --apply
    ```
-   Script đổi package + thư mục, `rootProject.name`, theme, prefix tracking `QR_` → `NT_`, notification channel.
+   Script đổi package + thư mục, `rootProject.name`, theme, prefix tracking `AD_` → `NT_`, notification channel.
    Còn phải làm tay: `app_name`, icon, thay `app/google-services.json` bằng file thật cho package mới.
 2. **Prefix tracking** đã được script đổi trong `object Dest` (`ui/nav/AppNav.kt`); viết lại nội dung
    `docs/ANALYTICS_EVENTS.md` theo màn thật của app.

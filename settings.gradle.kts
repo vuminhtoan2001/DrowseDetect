@@ -15,6 +15,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "QrScanner"
+rootProject.name = "AwakeDrive"
 include(":app")
 include(":base-application")

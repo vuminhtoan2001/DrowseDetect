@@ -1,19 +1,19 @@
 # Tài liệu event Firebase / GA4 — QR Scanner (prefix `QR`)
 
 Dành cho người đọc số trên GA4. Mẫu gốc: `docs/update-sdk-language/ANALYTICS_EVENTS.md`.
-Lọc `screen_name` bắt đầu bằng `QR_`; đổi dimension báo cáo sang **"Page title and screen name"**.
+Lọc `screen_name` bắt đầu bằng `AD_`; đổi dimension báo cáo sang **"Page title and screen name"**.
 
 ## 1. screen_view (tên màn cố định)
 
 | Nhóm | screen_name |
 |---|---|
-| Màn của SDK | `QR_Splash`, `QR_First_NotiPermission` / `QR_NotiPermission`, `QR_First_Iap` / `QR_Iap` |
-| Language | `QR_First_Language` → `QR_First_LanguageSelect` (lần đầu); `QR_Language` → `QR_LanguageSelect` (mở từ Cài đặt) |
-| Onboarding | `QR_Intro1` … `QR_Intro4` (+ param `ads_variant`), `QR_Permission` |
-| Chính | `QR_Home`, `QR_Setting` |
+| Màn của SDK | `AD_Splash`, `AD_First_NotiPermission` / `AD_NotiPermission`, `AD_First_Iap` / `AD_Iap` |
+| Language | `AD_First_Language` → `AD_First_LanguageSelect` (lần đầu); `AD_Language` → `AD_LanguageSelect` (mở từ Cài đặt) |
+| Onboarding | `AD_Intro1` … `AD_Intro4` (+ param `ads_variant`), `AD_Permission` |
+| Chính | `AD_Home`, `AD_Setting` |
 
 - `First_` = lượt chạy đầu, trước khi user vào Home lần đầu.
-- Lần đầu mở app **cố ý bỏ màn IAP** sau Language, nên **không có** `QR_First_Iap` trong funnel; đừng đọc là drop.
+- Lần đầu mở app **cố ý bỏ màn IAP** sau Language, nên **không có** `AD_First_Iap` trong funnel; đừng đọc là drop.
 - Intro hiện theo **số lần mở app** (Remote Config `count_app_open`, `organic_number_not_guide`) và nguồn cài
   (ads / organic), không phải một lần duy nhất: cùng 1 user có thể thấy Intro nhiều lần. User organic ở lần mở 1
   vào thẳng Home, không qua Intro.
@@ -38,6 +38,6 @@ Chỉ áp dụng cho dữ liệu **sau** khi đăng ký. Funnel nên lọc `app_
 
 ## 4. Lưu ý đọc số
 
-- Auto `screen_view` của Firebase (không có tiền tố `QR_`) vẫn chạy song song, hãy lọc bỏ.
+- Auto `screen_view` của Firebase (không có tiền tố `AD_`) vẫn chạy song song, hãy lọc bỏ.
 - Quay về màn đang đứng sau quảng cáo / IAP / CH Play / Settings hệ thống **không** log lại.
-- Xem ngay bằng DebugView: `adb shell setprop debug.firebase.analytics.app com.camera.qrscanner.barcode`.
+- Xem ngay bằng DebugView: `adb shell setprop debug.firebase.analytics.app com.awakedrive.drowsedetect`.

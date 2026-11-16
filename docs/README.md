@@ -40,8 +40,8 @@ riêng tính năng của app hiện tại.
 Core đã có sẵn Splash / Language / Intro / Permission / IAP + tracking. Chỉ cần làm:
 
 1. **Đổi prefix tracking** `QR` → mã 2–3 chữ của app: các hằng trong `object Dest`
-   (`ui/nav/AppNav.kt`: `QR_Home`, `QR_Intro`, `QR_First_Language`, …) và `docs/ANALYTICS_EVENTS.md`.
-2. **Đổi package / `rootProject.name` / `applicationId`**, rồi rà `grep -rn "com.camera.qrscanner.barcode" app/src`
+   (`ui/nav/AppNav.kt`: `AD_Home`, `AD_Intro`, `AD_First_Language`, …) và `docs/ANALYTICS_EVENTS.md`.
+2. **Đổi package / `rootProject.name` / `applicationId`**, rồi rà `grep -rn "com.awakedrive.drowsedetect" app/src`
    và `encode-scripts/` (xem `integration/ENCODE_R8_STANDARD.md`).
 3. **Home** (`ui/home/HomeScreen.kt`) đang là placeholder: giữ `CheckForAppUpdateWithDialog()` và
    `CheckFullScreenIntentPermission()`, thay phần còn lại. Thêm màn mới vào `AppNav.kt` kèm

@@ -67,7 +67,7 @@ tạo placement riêng cho màn đó.
 
 3 key `_enable`/`_showRatio`/`_maxShowPerDay` đọc từ Firebase Remote Config lúc runtime, nhưng **phải
 khai giá trị default ngay trong code**, ở
-[`HostApplication.kt`](../../app/src/main/java/com/camera/qrscanner/barcode/HostApplication.kt) —
+[`HostApplication.kt`](../../app/src/main/java/com/awakedrive/drowsedetect/HostApplication.kt) —
 trong `onCreate()`, tham số truyền cho `FirebaseRemoteConfigUtil.getInstance().setAppDefaults(mapOf(...))`.
 Đây là **nguồn giá trị dùng ngay khi app chưa fetch được Remote Config lần nào** (cài mới, mất mạng...)
 — không khai ở đây thì phải chờ set đúng trên Remote Config console app mới chạy ads đúng ý, dễ quên.

@@ -37,4 +37,38 @@
     <string name="full_screen_intent_permission_grant">Cho phép</string>
     <string name="full_screen_intent_permission_later">Để sau</string>
     <string name="tab_home">Trang chủ</string>
+
+      <string name="monitor_eyes_open">Mắt: MỞ</string>
+      <string name="monitor_eyes_closed">Mắt: NHẮM</string>
+      <string name="monitor_eye_rule">Coi là nhắm khi EAR &lt; %1$s (baseline %2$s × 0.7) hoặc điểm blink &gt; 0.5</string>
+      <string name="monitor_eye_now">Hiện tại: EAR %1$s · blink %2$s</string>
+      <string name="monitor_bar_microsleep">Nhắm liên tục: %1$s s / 1.2 s → NGUY HIỂM</string>
+      <string name="monitor_bar_perclos">PERCLOS %1$d%% (cảnh báo 15%%, nguy hiểm 25%%)</string>
+      <string name="monitor_bar_yawn">Ngáp (5 phút): %1$d / 3 → CẢNH BÁO</string>
+      <string name="monitor_bar_nod">Gật đầu (1 phút): %1$d / 2 → CẢNH BÁO</string>
+      <string name="monitor_explain_title">Cơ chế đánh giá</string>
+      <string name="monitor_explain_body">1. Mắt nhắm: một khung hình được coi là nhắm khi EAR (độ mở mắt) thấp hơn 70%% mức bình thường của chính bạn (đo lúc hiệu chuẩn), hoặc điểm blink của MediaPipe &gt; 0.5. Khung hình khi quay đầu quá 35° bị bỏ qua.
+
+2. NGUY HIỂM ngay: nhắm liên tục từ 1.2 giây trở lên. Chớp mắt bình thường chỉ 0.1–0.4 giây nên không bao giờ kích hoạt.
+
+3. Mệt (PERCLOS): tỉ lệ thời gian mắt nhắm trong 60 giây gần nhất. Từ 15%% = CẢNH BÁO, từ 25%% = NGUY HIỂM (cần ít nhất 30 giây dữ liệu).
+
+4. Ngáp: há miệng rộng (jawOpen &gt; 0.6) liên tục từ 2 giây. 3 lần trong 5 phút = CẢNH BÁO.
+
+5. Gật đầu: đầu lệch quá 15° so với lúc hiệu chuẩn rồi trở lại trong 1.5 giây. 2 lần trong 1 phút = CẢNH BÁO. Cúi đầu kéo dài kèm nhắm mắt 0.5 giây = NGUY HIỂM.
+
+6. Mức báo chỉ hạ xuống sau khi hết dấu hiệu 5 giây. Không thấy mặt quá 3 giây chỉ hiện thông báo, không kêu còi.</string>
+
+      <string name="monitor_notif_starting">Đang khởi động…</string>
+      <string name="monitor_stop">Dừng</string>
+      <string name="monitor_state_normal">Đang giám sát — bình thường</string>
+      <string name="monitor_state_warning">Cảnh báo — bạn có dấu hiệu mệt</string>
+      <string name="monitor_state_danger">NGUY HIỂM — tỉnh dậy!</string>
+      <string name="monitor_state_no_face">Không thấy khuôn mặt</string>
+      <string name="monitor_start">Bắt đầu</string>
+      <string name="monitor_recalibrate">Hiệu chuẩn lại &amp; bắt đầu</string>
+      <string name="monitor_ack">Tôi đã tỉnh</string>
+      <string name="monitor_calibrating">Đang hiệu chuẩn — nhìn thẳng, mở mắt bình thường</string>
+      <string name="monitor_err_calib_face">Không thấy mặt đủ lâu khi hiệu chuẩn. Đặt điện thoại chính diện, ngang tầm mắt, cách 40–70 cm.</string>
+      <string name="monitor_err_calib_eyes">Mắt bị coi là nhắm khi hiệu chuẩn. Nhìn thẳng, mở mắt bình thường rồi thử lại.</string>
 </resources>

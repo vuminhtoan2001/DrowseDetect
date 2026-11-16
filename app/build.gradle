@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace 'com.camera.qrscanner.barcode'
+    namespace 'com.awakedrive.drowsedetect'
     compileSdk 36
 
     defaultConfig {
-        applicationId "com.camera.qrscanner.barcode"
+        applicationId "com.awakedrive.drowsedetect"
         minSdk 28
         targetSdk 36
         versionCode 1
@@ -88,6 +88,16 @@ dependencies {
     // Coil (+ gif cho hand_click.gif hint ở Language/Permission)
     implementation 'io.coil-kt:coil-compose:2.7.0'
     implementation 'io.coil-kt:coil-gif:2.7.0'
+
+    // Camera + Foreground Service (LifecycleService) + MediaPipe Face Landmarker
+    implementation 'androidx.camera:camera-core:1.4.2'
+    implementation 'androidx.camera:camera-camera2:1.4.2'
+    implementation 'androidx.camera:camera-lifecycle:1.4.2'
+    implementation 'androidx.camera:camera-view:1.4.2'
+    implementation 'androidx.lifecycle:lifecycle-service:2.9.4'
+    implementation 'com.google.mediapipe:tasks-vision:0.10.21'
+
+    testImplementation 'junit:junit:4.13.2'
 
     // Thêm dep tính năng riêng của app (camera/scan/database/...) khi build màn thật, không phải
     // phần khung sườn — xem docs/integration/PROGUARD_SDK_RECIPES.md khi SDK mới cần rule proguard.
