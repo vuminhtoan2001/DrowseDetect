@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Màu thương hiệu (port từ colors.js) -->
     <color name="theme">#013495</color>
     <color name="theme_second">#045ECD</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="black">#FF000000</color>
-
-    <!-- SDK base-application yêu cầu (HUONG_DAN_TICH_HOP §5.1): primaryColor == accentTone; text1 cố định -->
-    <color name="primaryColor">#013495</color>
-    <color name="accentTone">#013495</color>
-    <color name="text1">#00091D</color>
 </resources>

@@ -10,11 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url = uri("https://jitpack.io") }
-        maven { url = uri("https://dl.google.com/dl/android/maven2") }
     }
 }
 
 rootProject.name = "AwakeDrive"
 include(":app")
-include(":base-application")

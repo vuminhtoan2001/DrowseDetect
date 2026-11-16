@@ -28,6 +28,7 @@ import androidx.lifecycle.LifecycleService
 import com.awakedrive.drowsedetect.MainActivity
 import com.awakedrive.drowsedetect.R
 import com.awakedrive.drowsedetect.alert.AlertManager
+import com.awakedrive.drowsedetect.alert.AlertSettingsStore
 import com.awakedrive.drowsedetect.camera.FaceLandmarkerHelper
 import com.awakedrive.drowsedetect.camera.FrameAnalyzer
 import com.awakedrive.drowsedetect.detection.Baseline
@@ -111,7 +112,7 @@ class MonitorService : LifecycleService() {
         if (needCalibrate) calibrator = Calibrator(cfg) else analyzer = DrowsinessAnalyzer(cfg, saved ?: Baseline.DEFAULT)
         if (!needCalibrate) MonitorStateHolder.update { it.copy(phase = MonitorPhase.MONITORING) }
 
-        alert = AlertManager(this)
+        alert = AlertManager(this) { AlertSettingsStore.load(this) }
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager)
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "awakedrive:monitor").apply { acquire() }
 

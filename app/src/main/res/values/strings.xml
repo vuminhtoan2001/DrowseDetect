@@ -1,51 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
       <string name="app_name">Awake Driver</string>
-      <string name="intro1" formatted="false">Quick QR Scanning</string>
-      <string name="intro1Sub" formatted="false">Instantly scan QR codes wherever you are</string>
-      <string name="intro4" formatted="false">Multi-Code Scanning</string>
-      <string name="LANGUAGE_OPTIONS" formatted="false">Language Options</string>
-      <string name="perSub" formatted="false">The app requires permission to use camera, and
-            notifications</string>
-      <string name="intro2" formatted="false">Build Your Scan History</string>
-      <string name="update_isReady_btn_update" formatted="false">Update</string>
-      <string name="continue_str" formatted="false">Continue</string>
-      <string name="intro3Sub" formatted="false">Enter details and generate a personalized code with
-            ease</string>
-      <string name="scan" formatted="false">Scan</string>
-      <string name="intro3" formatted="false">Create Your QR &amp; Barcode</string>
-      <string name="intro2Sub" formatted="false">Capture, store, and organize every scanned code
-            smartly</string>
-      <string name="start" formatted="false">Start</string>
-      <string name="notiSub" formatted="false">Display alert notifications</string>
-      <string name="SETTINGS" formatted="false">Settings</string>
-      <string name="layout_share_btn_label" formatted="false">Share App</string>
-      <string name="rateApp" formatted="false">Rate App</string>
-      <string name="update_isReady_btn_late" formatted="false">Later</string>
-      <string name="OPEN" formatted="false">Open</string>
-      <string name="share_message" formatted="false">Quick and convenient QR code generator and
-            scanner app, available now on Google Play!</string>
-      <string name="noti" formatted="false">Notification</string>
-      <string name="newVersion_isReady_mss" formatted="false">Please update the app to continue
-            using
-            it!</string>
-      <string name="intro4Sub" formatted="false">Ideal for scanning several codes during data
-            collection tasks</string>
-      <string name="update_isReady_title" formatted="false">New Update Is Ready</string>
-      <string name="permission" formatted="false">Permission</string>
 
-      <!-- Màn Language custom + dialog Full-screen intent -->
-      <string name="language_title">Language</string>
-      <string name="language_screen_subtitle">Choose the language you want to use in the app</string>
-      <string name="language_done">Done</string>
-      <string name="full_screen_intent_permission_title">Allow full-screen alerts</string>
-      <string name="full_screen_intent_permission_message">Allow the app to show full-screen
-            notifications so you don\'t miss important updates.</string>
-      <string name="full_screen_intent_permission_grant">Allow</string>
-      <string name="full_screen_intent_permission_later">Not now</string>
-      <string name="tab_home">Home</string>
-
-      <!-- Giám sát buồn ngủ -->
       <string name="monitor_channel_name">Drowsiness monitoring</string>
       <string name="monitor_notif_starting">Starting…</string>
       <string name="monitor_stop">Stop</string>
@@ -63,7 +19,6 @@
       <string name="monitor_recalibrate">Recalibrate &amp; start</string>
       <string name="monitor_ack">I am awake</string>
       <string name="monitor_calibrating">Calibrating — look straight ahead, eyes open</string>
-
       <string name="monitor_eyes_open">Eyes: OPEN</string>
       <string name="monitor_eyes_closed">Eyes: CLOSED</string>
       <string name="monitor_eye_rule">Counted as closed when EAR &lt; %1$s (baseline %2$s × 0.7) or blink score &gt; 0.5</string>
@@ -84,4 +39,22 @@
 5. Head nod: head tilts more than 15° from calibration and comes back within 1.5 s. 2 nods in 1 minute = WARNING. Head held down with eyes closed for 0.5 s = DANGER.
 
 6. The level only goes down after the signs have been gone for 5 s. No face for more than 3 s only shows a notice, no alarm.</string>
+
+      <string name="settings_title">Alert sound</string>
+      <string name="settings_alarm_sound">Danger alarm sound</string>
+      <string name="settings_sound_siren">Siren (built-in)</string>
+      <string name="settings_sound_beep">Fast beeps (built-in)</string>
+      <string name="settings_sound_system">System alarm tone</string>
+      <string name="settings_pick_system">Choose tone: %1$s</string>
+      <string name="settings_default_tone">Default</string>
+      <string name="settings_volume">Alarm volume: %1$d%%</string>
+      <string name="settings_volume_hint">Also raise the phone alarm volume. Alerts use the alarm stream, so silent or media volume does not affect them.</string>
+      <string name="settings_warning_beep">Beep on warning</string>
+      <string name="settings_voice">Voice message on warning</string>
+      <string name="settings_vibrate">Vibrate</string>
+      <string name="settings_test_warning">Test warning</string>
+      <string name="settings_test_danger">Test danger alarm</string>
+      <string name="settings_test_stop">Stop test</string>
+      <string name="settings_back">Back</string>
+      <string name="settings_open">Alert settings</string>
 </resources>

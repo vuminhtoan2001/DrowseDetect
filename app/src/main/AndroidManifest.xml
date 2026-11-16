@@ -2,91 +2,42 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Quyền core dùng chung mọi app (khung sườn) -->
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <!-- Chặn READ_MEDIA_* kể cả khi thư viện (Facebook/AppsFlyer…) tự merge vào, để tránh cảnh báo
-         "Invalid use of the photo and video permissions" trên Google Play — chỉ khai lại (xoá dòng
-         này) khi app thật cần đọc ảnh/video từ máy. -->
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" tools:node="remove" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" tools:node="remove" />
-
-    <!-- Quyền tính năng riêng của app (camera/wifi/storage/...) — thêm lại khi build tính năng thật,
-         không phải phần khung sườn. -->
-
-    <!-- Giám sát buồn ngủ: camera trước chạy trong Foreground Service type=camera (Android 14+ bắt buộc
-         FOREGROUND_SERVICE_CAMERA + CAMERA đã cấp + chỉ start khi app đang hiển thị). -->
     <uses-feature android:name="android.hardware.camera.front" android:required="true" />
+
+    <!-- Camera trước chạy trong Foreground Service type=camera (Android 14+ bắt buộc
+         FOREGROUND_SERVICE_CAMERA + CAMERA đã cấp + chỉ start khi app đang hiển thị). -->
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_CAMERA" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <!-- SDK base-application yêu cầu (xem docs/integration/PLAYBOOK_TICH_HOP.md) -->
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+    <!-- App không dùng mạng: mọi xử lý nằm trên máy, không gửi ảnh đi đâu. Gỡ quyền mạng do thư viện tự merge vào. -->
+    <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />
 
     <application
-        android:name=".HostApplication"
         android:allowBackup="false"
         android:icon="@drawable/icon_app"
         android:label="@string/app_name"
         android:roundIcon="@drawable/icon_app"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AwakeDrive"
-        tools:replace="android:theme,android:allowBackup">
+        android:theme="@style/Theme.AwakeDrive">
 
-        <!-- SDK Splash là launcher → MainActivity KHÔNG khai MAIN/LAUNCHER (§4.4).
-             MainActivity = Home trả qua HostApplication.getHomeActivity(). -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.AwakeDrive" />
-
-        <!-- Màn Language custom (LanguageRouter.customActivityClass). Tên class thật, không để script encode đổi tên. -->
-        <activity
-            android:name=".ui.language.MyLanguageActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AwakeDrive" />
+            android:theme="@style/Theme.AwakeDrive">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".service.MonitorService"
             android:exported="false"
             android:foregroundServiceType="camera" />
-
-        <!-- AppCompat lưu ngôn ngữ per-app trên Android < 13 -->
-        <service
-            android:name="androidx.appcompat.app.AppLocalesMetadataHolderService"
-            android:enabled="false"
-            android:exported="false">
-            <meta-data
-                android:name="autoStoreLocales"
-                android:value="true" />
-        </service>
-
-        <!-- SDK: AdMob + Facebook meta-data (§4.3) -->
-        <meta-data
-            android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="@string/admob_app_id" />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <meta-data
-            android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
     </application>
 </manifest>

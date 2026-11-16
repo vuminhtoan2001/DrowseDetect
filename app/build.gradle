@@ -2,10 +2,6 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.plugin.compose'
-    id 'com.google.devtools.ksp'
-    id 'com.google.dagger.hilt.android'
-    id 'com.google.gms.google-services'
-    id 'com.google.firebase.crashlytics'
 }
 
 android {
@@ -18,20 +14,14 @@ android {
         targetSdk 36
         versionCode 1
         versionName "0.0.1"
-        multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
     }
 
     buildTypes {
-        debug {
-            manifestPlaceholders = [crashlyticsCollectionEnabled: "false"]
-        }
         release {
             minifyEnabled true
             shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            manifestPlaceholders = [crashlyticsCollectionEnabled: "true"]
-            firebaseCrashlytics { mappingFileUploadEnabled true }
         }
     }
 
@@ -43,17 +33,10 @@ android {
     buildFeatures {
         compose true
         buildConfig true
-        viewBinding true
-    }
-    packagingOptions {
-        exclude 'META-INF/atomicfu.kotlin_module'
     }
 }
 
 dependencies {
-    // SDK khung app (ads/splash/IAP/Firebase...) — kéo theo mọi dependency của AAR
-    api project(':base-application')
-
     // Compose
     implementation platform('androidx.compose:compose-bom:2024.12.01')
     implementation 'androidx.compose.ui:ui'
@@ -71,43 +54,14 @@ dependencies {
     implementation 'com.google.android.material:material:1.13.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.9.4'
     implementation 'androidx.lifecycle:lifecycle-runtime-compose:2.9.4'
-    implementation 'androidx.lifecycle:lifecycle-process:2.9.4'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.9.4'
+    implementation 'androidx.lifecycle:lifecycle-service:2.9.4'
 
-    // Navigation
-    implementation 'androidx.navigation:navigation-compose:2.8.5'
-
-    // Hilt
-    implementation 'com.google.dagger:hilt-android:2.57.2'
-    ksp 'com.google.dagger:hilt-compiler:2.57.2'
-    implementation 'androidx.hilt:hilt-navigation-compose:1.2.0'
-
-    // DataStore
-    implementation 'androidx.datastore:datastore-preferences:1.1.1'
-
-    // Coil (+ gif cho hand_click.gif hint ở Language/Permission)
-    implementation 'io.coil-kt:coil-compose:2.7.0'
-    implementation 'io.coil-kt:coil-gif:2.7.0'
-
-    // Camera + Foreground Service (LifecycleService) + MediaPipe Face Landmarker
+    // Camera + Foreground Service + MediaPipe Face Landmarker (xử lý hoàn toàn trên máy, không dùng mạng)
     implementation 'androidx.camera:camera-core:1.4.2'
     implementation 'androidx.camera:camera-camera2:1.4.2'
     implementation 'androidx.camera:camera-lifecycle:1.4.2'
     implementation 'androidx.camera:camera-view:1.4.2'
-    implementation 'androidx.lifecycle:lifecycle-service:2.9.4'
     implementation 'com.google.mediapipe:tasks-vision:0.10.21'
 
     testImplementation 'junit:junit:4.13.2'
-
-    // Thêm dep tính năng riêng của app (camera/scan/database/...) khi build màn thật, không phải
-    // phần khung sườn — xem docs/integration/PROGUARD_SDK_RECIPES.md khi SDK mới cần rule proguard.
-
-    // Play In-App Review (thay expo-store-review)
-    implementation 'com.google.android.play:review-ktx:2.0.2'
-
-    // Play In-App Update — check có bản cập nhật (AppUpdateDialog ở Home)
-    implementation 'com.google.android.play:app-update:2.1.0'
-
-    // Google Play Install Referrer — xác định ads/organic (thay AppLifecycleModule.isAdsCampaign RN)
-    implementation 'com.android.installreferrer:installreferrer:2.2'
 }

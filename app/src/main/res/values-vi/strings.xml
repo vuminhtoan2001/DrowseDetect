@@ -1,42 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="SETTINGS" formatted="false">Cài đặt</string>
-    <string name="notiSub" formatted="false">Hiển thị cảnh báo</string>
-    <string name="intro4Sub" formatted="false">Lý tưởng để quét nhiều mã khi thu thập dữ liệu</string>
-    <string name="perSub" formatted="false">Ứng dụng cần quyền sử dụng camera và thông báo</string>
-    <string name="update_isReady_btn_late" formatted="false">Để sau</string>
-    <string name="share_message" formatted="false">Ứng dụng tạo và quét mã QR nhanh tiện lợi, có sẵn
-        trên Goole Play tải xuống ngay!</string>
-    <string name="update_isReady_title" formatted="false">Bản cập nhật mới đã sẵn sàng</string>
-    <string name="OPEN" formatted="false">Mở</string>
-    <string name="noti" formatted="false">Thông báo</string>
-    <string name="intro3Sub" formatted="false">Nhập thông tin và tạo mã cá nhân dễ dàng</string>
-    <string name="continue_str" formatted="false">Tiếp tục</string>
-    <string name="intro4" formatted="false">Quét nhiều mã cùng lúc</string>
-    <string name="intro1" formatted="false">Quét QR nhanh</string>
-    <string name="layout_share_btn_label" formatted="false">Chia sẻ ứng dụng</string>
-    <string name="rateApp" formatted="false">Đánh giá</string>
-    <string name="newVersion_isReady_mss" formatted="false">Xin vui lòng cập nhật ứng dụng để tiếp
-        tục sử dụng!</string>
-    <string name="intro1Sub" formatted="false">Quét mã QR tức thì ở bất cứ đâu</string>
-    <string name="LANGUAGE_OPTIONS" formatted="false">Tùy chọn ngôn ngữ</string>
-    <string name="permission" formatted="false">Quyền</string>
-    <string name="intro2Sub" formatted="false">Lưu, tổ chức mọi mã đã quét thông minh</string>
-    <string name="intro2" formatted="false">Xây dựng lịch sử quét</string>
-    <string name="intro3" formatted="false">Tạo QR &amp; mã vạch của bạn</string>
-    <string name="start" formatted="false">Bắt đầu</string>
-    <string name="scan" formatted="false">Quét</string>
-    <string name="update_isReady_btn_update" formatted="false">Cập nhật</string>
-
-    <!-- Màn Language custom + dialog Full-screen intent -->
-    <string name="language_title">Ngôn ngữ</string>
-    <string name="language_screen_subtitle">Chọn ngôn ngữ bạn muốn dùng trong ứng dụng</string>
-    <string name="language_done">Xong</string>
-    <string name="full_screen_intent_permission_title">Cho phép thông báo toàn màn hình</string>
-    <string name="full_screen_intent_permission_message">Cho phép ứng dụng hiển thị thông báo toàn màn hình để bạn không bỏ lỡ thông tin quan trọng.</string>
-    <string name="full_screen_intent_permission_grant">Cho phép</string>
-    <string name="full_screen_intent_permission_later">Để sau</string>
-    <string name="tab_home">Trang chủ</string>
+      <string name="app_name">Awake Driver</string>
 
       <string name="monitor_eyes_open">Mắt: MỞ</string>
       <string name="monitor_eyes_closed">Mắt: NHẮM</string>
@@ -58,7 +22,6 @@
 5. Gật đầu: đầu lệch quá 15° so với lúc hiệu chuẩn rồi trở lại trong 1.5 giây. 2 lần trong 1 phút = CẢNH BÁO. Cúi đầu kéo dài kèm nhắm mắt 0.5 giây = NGUY HIỂM.
 
 6. Mức báo chỉ hạ xuống sau khi hết dấu hiệu 5 giây. Không thấy mặt quá 3 giây chỉ hiện thông báo, không kêu còi.</string>
-
       <string name="monitor_notif_starting">Đang khởi động…</string>
       <string name="monitor_stop">Dừng</string>
       <string name="monitor_state_normal">Đang giám sát — bình thường</string>
@@ -71,4 +34,22 @@
       <string name="monitor_calibrating">Đang hiệu chuẩn — nhìn thẳng, mở mắt bình thường</string>
       <string name="monitor_err_calib_face">Không thấy mặt đủ lâu khi hiệu chuẩn. Đặt điện thoại chính diện, ngang tầm mắt, cách 40–70 cm.</string>
       <string name="monitor_err_calib_eyes">Mắt bị coi là nhắm khi hiệu chuẩn. Nhìn thẳng, mở mắt bình thường rồi thử lại.</string>
+
+      <string name="settings_title">Âm thanh cảnh báo</string>
+      <string name="settings_alarm_sound">Âm báo nguy hiểm</string>
+      <string name="settings_sound_siren">Còi hú (có sẵn)</string>
+      <string name="settings_sound_beep">Bíp dồn dập (có sẵn)</string>
+      <string name="settings_sound_system">Nhạc chuông báo thức của máy</string>
+      <string name="settings_pick_system">Chọn nhạc: %1$s</string>
+      <string name="settings_default_tone">Mặc định</string>
+      <string name="settings_volume">Âm lượng báo động: %1$d%%</string>
+      <string name="settings_volume_hint">Nên tăng cả âm lượng báo thức của điện thoại. Cảnh báo phát qua kênh báo thức nên không bị ảnh hưởng bởi chế độ im lặng hay âm lượng nhạc.</string>
+      <string name="settings_warning_beep">Bíp khi cảnh báo</string>
+      <string name="settings_voice">Đọc lời nhắc khi cảnh báo</string>
+      <string name="settings_vibrate">Rung</string>
+      <string name="settings_test_warning">Nghe thử cảnh báo</string>
+      <string name="settings_test_danger">Nghe thử còi nguy hiểm</string>
+      <string name="settings_test_stop">Dừng nghe thử</string>
+      <string name="settings_back">Quay lại</string>
+      <string name="settings_open">Cài đặt cảnh báo</string>
 </resources>

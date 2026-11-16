@@ -6,6 +6,10 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.ui.draw.clip
@@ -52,34 +56,25 @@ import com.awakedrive.drowsedetect.detection.DrowsinessState
 import com.awakedrive.drowsedetect.service.MonitorPhase
 import com.awakedrive.drowsedetect.service.MonitorService
 import com.awakedrive.drowsedetect.service.MonitorStateHolder
-import com.awakedrive.drowsedetect.ui.common.CheckForAppUpdateWithDialog
-import com.awakedrive.drowsedetect.ui.common.CheckFullScreenIntentPermission
 
-/**
- * Home tạm thời = bảng điều khiển core giám sát buồn ngủ (KHÔNG có preview camera, chỉ số liệu debug).
- * Giữ nguyên [CheckForAppUpdateWithDialog] — CHỈ gọi 1 lần ở đây (màn gốc), không copy sang màn khác.
- */
+/** Màn chính: bảng điều khiển giám sát buồn ngủ (camera preview + chỉ số trực tiếp + giải thích cơ chế). */
 @Composable
-fun HomeScreen() {
-    CheckForAppUpdateWithDialog()
-    // Mời user Android 14+ bật quyền full-screen intent — CHỈ ở Home, không đặt ở NavHost chung.
-    CheckFullScreenIntentPermission()
-
+fun HomeScreen(onOpenSettings: () -> Unit) {
     val context = LocalContext.current
     val ui by MonitorStateHolder.state.collectAsStateWithLifecycle()
     val running = ui.phase != MonitorPhase.IDLE
 
     // Android 14+: phải có CAMERA TRƯỚC khi start FGS type camera, và start khi app đang hiển thị (nút bấm).
     val pendingRecalibrate = remember { booleanArrayOf(false) }
-    val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
-        if (granted) MonitorService.start(context, pendingRecalibrate[0])
+    val permissionLauncher = rememberLauncherForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { granted ->
+        if (granted[Manifest.permission.CAMERA] == true) MonitorService.start(context, pendingRecalibrate[0])
     }
     fun startMonitoring(recalibrate: Boolean) {
         if (ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             MonitorService.start(context, recalibrate)
         } else {
             pendingRecalibrate[0] = recalibrate
-            permissionLauncher.launch(Manifest.permission.CAMERA)
+            permissionLauncher.launch(arrayOf(Manifest.permission.CAMERA, Manifest.permission.POST_NOTIFICATIONS))
         }
     }
 
@@ -98,6 +93,15 @@ fun HomeScreen() {
             verticalArrangement = Arrangement.spacedBy(12.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End) {
+                IconButton(onClick = onOpenSettings) {
+                    Icon(
+                        Icons.Filled.Settings,
+                        contentDescription = stringResource(R.string.settings_open),
+                        tint = if (state == null) MaterialTheme.colorScheme.onBackground else Color.White,
+                    )
+                }
+            }
             Text(
                 when {
                     ui.phase == MonitorPhase.CALIBRATING -> stringResource(R.string.monitor_calibrating)
