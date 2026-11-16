@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.media.RingtoneManager
 import android.net.Uri
+import android.provider.Settings
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -23,11 +24,12 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
+import androidx.compose.material.icons.filled.VolumeDown
+import androidx.compose.material.icons.filled.VolumeUp
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
-import androidx.compose.material3.Slider
 import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -36,6 +38,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.compose.LifecycleResumeEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -57,8 +60,12 @@ import com.awakedrive.drowsedetect.ui.components.GlassCard
 import com.awakedrive.drowsedetect.ui.components.GradientButton
 import com.awakedrive.drowsedetect.ui.components.OutlineButton
 import com.awakedrive.drowsedetect.ui.components.ScreenBackground
+import com.awakedrive.drowsedetect.ui.components.StatusPill
+import com.awakedrive.drowsedetect.ui.components.StyledSlider
 import com.awakedrive.drowsedetect.ui.theme.BrandBlue
 import com.awakedrive.drowsedetect.ui.theme.Navy600
+import com.awakedrive.drowsedetect.ui.theme.StateAmber
+import com.awakedrive.drowsedetect.ui.theme.StateGreen
 import com.awakedrive.drowsedetect.ui.theme.StateRed
 import com.awakedrive.drowsedetect.ui.theme.TextSecondary
 
@@ -89,6 +96,13 @@ fun SettingsScreen(onBack: () -> Unit) {
             val uri = s.systemToneUri?.let(Uri::parse) ?: RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM)
             RingtoneManager.getRingtone(context, uri)?.getTitle(context)
         }.getOrNull() ?: context.getString(R.string.settings_default_tone)
+    }
+
+    var canDraw by remember { mutableStateOf(Settings.canDrawOverlays(context)) }
+    // Người dùng cấp quyền ở màn hệ thống rồi quay lại: cập nhật trạng thái
+    LifecycleResumeEffect(Unit) {
+        canDraw = Settings.canDrawOverlays(context)
+        onPauseOrDispose { }
     }
 
     ScreenBackground {
@@ -148,7 +162,16 @@ fun SettingsScreen(onBack: () -> Unit) {
                         style = MaterialTheme.typography.titleMedium,
                         modifier = Modifier.padding(top = 16.dp),
                     )
-                    Slider(value = s.volume, onValueChange = { update(s.copy(volume = it)) }, valueRange = 0.2f..1f)
+                    Row(Modifier.fillMaxWidth().padding(top = 4.dp), verticalAlignment = Alignment.CenterVertically) {
+                        Icon(Icons.Filled.VolumeDown, contentDescription = null, tint = TextSecondary)
+                        StyledSlider(
+                            value = s.volume,
+                            onValueChange = { update(s.copy(volume = it)) },
+                            valueRange = 0.2f..1f,
+                            modifier = Modifier.weight(1f).padding(horizontal = 10.dp),
+                        )
+                        Icon(Icons.Filled.VolumeUp, contentDescription = null, tint = Color.White)
+                    }
                     Text(stringResource(R.string.settings_volume_hint), style = MaterialTheme.typography.bodySmall, color = TextSecondary)
                 }
 
@@ -166,6 +189,28 @@ fun SettingsScreen(onBack: () -> Unit) {
                     colors = listOf(Color(0xFFFF5A5F), Color(0xFFD7263D)),
                 )
                 OutlineButton(stringResource(R.string.settings_test_stop), { alert.stopTest() }, Modifier.fillMaxWidth())
+
+                // ---- Quyền hiển thị cảnh báo trên ứng dụng khác ----
+                GlassCard(Modifier.fillMaxWidth()) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text(stringResource(R.string.overlay_title), style = MaterialTheme.typography.titleMedium, modifier = Modifier.weight(1f))
+                        StatusPill(
+                            stringResource(if (canDraw) R.string.overlay_on else R.string.overlay_off),
+                            if (canDraw) StateGreen else StateAmber,
+                        )
+                    }
+                    Text(
+                        stringResource(R.string.overlay_desc),
+                        style = MaterialTheme.typography.bodySmall,
+                        color = TextSecondary,
+                        modifier = Modifier.padding(top = 4.dp, bottom = 12.dp),
+                    )
+                    OutlineButton(
+                        stringResource(if (canDraw) R.string.overlay_manage else R.string.overlay_grant),
+                        onClick = { openOverlaySettings(context) },
+                        modifier = Modifier.fillMaxWidth(),
+                    )
+                }
 
                 // ---- Hiệu chuẩn ----
                 GlassCard(Modifier.fillMaxWidth()) {
@@ -258,4 +303,12 @@ private fun SwitchRow(label: Int, checked: Boolean, onChange: (Boolean) -> Unit)
         Text(stringResource(label), style = MaterialTheme.typography.bodyLarge, modifier = Modifier.weight(1f))
         Switch(checked = checked, onCheckedChange = onChange)
     }
+}
+
+/** Mở màn hệ thống cấp quyền "Hiển thị trên ứng dụng khác" cho app này. */
+internal fun openOverlaySettings(context: android.content.Context) {
+    context.startActivity(
+        Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + context.packageName))
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK),
+    )
 }

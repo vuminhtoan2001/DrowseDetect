@@ -111,4 +111,15 @@
       <string name="settings_calib_hint">Dùng khi đổi vị trí gắn máy, đổi kính hoặc đổi người lái.</string>
       <string name="settings_about">Giới thiệu</string>
       <string name="settings_about_text">Phiên bản %1$s. Mọi nhận diện chạy ngay trên máy và ứng dụng không có quyền truy cập mạng.</string>
+
+      <string name="overlay_title">Hiện cảnh báo trên ứng dụng khác</string>
+      <string name="overlay_desc">Giúp màn cảnh báo nguy hiểm mở toàn màn hình ngay lập tức, kể cả khi bạn đang dùng bản đồ hay nghe nhạc.</string>
+      <string name="overlay_on">Đã bật</string>
+      <string name="overlay_off">Chưa bật</string>
+      <string name="overlay_grant">Cấp quyền trong cài đặt hệ thống</string>
+      <string name="overlay_manage">Quản lý trong cài đặt hệ thống</string>
+      <string name="overlay_dialog_title">Hiện cảnh báo trên ứng dụng khác?</string>
+      <string name="overlay_dialog_body">Khi bạn chuyển sang bản đồ hoặc ứng dụng khác, màn cảnh báo nguy hiểm vẫn có thể mở toàn màn hình ngay để bạn không bỏ lỡ. Bạn có thể đổi lại trong Cài đặt.</string>
+      <string name="overlay_dialog_allow">Cho phép</string>
+      <string name="overlay_dialog_later">Để sau</string>
 </resources>

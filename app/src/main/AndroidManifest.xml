@@ -12,6 +12,8 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Hiện màn cảnh báo NGUY HIỂM ngay trên app khác (người dùng cấp trong Cài đặt hệ thống) -->
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <!-- App không dùng mạng: mọi xử lý nằm trên máy, không gửi ảnh đi đâu. Gỡ quyền mạng do thư viện tự merge vào. -->
     <uses-permission android:name="android.permission.INTERNET" tools:node="remove" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" tools:node="remove" />

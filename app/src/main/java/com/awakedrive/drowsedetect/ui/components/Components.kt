@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -18,7 +19,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Slider
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.material3.MaterialTheme
@@ -30,6 +33,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
@@ -211,4 +215,39 @@ fun RecBadge(text: String, modifier: Modifier = Modifier) {
         Box(Modifier.size(6.dp))
         Text(text, style = MaterialTheme.typography.bodySmall, color = Color.White)
     }
+}
+
+/** Slider bo tròn: thanh gradient xanh, núm tròn trắng viền cyan có bóng. */
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun StyledSlider(
+    value: Float,
+    onValueChange: (Float) -> Unit,
+    valueRange: ClosedFloatingPointRange<Float>,
+    modifier: Modifier = Modifier,
+) {
+    Slider(
+        value = value,
+        onValueChange = onValueChange,
+        valueRange = valueRange,
+        modifier = modifier.height(40.dp),
+        thumb = {
+            Box(
+                Modifier.size(28.dp)
+                    .shadow(6.dp, CircleShape)
+                    .background(Color.White, CircleShape)
+                    .border(5.dp, BrandCyan, CircleShape),
+            )
+        },
+        track = { state ->
+            val span = state.valueRange.endInclusive - state.valueRange.start
+            val frac = ((state.value - state.valueRange.start) / span).coerceIn(0f, 1f)
+            Box(Modifier.fillMaxWidth().height(10.dp).clip(RoundedCornerShape(5.dp)).background(Navy600)) {
+                Box(
+                    Modifier.fillMaxWidth(frac).fillMaxHeight().clip(RoundedCornerShape(5.dp))
+                        .background(Brush.horizontalGradient(listOf(BrandBlue, BrandCyan))),
+                )
+            }
+        },
+    )
 }

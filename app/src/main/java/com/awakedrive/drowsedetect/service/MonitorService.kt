@@ -9,7 +9,10 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.pm.ServiceInfo
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
+import android.provider.Settings
 import android.os.PowerManager
 import android.os.SystemClock
 import android.util.Log
@@ -29,6 +32,8 @@ import com.awakedrive.drowsedetect.MainActivity
 import com.awakedrive.drowsedetect.R
 import com.awakedrive.drowsedetect.alert.AlertManager
 import com.awakedrive.drowsedetect.alert.AlertSettingsStore
+import com.awakedrive.drowsedetect.alert.DangerOverlay
+import com.awakedrive.drowsedetect.ui.alert.openRestStops
 import com.awakedrive.drowsedetect.camera.FaceLandmarkerHelper
 import com.awakedrive.drowsedetect.camera.FrameAnalyzer
 import com.awakedrive.drowsedetect.detection.Baseline
@@ -62,6 +67,9 @@ class MonitorService : LifecycleService() {
     private var cameraProvider: ProcessCameraProvider? = null
     private var wakeLock: PowerManager.WakeLock? = null
     private var started = false
+    private val mainHandler = Handler(Looper.getMainLooper())
+    private var overlay: DangerOverlay? = null
+    @Volatile private var dangerAcked = false
 
     // Chỉ truy cập trên thread kết quả của MediaPipe sau khi bind camera.
     @Volatile private var calibrator: Calibrator? = null
@@ -76,7 +84,7 @@ class MonitorService : LifecycleService() {
         super.onStartCommand(intent, flags, startId)
         when (intent?.action) {
             ACTION_START -> start(intent.getBooleanExtra(EXTRA_RECALIBRATE, false))
-            ACTION_ACK -> alert?.acknowledge()
+            ACTION_ACK -> acknowledgeDanger()
             ACTION_STOP -> stopSelf()
             else -> stopSelf()
         }
@@ -117,6 +125,7 @@ class MonitorService : LifecycleService() {
         if (!needCalibrate) beginMonitoring()
 
         alert = AlertManager(this) { AlertSettingsStore.load(this) }
+        overlay = DangerOverlay(this)
         wakeLock = (getSystemService(Context.POWER_SERVICE) as PowerManager)
             .newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "awakedrive:monitor").apply { acquire() }
 
@@ -216,8 +225,9 @@ class MonitorService : LifecycleService() {
         val res = a.process(f)
         alert?.onState(res.state)
         trackTrip(res, f.timestampMs)
+        updateOverlay(res)
         MonitorStateHolder.update {
-            it.copy(result = res, features = f, fps = fps, inferMs = inferMs, warningCount = warnings, dangerCount = dangers)
+            it.copy(result = res, features = f, fps = fps, inferMs = inferMs, warningCount = warnings, dangerCount = dangers, dangerAcked = dangerAcked)
         }
         if (res.state != lastNotifState) {
             lastNotifState = res.state
@@ -233,6 +243,48 @@ class MonitorService : LifecycleService() {
     private var prevState = DrowsinessState.NORMAL
     private var lastSampleTs = 0L
     private val fatigueSamples = ArrayList<Float>()
+
+    private fun acknowledgeDanger() {
+        dangerAcked = true
+        alert?.acknowledge()
+        MonitorStateHolder.update { it.copy(dangerAcked = true) }
+        mainHandler.post { overlay?.hide() }
+    }
+
+    /**
+     * Màn cảnh báo toàn màn hiện NGAY khi NGUY HIỂM nếu app đang ở nền và đã cấp quyền "hiển thị trên ứng dụng
+     * khác"; tự đóng khi state rời DANGER (người dùng tỉnh lại) hoặc khi bấm "Tôi đã tỉnh". Khi app đang mở thì
+     * màn trong app đảm nhiệm, overlay không hiện (và bị gỡ nếu đang hiện lúc user quay lại app).
+     */
+    private fun updateOverlay(res: DrowsinessResult) {
+        if (res.state != DrowsinessState.DANGER) dangerAcked = false
+        val should = res.state == DrowsinessState.DANGER && !dangerAcked &&
+            !AppForeground.visible && Settings.canDrawOverlays(this)
+        mainHandler.post {
+            val o = overlay ?: return@post
+            if (should && !o.isShowing) {
+                wakeScreen()
+                o.show(
+                    res.reason,
+                    onAwake = { acknowledgeDanger() },
+                    onFindRest = {
+                        acknowledgeDanger()
+                        openRestStops(this, getString(R.string.rest_query))
+                    },
+                )
+            } else if (!should && o.isShowing) {
+                o.hide()
+            }
+        }
+    }
+
+    @Suppress("DEPRECATION")
+    private fun wakeScreen() {
+        val pm = getSystemService(Context.POWER_SERVICE) as PowerManager
+        pm.newWakeLock(
+            PowerManager.SCREEN_BRIGHT_WAKE_LOCK or PowerManager.ACQUIRE_CAUSES_WAKEUP, "awakedrive:alert",
+        ).acquire(5_000L)
+    }
 
     private fun beginMonitoring() {
         synchronized(tripLock) { tripStartMs = SystemClock.elapsedRealtime() }
@@ -268,6 +320,8 @@ class MonitorService : LifecycleService() {
     }
 
     override fun onDestroy() {
+        mainHandler.removeCallbacksAndMessages(null)
+        overlay?.hide()
         MonitorStateHolder.preview.value = null
         cameraProvider?.unbindAll()
         helper?.close()

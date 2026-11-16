@@ -23,6 +23,8 @@ data class MonitorUiState(
     val monitoringStartMs: Long = 0L,
     val warningCount: Int = 0,
     val dangerCount: Int = 0,
+    /** Người dùng đã bấm "Tôi đã tỉnh" cho đợt NGUY HIỂM hiện tại (màn cảnh báo ẩn, còi tắt). */
+    val dangerAcked: Boolean = false,
     /** Lỗi/ghi chú gần nhất (calibration thất bại, camera bị chiếm, không được phép chạy nền...). */
     val message: String? = null,
 )

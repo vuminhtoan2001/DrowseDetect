@@ -66,6 +66,9 @@ import com.awakedrive.drowsedetect.detection.fatigueLevel
 import com.awakedrive.drowsedetect.detection.forSensitivity
 import com.awakedrive.drowsedetect.service.MonitorService
 import com.awakedrive.drowsedetect.service.MonitorUiState
+import com.awakedrive.drowsedetect.ui.alert.DangerAlertScreen
+import com.awakedrive.drowsedetect.ui.alert.openRestStops
+import com.awakedrive.drowsedetect.ui.alert.reasonText
 import com.awakedrive.drowsedetect.ui.components.CameraPreview
 import com.awakedrive.drowsedetect.ui.components.GlassCard
 import com.awakedrive.drowsedetect.ui.components.GradientButton
@@ -96,8 +99,6 @@ internal fun MonitorContent(ui: MonitorUiState, onOpenSettings: () -> Unit) {
     val elapsed = if (ui.monitoringStartMs > 0) now - ui.monitoringStartMs else 0L
 
     var showEndConfirm by remember { mutableStateOf(false) }
-    var acked by remember { mutableStateOf(false) }
-    LaunchedEffect(state) { if (state != DrowsinessState.DANGER) acked = false }
 
     val color = stateColor(state)
     Box(Modifier.fillMaxSize()) {
@@ -157,12 +158,13 @@ internal fun MonitorContent(ui: MonitorUiState, onOpenSettings: () -> Unit) {
             )
         }
 
-        if (state == DrowsinessState.DANGER && !acked) {
-            AlertOverlay(
+        // Tự đóng khi state rời DANGER (người dùng tỉnh lại) hoặc khi đã bấm "Tôi đã tỉnh" (ui.dangerAcked)
+        if (state == DrowsinessState.DANGER && !ui.dangerAcked) {
+            DangerAlertScreen(
                 reason = res?.reason,
-                onAwake = { MonitorService.acknowledge(context); acked = true },
+                onAwake = { MonitorService.acknowledge(context) },
                 onFindRest = {
-                    MonitorService.acknowledge(context); acked = true
+                    MonitorService.acknowledge(context)
                     openRestStops(context, context.getString(R.string.rest_query))
                 },
             )
@@ -222,14 +224,6 @@ private fun StatusCard(state: DrowsinessState, reason: AlertReason?, color: Colo
     }
 }
 
-internal fun reasonText(reason: AlertReason?): Int? = when (reason) {
-    AlertReason.MICROSLEEP -> R.string.alert_reason_microsleep
-    AlertReason.PERCLOS -> R.string.alert_reason_perclos
-    AlertReason.YAWN -> R.string.alert_reason_yawn
-    AlertReason.HEAD_NOD -> R.string.alert_reason_nod
-    null -> null
-}
-
 @Composable
 private fun FatigueBar(level: Float) {
     val color = when {
@@ -242,51 +236,5 @@ private fun FatigueBar(level: Float) {
             Modifier.fillMaxWidth(level.coerceIn(0.03f, 1f)).height(12.dp).clip(RoundedCornerShape(6.dp))
                 .background(Brush.horizontalGradient(listOf(color.copy(alpha = 0.7f), color))),
         )
-    }
-}
-
-/** Toàn màn đỏ nhấp nháy khi NGUY HIỂM, kèm 2 hành động rõ ràng. */
-@Composable
-private fun AlertOverlay(reason: AlertReason?, onAwake: () -> Unit, onFindRest: () -> Unit) {
-    val pulse by rememberInfiniteTransition(label = "pulse").animateFloat(
-        initialValue = 0.35f, targetValue = 0.85f,
-        animationSpec = infiniteRepeatable(tween(600), RepeatMode.Reverse), label = "alpha",
-    )
-    Box(Modifier.fillMaxSize().background(Navy900)) {
-        Box(Modifier.fillMaxSize().background(Brush.verticalGradient(listOf(StateRed.copy(alpha = pulse), Color(0xFF1A0008)))))
-        Column(
-            Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding().padding(24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Icon(Icons.Filled.Warning, contentDescription = null, tint = Color.White, modifier = Modifier.size(120.dp))
-            Spacer(Modifier.height(16.dp))
-            Text(stringResource(R.string.alert_title), style = MaterialTheme.typography.headlineLarge, textAlign = TextAlign.Center)
-            reasonText(reason)?.let {
-                Text(stringResource(it), style = MaterialTheme.typography.bodyLarge, textAlign = TextAlign.Center, modifier = Modifier.padding(top = 8.dp))
-            }
-            Text(
-                stringResource(R.string.alert_sub),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFFFFD6DA),
-                textAlign = TextAlign.Center,
-                modifier = Modifier.padding(top = 8.dp, bottom = 40.dp),
-            )
-            GradientButton(
-                stringResource(R.string.alert_find_rest), onFindRest,
-                modifier = Modifier.fillMaxWidth(), icon = Icons.Filled.Place,
-                colors = listOf(Color(0xFFFF5A5F), Color(0xFFD7263D)),
-            )
-            Spacer(Modifier.height(14.dp))
-            OutlineButton(stringResource(R.string.monitor_ack), onAwake, Modifier.fillMaxWidth())
-        }
-    }
-}
-
-private fun openRestStops(context: Context, query: String) {
-    try {
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(query))))
-    } catch (_: ActivityNotFoundException) {
-        // máy không có app bản đồ: bỏ qua, người dùng vẫn tắt được cảnh báo bằng nút "Tôi đã tỉnh"
     }
 }

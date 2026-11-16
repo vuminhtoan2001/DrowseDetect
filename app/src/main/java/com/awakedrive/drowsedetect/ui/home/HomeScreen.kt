@@ -3,6 +3,7 @@ package com.awakedrive.drowsedetect.ui.home
 import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
+import android.provider.Settings
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material3.AlertDialog
@@ -27,6 +28,7 @@ import com.awakedrive.drowsedetect.service.MonitorPhase
 import com.awakedrive.drowsedetect.service.MonitorService
 import com.awakedrive.drowsedetect.service.MonitorStateHolder
 import com.awakedrive.drowsedetect.ui.components.ScreenBackground
+import com.awakedrive.drowsedetect.ui.settings.openOverlaySettings
 import com.awakedrive.drowsedetect.ui.theme.BrandBlue
 import com.awakedrive.drowsedetect.ui.theme.StateAmber
 import com.awakedrive.drowsedetect.ui.theme.StateGreen
@@ -76,6 +78,30 @@ fun HomeScreen(onOpenSettings: () -> Unit) {
         )
     }
 
+    // Xin quyền vẽ lên app khác 1 lần (trước lần Bắt đầu đầu tiên) để cảnh báo hiện ngay cả khi đang dùng app khác
+    var showOverlayDialog by remember { mutableStateOf(false) }
+    if (showOverlayDialog) {
+        AlertDialog(
+            onDismissRequest = {},
+            title = { Text(stringResource(R.string.overlay_dialog_title)) },
+            text = { Text(stringResource(R.string.overlay_dialog_body)) },
+            confirmButton = {
+                TextButton(onClick = {
+                    AppPrefs.markOverlayAsked(context)
+                    showOverlayDialog = false
+                    openOverlaySettings(context)
+                }) { Text(stringResource(R.string.overlay_dialog_allow)) }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    AppPrefs.markOverlayAsked(context)
+                    showOverlayDialog = false
+                    startMonitoring(false)
+                }) { Text(stringResource(R.string.overlay_dialog_later)) }
+            },
+        )
+    }
+
     val tint = if (ui.phase == MonitorPhase.MONITORING) {
         when (ui.result?.state) {
             DrowsinessState.NORMAL -> StateGreen
@@ -93,7 +119,10 @@ fun HomeScreen(onOpenSettings: () -> Unit) {
             !running -> IdleContent(
                 message = ui.message,
                 hasBaseline = BaselineStore.load(context) != null,
-                onStart = { startMonitoring(false) },
+                onStart = {
+                    if (!Settings.canDrawOverlays(context) && !AppPrefs.overlayAsked(context)) showOverlayDialog = true
+                    else startMonitoring(false)
+                },
                 onOpenSettings = onOpenSettings,
             )
             ui.phase == MonitorPhase.MONITORING -> MonitorContent(ui, onOpenSettings)
@@ -107,6 +136,8 @@ private object AppPrefs {
     private const val KEY = "disclaimer_ok"
 
     fun disclaimerAccepted(c: Context) = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean(KEY, false)
+    fun overlayAsked(c: Context) = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getBoolean("overlay_asked", false)
+    fun markOverlayAsked(c: Context) = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putBoolean("overlay_asked", true).apply()
     fun acceptDisclaimer(c: Context) = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putBoolean(KEY, true).apply()
 }
 

@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
+import com.awakedrive.drowsedetect.service.AppForeground
 import com.awakedrive.drowsedetect.ui.home.HomeScreen
 import com.awakedrive.drowsedetect.ui.settings.SettingsScreen
 import com.awakedrive.drowsedetect.ui.theme.AwakeDriveTheme
@@ -34,5 +35,15 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        AppForeground.visible = true
+    }
+
+    override fun onStop() {
+        AppForeground.visible = false
+        super.onStop()
     }
 }
