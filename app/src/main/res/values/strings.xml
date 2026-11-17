@@ -74,7 +74,7 @@
       <string name="fatigue_low">Low</string>
       <string name="fatigue_mid">Medium</string>
       <string name="fatigue_high">High</string>
-      <string name="stat_time">Driving time</string>
+      <string name="stat_time">Time</string>
       <string name="stat_yawn">Yawns</string>
       <string name="stat_nod">Nods</string>
       <string name="eyes_open">Eyes open</string>
