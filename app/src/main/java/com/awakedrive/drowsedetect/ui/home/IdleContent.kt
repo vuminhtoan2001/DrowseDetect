@@ -1,12 +1,12 @@
 package com.awakedrive.drowsedetect.ui.home
 
-import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.FastOutSlowInEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.Canvas
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -22,10 +22,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
+
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Shield
+
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,13 +33,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
+
+
+
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.graphics.drawscope.rotate
+
+
+
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -118,53 +119,28 @@ internal fun IdleContent(
     }
 }
 
-/** Vòng sáng neon có cung sáng chạy chậm quanh khiên bảo vệ có dấu tích. */
+/** Ảnh khiên + vòng neon (image_check) có hiệu ứng "thở": phóng nhẹ và sáng dần rồi dịu lại. */
 @Composable
 private fun ShieldRing() {
-    val angle by rememberInfiniteTransition(label = "ring").animateFloat(
-        initialValue = 0f, targetValue = 360f,
-        animationSpec = infiniteRepeat(),
-        label = "angle",
+    val t = rememberInfiniteTransition(label = "breath")
+    val scale by t.animateFloat(
+        initialValue = 1f, targetValue = 1.04f,
+        animationSpec = infiniteRepeatable(tween(2200, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "scale",
     )
-    Box(Modifier.size(260.dp), contentAlignment = Alignment.Center) {
-        Canvas(Modifier.fillMaxSize()) {
-            val c = center
-            val r = 100.dp.toPx()
-            val topLeft = Offset(c.x - r, c.y - r)
-            val box = Size(r * 2, r * 2)
-
-            // vòng mờ lan ra ngoài
-            drawCircle(BrandBlue.copy(alpha = 0.10f), radius = r + 18.dp.toPx(), style = Stroke(1.5.dp.toPx()))
-            drawCircle(BrandBlue.copy(alpha = 0.06f), radius = r + 32.dp.toPx(), style = Stroke(1.5.dp.toPx()))
-            // quầng sáng: nhiều nét chồng, càng ngoài càng mờ
-            for (i in 5 downTo 1) {
-                drawCircle(BrandCyan.copy(alpha = 0.045f * (6 - i)), radius = r, style = Stroke((6 + i * 7).dp.toPx()))
-            }
-            // nền trong của vòng
-            drawCircle(
-                Brush.radialGradient(listOf(Color(0xFF0B2A66), Color(0xFF040C24)), center = c, radius = r),
-                radius = r - 3.dp.toPx(),
-            )
-            // vòng chính
-            drawCircle(
-                Brush.sweepGradient(listOf(BrandBlue, BrandCyan, BrandBlue), center = c),
-                radius = r,
-                style = Stroke(6.dp.toPx()),
-            )
-            // cung sáng chạy quanh
-            rotate(angle, pivot = c) {
-                drawArc(
-                    Color.White.copy(alpha = 0.95f), startAngle = -100f, sweepAngle = 60f, useCenter = false,
-                    topLeft = topLeft, size = box, style = Stroke(8.dp.toPx(), cap = StrokeCap.Round),
-                )
-            }
-        }
-        // khiên + dấu tích
-        Box(contentAlignment = Alignment.Center) {
-            Icon(Icons.Filled.Shield, contentDescription = null, tint = Color(0xFF2F8CFF), modifier = Modifier.size(104.dp))
-            Icon(Icons.Filled.Check, contentDescription = null, tint = Color.White, modifier = Modifier.size(52.dp))
-        }
-    }
+    val alpha by t.animateFloat(
+        initialValue = 0.88f, targetValue = 1f,
+        animationSpec = infiniteRepeatable(tween(2200, easing = FastOutSlowInEasing), RepeatMode.Reverse),
+        label = "alpha",
+    )
+    Image(
+        painter = painterResource(R.drawable.image_check),
+        contentDescription = null,
+        contentScale = ContentScale.Fit,
+        modifier = Modifier.size(270.dp).graphicsLayer {
+            scaleX = scale
+            scaleY = scale
+            this.alpha = alpha
+        },
+    )
 }
-
-private fun infiniteRepeat() = infiniteRepeatable<Float>(tween(7000, easing = LinearEasing), RepeatMode.Restart)
