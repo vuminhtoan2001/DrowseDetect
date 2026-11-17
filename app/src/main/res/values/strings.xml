@@ -79,9 +79,9 @@
       <string name="stat_nod">Nods</string>
       <string name="eyes_open">Eyes open</string>
       <string name="eyes_closed">Eyes closed</string>
-      <string name="mon_end">End trip</string>
-      <string name="end_confirm_title">End this trip?</string>
-      <string name="end_confirm_yes">End trip</string>
+      <string name="mon_end">Stop monitoring</string>
+      <string name="end_confirm_title">Stop monitoring?</string>
+      <string name="end_confirm_yes">Stop</string>
       <string name="end_confirm_no">Keep going</string>
       <string name="alert_title">Drowsiness detected!</string>
       <string name="alert_sub">Stop at a safe place and rest.</string>
@@ -91,7 +91,7 @@
       <string name="alert_reason_nod">Your head keeps dropping.</string>
       <string name="alert_find_rest">Find a rest stop</string>
       <string name="rest_query">rest stop</string>
-      <string name="sum_title">Trip summary</string>
+      <string name="sum_title">Summary</string>
       <string name="sum_safe_title">Safe journey!</string>
       <string name="sum_safe_sub">No drowsiness alerts during this trip.</string>
       <string name="sum_alerts_title">You were alerted %1$d time(s)</string>

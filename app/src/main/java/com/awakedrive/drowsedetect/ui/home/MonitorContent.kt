@@ -32,6 +32,7 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.filled.Error
 import androidx.compose.material.icons.filled.Place
 import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Stop
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material3.AlertDialog
@@ -102,9 +103,9 @@ internal fun MonitorContent(ui: MonitorUiState, onOpenSettings: () -> Unit) {
 
     val color = stateColor(state)
     Box(Modifier.fillMaxSize()) {
+        Column(Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()) {
         Column(
-            Modifier.fillMaxSize().statusBarsPadding().navigationBarsPadding()
-                .verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 8.dp),
+            Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 20.dp, vertical = 8.dp),
             verticalArrangement = Arrangement.spacedBy(14.dp),
         ) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
@@ -150,12 +151,16 @@ internal fun MonitorContent(ui: MonitorUiState, onOpenSettings: () -> Unit) {
                 StatTile(stringResource(R.string.stat_nod), "${res?.nodCount ?: 0}", Modifier.weight(1f))
             }
 
-            OutlineButton(
-                stringResource(R.string.mon_end),
-                onClick = { showEndConfirm = true },
-                modifier = Modifier.fillMaxWidth().padding(top = 4.dp, bottom = 12.dp),
-                color = StateRed,
-            )
+        }
+
+        // Nút Dừng giám sát cố định ở đáy màn hình, không cuộn theo nội dung
+        GradientButton(
+            text = stringResource(R.string.mon_end),
+            onClick = { showEndConfirm = true },
+            icon = Icons.Filled.Stop,
+            modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 12.dp),
+            colors = listOf(Color(0xFFFF5A5F), Color(0xFFD7263D)),
+        )
         }
 
         // Tự đóng khi state rời DANGER (người dùng tỉnh lại) hoặc khi đã bấm "Tôi đã tỉnh" (ui.dangerAcked)

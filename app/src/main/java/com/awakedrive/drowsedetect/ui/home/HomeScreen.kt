@@ -27,7 +27,7 @@ import com.awakedrive.drowsedetect.service.BaselineStore
 import com.awakedrive.drowsedetect.service.MonitorPhase
 import com.awakedrive.drowsedetect.service.MonitorService
 import com.awakedrive.drowsedetect.service.MonitorStateHolder
-import com.awakedrive.drowsedetect.ui.components.ScreenBackground
+import com.awakedrive.drowsedetect.ui.components.HomeBackground
 import com.awakedrive.drowsedetect.ui.settings.openOverlaySettings
 import com.awakedrive.drowsedetect.ui.theme.BrandBlue
 import com.awakedrive.drowsedetect.ui.theme.StateAmber
@@ -112,7 +112,7 @@ fun HomeScreen(onOpenSettings: () -> Unit) {
         }
     } else BrandBlue
 
-    ScreenBackground(tint = tint) {
+    HomeBackground(tint = tint, overlay = running || summary != null) {
         val sm = summary
         when {
             !running && sm != null -> SummaryScreen(sm, onDone = MonitorStateHolder::clearSummary)

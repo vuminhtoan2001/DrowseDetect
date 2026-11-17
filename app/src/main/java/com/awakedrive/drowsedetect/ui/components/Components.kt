@@ -2,6 +2,7 @@ package com.awakedrive.drowsedetect.ui.components
 
 import androidx.camera.view.PreviewView
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -40,7 +41,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import com.awakedrive.drowsedetect.R
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -290,4 +294,34 @@ fun StyledSlider(
             }
         },
     )
+}
+
+/**
+ * Nền chung của luồng Home: ảnh bg_home neo đáy. Màn Sẵn sàng giữ nguyên ảnh; các màn khác
+ * (hiệu chuẩn, giám sát, tổng kết) phủ thêm lớp gradient theo màu trạng thái [tint] để vẫn đọc rõ chữ.
+ */
+@Composable
+fun HomeBackground(tint: Color, overlay: Boolean, content: @Composable BoxScope.() -> Unit) {
+    val animTint by androidx.compose.animation.animateColorAsState(tint, label = "tint")
+    CompositionLocalProvider(LocalContentColor provides Color.White) {
+        Box(Modifier.fillMaxSize().background(Navy900)) {
+            Image(
+                painter = painterResource(R.drawable.bg_home),
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.Crop,
+                alignment = Alignment.BottomCenter,
+            )
+            if (overlay) {
+                Box(
+                    Modifier.fillMaxSize().background(
+                        Brush.verticalGradient(
+                            listOf(animTint.copy(alpha = 0.55f), Navy900.copy(alpha = 0.72f), Navy900.copy(alpha = 0.92f)),
+                        ),
+                    ),
+                )
+            }
+            content()
+        }
+    }
 }

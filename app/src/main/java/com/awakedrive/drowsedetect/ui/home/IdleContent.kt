@@ -64,14 +64,6 @@ internal fun IdleContent(
     onOpenSettings: () -> Unit,
 ) {
     Box(Modifier.fillMaxSize()) {
-        // Ảnh cao hơn màn: neo đáy để luôn thấy chiếc xe, cắt bớt phần trời phía trên
-        Image(
-            painter = painterResource(R.drawable.bg_home),
-            contentDescription = null,
-            modifier = Modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.BottomCenter,
-        )
         BoxWithConstraints(Modifier.fillMaxSize()) {
             val carZone = maxHeight * 0.26f
             Column(

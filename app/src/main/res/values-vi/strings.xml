@@ -74,9 +74,9 @@
       <string name="stat_nod">Gật gù</string>
       <string name="eyes_open">Mắt đang mở</string>
       <string name="eyes_closed">Mắt đang nhắm</string>
-      <string name="mon_end">Kết thúc chuyến</string>
-      <string name="end_confirm_title">Kết thúc chuyến đi?</string>
-      <string name="end_confirm_yes">Kết thúc</string>
+      <string name="mon_end">Dừng giám sát</string>
+      <string name="end_confirm_title">Dừng giám sát?</string>
+      <string name="end_confirm_yes">Dừng</string>
       <string name="end_confirm_no">Tiếp tục</string>
       <string name="alert_title">Phát hiện buồn ngủ!</string>
       <string name="alert_sub">Hãy dừng xe ở nơi an toàn và nghỉ ngơi.</string>
@@ -86,7 +86,7 @@
       <string name="alert_reason_nod">Đầu bạn liên tục gục xuống.</string>
       <string name="alert_find_rest">Tìm chỗ nghỉ</string>
       <string name="rest_query">trạm dừng chân</string>
-      <string name="sum_title">Tổng kết chuyến đi</string>
+      <string name="sum_title">Tổng kết</string>
       <string name="sum_safe_title">Chuyến đi an toàn!</string>
       <string name="sum_safe_sub">Không có cảnh báo buồn ngủ nào.</string>
       <string name="sum_alerts_title">Bạn đã được cảnh báo %1$d lần</string>
