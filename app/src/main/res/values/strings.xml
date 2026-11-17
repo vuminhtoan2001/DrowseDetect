@@ -40,8 +40,8 @@
       <string name="settings_back">Back</string>
       <string name="settings_open">Settings</string>
 
-      <string name="home_ready_title">Ready to guard you</string>
-      <string name="home_ready_sub">Mount your phone and tap Start. The app will watch for drowsiness for you.</string>
+      <string name="home_ready_title">Ready to drive</string>
+      <string name="home_ready_sub">Stay alert, drive safely</string>
       <string name="home_start">Start monitoring</string>
       <string name="home_start_first">Start (15 s setup first)</string>
       <string name="tips_title">Before you drive</string>

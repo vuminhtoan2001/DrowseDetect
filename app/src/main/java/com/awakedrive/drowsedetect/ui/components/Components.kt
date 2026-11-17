@@ -33,10 +33,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.Role
@@ -90,29 +92,67 @@ fun GlassCard(
     )
 }
 
+/**
+ * Nút "nổi": gradient dọc sáng ở trên - đậm ở dưới, viền sáng mảnh, lớp bóng kính nửa trên và
+ * đổ bóng phát sáng cùng màu xung quanh nên trông như đang nổi khỏi nền.
+ * [colors] = [màu chính, màu đậm hơn ở đáy].
+ */
 @Composable
 fun GradientButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     icon: ImageVector? = null,
-    colors: List<Color> = listOf(BrandBlue, BrandCyan),
+    colors: List<Color> = listOf(BrandBlue, Color(0xFF1B45D6)),
 ) {
+    val shape = RoundedCornerShape(32.dp)
+    val main = colors.first()
+    val bottom = colors.last()
+    val top = androidx.compose.ui.graphics.lerp(main, Color.White, 0.30f)
     Row(
         modifier
-            .height(58.dp)
-            .clip(RoundedCornerShape(29.dp))
-            .background(Brush.horizontalGradient(colors))
+            .height(64.dp)
+            .shadow(18.dp, shape, ambientColor = main, spotColor = main)
+            .clip(shape)
+            .background(Brush.verticalGradient(listOf(top, main, bottom)))
+            .border(1.dp, Brush.verticalGradient(listOf(Color.White.copy(alpha = 0.65f), Color.White.copy(alpha = 0.05f))), shape)
+            .drawWithContent {
+                drawContent()
+                // lớp bóng kính ở nửa trên
+                drawRect(
+                    Brush.verticalGradient(
+                        listOf(Color.White.copy(alpha = 0.22f), Color.Transparent),
+                        endY = size.height * 0.55f,
+                    ),
+                    size = Size(size.width, size.height * 0.55f),
+                )
+            }
             .clickable(role = Role.Button, onClick = onClick)
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 28.dp),
         horizontalArrangement = Arrangement.Center,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         if (icon != null) {
-            Icon(icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(24.dp))
-            Box(Modifier.size(8.dp))
+            Icon(icon, contentDescription = null, tint = Color.White, modifier = Modifier.size(26.dp))
+            Box(Modifier.size(10.dp))
         }
         Text(text, style = MaterialTheme.typography.labelLarge, color = Color.White)
+    }
+}
+
+/** Nút icon tròn kiểu kính mờ (ví dụ nút cài đặt ở góc). */
+@Composable
+fun GlassIconButton(icon: ImageVector, contentDescription: String?, onClick: () -> Unit, modifier: Modifier = Modifier) {
+    Box(
+        modifier
+            .size(46.dp)
+            .clip(CircleShape)
+            .background(Navy800.copy(alpha = 0.55f))
+            .border(1.dp, Color.White.copy(alpha = 0.14f), CircleShape)
+            .clickable(role = Role.Button, onClick = onClick),
+        contentAlignment = Alignment.Center,
+    ) {
+        Icon(icon, contentDescription = contentDescription, tint = Color.White, modifier = Modifier.size(24.dp))
     }
 }
 
