@@ -204,12 +204,11 @@ private fun StatusCard(state: DrowsinessState, reason: AlertReason?, color: Colo
     val icon: ImageVector
     val title: Int
     val sub: Int
-    val pill: Int
     when (state) {
-        DrowsinessState.NORMAL -> { icon = Icons.Filled.CheckCircle; title = R.string.mon_ok_title; sub = R.string.mon_ok_sub; pill = R.string.pill_ok }
-        DrowsinessState.WARNING -> { icon = Icons.Filled.Warning; title = R.string.mon_warn_title; sub = R.string.mon_warn_sub; pill = R.string.pill_warn }
-        DrowsinessState.DANGER -> { icon = Icons.Filled.Error; title = R.string.mon_danger_title; sub = R.string.mon_warn_sub; pill = R.string.pill_danger }
-        DrowsinessState.NO_FACE -> { icon = Icons.Filled.VisibilityOff; title = R.string.mon_noface_title; sub = R.string.mon_noface_sub; pill = R.string.pill_noface }
+        DrowsinessState.NORMAL -> { icon = Icons.Filled.CheckCircle; title = R.string.mon_ok_title; sub = R.string.mon_ok_sub }
+        DrowsinessState.WARNING -> { icon = Icons.Filled.Warning; title = R.string.mon_warn_title; sub = R.string.mon_warn_sub }
+        DrowsinessState.DANGER -> { icon = Icons.Filled.Error; title = R.string.mon_danger_title; sub = R.string.mon_warn_sub }
+        DrowsinessState.NO_FACE -> { icon = Icons.Filled.VisibilityOff; title = R.string.mon_noface_title; sub = R.string.mon_noface_sub }
     }
     GlassCard(Modifier.fillMaxWidth(), borderColor = color.copy(alpha = 0.8f)) {
         Row(verticalAlignment = Alignment.CenterVertically) {
@@ -224,7 +223,6 @@ private fun StatusCard(state: DrowsinessState, reason: AlertReason?, color: Colo
                     color = TextSecondary,
                 )
             }
-            StatusPill(stringResource(pill), color)
         }
     }
 }
